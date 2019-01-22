@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">WikiEduDashboard</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">WikiEdu Dashboard</string>
+    <string name="title_home">Explore</string>
+    <string name="title_dashboard">My Dashboard</string>
+    <string name="title_notifications">Training</string>
 </resources>
