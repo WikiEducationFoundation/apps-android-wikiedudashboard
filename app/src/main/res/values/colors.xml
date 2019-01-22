@@ -2,13 +2,13 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorBackground">#676EB4</color>
+    <color name="colorAccent">#7350B6</color>
     <color name="colorHeadingLight">#8C6FC3</color>
-    <color name="colorHeading">#7350B6</color>
+    <!--<color name="colorHeading">#7350B6</color>-->
     <color name="colorHeadingDark">#5F4295</color>
     <color name="colorGrayBackground">#F5F5F5</color>
     <color name="colorGrayLine">#EAEAEA</color>
     <color name="colorGrayText">#808080</color>
+    <color name="black">#000000</color>
 
 </resources>

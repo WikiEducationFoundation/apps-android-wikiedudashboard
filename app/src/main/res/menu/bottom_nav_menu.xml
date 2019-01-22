@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_explore"
         android:icon="@drawable/ic_globe"
         android:title="@string/title_home" />
 
@@ -12,8 +12,8 @@
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:id="@+id/navigation_training"
+        android:icon="@drawable/ic_people_outline_black_24dp"
         android:title="@string/title_notifications" />
 
 </menu>

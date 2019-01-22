@@ -7,17 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/home_container"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        android:background="@color/colorGrayBackground"
+        android:layout_height="match_parent">
 
+    </FrameLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
