@@ -12,4 +12,10 @@
     <string name="demo_course">WikiProject Medicine Winter 2018 UCF COM</string>
     <string name="demo_course3">Digital History</string>
     <string name="demo_course2">ARCHY 319 Archaeology of Australia</string>
+    <string name="articles_created">Articles Created</string>
+    <string name="articles_edited">Articles Edited</string>
+    <string name="commons_upload">Commons Uploads</string>
+    <string name="article_views">Article Views</string>
+    <string name="words_added">Words Added</string>
+    <string name="student_editors">Student Editors</string>
 </resources>

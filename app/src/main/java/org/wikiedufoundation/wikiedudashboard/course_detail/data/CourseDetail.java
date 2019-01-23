@@ -1,6 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.course_detail.data;
 
-public class CourseDetail {
+import java.io.Serializable;
+
+public class CourseDetail implements Serializable {
     private int id;
     private String title;
     private String description;
