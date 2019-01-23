@@ -1,10 +1,15 @@
 package org.wikiedufoundation.wikiedudashboard;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import butterknife.BindView;
 
 
 /**
@@ -22,6 +27,15 @@ public class MyDashboardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
 
     public MyDashboardFragment() {
         // Required empty public constructor
