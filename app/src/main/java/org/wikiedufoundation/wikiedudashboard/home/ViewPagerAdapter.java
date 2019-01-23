@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> fragmentTitleList = new ArrayList<>();
 
