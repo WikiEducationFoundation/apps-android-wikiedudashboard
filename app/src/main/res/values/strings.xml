@@ -7,4 +7,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="active_campaigns">Active Campaigns</string>
+    <string name="active_courses">Active Courses</string>
+    <string name="title_search">Search</string>
+    <string name="demo_course">WikiProject Medicine Winter 2018 UCF COM</string>
+    <string name="demo_course3">Digital History</string>
+    <string name="demo_course2">ARCHY 319 Archaeology of Australia</string>
 </resources>

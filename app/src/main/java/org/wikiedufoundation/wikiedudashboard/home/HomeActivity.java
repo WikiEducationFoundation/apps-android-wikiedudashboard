@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard;
+package org.wikiedufoundation.wikiedudashboard.home;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import org.wikiedufoundation.wikiedudashboard.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

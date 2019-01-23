@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard;
+package org.wikiedufoundation.wikiedudashboard.home;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,14 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.wikiedufoundation.wikiedudashboard.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * Use the {@link ExploreFragment#newInstance} factory method to
+ * Use the {@link TrainingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExploreFragment extends Fragment {
+public class TrainingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -23,7 +25,7 @@ public class ExploreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ExploreFragment() {
+    public TrainingFragment() {
         // Required empty public constructor
     }
 
@@ -36,8 +38,8 @@ public class ExploreFragment extends Fragment {
      * @return A new instance of fragment ExploreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ExploreFragment newInstance(String param1, String param2) {
-        ExploreFragment fragment = new ExploreFragment();
+    public static TrainingFragment newInstance(String param1, String param2) {
+        TrainingFragment fragment = new TrainingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,6 +60,6 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false);
+        return inflater.inflate(R.layout.fragment_training, container, false);
     }
 }
