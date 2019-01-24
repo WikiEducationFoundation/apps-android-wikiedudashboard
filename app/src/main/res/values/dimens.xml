@@ -15,4 +15,5 @@
     <dimen name="text_size_20sp">20sp</dimen>
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_30sp">30sp</dimen>
+    <dimen name="icon_size_24dp">24dp</dimen>
 </resources>

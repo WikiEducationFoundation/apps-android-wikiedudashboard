@@ -49,6 +49,30 @@ public class CourseHomeFragment extends Fragment {
     @BindView(R.id.tv_count_commons_uploads)
     TextView tv_count_commons_uploads;
 
+    @BindView(R.id.tv_course_title)
+    TextView tv_course_title;
+
+    @BindView(R.id.tv_course_description)
+    TextView tv_course_description;
+
+    @BindView(R.id.tv_course_school)
+    TextView tv_course_school;
+
+    @BindView(R.id.tv_course_term)
+    TextView tv_course_term;
+
+    @BindView(R.id.tv_course_passcode)
+    TextView tv_course_passcode;
+
+    @BindView(R.id.tv_course_expected_students)
+    TextView tv_course_expected_students;
+
+    @BindView(R.id.tv_course_start)
+    TextView tv_course_start;
+
+    @BindView(R.id.tv_course_end)
+    TextView tv_course_end;
+
     public CourseHomeFragment() {
         // Required empty public constructor
     }
@@ -81,6 +105,14 @@ public class CourseHomeFragment extends Fragment {
         tv_count_words_added.setText(courseDetail.getWord_count());
         tv_count_article_views.setText(courseDetail.getView_count());
         tv_count_commons_uploads.setText(MessageFormat.format("{0}", courseDetail.getUpload_count()));
+        tv_course_title.setText(courseDetail.getTitle());
+        tv_course_description.setText(courseDetail.getDescription());
+        tv_course_school.setText(courseDetail.getSchool());
+        tv_course_term.setText(courseDetail.getTerm());
+        tv_course_passcode.setText(courseDetail.getPasscode());
+        tv_course_expected_students.setText(MessageFormat.format("{0}", courseDetail.getExpected_students()));
+        tv_course_start.setText(courseDetail.getStart());
+        tv_course_end.setText(courseDetail.getEnd());
         return view;
     }
 }

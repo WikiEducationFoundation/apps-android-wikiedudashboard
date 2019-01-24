@@ -53,6 +53,12 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         courseDetailPresenter = new CourseDetailPresenterImpl(this, new RetrofitCourseDetailProvider());
         courseDetailPresenter.requestCourseDetail(url);
     }

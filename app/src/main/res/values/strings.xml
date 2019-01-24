@@ -1,11 +1,10 @@
 <resources>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="app_name">WikiEdu Dashboard</string>
     <string name="title_home">Explore</string>
     <string name="title_dashboard">My Dashboard</string>
     <string name="title_notifications">Training</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="active_campaigns">Active Campaigns</string>
     <string name="active_courses">Active Courses</string>
     <string name="title_search">Search</string>
@@ -18,4 +17,18 @@
     <string name="article_views">Article Views</string>
     <string name="words_added">Words Added</string>
     <string name="student_editors">Student Editors</string>
+    <string name="demo_course_description">This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description. This is a demo description.</string>
+    <string name="school">School:</string>
+    <string name="end">End:</string>
+    <string name="start">Start:</string>
+    <string name="expected_students">Expected Students:</string>
+    <string name="passcode">Passcode:</string>
+    <string name="term">Term:</string>
+    <string name="_45">45</string>
+    <string name="course_title">Course Title</string>
+    <string name="details">Details</string>
+    <string name="description">Description</string>
+    <string name="wiki_education_dashboard">Wiki Education Dashboard</string>
+    <string name="log_in_with_wikipedia">Log in with Wikipedia</string>
+    <string name="sign_up_with_wikipedia">Sign up with Wikipedia</string>
 </resources>
