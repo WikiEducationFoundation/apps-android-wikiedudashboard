@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.presenter_callback;
+package org.wikiedufoundation.wikiedudashboard.helper;
 
 public interface PresenterCallback<T>{
     void onSuccess(T t);

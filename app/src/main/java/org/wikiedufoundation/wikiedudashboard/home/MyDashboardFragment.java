@@ -5,8 +5,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -24,7 +29,9 @@ public class MyDashboardFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    @BindView(R.id.tv_cookies)
+    TextView tv_cookies;
+    private SharedPrefs sharedPrefs;
     public MyDashboardFragment() {
         // Required empty public constructor
     }
@@ -61,6 +68,9 @@ public class MyDashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_dashboard, container, false);
+        ButterKnife.bind(this, view);
+        sharedPrefs = new SharedPrefs(getContext());
+        tv_cookies.setText(sharedPrefs.getCookies());
         return view;
     }
 }

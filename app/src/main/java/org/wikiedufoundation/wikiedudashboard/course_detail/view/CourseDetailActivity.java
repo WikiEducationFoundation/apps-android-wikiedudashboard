@@ -16,8 +16,7 @@ import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetail;
 import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenterImpl;
 import org.wikiedufoundation.wikiedudashboard.course_detail.provider.RetrofitCourseDetailProvider;
-import org.wikiedufoundation.wikiedudashboard.course_list.view.CourseListFragment;
-import org.wikiedufoundation.wikiedudashboard.home.ViewPagerAdapter;
+import org.wikiedufoundation.wikiedudashboard.helper.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

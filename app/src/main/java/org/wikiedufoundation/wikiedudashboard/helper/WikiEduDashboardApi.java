@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.api;
+package org.wikiedufoundation.wikiedudashboard.helper;
 
 import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
 

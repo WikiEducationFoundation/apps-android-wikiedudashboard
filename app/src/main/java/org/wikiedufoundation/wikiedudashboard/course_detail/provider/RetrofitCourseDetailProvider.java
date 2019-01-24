@@ -5,10 +5,10 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.wikiedufoundation.wikiedudashboard.api.WikiEduDashboardApi;
+import org.wikiedufoundation.wikiedudashboard.helper.WikiEduDashboardApi;
 import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
 import org.wikiedufoundation.wikiedudashboard.helper.Urls;
-import org.wikiedufoundation.wikiedudashboard.presenter_callback.PresenterCallback;
+import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 
 import java.util.concurrent.TimeUnit;
 

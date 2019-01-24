@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.home;
+package org.wikiedufoundation.wikiedudashboard.helper;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

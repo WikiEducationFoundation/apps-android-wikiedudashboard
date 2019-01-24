@@ -2,13 +2,10 @@ package org.wikiedufoundation.wikiedudashboard.course_detail.presenter;
 
 import android.util.Log;
 
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetail;
 import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
 import org.wikiedufoundation.wikiedudashboard.course_detail.provider.CourseDetailProvider;
-import org.wikiedufoundation.wikiedudashboard.course_detail.provider.RetrofitCourseDetailProvider;
-import org.wikiedufoundation.wikiedudashboard.course_detail.view.CourseDetailActivity;
 import org.wikiedufoundation.wikiedudashboard.course_detail.view.CourseDetailView;
-import org.wikiedufoundation.wikiedudashboard.presenter_callback.PresenterCallback;
+import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 
 public class CourseDetailPresenterImpl implements CourseDetailPresenter {
     private CourseDetailView courseDetailView;
