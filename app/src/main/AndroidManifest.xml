@@ -13,17 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name="com.codenicely.services.feelbazaar.vendorapp.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".welcome.WelcomeActivity" />
-        <activity android:name=".course_detail.view.CourseDetailActivity" />
+        <activity android:name="com.codenicely.services.feelbazaar.vendorapp.welcome.WelcomeActivity" />
+        <activity android:name="com.codenicely.services.feelbazaar.vendorapp.course_detail.view.CourseDetailActivity" />
         <activity
-            android:name=".home.HomeActivity"
+            android:name="com.codenicely.services.feelbazaar.vendorapp.home.HomeActivity"
             android:label="@string/app_name">
         </activity>
     </application>

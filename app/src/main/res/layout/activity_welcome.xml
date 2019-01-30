@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcome.WelcomeActivity">
+    tools:context="com.codenicely.services.feelbazaar.vendorapp.welcome.WelcomeActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
