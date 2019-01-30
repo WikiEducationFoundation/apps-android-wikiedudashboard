@@ -1,6 +1,5 @@
 package com.codenicely.services.feelbazaar.vendorapp.course_detail.presenter;
 
-import android.util.Log;
 
 import com.codenicely.services.feelbazaar.vendorapp.course_detail.data.CourseDetailResponse;
 import com.codenicely.services.feelbazaar.vendorapp.course_detail.provider.CourseDetailProvider;
@@ -18,18 +17,17 @@ public class CourseDetailPresenterImpl implements CourseDetailPresenter {
 
     @Override
     public void requestCourseDetail(String url) {
-        courseDetailView.showProgressbar(true);
+        courseDetailView.showProgressBar(true);
         courseDetailProvider.requestCourseDetail(url, new PresenterCallback() {
             @Override
             public void onSuccess(Object o) {
-                courseDetailView.showProgressbar(false);
-                Log.d("Ujjwal: ",o.toString());
+                courseDetailView.showProgressBar(false);
                 courseDetailView.setData(((CourseDetailResponse) o).getCourse());
             }
 
             @Override
             public void onFailure() {
-                courseDetailView.showProgressbar(false);
+                courseDetailView.showProgressBar(false);
                 courseDetailView.showMessage("Unable to connect to server.");
             }
         });

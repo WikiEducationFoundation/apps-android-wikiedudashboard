@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CourseDetailActivity extends AppCompatActivity implements CourseDetailView{
+public class CourseDetailActivity extends AppCompatActivity implements CourseDetailView {
 
     private CourseDetailPresenter courseDetailPresenter;
     private String url;
@@ -63,15 +63,6 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
     }
 
     @Override
-    public void showProgressbar(boolean show) {
-        if (show){
-            progressBar.setVisibility(View.VISIBLE);
-        }else {
-            progressBar.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -102,4 +93,12 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         viewPagerAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showProgressBar(boolean show) {
+        if (show){
+            progressBar.setVisibility(View.VISIBLE);
+        }else {
+            progressBar.setVisibility(View.GONE);
+        }
+    }
 }

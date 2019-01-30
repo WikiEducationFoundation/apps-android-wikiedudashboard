@@ -160,4 +160,36 @@ public class CourseListData {
     public int getTrained_count() {
         return trained_count;
     }
+
+    @Override
+    public String toString() {
+        return "CourseListData{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", school='" + school + '\'' +
+                ", term='" + term + '\'' +
+                ", character_sum='" + character_sum + '\'' +
+                ", view_sum='" + view_sum + '\'' +
+                ", user_count='" + user_count + '\'' +
+                ", article_count='" + article_count + '\'' +
+                ", revision_count='" + revision_count + '\'' +
+                ", slug='" + slug + '\'' +
+                ", subject='" + subject + '\'' +
+                ", expected_students=" + expected_students +
+                ", description='" + description + '\'' +
+                ", submitted=" + submitted +
+                ", passcode='" + passcode + '\'' +
+                ", timeline_start='" + timeline_start + '\'' +
+                ", timeline_end='" + timeline_end + '\'' +
+                ", day_exceptions='" + day_exceptions + '\'' +
+                ", weekdays='" + weekdays + '\'' +
+                ", new_article_count=" + new_article_count +
+                ", no_day_exceptions=" + no_day_exceptions +
+                ", trained_count=" + trained_count +
+                '}';
+    }
 }

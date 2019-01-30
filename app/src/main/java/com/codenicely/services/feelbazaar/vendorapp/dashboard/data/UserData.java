@@ -10,4 +10,11 @@ public class UserData {
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "username='" + username + '\'' +
+                '}';
+    }
 }

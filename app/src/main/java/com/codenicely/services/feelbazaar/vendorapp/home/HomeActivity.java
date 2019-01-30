@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
+import com.codenicely.services.feelbazaar.vendorapp.dashboard.view.MyDashboardFragment;
+
 import org.wikiedufoundation.wikiedudashboard.R;
 
 public class HomeActivity extends AppCompatActivity {

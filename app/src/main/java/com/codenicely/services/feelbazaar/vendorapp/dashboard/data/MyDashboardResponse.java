@@ -18,4 +18,12 @@ public class MyDashboardResponse {
     public List<CourseListData> getCurrent_courses() {
         return current_courses;
     }
+
+    @Override
+    public String toString() {
+        return "MyDashboardResponse{" +
+                "user=" + user +
+                ", current_courses=" + current_courses +
+                '}';
+    }
 }

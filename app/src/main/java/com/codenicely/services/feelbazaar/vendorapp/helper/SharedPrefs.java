@@ -10,6 +10,7 @@ public class SharedPrefs {
     private static final String PREF_NAME = "prefs";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_COOKIES = "cookies";
+    private static final String KEY_USERNAME = "username";
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -35,7 +36,6 @@ public class SharedPrefs {
     }
 
     public void setCookies(String cookies) {
-
         editor.putString(KEY_COOKIES, cookies);
         editor.commit();
         Log.d(TAG, "Cookies modified!");
@@ -43,6 +43,16 @@ public class SharedPrefs {
 
     public String getCookies() {
         return pref.getString(KEY_COOKIES, null);
+    }
+
+    public void setUserName(String username) {
+        editor.putString(KEY_USERNAME, username);
+        editor.commit();
+        Log.d(TAG, "Username modified!");
+    }
+
+    public String getUserName() {
+        return pref.getString(KEY_USERNAME, null);
     }
 
 }

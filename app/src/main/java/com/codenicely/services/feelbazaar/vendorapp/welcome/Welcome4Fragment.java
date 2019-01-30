@@ -133,14 +133,16 @@ public class Welcome4Fragment extends Fragment {
         cv_login_wikipedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
+//                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
+                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki";
                 webView.loadUrl(url);
             }
         });
         cv_signup_wikipedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
+//                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
+                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup";
                 webView.loadUrl(url);
             }
         });
