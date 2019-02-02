@@ -38,9 +38,6 @@ public class ExploreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
 
@@ -85,7 +82,6 @@ public class ExploreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
         ButterKnife.bind(this, view);
-        toolbar.inflateMenu(R.menu.menu_explore);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -102,20 +98,5 @@ public class ExploreFragment extends Fragment {
         fragmentList.add(new CourseListFragment());
         viewPagerAdapter.setTabData(fragmentList, titleList);
         viewPagerAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_explore, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.item_search) {
-            Toast.makeText(getContext(), "Search", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return false;
     }
 }

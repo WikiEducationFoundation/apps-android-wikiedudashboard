@@ -1,5 +1,7 @@
 <resources>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="app_name">WikiEdu Dashboard</string>
     <string name="title_home">Explore</string>
@@ -31,4 +33,8 @@
     <string name="wiki_education_dashboard">Wiki Education Dashboard</string>
     <string name="log_in_with_wikipedia">Log in with Wikipedia</string>
     <string name="sign_up_with_wikipedia">Sign up with Wikipedia</string>
+    <string name="nav_header_title">Title</string>
+    <string name="nav_header_subtitle">subtitle</string>
+    <string name="nav_logout">LOG OUT</string>
+    <string name="demo_username">demo_username</string>
 </resources>
