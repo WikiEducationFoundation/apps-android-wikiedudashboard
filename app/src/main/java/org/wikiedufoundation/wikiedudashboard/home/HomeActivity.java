@@ -1,12 +1,10 @@
 package org.wikiedufoundation.wikiedudashboard.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,19 +12,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.wikiedufoundation.wikiedudashboard.dashboard.view.MyDashboardFragment;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.dashboard.view.MyDashboardFragment;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
-import org.wikiedufoundation.wikiedudashboard.welcome.WelcomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -155,11 +147,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void replaceFragment(Fragment fragment) {
-        if (fragment instanceof ExploreFragment){
-            getSupportActionBar().show();
-        }else {
-            getSupportActionBar().hide();
-        }
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -167,6 +154,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //            fragmentTransaction.addToBackStack(null);
 //            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
             fragmentTransaction.commit();
+        }
+        if (fragment instanceof ExploreFragment){
+            getSupportActionBar().show();
+        }else {
+            getSupportActionBar().hide();
         }
     }
 
