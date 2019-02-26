@@ -39,24 +39,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_explore:
-                    replaceFragment(new ExploreFragment());
-                    return true;
-                case R.id.navigation_dashboard:
-                    replaceFragment(new MyDashboardFragment());
-                    return true;
-                case R.id.navigation_training:
-                    replaceFragment(new TrainingFragment());
-                    return true;
-            }
-            return false;
-        }
-    };
+            = item -> {
+                switch (item.getItemId()) {
+                    case R.id.navigation_explore:
+                        replaceFragment(new ExploreFragment());
+                        return true;
+                    case R.id.navigation_dashboard:
+                        replaceFragment(new MyDashboardFragment());
+                        return true;
+                    case R.id.navigation_training:
+                        replaceFragment(new TrainingFragment());
+                        return true;
+                }
+                return false;
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_settings) {
             // Handle the camera action
         }
 
