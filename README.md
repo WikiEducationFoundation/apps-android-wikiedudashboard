@@ -1,5 +1,7 @@
 # WikiEdu Dashboard Android app
 
+[![Build status](https://api.travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard.svg)](https://travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard) 
+
 An Android app for users to access Wiki Education Dashboard, and Programs & Events Dashboard. This project is a part of [WikiEdu Dashboard]( https://github.com/WikiEducationFoundation/WikiEduDashboard)
 
 
