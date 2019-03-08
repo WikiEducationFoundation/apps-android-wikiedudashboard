@@ -9,11 +9,6 @@ The main feature of this app is to support Wikipedia education assignments, edit
 
 This project is a part of [WikiEdu Dashboard]( https://github.com/WikiEducationFoundation/WikiEduDashboard)
 
-
-<h2>Documentation </h2>
-
-To be updated. 
-
 <h2>Screenshots </h2>
 
 <table>
@@ -58,8 +53,6 @@ To be updated.
 </table>
 
 ## Development
-
-A native Android app using Java for writing code. 
 
 ### Android App Development Set up
 
