@@ -90,11 +90,9 @@ public class Welcome4Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_welcome4, container, false);
         ButterKnife.bind(this, view);
         final Context context = getContext();
-        cookies = "";
         sharedPrefs = new SharedPrefs(context);
         webView.setWebViewClient(new WebViewClient(){
             @Override
@@ -106,15 +104,7 @@ public class Welcome4Fragment extends Fragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 Log.d("WEB_URL: ", url);
-                if (url.equals("https://dashboard.wikiedu.org/")){
-                    Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
-                    cookies = CookieManager.getInstance().getCookie(url);
-                    Log.d("Cookies: ", "All the cookies in a string:" + cookies);
-                    sharedPrefs.setCookies(cookies);
-                    sharedPrefs.setLogin(true);
-                    startActivity(new Intent(context, HomeActivity.class));
-                    getActivity().finish();
-                }else if(url.equals("https://outreachdashboard.wmflabs.org/")){
+                if (url.equals("https://dashboard.wikiedu.org/") || url.equals("https://outreachdashboard.wmflabs.org/")){
                     Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
                     cookies = CookieManager.getInstance().getCookie(url);
                     Log.d("Cookies: ", "All the cookies in a string:" + cookies);
@@ -130,21 +120,15 @@ public class Welcome4Fragment extends Fragment {
             }
         });
 
-        cv_login_wikipedia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        cv_login_wikipedia.setOnClickListener(view1 -> {
 //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
-                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki";
-                webView.loadUrl(url);
-            }
+            String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki";
+            webView.loadUrl(url);
         });
-        cv_signup_wikipedia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        cv_signup_wikipedia.setOnClickListener(view12 -> {
 //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
-                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup";
-                webView.loadUrl(url);
-            }
+            String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup";
+            webView.loadUrl(url);
         });
         return view;
     }
