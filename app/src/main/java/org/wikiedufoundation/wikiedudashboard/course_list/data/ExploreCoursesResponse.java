@@ -5,14 +5,13 @@ import org.wikiedufoundation.wikiedudashboard.dashboard.data.UserData;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@AllArgsConstructor
+@ToString
 public class ExploreCoursesResponse {
     private List<CourseListData> courses;
-
-    public ExploreCoursesResponse(List<CourseListData> courses) {
-        this.courses = courses;
-    }
-
-    public List<CourseListData> getCourses() {
-        return courses;
-    }
 }
