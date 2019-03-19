@@ -21,17 +21,14 @@ public class SplashActivity extends AppCompatActivity {
         final Context context= this;
         sharedPrefs = new SharedPrefs(context);
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-            if (sharedPrefs.isLoggedIn()){
-                startActivity(new Intent(context, HomeActivity.class));
-                finish();
-            }else {
-                startActivity(new Intent(context,WelcomeActivity.class));
-                finish();
-            }
-            }
+        handler.postDelayed(() -> {
+        if (sharedPrefs.isLoggedIn()){
+            startActivity(new Intent(context, HomeActivity.class));
+            finish();
+        }else {
+            startActivity(new Intent(context,WelcomeActivity.class));
+            finish();
+        }
         }, 1000);
     }
 }

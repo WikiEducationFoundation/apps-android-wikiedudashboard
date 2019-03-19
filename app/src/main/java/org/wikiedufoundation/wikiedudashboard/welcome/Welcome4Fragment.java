@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
+import org.wikiedufoundation.wikiedudashboard.helper.Urls;
 import org.wikiedufoundation.wikiedudashboard.home.HomeActivity;
 
 import butterknife.BindView;
@@ -54,6 +55,7 @@ public class Welcome4Fragment extends Fragment {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     private String cookies;
+    private Context context;
     private SharedPrefs sharedPrefs;
 
     public Welcome4Fragment() {
@@ -90,12 +92,16 @@ public class Welcome4Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_welcome4, container, false);
         ButterKnife.bind(this, view);
-        final Context context = getContext();
-        cookies = "";
+        context = getContext();
         sharedPrefs = new SharedPrefs(context);
+        setWebView();
+        setOnClickListeners();
+        return view;
+    }
+
+    private void setWebView() {
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -106,22 +112,8 @@ public class Welcome4Fragment extends Fragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 Log.d("WEB_URL: ", url);
-                if (url.equals("https://dashboard.wikiedu.org/")){
-                    Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
-                    cookies = CookieManager.getInstance().getCookie(url);
-                    Log.d("Cookies: ", "All the cookies in a string:" + cookies);
-                    sharedPrefs.setCookies(cookies);
-                    sharedPrefs.setLogin(true);
-                    startActivity(new Intent(context, HomeActivity.class));
-                    getActivity().finish();
-                }else if(url.equals("https://outreachdashboard.wmflabs.org/")){
-                    Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
-                    cookies = CookieManager.getInstance().getCookie(url);
-                    Log.d("Cookies: ", "All the cookies in a string:" + cookies);
-                    sharedPrefs.setCookies(cookies);
-                    sharedPrefs.setLogin(true);
-                    startActivity(new Intent(context, HomeActivity.class));
-                    getActivity().finish();
+                if (url.equals("https://dashboard.wikiedu.org/") || url.equals("https://outreachdashboard.wmflabs.org/")){
+                    proceedToLogin(url);
                 }else {
                     super.onPageFinished(view, url);
                     webView.setVisibility(View.VISIBLE);
@@ -129,24 +121,32 @@ public class Welcome4Fragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
+    }
 
-        cv_login_wikipedia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    private void proceedToLogin(String url) {
+        Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
+        cookies = CookieManager.getInstance().getCookie(url);
+        Log.d("Cookies: ", "All the cookies in a string:" + cookies);
+        sharedPrefs.setOutreachDashboardCookies(cookies);
+        Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL;
+        sharedPrefs.setCookies(cookies);
+        sharedPrefs.setLogin(true);
+        startActivity(new Intent(context, HomeActivity.class));
+        getActivity().finish();
+    }
+
+    private void setOnClickListeners() {
+        cv_login_wikipedia.setOnClickListener(view1 -> {
 //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
-                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki";
-                webView.loadUrl(url);
-            }
+            String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki";
+            webView.loadUrl(url);
         });
-        cv_signup_wikipedia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        cv_signup_wikipedia.setOnClickListener(view12 -> {
 //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
-                String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup";
-                webView.loadUrl(url);
-            }
+            String url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup";
+            webView.loadUrl(url);
         });
-        return view;
+
     }
 
 }

@@ -1,9 +1,9 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.presenter;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter;
 
 
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
-import org.wikiedufoundation.wikiedudashboard.course_detail.provider.CourseDetailProvider;
-import org.wikiedufoundation.wikiedudashboard.course_detail.view.CourseDetailView;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetailResponse;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.provider.CourseDetailProvider;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailView;
 import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 
 public class CourseDetailPresenterImpl implements CourseDetailPresenter {
