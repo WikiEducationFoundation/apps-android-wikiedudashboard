@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
-import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data.Articles;
+import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data.Article;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class ArticlesEditedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<Articles> edited = new ArrayList<>();
+    private List<Article> edited = new ArrayList<>();
 
 
     public ArticlesEditedRecyclerAdapter(Context context) {
@@ -42,7 +42,7 @@ public class ArticlesEditedRecyclerAdapter extends RecyclerView.Adapter<Recycler
 
     }
 
-    void setData(List<Articles> edited) {
+    void setData(List<Article> edited) {
         this.edited = edited;
     }
 

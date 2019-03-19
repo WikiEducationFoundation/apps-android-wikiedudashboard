@@ -84,7 +84,7 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         fragmentList.add(new CampaignListFragment());
         titleList.add("Students");
         fragmentList.add(new CampaignListFragment());
-        titleList.add("Articles");
+        titleList.add("Article");
         CourseArticlesEditedFragment courseArticlesEditedFragment=new CourseArticlesEditedFragment();
         Bundle bundle=new Bundle();
         bundle.putString("url",url);

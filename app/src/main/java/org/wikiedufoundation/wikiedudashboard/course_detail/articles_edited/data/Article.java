@@ -1,11 +1,13 @@
 package org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
-public class Course {
-    List<Article> articles;
+@ToString
+public class Article {
+    private int id;
+    private String title;
 }
