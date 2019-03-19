@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.campaign.view.CampaignListFragment;
+import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.view.StudentListFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetail;
 import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenterImpl;
@@ -82,7 +83,11 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         titleList.add("Timeline");
         fragmentList.add(new CampaignListFragment());
         titleList.add("Students");
-        fragmentList.add(new CampaignListFragment());
+        StudentListFragment studentListFragment=new StudentListFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("url",url);
+        studentListFragment.setArguments(bundle);
+        fragmentList.add(studentListFragment);
         titleList.add("Articles");
         fragmentList.add(new CampaignListFragment());
         titleList.add("Uploads");
