@@ -19,6 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter.Cou
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.provider.RetrofitCourseDetailProvider;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.home.CourseHomeFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.timeline.CourseTimelineFragment;
+import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.view.StudentListFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view.CourseUploadsFragment;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
 import org.wikiedufoundation.wikiedudashboard.helper.ViewPagerAdapter;
@@ -93,7 +94,11 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
             fragmentList.add(new CourseTimelineFragment());
         }
         titleList.add("Students");
-        fragmentList.add(new CampaignListFragment());
+        StudentListFragment studentListFragment=new StudentListFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("url",url);
+        studentListFragment.setArguments(bundle);
+        fragmentList.add(studentListFragment);
         titleList.add("Articles");
         fragmentList.add(new CampaignListFragment());
         titleList.add("Uploads");
