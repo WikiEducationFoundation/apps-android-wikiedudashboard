@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".course_detail.view.CourseHomeFragment">
+    tools:context=".course_detail.common.view.home.CourseHomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

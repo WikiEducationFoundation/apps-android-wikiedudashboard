@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.view;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.view.timeline;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetail;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetail;
 
 import java.text.MessageFormat;
 
@@ -18,10 +18,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * Use the {@link CourseHomeFragment#newInstance} factory method to
+ * Use the {@link CourseTimelineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CourseHomeFragment extends Fragment {
+public class CourseTimelineFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,12 +73,12 @@ public class CourseHomeFragment extends Fragment {
     @BindView(R.id.tv_course_end)
     TextView tv_course_end;
 
-    public CourseHomeFragment() {
+    public CourseTimelineFragment() {
         // Required empty public constructor
     }
 
-    public static CourseHomeFragment newInstance(CourseDetail courseDetail) {
-        CourseHomeFragment fragment = new CourseHomeFragment();
+    public static CourseTimelineFragment newInstance(CourseDetail courseDetail) {
+        CourseTimelineFragment fragment = new CourseTimelineFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, courseDetail);
         fragment.setArguments(args);

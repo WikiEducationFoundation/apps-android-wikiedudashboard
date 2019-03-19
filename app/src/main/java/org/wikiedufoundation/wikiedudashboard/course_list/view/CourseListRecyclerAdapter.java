@@ -63,7 +63,6 @@ public class CourseListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         @BindView(R.id.tv_course_title)
         TextView tv_course_title;
 
-
         public MyDashboardViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

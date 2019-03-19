@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.provider;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.provider;
 
 import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 

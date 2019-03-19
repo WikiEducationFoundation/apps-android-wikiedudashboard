@@ -1,7 +1,6 @@
-package org.wikiedufoundation.wikiedudashboard.course_list.view;
+package org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,32 +13,27 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
-import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailActivity;
-import org.wikiedufoundation.wikiedudashboard.course_list.data.ExploreCoursesResponse;
-import org.wikiedufoundation.wikiedudashboard.course_list.presenter.CourseListPresenterImpl;
-import org.wikiedufoundation.wikiedudashboard.course_list.provider.RetrofitCourseListProvider;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.data.CourseUploadList;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.presenter.CourseUploadsPresenter;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.presenter.CourseUploadsPresenterImpl;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.provider.RetrofitCourseUploadsProvider;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
 import org.wikiedufoundation.wikiedudashboard.helper.ViewUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * Use the {@link CourseListFragment#newInstance} factory method to
+ * Use the {@link CourseUploadsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CourseListFragment extends Fragment implements CourseListView {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class CourseUploadsFragment extends Fragment implements CourseUploadsView{
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String courseUrl;
+
     @BindView(R.id.tv_no_courses)
     TextView tv_no_courses;
 
@@ -51,26 +45,17 @@ public class CourseListFragment extends Fragment implements CourseListView {
 
     private SharedPrefs sharedPrefs;
     private Context context;
-    private CourseListPresenterImpl courseListPresenter;
-    private CourseListRecyclerAdapter courseListRecyclerAdapter;
-    public CourseListFragment() {
+    private CourseUploadsPresenterImpl courseUploadsPresenter;
+    private CourseUploadsRecyclerAdapter courseUploadsRecyclerAdapter;
+
+    public CourseUploadsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ExploreFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CourseListFragment newInstance(String param1, String param2) {
-        CourseListFragment fragment = new CourseListFragment();
+    public static CourseUploadsFragment newInstance(String courseDetail) {
+        CourseUploadsFragment fragment = new CourseUploadsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, courseDetail);
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,38 +64,35 @@ public class CourseListFragment extends Fragment implements CourseListView {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            courseUrl = getArguments().getString(ARG_PARAM1);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_explore_course_list, container, false);
         ButterKnife.bind(this, view);
         context = getContext();
         sharedPrefs = new SharedPrefs(context);
         tv_no_courses.setText(sharedPrefs.getCookies());
-        courseListPresenter = new CourseListPresenterImpl(this, new RetrofitCourseListProvider());
-        courseListRecyclerAdapter = new CourseListRecyclerAdapter(context, this);
+        courseUploadsPresenter = new CourseUploadsPresenterImpl(this, new RetrofitCourseUploadsProvider());
+        courseUploadsRecyclerAdapter = new CourseUploadsRecyclerAdapter(context, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(courseListRecyclerAdapter);
-
-        courseListPresenter.requestDashboard(sharedPrefs.getCookies());
+        recyclerView.setAdapter(courseUploadsRecyclerAdapter);
+        courseUploadsPresenter.requestCourseUploads(courseUrl);
         return view;
     }
 
     @Override
-    public void setData(ExploreCoursesResponse data) {
-        Log.d("DashboardFragment: ", data.toString());
-        if (data.getCourses().size() > 0) {
+    public void setData(CourseUploadList courseUploadList) {
+        Log.d("DashboardFragment: ", courseUploadList.toString());
+        if (courseUploadList.getUploads().size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
-            courseListRecyclerAdapter.setData(data.getCourses());
-            courseListRecyclerAdapter.notifyDataSetChanged();
+            courseUploadsRecyclerAdapter.setData(courseUploadList.getUploads());
+            courseUploadsRecyclerAdapter.notifyDataSetChanged();
             tv_no_courses.setVisibility(View.GONE);
         }
         else {
@@ -132,11 +114,5 @@ public class CourseListFragment extends Fragment implements CourseListView {
     @Override
     public void showMessage(String message) {
         ViewUtils.showToast(context, message);
-    }
-
-    public void openCourseDetail(String slug) {
-        Intent i = new Intent(context, CourseDetailActivity.class);
-        i.putExtra("url", slug);
-        startActivity(i);
     }
 }

@@ -1,7 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.helper;
 
 import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data.ArticlesEdited;
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetailResponse;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.data.CourseUploadResponse;
 import org.wikiedufoundation.wikiedudashboard.course_list.data.ExploreCoursesResponse;
 import org.wikiedufoundation.wikiedudashboard.dashboard.data.MyDashboardResponse;
 
@@ -17,6 +18,9 @@ public interface WikiEduDashboardApi {
 
     @GET
     Call<ArticlesEdited> getArticlesEdited(@Url String url);
+
+    @GET
+    Call<CourseUploadResponse> getCourseUploads(@Url String url);
 
     @GET("dashboard.json")
     Call<MyDashboardResponse> getDashboardDetail(@Header("Cookie") String sessionIdAndToken);

@@ -10,6 +10,8 @@ public class SharedPrefs {
     private static final String PREF_NAME = "prefs";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_COOKIES = "cookies";
+    private static final String KEY_WIKI_EDU_DASHBOARD_COOKIES = "wiki_edu_dashboard_cookies";
+    private static final String KEY_OUTREACH_DASHBOARD_COOKIES = "outreach_dashboard_cookies";
     private static final String KEY_USERNAME = "username";
 
     private SharedPreferences pref;
@@ -35,6 +37,16 @@ public class SharedPrefs {
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);
     }
 
+    public void setWikiEduDashboardCookies(String cookies) {
+        editor.putString(KEY_WIKI_EDU_DASHBOARD_COOKIES, cookies);
+        editor.commit();
+        Log.d(TAG, "WikiEdu Dashboard Cookies modified!");
+    }
+
+    public String getWikiEduDashboardCookies() {
+        return pref.getString(KEY_WIKI_EDU_DASHBOARD_COOKIES, null);
+    }
+
     public void setCookies(String cookies) {
         editor.putString(KEY_COOKIES, cookies);
         editor.commit();
@@ -43,6 +55,16 @@ public class SharedPrefs {
 
     public String getCookies() {
         return pref.getString(KEY_COOKIES, null);
+    }
+
+    public void setOutreachDashboardCookies(String cookies) {
+        editor.putString(KEY_OUTREACH_DASHBOARD_COOKIES, cookies);
+        editor.commit();
+        Log.d(TAG, "Outreach Dashboard Cookies modified!");
+    }
+
+    public String getOutreachDashboardCookies() {
+        return pref.getString(KEY_OUTREACH_DASHBOARD_COOKIES, null);
     }
 
     public void setUserName(String username) {
