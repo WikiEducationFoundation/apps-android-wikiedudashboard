@@ -9,7 +9,6 @@ public class SharedPrefs {
 
     private static final String PREF_NAME = "prefs";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
-    private static final boolean KEY_IS_LOGGEDIN_WIKI_EDU_DASHBOARD = true;
     private static final String KEY_COOKIES = "cookies";
     private static final String KEY_WIKI_EDU_DASHBOARD_COOKIES = "wiki_edu_dashboard_cookies";
     private static final String KEY_OUTREACH_DASHBOARD_COOKIES = "outreach_dashboard_cookies";
