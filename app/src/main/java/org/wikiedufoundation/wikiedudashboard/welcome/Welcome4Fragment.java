@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
+import org.wikiedufoundation.wikiedudashboard.helper.Urls;
 import org.wikiedufoundation.wikiedudashboard.home.HomeActivity;
 
 import butterknife.BindView;
@@ -126,6 +127,8 @@ public class Welcome4Fragment extends Fragment {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show();
         cookies = CookieManager.getInstance().getCookie(url);
         Log.d("Cookies: ", "All the cookies in a string:" + cookies);
+        sharedPrefs.setOutreachDashboardCookies(cookies);
+        Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL;
         sharedPrefs.setCookies(cookies);
         sharedPrefs.setLogin(true);
         startActivity(new Intent(context, HomeActivity.class));

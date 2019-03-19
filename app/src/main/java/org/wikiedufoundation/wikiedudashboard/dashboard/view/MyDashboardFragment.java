@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 
-import org.wikiedufoundation.wikiedudashboard.course_detail.view.CourseDetailActivity;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailActivity;
 import org.wikiedufoundation.wikiedudashboard.dashboard.data.MyDashboardResponse;
 import org.wikiedufoundation.wikiedudashboard.dashboard.presenter.MyDashboardPresenter;
 import org.wikiedufoundation.wikiedudashboard.dashboard.presenter.MyDashboardPresenterImpl;

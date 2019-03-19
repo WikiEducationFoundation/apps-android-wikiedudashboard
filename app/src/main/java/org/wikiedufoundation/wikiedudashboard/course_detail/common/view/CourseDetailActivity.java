@@ -1,5 +1,6 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.view;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.view;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,10 +13,14 @@ import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.campaign.view.CampaignListFragment;
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetail;
-import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenter;
-import org.wikiedufoundation.wikiedudashboard.course_detail.presenter.CourseDetailPresenterImpl;
-import org.wikiedufoundation.wikiedudashboard.course_detail.provider.RetrofitCourseDetailProvider;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetail;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter.CourseDetailPresenter;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter.CourseDetailPresenterImpl;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.provider.RetrofitCourseDetailProvider;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.home.CourseHomeFragment;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.timeline.CourseTimelineFragment;
+import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view.CourseUploadsFragment;
+import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
 import org.wikiedufoundation.wikiedudashboard.helper.ViewPagerAdapter;
 
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
+    private Context context;
+    private SharedPrefs sharedPrefs;
     private ViewPagerAdapter viewPagerAdapter;
     private CourseHomeFragment courseHomeFragment;
     @Override
@@ -49,6 +56,8 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         setContentView(R.layout.activity_course_detail);
         url = getIntent().getStringExtra("url");
         ButterKnife.bind(this);
+        context = this;
+        sharedPrefs = new SharedPrefs(context);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -79,14 +88,16 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         List<String> titleList = new ArrayList<>();
         titleList.add("Home");
         fragmentList.add(courseHomeFragment);
-        titleList.add("Timeline");
-        fragmentList.add(new CampaignListFragment());
+        if (sharedPrefs.getCookies().equals(sharedPrefs.getWikiEduDashboardCookies())){
+            titleList.add("Timeline");
+            fragmentList.add(new CourseTimelineFragment());
+        }
         titleList.add("Students");
         fragmentList.add(new CampaignListFragment());
         titleList.add("Articles");
         fragmentList.add(new CampaignListFragment());
         titleList.add("Uploads");
-        fragmentList.add(new CampaignListFragment());
+        fragmentList.add(CourseUploadsFragment.newInstance(url));
         titleList.add("Activity");
         fragmentList.add(new CampaignListFragment());
         viewPagerAdapter.setTabData(fragmentList, titleList);
