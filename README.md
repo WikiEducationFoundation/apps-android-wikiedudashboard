@@ -1,7 +1,6 @@
 # Wiki Education Dashboard Android app
 
 [![Build status](https://api.travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard.svg)](https://travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard) 
-[![Test Coverage](https://codeclimate.com/github/ujjwalagrawal17/apps-android-wikiedudashboard/badges/coverage.svg)](https://codeclimate.com/github/ujjwalagrawal17/apps-android-wikiedudashboard)
 [![Code Climate](https://codeclimate.com/github/ujjwalagrawal17/apps-android-wikiedudashboard/badges/gpa.svg)](https://codeclimate.com/github/ujjwalagrawal17/apps-android-wikiedudashboard)
 [![Gitter](https://badges.gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android.svg)](https://gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
