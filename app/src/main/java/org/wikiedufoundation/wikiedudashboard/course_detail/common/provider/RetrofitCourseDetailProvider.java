@@ -1,8 +1,8 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.provider;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.provider;
 
 import android.util.Log;
 
-import org.wikiedufoundation.wikiedudashboard.course_detail.data.CourseDetailResponse;
+import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetailResponse;
 import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 import org.wikiedufoundation.wikiedudashboard.helper.ProviderUtils;
 import org.wikiedufoundation.wikiedudashboard.helper.WikiEduDashboardApi;

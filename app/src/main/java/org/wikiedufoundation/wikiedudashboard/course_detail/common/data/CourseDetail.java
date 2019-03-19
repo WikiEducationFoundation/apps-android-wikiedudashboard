@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.data;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.data;
 
 import java.io.Serializable;
 

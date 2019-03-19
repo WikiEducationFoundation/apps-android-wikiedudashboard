@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.course_detail.data;
+package org.wikiedufoundation.wikiedudashboard.course_detail.common.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

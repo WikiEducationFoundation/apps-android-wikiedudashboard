@@ -9,12 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.dashboard.view.MyDashboardFragment;
@@ -81,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         BottomNavigationView navView = findViewById(R.id.bottom_nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        addFragment(new ExploreFragment());
+        addFragment(new MyDashboardFragment());
     }
 
     @Override
@@ -99,6 +103,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
+            Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show();
+//            TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.toolbar));
+//            MenuItemCompat.expandActionView(item);
             return true;
         }
 
@@ -151,7 +158,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
             fragmentTransaction.commit();
         }
-        if (fragment instanceof ExploreFragment){
+        if (fragment instanceof MyDashboardFragment){
             getSupportActionBar().show();
         }else {
             getSupportActionBar().hide();
