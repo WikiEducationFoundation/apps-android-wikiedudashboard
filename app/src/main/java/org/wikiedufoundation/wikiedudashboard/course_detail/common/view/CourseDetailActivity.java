@@ -20,6 +20,7 @@ import org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter.Cou
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.provider.RetrofitCourseDetailProvider;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.home.CourseHomeFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.timeline.CourseTimelineFragment;
+import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.view.StudentListFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view.CourseUploadsFragment;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
 import org.wikiedufoundation.wikiedudashboard.helper.ViewPagerAdapter;
@@ -94,12 +95,16 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
             fragmentList.add(new CourseTimelineFragment());
         }
         titleList.add("Students");
-        fragmentList.add(new CampaignListFragment());
-        titleList.add("Article");
-        CourseArticlesEditedFragment courseArticlesEditedFragment=new CourseArticlesEditedFragment();
+        StudentListFragment studentListFragment=new StudentListFragment();
         Bundle bundle=new Bundle();
         bundle.putString("url",url);
-        courseArticlesEditedFragment.setArguments(bundle);
+        studentListFragment.setArguments(bundle);
+        fragmentList.add(studentListFragment);
+        titleList.add("Article");
+        CourseArticlesEditedFragment courseArticlesEditedFragment=new CourseArticlesEditedFragment();
+        Bundle bundle2=new Bundle();
+        bundle2.putString("url",url);
+        courseArticlesEditedFragment.setArguments(bundle2);
         fragmentList.add(courseArticlesEditedFragment);
         titleList.add("Uploads");
         fragmentList.add(CourseUploadsFragment.newInstance(url));

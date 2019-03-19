@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.helper;
 
 import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data.ArticlesEdited;
+import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.data.StudentListResponse;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetailResponse;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.data.CourseUploadResponse;
 import org.wikiedufoundation.wikiedudashboard.course_list.data.ExploreCoursesResponse;
@@ -18,6 +19,9 @@ public interface WikiEduDashboardApi {
 
     @GET
     Call<ArticlesEdited> getArticlesEdited(@Url String url);
+
+    @GET
+    Call<StudentListResponse> getStudentList(@Url String url);
 
     @GET
     Call<CourseUploadResponse> getCourseUploads(@Url String url);
