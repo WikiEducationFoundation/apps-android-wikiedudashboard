@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.view.CourseArticlesEditedFragment;
 import org.wikiedufoundation.wikiedudashboard.campaign.view.CampaignListFragment;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetail;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter.CourseDetailPresenter;
@@ -99,8 +100,12 @@ public class CourseDetailActivity extends AppCompatActivity implements CourseDet
         bundle.putString("url",url);
         studentListFragment.setArguments(bundle);
         fragmentList.add(studentListFragment);
-        titleList.add("Articles");
-        fragmentList.add(new CampaignListFragment());
+        titleList.add("Article");
+        CourseArticlesEditedFragment courseArticlesEditedFragment=new CourseArticlesEditedFragment();
+        Bundle bundle2=new Bundle();
+        bundle2.putString("url",url);
+        courseArticlesEditedFragment.setArguments(bundle2);
+        fragmentList.add(courseArticlesEditedFragment);
         titleList.add("Uploads");
         fragmentList.add(CourseUploadsFragment.newInstance(url));
         titleList.add("Activity");
