@@ -1,5 +1,6 @@
-package org.wikiedufoundation.wikiedudashboard.dashboard.provider;
+package org.wikiedufoundation.wikiedudashboard.dashboard;
 
+import org.wikiedufoundation.wikiedudashboard.dashboard.MyDashboardContract;
 import org.wikiedufoundation.wikiedudashboard.dashboard.data.MyDashboardResponse;
 import org.wikiedufoundation.wikiedudashboard.helper.PresenterCallback;
 import org.wikiedufoundation.wikiedudashboard.helper.ProviderUtils;
@@ -9,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RetrofitMyDashboardProvider implements MyDashboardProvider {
+public class RetrofitMyDashboardProvider implements MyDashboardContract.Provider {
 
     private WikiEduDashboardApi wikiEduDashboardApi;
 

@@ -31,7 +31,7 @@
         android:padding="@dimen/padding_16dp"
         tools:context=".welcome.Welcome4Fragment">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             app:cardCornerRadius="@dimen/card_corner_radius_8dp"
@@ -42,7 +42,7 @@
                 android:layout_height="128dp"
                 android:src="@drawable/wiki_edu_logo"
                 />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:textSize="@dimen/text_size_30sp"
             android:text="@string/wiki_education_dashboard" />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_margin="@dimen/padding_16dp"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
@@ -86,8 +86,8 @@
                     android:text="@string/log_in_with_wikipedia" />
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_margin="@dimen/padding_16dp"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
@@ -120,7 +120,7 @@
                     android:text="@string/sign_up_with_wikipedia" />
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
         <!--<android.support.v7.widget.CardView-->
         <!--android:layout_margin="@dimen/padding_16dp"-->
