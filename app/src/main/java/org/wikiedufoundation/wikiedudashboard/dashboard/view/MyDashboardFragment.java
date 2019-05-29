@@ -3,9 +3,9 @@ package org.wikiedufoundation.wikiedudashboard.dashboard.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +16,10 @@ import android.widget.TextView;
 import org.wikiedufoundation.wikiedudashboard.R;
 
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailActivity;
+import org.wikiedufoundation.wikiedudashboard.dashboard.MyDashboardContract;
 import org.wikiedufoundation.wikiedudashboard.dashboard.data.MyDashboardResponse;
-import org.wikiedufoundation.wikiedudashboard.dashboard.presenter.MyDashboardPresenter;
-import org.wikiedufoundation.wikiedudashboard.dashboard.presenter.MyDashboardPresenterImpl;
-import org.wikiedufoundation.wikiedudashboard.dashboard.provider.RetrofitMyDashboardProvider;
+import org.wikiedufoundation.wikiedudashboard.dashboard.MyDashboardPresenterImpl;
+import org.wikiedufoundation.wikiedudashboard.dashboard.RetrofitMyDashboardProvider;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
 import org.wikiedufoundation.wikiedudashboard.helper.ViewUtils;
 
@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
  * Use the {@link MyDashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyDashboardFragment extends Fragment implements MyDashboardView {
+public class MyDashboardFragment extends Fragment implements MyDashboardContract.View {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,7 +53,7 @@ public class MyDashboardFragment extends Fragment implements MyDashboardView {
 
     private SharedPrefs sharedPrefs;
     private Context context;
-    private MyDashboardPresenter myDashboardPresenter;
+    private MyDashboardContract.Presenter myDashboardPresenter;
     private MyDashboardRecyclerAdapter myDashboardRecyclerAdapter;
     public MyDashboardFragment() {
         // Required empty public constructor

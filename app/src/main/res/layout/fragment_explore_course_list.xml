@@ -21,13 +21,13 @@
 
     <!--</android.support.design.widget.AppBarLayout>-->
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_order_list"
         android:layout_below="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/tv_no_courses"

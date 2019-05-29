@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.course_detail.common.presenter;
 
-
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.data.CourseDetailResponse;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.provider.CourseDetailProvider;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailView;

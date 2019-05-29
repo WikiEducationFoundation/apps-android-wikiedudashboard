@@ -2,9 +2,9 @@ package org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.data.CourseUploadList;
-import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.presenter.CourseUploadsPresenter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.presenter.CourseUploadsPresenterImpl;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.provider.RetrofitCourseUploadsProvider;
 import org.wikiedufoundation.wikiedudashboard.helper.SharedPrefs;
