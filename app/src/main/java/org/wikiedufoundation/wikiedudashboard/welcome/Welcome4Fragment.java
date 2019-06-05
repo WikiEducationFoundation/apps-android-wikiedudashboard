@@ -128,7 +128,7 @@ public class Welcome4Fragment extends Fragment {
         cookies = CookieManager.getInstance().getCookie(url);
         Log.d("Cookies: ", "All the cookies in a string:" + cookies);
         sharedPrefs.setOutreachDashboardCookies(cookies);
-        Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL;
+        Urls.INSTANCE.setBASE_URL(Urls.INSTANCE.getOUTREACH_DASHBOARD_BASE_URL());
         sharedPrefs.setCookies(cookies);
         sharedPrefs.setLogin(true);
         startActivity(new Intent(context, HomeActivity.class));
