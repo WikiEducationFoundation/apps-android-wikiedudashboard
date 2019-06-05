@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.course_list.view
 
 import android.content.Context
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,8 @@ import java.util.ArrayList
 import butterknife.BindView
 import butterknife.ButterKnife
 
-class CourseListRecyclerAdapter internal constructor(private val context: Context, internal var courseListFragment: CourseListFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CourseListRecyclerAdapter internal constructor(private val context: Context,
+     internal var courseListFragment: CourseListFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private var courses: List<CourseListData> = ArrayList()
     private var course: CourseListData? = null
@@ -27,10 +29,11 @@ class CourseListRecyclerAdapter internal constructor(private val context: Contex
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-//        course = courses[position]
-//        val myDashboardViewHolder = holder as MyDashboardViewHolder
-//        myDashboardViewHolder.tv_course_title!!.text = course!!.title
-//        holder.itemView.setOnClickListener { view -> courseListFragment.openCourseDetail(courses[position].slug) }
+        val course: CourseListData? = courses[position]
+        Log.d("COURSE1: ", course!!.title)
+        val myDashboardViewHolder = holder as MyDashboardViewHolder
+//        myDashboardViewHolder.tvCourseTitle!!.text = course!!.title
+        holder.itemView.setOnClickListener { courseListFragment.openCourseDetail(courses[position].slug) }
     }
 
 
@@ -43,12 +46,12 @@ class CourseListRecyclerAdapter internal constructor(private val context: Contex
     }
 
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        val title = itemView.tv_course_title
+//        @BindView(R.id.tv_course_title)
+//        val tvCourseTitle: TextView? = null
 
-        @BindView(R.id.tv_course_title)
-        internal var tv_course_title: TextView? = null
-
-        init {
-            ButterKnife.bind(this, itemView)
-        }
+//        init {
+//            ButterKnife.bind(this, itemView)
+//        }
     }
 }
