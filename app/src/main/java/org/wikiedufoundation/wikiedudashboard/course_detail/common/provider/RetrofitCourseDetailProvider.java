@@ -25,7 +25,8 @@ public class RetrofitCourseDetailProvider implements CourseDetailProvider {
         courseDetailResponseCall.enqueue(new Callback<CourseDetailResponse>() {
             @Override
             public void onResponse(Call<CourseDetailResponse> call, Response<CourseDetailResponse> response) {
-                Log.d("Success: ",response.body().getCourse()+"");
+                // TODO : Course kotlin error.
+//                Log.d("Success: ",response.body().getCourse()+"");
                 presenterCallback.onSuccess(response.body());
             }
 
