@@ -95,7 +95,7 @@ public class CourseArticlesEditedFragment extends Fragment implements ArticlesEd
 
     @Override
     public void showMessage(String message) {
-        ViewUtils.showToast(context, message);
+        ViewUtils.INSTANCE.showToast(context, message);
     }
 
 }

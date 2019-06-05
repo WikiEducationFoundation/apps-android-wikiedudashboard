@@ -79,7 +79,7 @@ public class StudentListFragment extends Fragment implements StudentListView {
 
     @Override
     public void showMessage(String message) {
-        ViewUtils.showToast(context, message);
+        ViewUtils.INSTANCE.showToast(context, message);
     }
 
     @Override
