@@ -22,7 +22,7 @@ public class CourseUploadsPresenterImpl implements CourseUploadsPresenter {
             @Override
             public void onSuccess(Object o) {
                 courseUploadsView.showProgressBar(false);
-                courseUploadsView.setData(((CourseUploadResponse) o).getCourse());
+                courseUploadsView.setData((((CourseUploadResponse) o)).getCourse());
             }
 
             @Override

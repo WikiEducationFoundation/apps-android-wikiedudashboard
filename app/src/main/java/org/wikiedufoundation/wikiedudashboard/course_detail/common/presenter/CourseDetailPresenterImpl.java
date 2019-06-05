@@ -21,7 +21,8 @@ public class CourseDetailPresenterImpl implements CourseDetailPresenter {
             @Override
             public void onSuccess(Object o) {
                 courseDetailView.showProgressBar(false);
-                courseDetailView.setData(((CourseDetailResponse) o).getCourse());
+                // TODO
+                //                courseDetailView.setData(((CourseDetailResponse) o).);
             }
 
             @Override
