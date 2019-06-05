@@ -21,7 +21,6 @@ class MyDashboardPresenterImpl(private val myDashboardView: MyDashboardContract.
             override fun onFailure() {
                 myDashboardView.showProgressBar(false)
                 myDashboardView.showMessage("Unable to connect to server.")
-
             }
         })
     }
