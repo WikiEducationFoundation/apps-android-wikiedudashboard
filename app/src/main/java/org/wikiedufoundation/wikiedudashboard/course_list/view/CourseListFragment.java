@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.adapters.CourseListRecyclerAdapter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailActivity;
 import org.wikiedufoundation.wikiedudashboard.course_list.data.ExploreCoursesResponse;
 import org.wikiedufoundation.wikiedudashboard.course_list.presenter.CourseListPresenterImpl;

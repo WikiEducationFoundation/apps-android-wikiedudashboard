@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.adapters.ArticlesEditedRecyclerAdapter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.data.ArticlesEdited;
 
 import org.wikiedufoundation.wikiedudashboard.course_detail.articles_edited.presenter.ArticlesEditedPresenterImpl;

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 
+import org.wikiedufoundation.wikiedudashboard.adapters.MyDashboardRecyclerAdapter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.common.view.CourseDetailActivity;
 import org.wikiedufoundation.wikiedudashboard.dashboard.MyDashboardContract;
 import org.wikiedufoundation.wikiedudashboard.dashboard.data.MyDashboardResponse;
@@ -94,7 +95,7 @@ public class MyDashboardFragment extends Fragment implements MyDashboardContract
         ButterKnife.bind(this, view);
         context = getContext();
         sharedPrefs = new SharedPrefs(context);
-        tv_no_courses.setText(sharedPrefs.getCookies());
+//        tv_no_courses.setText(sharedPrefs.getCookies());
         myDashboardPresenter = new MyDashboardPresenterImpl(this, new RetrofitMyDashboardProvider());
         myDashboardRecyclerAdapter = new MyDashboardRecyclerAdapter(context, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

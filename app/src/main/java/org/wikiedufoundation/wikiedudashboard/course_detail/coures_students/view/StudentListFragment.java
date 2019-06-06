@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.adapters.StudentListRecyclerAdapter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.data.StudentListResponse;
 import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.presenter.StudentListPresenterImpl;
 import org.wikiedufoundation.wikiedudashboard.course_detail.coures_students.provider.RetrofitStudentListProvider;

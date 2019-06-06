@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
+import org.wikiedufoundation.wikiedudashboard.adapters.CourseUploadsRecyclerAdapter;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.data.CourseUploadList;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.presenter.CourseUploadsPresenterImpl;
 import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.provider.RetrofitCourseUploadsProvider;
