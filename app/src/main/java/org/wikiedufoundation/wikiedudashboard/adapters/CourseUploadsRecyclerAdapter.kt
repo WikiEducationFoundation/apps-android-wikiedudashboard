@@ -16,8 +16,6 @@ import org.wikiedufoundation.wikiedudashboard.course_detail.uploads.view.CourseU
 
 import java.util.ArrayList
 
-import butterknife.BindView
-import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.item_rv_course_upload.view.*
 
 class CourseUploadsRecyclerAdapter(private val context: Context, internal var courseUploadsFragment: CourseUploadsFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -32,8 +30,8 @@ class CourseUploadsRecyclerAdapter(private val context: Context, internal var co
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         courseUpload = courseUploads[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tv_upload_title.text = courseUpload!!.file_name
-        Glide.with(context).load(courseUpload!!.thumbUrl).into(myDashboardViewHolder.iv_course_upload!!)
+        myDashboardViewHolder.tvUploadTitle.text = courseUpload!!.file_name
+        Glide.with(context).load(courseUpload!!.thumbUrl).into(myDashboardViewHolder.ivCourseUpload)
         holder.itemView.setOnClickListener {
             //            courseUploadsFragment.openCourseDetail(courseUploads.get(position).getSlug());
         }
@@ -49,7 +47,7 @@ class CourseUploadsRecyclerAdapter(private val context: Context, internal var co
     }
 
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tv_upload_title: TextView = itemView.tv_upload_title
-        val iv_course_upload: ImageView = itemView.iv_course_upload
+        val tvUploadTitle: TextView = itemView.tv_upload_title
+        val ivCourseUpload: ImageView = itemView.iv_course_upload
     }
 }

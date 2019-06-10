@@ -8,10 +8,10 @@ import androidx.viewpager.widget.PagerAdapter
 import java.util.ArrayList
 
 class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-    private var fragmentList: List<Fragment> =  ArrayList()
+    private var fragmentList: List<Fragment?> =  ArrayList()
     private var fragmentTitleList: List<String> = ArrayList()
 
-    override fun getItem(position: Int): Fragment {
+    override fun getItem(position: Int): Fragment? {
         return fragmentList[position]
     }
 
@@ -19,7 +19,7 @@ class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager)
         return fragmentList.size
     }
 
-    fun setTabData(fragmentList: List<Fragment>, fragmentTitleList: List<String>) {
+    fun setTabData(fragmentList: List<Fragment?>, fragmentTitleList: List<String>) {
         this.fragmentList = fragmentList
         this.fragmentTitleList = fragmentTitleList
     }
