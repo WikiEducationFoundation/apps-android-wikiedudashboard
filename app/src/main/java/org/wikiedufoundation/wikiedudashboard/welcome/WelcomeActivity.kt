@@ -15,15 +15,13 @@ import butterknife.ButterKnife
 
 class WelcomeActivity : AppCompatActivity() {
 
-    @BindView(R.id.viewPager)
-    internal var viewPager: ViewPager? = null
-
+    private var viewPager: ViewPager? = null
     private var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-        ButterKnife.bind(this)
+        viewPager = findViewById(R.id.viewPager)
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPager!!.adapter = viewPagerAdapter
         val fragmentList = ArrayList<Fragment>()

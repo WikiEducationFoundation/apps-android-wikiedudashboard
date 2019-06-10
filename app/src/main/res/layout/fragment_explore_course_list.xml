@@ -22,7 +22,7 @@
     <!--</android.support.design.widget.AppBarLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_order_list"
+        android:id="@+id/rv_course_list"
         android:layout_below="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

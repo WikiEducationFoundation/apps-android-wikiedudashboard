@@ -12,10 +12,10 @@ import org.wikiedufoundation.wikiedudashboard.R
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * Use the [TrainingFragment.newInstance] factory method to
+ * Use the [ProfileFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TrainingFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -50,8 +50,8 @@ class TrainingFragment : Fragment() {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): TrainingFragment {
-            val fragment = TrainingFragment()
+        fun newInstance(param1: String, param2: String): ProfileFragment {
+            val fragment = ProfileFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
