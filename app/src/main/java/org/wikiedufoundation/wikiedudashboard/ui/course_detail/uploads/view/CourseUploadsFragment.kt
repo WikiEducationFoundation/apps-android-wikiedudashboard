@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.view
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerA
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.presenter.CourseUploadsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.provider.RetrofitCourseUploadsProvider
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
@@ -48,13 +49,10 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
         val context : Context? = getContext()
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_courses)
 
-
-        tvNoStudents!!.text = sharedPrefs!!.cookies
         courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(context!!, this)
         val linearLayoutManager = LinearLayoutManager(context)
@@ -69,7 +67,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         Log.d("DashboardFragment: ", courseUploadList.toString())
         if (courseUploadList.uploads.isNotEmpty()) {
             recyclerView!!.visibility = View.VISIBLE
-            courseUploadsRecyclerAdapter!!.setData(courseUploadList.uploads)
+            courseUploadsRecyclerAdapter!!.setData(courseUploadList)
             courseUploadsRecyclerAdapter!!.notifyDataSetChanged()
             tvNoStudents!!.visibility = View.GONE
         } else {
@@ -89,6 +87,13 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
     override fun showMessage(message: String) {
         ViewUtils.showToast(context!!, message)
+    }
+
+    fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
+        val i = Intent(context, MediaDetailsActivity::class.java)
+        i.putExtra("uploads", courseUploads)
+        i.putExtra("position", position)
+        startActivity(i)
     }
 
     companion object {

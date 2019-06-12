@@ -13,17 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity" />
-        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.course_detail.common.view.CourseDetailActivity" />
+        <activity android:name=".ui.welcome.WelcomeActivity" />
+        <activity android:name=".ui.course_detail.common.view.CourseDetailActivity" />
+        <activity android:name=".ui.media_detail.MediaDetailsActivity" />
         <activity
-            android:name="org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity"
+            android:name=".ui.home.HomeActivity"
             android:label="@string/app_name">
         </activity>
     </application>

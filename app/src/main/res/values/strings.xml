@@ -39,4 +39,10 @@
     <string name="demo_username">demo_username</string>
     <string name="title_settings">Settings</string>
     <string name="tv_no_programs">Looks like you haven\'t joined a program yet. Click on Explore to find your program and join it.</string>
+    <string name="media_detail_author">Author</string>
+    <string name="media_detail_license">License</string>
+    <string name="media_detail_uploaded_date">Date</string>
+    <string name="media_detail_description">Description</string>
+    <string name="media_detail_title">Title</string>
+    <string name="media_detail">Media Detail</string>
 </resources>

@@ -17,8 +17,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.view.Cour
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_course_upload.view.*
+import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
 
 class CourseUploadsRecyclerAdapter(private val context: Context, internal var courseUploadsFragment: CourseUploadsFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var courseUploadList: CourseUploadList?=null
     private var courseUploads: List<CourseUpload> = ArrayList()
     private var courseUpload: CourseUpload? = null
 
@@ -33,13 +35,14 @@ class CourseUploadsRecyclerAdapter(private val context: Context, internal var co
         myDashboardViewHolder.tvUploadTitle.text = courseUpload!!.file_name
         Glide.with(context).load(courseUpload!!.thumbUrl).into(myDashboardViewHolder.ivCourseUpload)
         holder.itemView.setOnClickListener {
-            //            courseUploadsFragment.openCourseDetail(courseUploads.get(position).getSlug());
+            courseUploadsFragment.openCourseDetail(courseUploadList, position)
         }
     }
 
 
-    fun setData(courseUploads: List<CourseUpload>) {
-        this.courseUploads = courseUploads
+    fun setData(courseUploads: CourseUploadList) {
+        this.courseUploads = courseUploads.uploads
+        this.courseUploadList = courseUploads
     }
 
     override fun getItemCount(): Int {
