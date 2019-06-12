@@ -9,21 +9,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/wiki_edu_logo"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".welcome.WelcomeActivity" />
-        <activity android:name=".course_detail.common.view.CourseDetailActivity" />
+        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity" />
+        <activity android:name="org.wikiedufoundation.wikiedudashboard.ui.course_detail.common.view.CourseDetailActivity" />
         <activity
-            android:name=".home.HomeActivity"
+            android:name="org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity"
             android:label="@string/app_name">
         </activity>
     </application>

@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="@dimen/padding_16dp"
-        tools:context=".welcome.Welcome4Fragment">
+        tools:context=".ui.welcome.Welcome4Fragment">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"

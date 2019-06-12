@@ -6,7 +6,7 @@
     <string name="app_name">WikiEdu Dashboard</string>
     <string name="title_home">Explore</string>
     <string name="title_dashboard">My Dashboard</string>
-    <string name="title_notifications">Training</string>
+    <string name="title_notifications">Profile</string>
     <string name="active_campaigns">Active Campaigns</string>
     <string name="active_courses">Active Courses</string>
     <string name="title_search">Search</string>
