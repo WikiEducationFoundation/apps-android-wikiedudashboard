@@ -20,24 +20,31 @@ class MediaDetailsActivity : AppCompatActivity(){
     private var context: Context? = null
     private var courseUploads: CourseUploadList? =null
     private var position: Int ?=null
-    private var toolbar: Toolbar ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_media_detail)
-        toolbar = findViewById(R.id.toolbar)
         position = intent.getIntExtra("position", -1)
         courseUploads = intent.getSerializableExtra("uploads") as CourseUploadList
         context = this
         sharedPrefs = SharedPrefs(this)
-        toolbar!!.setNavigationOnClickListener { onBackPressed() }
-        addFragment(MediaDetailFragment.newInstance(courseUploads, position!!))
+        setFragment(MediaDetailFragment.newInstance(courseUploads, position!!))
     }
 
-    private fun addFragment(fragment: Fragment?) {
+    public fun setFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.container, fragment)
+            fragmentTransaction.commit()
+        }
+    }
+
+    public fun addFragment(fragment: Fragment?) {
+        if (fragment != null) {
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.addToBackStack(null)
             fragmentTransaction.replace(R.id.container, fragment)
             fragmentTransaction.commit()
         }

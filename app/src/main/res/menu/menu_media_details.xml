@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_download"
+        android:title="@string/title_download" />
+
+    <item
+        android:id="@+id/item_customtabs"
+        android:title="@string/title_view_in_browser" />
+</menu>
