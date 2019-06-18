@@ -3,6 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/ujjwalagrawal/AndroidKeys/Wikimedia/wiki_edu_dashboard')
+            storePassword 'WikiEduDashboard@123#'
+            keyPassword 'WikiEduDashboard@123#'
+            keyAlias = 'key0'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "org.wikiedufoundation.wikiedudashboard"
@@ -11,6 +19,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationIdSuffix = 'release'
+        maxSdkVersion 28
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
@@ -19,8 +30,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
     }
 }
 
@@ -34,7 +45,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'com.github.clans:fab:1.6.4'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.browser:browser:1.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
@@ -47,9 +60,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.annotation:annotation:1.0.2'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+
+    // Image Viewer library
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     // Dagger
     implementation "com.google.dagger:dagger:2.21"

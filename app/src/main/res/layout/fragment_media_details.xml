@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,22 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+            app:title="@string/media_detail"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
+
         android:id="@+id/mediaDetailScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -220,4 +235,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</LinearLayout>

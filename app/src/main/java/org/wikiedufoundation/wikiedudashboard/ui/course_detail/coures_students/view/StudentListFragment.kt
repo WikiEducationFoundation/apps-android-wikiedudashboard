@@ -44,8 +44,6 @@ class StudentListFragment : Fragment(), StudentListView {
         val context : Context? = getContext()
         studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
         layoutManager = LinearLayoutManager(context)
-        val sharedPrefs : SharedPrefs? = SharedPrefs(context)
-        tvNoStudents!!.text = sharedPrefs!!.cookies
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.setHasFixedSize(true)
         studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!)

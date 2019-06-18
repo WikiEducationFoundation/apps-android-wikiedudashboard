@@ -42,7 +42,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoEditedArticles = view.findViewById(R.id.tv_no_edited_articles)
 
-        tvNoEditedArticles?.text = sharedPrefs!!.cookies
         articlesEditedPresenter = ArticlesEditedPresenterImpl(RetrofitArticlesEditedProvider(), this)
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(context!!)

@@ -45,4 +45,6 @@
     <string name="media_detail_description">Description</string>
     <string name="media_detail_title">Title</string>
     <string name="media_detail">Media Detail</string>
+    <string name="title_download">Download</string>
+    <string name="title_view_in_browser">View in Browser</string>
 </resources>
