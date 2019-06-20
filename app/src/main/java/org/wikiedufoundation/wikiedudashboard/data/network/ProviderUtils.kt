@@ -29,5 +29,22 @@ class ProviderUtils {
                         .build()
                 return retrofit.create(WikiEduDashboardApi::class.java)
             }
+
+        val commonsApiObject: WikiEduDashboardApi
+            get() {
+                val interceptor = HttpLoggingInterceptor()
+                interceptor.level = HttpLoggingInterceptor.Level.BODY
+                val client = OkHttpClient.Builder().addInterceptor(interceptor).connectTimeout(5, TimeUnit.MINUTES)
+                        .readTimeout(5, TimeUnit.MINUTES).build()
+                val gson = GsonBuilder()
+                        .setLenient()
+                        .create()
+                val retrofit = Retrofit.Builder()
+                        .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
+                        .client(client)
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .build()
+                return retrofit.create(WikiEduDashboardApi::class.java)
+            }
     }
 }

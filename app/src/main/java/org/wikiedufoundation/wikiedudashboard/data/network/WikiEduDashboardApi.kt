@@ -6,6 +6,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.course_detail.common.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadResponse
 import org.wikiedufoundation.wikiedudashboard.ui.course_list.data.ExploreCoursesResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaDetailsResponse
 
 import retrofit2.Call
 import retrofit2.http.GET
@@ -31,4 +32,7 @@ interface WikiEduDashboardApi {
 
     @GET("explore.json")
     fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCoursesResponse>
+
+    @GET("w/api.php?action=query&format=json&pageids=79744855&prop=globalusage|categories|imageinfo&iiprop=size|extmetadata|url&clshow=!hidden")
+    fun getMediaDetailsFromCommons(@Header("Cookie") sessionIdAndToken: String): Call<MediaDetailsResponse>
 }
