@@ -4,15 +4,13 @@ import android.content.Context
 import android.os.Bundle
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.view.MediaDetailFragment
 
 class MediaDetailsActivity : AppCompatActivity(){
 
@@ -31,7 +29,7 @@ class MediaDetailsActivity : AppCompatActivity(){
         setFragment(MediaDetailFragment.newInstance(courseUploads, position!!))
     }
 
-    public fun setFragment(fragment: Fragment?) {
+    private fun setFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
@@ -40,7 +38,7 @@ class MediaDetailsActivity : AppCompatActivity(){
         }
     }
 
-    public fun addFragment(fragment: Fragment?) {
+    fun addFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

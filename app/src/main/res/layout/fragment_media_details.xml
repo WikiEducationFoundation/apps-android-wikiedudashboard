@@ -22,7 +22,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-
+        android:nestedScrollingEnabled="false"
         android:id="@+id/mediaDetailScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="10"
-                        android:text="Categories"
+                        android:text="@string/label_categories"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -137,7 +137,78 @@
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/padding_8dp"
                     android:paddingRight="@dimen/padding_8dp"
-                    android:paddingBottom="@dimen/padding_8dp" />
+                    android:paddingBottom="@dimen/padding_8dp" >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_category_list"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/tv_no_categories"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tv_no_categories" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorGrayLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padding_8dp"
+                    android:paddingTop="@dimen/padding_4dp"
+                    android:paddingRight="@dimen/padding_8dp"
+                    android:paddingBottom="@dimen/padding_4dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:text="@string/label_file_uses"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mediaDetailFileUsesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/padding_8dp"
+                    android:paddingRight="@dimen/padding_8dp"
+                    android:paddingBottom="@dimen/padding_8dp" >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_file_uses_list"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/tv_no_uses"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tv_no_file_uses" />
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"

@@ -47,4 +47,8 @@
     <string name="media_detail">Media Detail</string>
     <string name="title_download">Download</string>
     <string name="title_view_in_browser">View in Browser</string>
+    <string name="tv_no_categories">No Categories</string>
+    <string name="label_categories">Categories</string>
+    <string name="tv_no_file_uses">No File Uses</string>
+    <string name="label_file_uses">File Uses</string>
 </resources>

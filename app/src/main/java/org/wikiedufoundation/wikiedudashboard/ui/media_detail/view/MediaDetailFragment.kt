@@ -1,7 +1,6 @@
-package org.wikiedufoundation.wikiedudashboard.ui.media_detail
+package org.wikiedufoundation.wikiedudashboard.ui.media_detail.view
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,20 +10,32 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_media_details.*
 
 import org.wikiedufoundation.wikiedudashboard.R
+import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
-import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.presenter.CourseUploadsPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsContract
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivity
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.RetrofitMediaDetailsProvider
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.FileUsage
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaCategory
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
+import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
  * A simple [Fragment] subclass.
@@ -32,13 +43,13 @@ import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
  * Use the [MediaDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
-
+class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDetailsContract.View {
 
     private var courseUploads: CourseUploadList? = null
     private var position: Int? = null
     private var customTabHelper: CustomTabHelper = CustomTabHelper()
 
+    // Media Details
     private var mediaDetailImage: ImageView? = null
     private var tvTitle: TextView? = null
     private var tvDescription: TextView? = null
@@ -49,6 +60,18 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     private var toolbar: Toolbar? = null
     private val baseURL: String? = "https://commons.wikimedia.org/wiki/File:"
     private var fileName: String? = null
+
+    // Other Utils
+    private var progressBar: ProgressBar? = null
+    private var tvNoCategories: TextView? = null
+    private var categoriesRecyclerView: RecyclerView? = null
+    private var tvNoFileUses: TextView? = null
+    private var fileUsesRecyclerView: RecyclerView? = null
+
+    private var sharedPrefs: SharedPrefs? = null
+    private var mediaDetailsPresenter: MediaDetailsContract.Presenter? = null
+    private var categoryListRecyclerAdapter: CategoryListRecyclerAdapter? = null
+    private var fileusesRecyclerAdapter: FileUsesRecyclerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +92,13 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         tvLicense = view.findViewById(R.id.mediaDetailLicense)
         tvDescription = view.findViewById(R.id.mediaDetailDesc)
         toolbar = view.findViewById(R.id.toolbar)
+
+        categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
+//        progressBar = view.findViewById(R.id.progressBar)
+        tvNoCategories = view.findViewById(R.id.tv_no_categories)
+        fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
+        tvNoFileUses = view.findViewById(R.id.tv_no_uses)
+
         toolbar!!.inflateMenu(R.menu.menu_media_details)
         courseUpload = (courseUploads!!.uploads[position!!])
         Glide.with(context!!).load(courseUpload!!.thumbUrl).into(mediaDetailImage!!)
@@ -83,6 +113,22 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
             (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload!!.thumbUrl))
         }
         toolbar!!.setOnMenuItemClickListener(this)
+
+        mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(context!!, this)
+        val linearLayoutManager = LinearLayoutManager(context)
+        categoriesRecyclerView!!.layoutManager = linearLayoutManager
+        categoriesRecyclerView!!.setHasFixedSize(true)
+        categoriesRecyclerView!!.adapter = categoryListRecyclerAdapter
+
+        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(context!!, this)
+        val linearLayoutManager2 = LinearLayoutManager(context)
+        fileUsesRecyclerView!!.layoutManager = linearLayoutManager2
+        fileUsesRecyclerView!!.setHasFixedSize(true)
+        fileUsesRecyclerView!!.adapter = fileusesRecyclerAdapter
+
+        mediaDetailsPresenter!!.requestMediaDetails("")
+
         return view
     }
 
@@ -112,6 +158,46 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
     private fun downloadImage() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setData(data: MediaDetailsResponse) {
+        Log.d("MediaDetailFragment: ", data.toString())
+
+        // Categories
+        val categories : List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories
+        if (categories.isNotEmpty()) {
+            categoriesRecyclerView!!.visibility = View.VISIBLE
+            categoryListRecyclerAdapter!!.setData(categories)
+            categoryListRecyclerAdapter!!.notifyDataSetChanged()
+            tvNoCategories!!.visibility = View.GONE
+        } else {
+            categoriesRecyclerView!!.visibility = View.GONE
+            tvNoCategories!!.visibility = View.VISIBLE
+        }
+
+        // File Uses
+        val fileuses : List<FileUsage> = data.query.page.get(data.query.page.keys.first())!!.globalusage
+        if (categories.isNotEmpty()) {
+            fileUsesRecyclerView!!.visibility = View.VISIBLE
+            fileusesRecyclerAdapter!!.setData(fileuses)
+            fileusesRecyclerAdapter!!.notifyDataSetChanged()
+            tvNoFileUses!!.visibility = View.GONE
+        } else {
+            fileUsesRecyclerView!!.visibility = View.GONE
+            tvNoFileUses!!.visibility = View.VISIBLE
+        }
+    }
+
+    override fun showProgressBar(show: Boolean) {
+//        if (show) {
+//            progressBar!!.visibility = View.VISIBLE
+//        } else {
+//            progressBar!!.visibility = View.GONE
+//        }
+    }
+
+    override fun showMessage(message: String) {
+        ViewUtils.showToast(context!!, message)
     }
 
     companion object {
