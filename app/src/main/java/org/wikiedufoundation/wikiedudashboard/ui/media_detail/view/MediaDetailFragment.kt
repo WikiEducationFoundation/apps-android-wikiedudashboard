@@ -32,6 +32,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivi
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.RetrofitMediaDetailsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.FileUsage
+import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.ImageDetails
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
@@ -162,6 +163,13 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     override fun setData(data: MediaDetailsResponse) {
         Log.d("MediaDetailFragment: ", data.toString())
+
+        // Description
+        val imageinfo : ImageDetails = data.query.page.get(data.query.page.keys.first())!!.imageinfo.get(0)
+//        tvDescription!!.text = imageinfo.extMetaData
+
+        // License
+
 
         // Categories
         val categories : List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories

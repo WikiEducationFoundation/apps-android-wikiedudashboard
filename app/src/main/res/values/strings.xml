@@ -51,4 +51,9 @@
     <string name="label_categories">Categories</string>
     <string name="tv_no_file_uses">No File Uses</string>
     <string name="label_file_uses">File Uses</string>
+    <string name="tv_no_uploads">No Uploads</string>
+    <string name="tv_no_articles">No Articles</string>
+    <string name="tv_no_users">No Users</string>
+    <string name="btn_join">Join</string>
+    <string name="btn_cancel">Cancel</string>
 </resources>
