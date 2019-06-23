@@ -26,11 +26,15 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
+import android.content.Intent
+import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
     private var courseDetailPresenter: CourseDetailPresenter? = null
     private var url: String? = null
+    private var enrolled: Boolean? = null
 
     private var toolbar: Toolbar? = null
     private var tabLayout: TabLayout? = null
@@ -50,8 +54,21 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         progressBar = findViewById(R.id.progressBar)
 
         url = intent.getStringExtra("url")
+        enrolled = intent.getBooleanExtra("enrolled", false)
+
         context = this
         sharedPrefs = SharedPrefs(context)
+
+        val action = intent.action
+        val data = intent.dataString
+        if (Intent.ACTION_VIEW == action && data != null) {
+
+            url = data.substring(data.lastIndexOf("courses/") + 8)
+            if (url!!.contains("?enroll")) {
+                val enrollParam = url!!.substring(url!!.lastIndexOf("?enroll") + 7)
+                url = url!!.substring(0, url!!.lastIndexOf("?enroll"))
+            }
+        }
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPager!!.adapter = viewPagerAdapter
         tabLayout!!.setupWithViewPager(viewPager)

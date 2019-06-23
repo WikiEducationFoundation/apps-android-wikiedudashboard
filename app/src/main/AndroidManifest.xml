@@ -21,7 +21,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.welcome.WelcomeActivity" />
-        <activity android:name=".ui.course_detail.common.view.CourseDetailActivity" />
+        <activity android:name=".ui.course_detail.common.view.CourseDetailActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="outreachdashboard.wmflabs.org"
+                    android:pathPrefix="/courses"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.media_detail.MediaDetailsActivity" />
         <activity
             android:name=".ui.home.HomeActivity"

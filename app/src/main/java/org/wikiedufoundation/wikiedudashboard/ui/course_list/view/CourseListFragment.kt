@@ -99,6 +99,7 @@ class CourseListFragment : Fragment(), CourseListView {
     fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
+        i.putExtra("enrolled", false)
         startActivity(i)
     }
 

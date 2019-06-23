@@ -105,6 +105,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
+        i.putExtra("enrolled", true)
         startActivity(i)
     }
 

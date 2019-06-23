@@ -47,7 +47,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
         val context : Context? = getContext()
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
