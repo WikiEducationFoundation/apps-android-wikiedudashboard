@@ -79,6 +79,6 @@ We realize that MVP is opinionated and there is no strict boundary between the r
 
 <h2> License </h2>
 
-This software is open source, licensed under the [Apache License 2.0][1].
+This software is open source, licensed under the [MIT License][1].
 
-[1]: https://www.apache.org/licenses/LICENSE-2.0
+[1]: https://opensource.org/licenses/MIT
