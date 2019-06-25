@@ -11,4 +11,7 @@ android:
 before_script:
   - chmod +x gradlew
 script:
-  - ./gradlew build --stacktrace
+  - ./gradlew buildDebug --stacktrace
+after_success:
+- bash scripts/update-apk.sh
+
