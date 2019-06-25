@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.articles_edited.data.Article
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articles_edited.data.Article
 
 import java.util.ArrayList
 

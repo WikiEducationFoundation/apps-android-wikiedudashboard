@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.welcome.WelcomeActivity" />
-        <activity android:name=".ui.course_detail.common.view.CourseDetailActivity" >
+        <activity android:name=".ui.coursedetail.common.view.CourseDetailActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
+package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
 
 import android.content.Context
 import android.content.Intent
@@ -14,36 +14,31 @@ import android.widget.ProgressBar
 import android.widget.TextView
 
 import org.wikiedufoundation.wikiedudashboard.R
-
-import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * Use the [MyDashboardFragment.newInstance] factory method to
+ * Use the [CourseListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyDashboardFragment : Fragment(), MyDashboardContract.View {
+class CourseListFragment : Fragment(), CourseListView {
 
-    // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var tvNoCourses: TextView? = null
+    private var tv_no_courses: TextView? = null
     private var progressBar: ProgressBar? = null
     private var recyclerView: RecyclerView? = null
 
-    private var sharedPrefs: SharedPrefs? = null
-    private var myDashboardPresenter: MyDashboardContract.Presenter? = null
-    private var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter? = null
+    private var courseListPresenter: CourseListPresenterImpl? = null
+    private var courseListRecyclerAdapter: CourseListRecyclerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,36 +51,35 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
-        recyclerView = view.findViewById(R.id.rv_course_list)
+        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
         progressBar = view.findViewById(R.id.progressBar)
-        tvNoCourses = view.findViewById(R.id.tv_no_courses)
+        tv_no_courses = view.findViewById(R.id.tv_no_courses)
+        recyclerView = view.findViewById(R.id.rv_course_list)
 
-        
-        val context : Context? = getContext()
-        sharedPrefs = SharedPrefs(context)
-        myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
+        val context: Context? = getContext()
+        val sharedPrefs : SharedPrefs? = SharedPrefs(context)
+        tv_no_courses!!.text = sharedPrefs!!.cookies
+        courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
+        courseListRecyclerAdapter = CourseListRecyclerAdapter(context!!, this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = myDashboardRecyclerAdapter
+        recyclerView!!.adapter = courseListRecyclerAdapter
 
-        myDashboardPresenter!!.requestDashboard(sharedPrefs!!.cookies!!)
+        courseListPresenter!!.requestDashboard(sharedPrefs.cookies!!)
         return view
     }
 
-    override fun setData(data: MyDashboardResponse) {
-        sharedPrefs!!.userName = data.user.username
+    override fun setData(data: ExploreCoursesResponse) {
         Log.d("DashboardFragment: ", data.toString())
-        if (data.current_courses.isNotEmpty()) {
+        if (data.courses.size > 0) {
             recyclerView!!.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter!!.setData(data.current_courses)
-            myDashboardRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoCourses!!.visibility = View.GONE
+            courseListRecyclerAdapter!!.setData(data.courses)
+            courseListRecyclerAdapter!!.notifyDataSetChanged()
+            tv_no_courses!!.visibility = View.GONE
         } else {
             recyclerView!!.visibility = View.GONE
-            tvNoCourses!!.visibility = View.VISIBLE
+            tv_no_courses!!.visibility = View.VISIBLE
         }
 
     }
@@ -105,7 +99,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
-        i.putExtra("enrolled", true)
+        i.putExtra("enrolled", false)
         startActivity(i)
     }
 
@@ -124,8 +118,8 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): MyDashboardFragment {
-            val fragment = MyDashboardFragment()
+        fun newInstance(param1: String, param2: String): CourseListFragment {
+            val fragment = CourseListFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
@@ -133,4 +127,4 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
             return fragment
         }
     }
-}
+}// Required empty public constructor

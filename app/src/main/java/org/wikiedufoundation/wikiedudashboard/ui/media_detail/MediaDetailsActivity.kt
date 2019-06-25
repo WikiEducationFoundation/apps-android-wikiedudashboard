@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.view.MediaDetailFragment
 
 class MediaDetailsActivity : AppCompatActivity(){

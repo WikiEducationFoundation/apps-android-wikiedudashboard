@@ -24,9 +24,8 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUpload
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsPresenterImpl

@@ -7,11 +7,10 @@ import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
 
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
-import org.wikiedufoundation.wikiedudashboard.ui.course_list.view.CourseListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList

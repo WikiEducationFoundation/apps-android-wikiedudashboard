@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_rv_students.view.*
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.coures_students.data.User
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.coures_students.data.User
 
 import java.util.ArrayList
 

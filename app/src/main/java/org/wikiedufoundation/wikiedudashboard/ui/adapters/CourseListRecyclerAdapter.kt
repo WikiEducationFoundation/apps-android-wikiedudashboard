@@ -13,7 +13,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
-import org.wikiedufoundation.wikiedudashboard.ui.course_list.view.CourseListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 
 class CourseListRecyclerAdapter internal constructor(private val context: Context,
      private var courseListFragment: CourseListFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
