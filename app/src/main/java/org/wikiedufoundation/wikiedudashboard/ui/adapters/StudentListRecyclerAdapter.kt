@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_rv_students.view.*
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.coures_students.data.User
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.User
 
 import java.util.ArrayList
 
 class StudentListRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<StudentListRecyclerAdapter.MyAdapter>() {
     private var studentList: List<User> = ArrayList()
-
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyAdapter {
         val view = LayoutInflater.from(context).inflate(R.layout.item_rv_students, viewGroup, false)
@@ -35,6 +34,6 @@ class StudentListRecyclerAdapter(private val context: Context) : RecyclerView.Ad
     }
 
     inner class MyAdapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView : TextView = itemView.tv_students_name
+        val textView: TextView = itemView.tv_students_name
     }
 }

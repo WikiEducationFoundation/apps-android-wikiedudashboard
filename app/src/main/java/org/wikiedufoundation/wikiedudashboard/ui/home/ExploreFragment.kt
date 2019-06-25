@@ -7,17 +7,15 @@ import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
 
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
-import org.wikiedufoundation.wikiedudashboard.ui.course_list.view.CourseListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.fragment_explore.view.*
-
 
 /**
  * A simple [Fragment] subclass.
@@ -31,8 +29,8 @@ class ExploreFragment : Fragment() {
     private var mParam2: String? = null
 
     var tabLayout: TabLayout? = null
-    var viewPager : ViewPager? = null
-    var viewPagerAdapter: ViewPagerAdapter?=null
+    var viewPager: ViewPager? = null
+    var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +41,11 @@ class ExploreFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         viewPager = view.viewPager
@@ -88,4 +89,4 @@ class ExploreFragment : Fragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+} // Required empty public constructor

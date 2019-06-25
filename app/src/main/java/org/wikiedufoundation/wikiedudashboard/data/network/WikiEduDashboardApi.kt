@@ -1,12 +1,12 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.articles_edited.data.ArticlesEdited
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.coures_students.data.StudentListResponse
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.common.data.CourseDetailResponse
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadResponse
-import org.wikiedufoundation.wikiedudashboard.ui.course_list.data.ExploreCoursesResponse
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
-import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaDetailsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 
 import retrofit2.Call
 import retrofit2.http.GET

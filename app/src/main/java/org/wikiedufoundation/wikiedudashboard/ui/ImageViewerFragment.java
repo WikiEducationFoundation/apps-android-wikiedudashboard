@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.Toolbar;
@@ -14,8 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
-import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity;
-import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivity;
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity;
 import org.wikiedufoundation.wikiedudashboard.util.GlideImageLoader;
 import org.wikiedufoundation.wikiedudashboard.util.ImageLoader;
 

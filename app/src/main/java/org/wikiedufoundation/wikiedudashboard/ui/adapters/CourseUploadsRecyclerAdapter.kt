@@ -11,16 +11,16 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUpload
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.view.CourseUploadsFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_course_upload.view.*
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.uploads.data.CourseUploadList
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 
 class CourseUploadsRecyclerAdapter(private val context: Context, internal var courseUploadsFragment: CourseUploadsFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var courseUploadList: CourseUploadList?=null
+    private var courseUploadList: CourseUploadList? = null
     private var courseUploads: List<CourseUpload> = ArrayList()
     private var courseUpload: CourseUpload? = null
 
@@ -38,7 +38,6 @@ class CourseUploadsRecyclerAdapter(private val context: Context, internal var co
             courseUploadsFragment.openCourseDetail(courseUploadList, position)
         }
     }
-
 
     fun setData(courseUploads: CourseUploadList) {
         this.courseUploads = courseUploads.uploads

@@ -16,14 +16,13 @@ import android.widget.TextView
 import org.wikiedufoundation.wikiedudashboard.R
 
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.course_detail.common.view.CourseDetailActivity
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
-
 
 /**
  * A simple [Fragment] subclass.
@@ -53,16 +52,18 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        
-        val context : Context? = getContext()
+        val context: Context? = getContext()
         sharedPrefs = SharedPrefs(context)
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
@@ -87,7 +88,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
             recyclerView!!.visibility = View.GONE
             tvNoCourses!!.visibility = View.VISIBLE
         }
-
     }
 
     override fun showProgressBar(show: Boolean) {

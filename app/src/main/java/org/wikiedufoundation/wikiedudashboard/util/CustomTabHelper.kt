@@ -7,7 +7,6 @@ import android.net.Uri
 import android.text.TextUtils
 import androidx.browser.customtabs.CustomTabsService
 
-
 class CustomTabHelper {
 
     companion object {
@@ -49,8 +48,8 @@ class CustomTabHelper {
         when {
             packagesSupportingCustomTabs.isEmpty() -> sPackageNameToUse = null
             packagesSupportingCustomTabs.size == 1 -> sPackageNameToUse = packagesSupportingCustomTabs.get(0)
-            !TextUtils.isEmpty(defaultViewHandlerPackageName)
-                    && !hasSpecializedHandlerIntents(context, activityIntent)
+            !TextUtils.isEmpty(defaultViewHandlerPackageName) &&
+                    !hasSpecializedHandlerIntents(context, activityIntent)
                     && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName) ->
                 sPackageNameToUse = defaultViewHandlerPackageName
             packagesSupportingCustomTabs.contains(STABLE_PACKAGE) -> sPackageNameToUse = STABLE_PACKAGE

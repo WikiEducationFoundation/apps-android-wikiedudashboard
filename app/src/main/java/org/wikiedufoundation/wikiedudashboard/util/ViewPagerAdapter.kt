@@ -8,7 +8,7 @@ import androidx.viewpager.widget.PagerAdapter
 import java.util.ArrayList
 
 class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-    private var fragmentList: List<Fragment?> =  ArrayList()
+    private var fragmentList: List<Fragment?> = ArrayList()
     private var fragmentTitleList: List<String> = ArrayList()
 
     override fun getItem(position: Int): Fragment? {
@@ -27,7 +27,6 @@ class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager)
     override fun getPageTitle(position: Int): CharSequence? {
         return fragmentTitleList[position]
     }
-
 
     override fun getItemPosition(`object`: Any): Int {
         return PagerAdapter.POSITION_NONE

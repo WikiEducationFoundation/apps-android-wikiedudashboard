@@ -8,7 +8,6 @@ import android.view.ViewGroup
 
 import org.wikiedufoundation.wikiedudashboard.R
 
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -29,8 +28,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_training, container, false)
     }
@@ -59,4 +61,4 @@ class ProfileFragment : Fragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+} // Required empty public constructor

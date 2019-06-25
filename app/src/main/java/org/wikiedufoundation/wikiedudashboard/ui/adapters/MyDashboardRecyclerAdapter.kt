@@ -32,7 +32,6 @@ class MyDashboardRecyclerAdapter internal constructor(private val context: Conte
         holder.itemView.setOnClickListener { myDashboardFragment.openCourseDetail(courses[position].slug) }
     }
 
-
     fun setData(courses: List<CourseListData>) {
         this.courses = courses
     }
@@ -43,6 +42,5 @@ class MyDashboardRecyclerAdapter internal constructor(private val context: Conte
 
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCourseTitle: TextView = itemView.tv_course_title
-
     }
 }

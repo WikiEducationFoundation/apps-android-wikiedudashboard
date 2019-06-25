@@ -51,7 +51,6 @@ class SharedPrefs(private val _context: Context?) {
         editor = pref.edit()
     }
 
-
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn)
         editor.commit()
@@ -68,5 +67,4 @@ class SharedPrefs(private val _context: Context?) {
         private val KEY_OUTREACH_DASHBOARD_COOKIES = "outreach_dashboard_cookies"
         private val KEY_USERNAME = "username"
     }
-
 }

@@ -13,10 +13,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
-import org.wikiedufoundation.wikiedudashboard.ui.course_list.view.CourseListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 
-class CourseListRecyclerAdapter internal constructor(private val context: Context,
-     private var courseListFragment: CourseListFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CourseListRecyclerAdapter internal constructor(
+    private val context: Context,
+    private var courseListFragment: CourseListFragment
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var courses: List<CourseListData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -30,7 +32,6 @@ class CourseListRecyclerAdapter internal constructor(private val context: Contex
         myDashboardViewHolder.tvCourseTitle.text = course!!.title
         holder.itemView.setOnClickListener { courseListFragment.openCourseDetail(courses[position].slug) }
     }
-
 
     fun setData(courses: List<CourseListData>) {
         this.courses = courses

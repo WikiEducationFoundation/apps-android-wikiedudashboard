@@ -30,7 +30,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
  */
 class Welcome4Fragment : Fragment() {
 
-
     private var mParam1: String? = null
     private var mParam2: String? = null
 
@@ -51,8 +50,11 @@ class Welcome4Fragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_welcome4, container, false)
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
@@ -60,8 +62,8 @@ class Welcome4Fragment : Fragment() {
         ll_login_layout = view.findViewById(R.id.ll_login_layout)
         progressBar = view.findViewById(R.id.progressBar)
 
-        val context : Context? = getContext()
-        sharedPrefs= SharedPrefs(context)
+        val context: Context? = getContext()
+        sharedPrefs = SharedPrefs(context)
         setWebView()
         setOnClickListeners()
         return view
@@ -110,7 +112,6 @@ class Welcome4Fragment : Fragment() {
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup"
             webView!!.loadUrl(url)
         }
-
     }
 
     companion object {
@@ -136,5 +137,4 @@ class Welcome4Fragment : Fragment() {
             return fragment
         }
     }
-
-}// Required empty public constructor
+} // Required empty public constructor
