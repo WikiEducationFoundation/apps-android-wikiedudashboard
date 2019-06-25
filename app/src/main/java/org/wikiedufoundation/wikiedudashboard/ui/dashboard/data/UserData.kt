@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
 
-
-class UserData (
+class UserData(
     val username: String
 )

@@ -4,4 +4,4 @@ import java.io.Serializable
 
 class CourseUploadList(
     val uploads: List<CourseUpload>
-): Serializable
+) : Serializable

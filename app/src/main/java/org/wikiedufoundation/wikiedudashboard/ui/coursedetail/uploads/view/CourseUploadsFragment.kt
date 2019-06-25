@@ -18,7 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerA
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.media_detail.MediaDetailsActivity
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
@@ -45,10 +45,13 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
-        val context : Context? = getContext()
+        val context: Context? = getContext()
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_courses)
@@ -74,7 +77,6 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
             recyclerView!!.visibility = View.GONE
             tvNoStudents!!.visibility = View.VISIBLE
         }
-
     }
 
     override fun showProgressBar(show: Boolean) {

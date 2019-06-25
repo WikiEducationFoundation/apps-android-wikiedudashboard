@@ -22,7 +22,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCou
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -48,8 +47,11 @@ class CourseListFragment : Fragment(), CourseListView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
         progressBar = view.findViewById(R.id.progressBar)
@@ -57,7 +59,7 @@ class CourseListFragment : Fragment(), CourseListView {
         recyclerView = view.findViewById(R.id.rv_course_list)
 
         val context: Context? = getContext()
-        val sharedPrefs : SharedPrefs? = SharedPrefs(context)
+        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         tv_no_courses!!.text = sharedPrefs!!.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
         courseListRecyclerAdapter = CourseListRecyclerAdapter(context!!, this)
@@ -81,7 +83,6 @@ class CourseListFragment : Fragment(), CourseListView {
             recyclerView!!.visibility = View.GONE
             tv_no_courses!!.visibility = View.VISIBLE
         }
-
     }
 
     override fun showProgressBar(show: Boolean) {
@@ -127,4 +128,4 @@ class CourseListFragment : Fragment(), CourseListView {
             return fragment
         }
     }
-}// Required empty public constructor
+} // Required empty public constructor

@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter
 
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.CourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsView

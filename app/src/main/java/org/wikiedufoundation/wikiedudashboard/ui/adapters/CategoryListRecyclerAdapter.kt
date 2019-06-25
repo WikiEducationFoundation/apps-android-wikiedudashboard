@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-
 import org.wikiedufoundation.wikiedudashboard.R
 
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_my_dashboard.view.tv_course_title
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
-import org.wikiedufoundation.wikiedudashboard.ui.media_detail.data.MediaCategory
-import org.wikiedufoundation.wikiedudashboard.ui.media_detail.view.MediaDetailFragment
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 
-class CategoryListRecyclerAdapter internal constructor(private val context: Context, private var mediaDetailFragment : MediaDetailFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CategoryListRecyclerAdapter internal constructor(private val context: Context, private var mediaDetailFragment: MediaDetailFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var courses: List<MediaCategory> = ArrayList()
     private var course: MediaCategory? = null
 
@@ -33,7 +30,6 @@ class CategoryListRecyclerAdapter internal constructor(private val context: Cont
         myDashboardViewHolder.tvCourseTitle.text = course!!.title
     }
 
-
     fun setData(courses: List<MediaCategory>) {
         this.courses = courses
     }
@@ -44,6 +40,5 @@ class CategoryListRecyclerAdapter internal constructor(private val context: Cont
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCourseTitle: TextView = itemView.tv_course_title
-
     }
 }

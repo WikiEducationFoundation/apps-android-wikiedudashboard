@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
 
-class CourseUpload : Serializable{
+class CourseUpload : Serializable {
     val id: Int? = null
     val uploaded_at: String? = null
     val usage_count: String? = null

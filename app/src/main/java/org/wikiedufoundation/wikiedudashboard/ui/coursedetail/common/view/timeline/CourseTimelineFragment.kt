@@ -47,8 +47,11 @@ class CourseTimelineFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_course_home, container, false)
         tvCountArticlesCreated = view.findViewById(R.id.tv_count_articles_created)
         tvCountArticlesEdited = view.findViewById(R.id.tv_count_articles_edited)
@@ -67,7 +70,6 @@ class CourseTimelineFragment : Fragment() {
         tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students)
         tvCourseStart = view.findViewById(R.id.tv_course_start)
         tvCourseEnd = view.findViewById(R.id.tv_course_end)
-
 
         tvCountArticlesCreated!!.text = courseDetail!!.created_count
         tvCountArticlesEdited!!.text = courseDetail!!.edited_count
@@ -100,5 +102,4 @@ class CourseTimelineFragment : Fragment() {
             return fragment
         }
     }
-
 }

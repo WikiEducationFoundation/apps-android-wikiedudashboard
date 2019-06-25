@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.util
 
-
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -15,9 +14,7 @@ import android.widget.Toast
 
 import org.wikiedufoundation.wikiedudashboard.R
 
-
 object ViewUtils {
-
 
     fun showSnackbar(view: View, message: String) {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
@@ -40,7 +37,6 @@ object ViewUtils {
         if (!imm.isAcceptingText) {
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
-
     }
 
     fun showAlertDialog(context: Context, title: String, message: String) {
@@ -66,7 +62,5 @@ object ViewUtils {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
-
-}// Never Called
+} // Never Called

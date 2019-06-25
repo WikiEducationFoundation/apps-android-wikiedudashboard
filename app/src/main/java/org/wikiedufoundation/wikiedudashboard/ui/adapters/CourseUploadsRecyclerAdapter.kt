@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.item_rv_course_upload.view.*
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 
 class CourseUploadsRecyclerAdapter(private val context: Context, internal var courseUploadsFragment: CourseUploadsFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var courseUploadList: CourseUploadList?=null
+    private var courseUploadList: CourseUploadList? = null
     private var courseUploads: List<CourseUpload> = ArrayList()
     private var courseUpload: CourseUpload? = null
 
@@ -38,7 +38,6 @@ class CourseUploadsRecyclerAdapter(private val context: Context, internal var co
             courseUploadsFragment.openCourseDetail(courseUploadList, position)
         }
     }
-
 
     fun setData(courseUploads: CourseUploadList) {
         this.courseUploads = courseUploads.uploads

@@ -22,7 +22,6 @@ class CourseListPresenterImpl(private val courseListView: CourseListView, privat
             override fun onFailure() {
                 courseListView.showProgressBar(false)
                 courseListView.showMessage("Unable to connect to server.")
-
             }
         })
     }

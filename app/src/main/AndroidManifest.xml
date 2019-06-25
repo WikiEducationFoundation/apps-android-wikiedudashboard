@@ -32,7 +32,7 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.media_detail.MediaDetailsActivity" />
+        <activity android:name=".ui.mediadetail.MediaDetailsActivity" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/app_name">

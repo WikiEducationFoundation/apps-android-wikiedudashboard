@@ -19,11 +19,10 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 
 import butterknife.ButterKnife
 
-class HomeActivity : AppCompatActivity(){
+class HomeActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
     private var context: Context? = null
-
 
 //    private val mOnNavigationItemSelectedListener = { item ->
 //        when (item.getItemId()) {
@@ -40,8 +39,6 @@ class HomeActivity : AppCompatActivity(){
 //        false
 //    }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_bar_main)
@@ -52,11 +49,10 @@ class HomeActivity : AppCompatActivity(){
         context = this
         sharedPrefs = SharedPrefs(this)
 
-
         val navView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
 //        navView.setOnNavigationItemSelectedListener(this.)
         navView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.navigation_explore -> {
                     replaceFragment(ExploreFragment())
                     true
@@ -64,7 +60,7 @@ class HomeActivity : AppCompatActivity(){
                 R.id.navigation_dashboard -> {
                     replaceFragment(MyDashboardFragment())
                     true
-                }R.id.navigation_training -> {
+                } R.id.navigation_training -> {
                 replaceFragment(ProfileFragment())
                     true
                 }
@@ -84,7 +80,6 @@ class HomeActivity : AppCompatActivity(){
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
-
 
         if (id == R.id.action_search) {
             Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
@@ -132,5 +127,4 @@ class HomeActivity : AppCompatActivity(){
             supportActionBar!!.hide()
         }
     }
-
 }

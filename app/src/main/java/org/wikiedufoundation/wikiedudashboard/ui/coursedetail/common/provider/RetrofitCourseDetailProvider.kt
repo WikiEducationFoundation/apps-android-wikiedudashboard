@@ -20,7 +20,7 @@ class RetrofitCourseDetailProvider : CourseDetailProvider {
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseDetail(sub_url)
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {
             override fun onResponse(call: Call<CourseDetailResponse>, response: Response<CourseDetailResponse>) {
-                Log.d("Success: ",response.body().toString()+"")
+                Log.d("Success: ", response.body().toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 

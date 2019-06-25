@@ -12,7 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articles_edited.view.CourseArticlesEditedFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
@@ -20,14 +20,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.timeline.CourseTimelineFragment
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.coures_students.view.StudentListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
 import android.content.Intent
-
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 

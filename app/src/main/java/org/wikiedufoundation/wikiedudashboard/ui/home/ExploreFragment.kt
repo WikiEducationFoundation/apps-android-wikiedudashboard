@@ -17,7 +17,6 @@ import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.fragment_explore.view.*
 
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -30,8 +29,8 @@ class ExploreFragment : Fragment() {
     private var mParam2: String? = null
 
     var tabLayout: TabLayout? = null
-    var viewPager : ViewPager? = null
-    var viewPagerAdapter: ViewPagerAdapter?=null
+    var viewPager: ViewPager? = null
+    var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +41,11 @@ class ExploreFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         viewPager = view.viewPager
@@ -87,4 +89,4 @@ class ExploreFragment : Fragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+} // Required empty public constructor

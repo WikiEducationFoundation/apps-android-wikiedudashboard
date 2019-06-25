@@ -24,7 +24,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -53,16 +52,18 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        
-        val context : Context? = getContext()
+        val context: Context? = getContext()
         sharedPrefs = SharedPrefs(context)
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
@@ -87,7 +88,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
             recyclerView!!.visibility = View.GONE
             tvNoCourses!!.visibility = View.VISIBLE
         }
-
     }
 
     override fun showProgressBar(show: Boolean) {
