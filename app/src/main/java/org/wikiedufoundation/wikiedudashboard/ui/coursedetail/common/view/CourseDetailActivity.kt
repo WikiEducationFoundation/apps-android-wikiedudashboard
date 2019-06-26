@@ -13,7 +13,6 @@ import android.widget.Toast
 
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
@@ -27,6 +26,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
 import android.content.Intent
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 

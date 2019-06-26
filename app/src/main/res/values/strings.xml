@@ -56,4 +56,5 @@
     <string name="tv_no_users">No Users</string>
     <string name="btn_join">Join</string>
     <string name="btn_cancel">Cancel</string>
+    <string name="tv_no_campaigns">No Active Campaigns</string>
 </resources>
