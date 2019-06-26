@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.fragment_explore.view.*
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 
 /**
  * A simple [Fragment] subclass.

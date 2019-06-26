@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
@@ -32,6 +33,9 @@ interface WikiEduDashboardApi {
 
     @GET("explore.json")
     fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCoursesResponse>
+
+    @GET("campaigns.json")
+    fun getExploreCampaigns(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCampaignsResponse>
 
     @GET("w/api.php?action=query&format=json&pageids=79744855&prop=globalusage|categories|imageinfo&iiprop=size|extmetadata|url&clshow=!hidden")
     fun getMediaDetailsFromCommons(@Header("Cookie") sessionIdAndToken: String): Call<MediaDetailsResponse>
