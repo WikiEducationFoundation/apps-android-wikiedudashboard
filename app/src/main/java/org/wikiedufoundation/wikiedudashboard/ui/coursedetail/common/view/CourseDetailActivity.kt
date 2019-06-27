@@ -98,9 +98,9 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         val studentListFragment = StudentListFragment()
         val bundle = Bundle()
         bundle.putString("url", url)
+        titleList.add("Article")
         studentListFragment.arguments = bundle
         fragmentList.add(studentListFragment)
-        titleList.add("Articles Edited")
         val courseArticlesEditedFragment = CourseArticlesEditedFragment()
         val bundle2 = Bundle()
         bundle2.putString("url", url)
