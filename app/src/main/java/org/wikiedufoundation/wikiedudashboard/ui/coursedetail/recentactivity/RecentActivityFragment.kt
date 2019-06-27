@@ -13,55 +13,57 @@ import android.widget.ProgressBar
 import android.widget.TextView
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesEditedRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
+
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RetrofitRecentActivityProvider
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.RetrofitArticlesEditedProvider
+import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityContract
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
-class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
+class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
-    private var tvNoEditedArticles: TextView? = null
+    private var tvNoActivity: TextView? = null
     private var progressBar: ProgressBar? = null
     private var recyclerView: RecyclerView? = null
 
-    private var articlesEditedPresenter: ArticlesEditedPresenterImpl? = null
-    private var articlesEditedRecyclerAdapter: ArticlesEditedRecyclerAdapter? = null
+    private var recentActivityPresenter: RecentActivityContract.Presenter? = null
+    private var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter? = null
     private var url: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_articles_edited, container, false)
+        val view = inflater.inflate(R.layout.fragment_recent_activity, container, false)
 
         url = arguments!!.getString("url", null)
         val context: Context? = getContext()
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
-        tvNoEditedArticles = view.findViewById(R.id.tv_no_edited_articles)
+        tvNoActivity = view.findViewById(R.id.tv_no_activity)
 
-        articlesEditedPresenter = ArticlesEditedPresenterImpl(RetrofitArticlesEditedProvider(), this)
+        recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(context!!)
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(context!!)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = articlesEditedRecyclerAdapter
+        recyclerView!!.adapter = recentActivityRecyclerAdapter
 
-        articlesEditedPresenter!!.requestArticlesEdited(url!!)
+        recentActivityPresenter!!.requestRecentActivity(url!!)
         return view
     }
 
-    override fun setData(data: ArticlesEdited) {
-        Log.d("ArticlesEditedFragment", data.toString())
-        if (data.course.articles.size > 0) {
+    override fun setData(data: RecentActivityResponse) {
+        Log.d("RecentActivityFragment", data.toString())
+        if (data.course.revisions.isNotEmpty()) {
             recyclerView!!.visibility = View.VISIBLE
-            articlesEditedRecyclerAdapter!!.setData(data.course.articles)
-            articlesEditedRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoEditedArticles!!.visibility = View.GONE
+            recentActivityRecyclerAdapter!!.setData(data.course.revisions)
+            recentActivityRecyclerAdapter!!.notifyDataSetChanged()
+            tvNoActivity!!.visibility = View.GONE
         } else {
             recyclerView!!.visibility = View.GONE
-            tvNoEditedArticles!!.visibility = View.VISIBLE
+            tvNoActivity!!.visibility = View.VISIBLE
         }
     }
 

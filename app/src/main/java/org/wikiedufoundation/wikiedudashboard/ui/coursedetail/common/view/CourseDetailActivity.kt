@@ -12,7 +12,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.RecentActivityFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
@@ -26,7 +26,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 
 import java.util.ArrayList
 import android.content.Intent
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
@@ -100,7 +100,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         bundle.putString("url", url)
         studentListFragment.arguments = bundle
         fragmentList.add(studentListFragment)
-        titleList.add("Article")
+        titleList.add("Articles Edited")
         val courseArticlesEditedFragment = CourseArticlesEditedFragment()
         val bundle2 = Bundle()
         bundle2.putString("url", url)
@@ -109,7 +109,12 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         titleList.add("Uploads")
         fragmentList.add(CourseUploadsFragment.newInstance(url!!))
         titleList.add("Activity")
-        fragmentList.add(CampaignListFragment())
+        val recentActivityFragment = RecentActivityFragment()
+        val bundle3 = Bundle()
+        bundle3.putString("url", url)
+        recentActivityFragment.arguments = bundle3
+        fragmentList.add(recentActivityFragment)
+
         viewPagerAdapter!!.setTabData(fragmentList, titleList)
         viewPagerAdapter!!.notifyDataSetChanged()
     }

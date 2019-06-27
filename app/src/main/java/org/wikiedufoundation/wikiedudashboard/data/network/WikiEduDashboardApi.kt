@@ -2,6 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.data.network
 
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
@@ -21,6 +22,9 @@ interface WikiEduDashboardApi {
 
     @GET
     fun getArticlesEdited(@Url url: String): Call<ArticlesEdited>
+
+    @GET
+    fun getRecentActivity(@Url url: String): Call<RecentActivityResponse>
 
     @GET
     fun getStudentList(@Url url: String): Call<StudentListResponse>
