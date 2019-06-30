@@ -1,8 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter
 
 import android.util.Log
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
+
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.ArticlesEditedProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.ArticlesEditedView
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback

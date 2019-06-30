@@ -5,7 +5,8 @@ import android.util.Log
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
-class MyDashboardPresenterImpl(private val myDashboardView: MyDashboardContract.View, private val myDashboardProvider: MyDashboardContract.Provider) : MyDashboardContract.Presenter {
+class MyDashboardPresenterImpl(private val myDashboardView: MyDashboardContract.View,
+                               private val myDashboardProvider: MyDashboardContract.Provider) : MyDashboardContract.Presenter {
 
     override fun requestDashboard(cookies: String) {
         myDashboardView.showProgressBar(true)

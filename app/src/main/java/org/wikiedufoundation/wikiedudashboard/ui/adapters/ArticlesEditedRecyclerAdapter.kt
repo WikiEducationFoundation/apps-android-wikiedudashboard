@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.Article
 
 import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.item_rv_articles_edited.view.*
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.Article
 
 class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var edited: List<Article> = ArrayList()

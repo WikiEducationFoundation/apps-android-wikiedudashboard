@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider
+package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
 import android.util.Log
 
@@ -7,25 +7,24 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RetrofitArticlesEditedProvider : ArticlesEditedProvider {
+class RetrofitRecentActivityProvider : RecentActivityContract.Provider {
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
 
-    override fun requestArticlesEdited(url: String, presenterCallback: PresenterCallback<*>) {
-        val sub_url = "courses/$url/articles.json"
-        val articlesEditedResponseCall = wikiEduDashboardApi.getArticlesEdited(sub_url)
-        articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
-            override fun onResponse(call: Call<ArticlesEdited>, response: Response<ArticlesEdited>) {
+    override fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<*>) {
+        val sub_url = "courses/$url/revisions.json"
+        val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(sub_url)
+        articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {
+            override fun onResponse(call: Call<RecentActivityResponse>, response: Response<RecentActivityResponse>) {
                 Log.d("Success: ", response.body()!!.course.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
-            override fun onFailure(call: Call<ArticlesEdited>, t: Throwable) {
+            override fun onFailure(call: Call<RecentActivityResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
                 Log.d("Failure: ", t.message + "")

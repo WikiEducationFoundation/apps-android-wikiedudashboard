@@ -27,7 +27,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * Use the [MyDashboardFragment.newInstance] factory method to
+ * Use the [RecentActivityFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {

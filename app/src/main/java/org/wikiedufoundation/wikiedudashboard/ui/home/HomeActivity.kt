@@ -14,10 +14,10 @@ import android.view.MenuItem
 import android.widget.Toast
 
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 
 import butterknife.ButterKnife
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
 //                replaceFragment(ExploreFragment())
 //            }
 //            R.id.navigation_dashboard -> {
-//                replaceFragment(MyDashboardFragment())
+//                replaceFragment(RecentActivityFragment())
 //            }
 //            R.id.navigation_training -> {
 //                replaceFragment(ProfileFragment())
