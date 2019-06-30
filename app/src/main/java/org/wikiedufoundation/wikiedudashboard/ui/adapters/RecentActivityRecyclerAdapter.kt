@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,7 +13,11 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 
 import java.util.ArrayList
 
-import kotlinx.android.synthetic.main.item_rv_articles_edited.view.*
+import kotlinx.android.synthetic.main.item_rv_recent_activity.view.*
+import java.text.SimpleDateFormat
+
+
+
 
 class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var activities: List<RecentActivity> = ArrayList()
@@ -22,9 +27,17 @@ class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView
         return ArticlesEditedViewHolder(view1)
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
         val articlesEditedViewHolder = viewHolder as ArticlesEditedViewHolder
         articlesEditedViewHolder.tvCountArticlesEditedTitle.text = activities[i].title
+        articlesEditedViewHolder.tvCountCharactersAdded.text = activities[i].characters.toString()
+        articlesEditedViewHolder.tvRevisor.text = activities[i].revisor
+
+        val dateFormat = SimpleDateFormat(context.getString(R.string.time_format_12_hours))
+        val formattedDate = dateFormat.format(activities[i].date).toString()
+
+        articlesEditedViewHolder.tvDate.text = formattedDate
     }
 
     fun setData(edited: List<RecentActivity>) {
@@ -37,5 +50,8 @@ class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView
 
     inner class ArticlesEditedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCountArticlesEditedTitle: TextView = itemView.tv_count_articles_edited_title
+        val tvCountCharactersAdded: TextView = itemView.tv_count_characters_added
+        val tvRevisor: TextView = itemView.tv_revisor
+        val tvDate: TextView = itemView.tv_date
     }
 }
