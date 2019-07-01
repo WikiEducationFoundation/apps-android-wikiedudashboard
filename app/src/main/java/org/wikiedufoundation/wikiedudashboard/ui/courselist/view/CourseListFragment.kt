@@ -20,6 +20,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesR
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
@@ -35,7 +36,7 @@ class CourseListFragment : Fragment(), CourseListView {
     private var tv_no_courses: TextView? = null
     private var progressBar: ProgressBar? = null
     private var recyclerView: RecyclerView? = null
-
+    private var coursesList: List<CourseListData> = ArrayList()
     private var courseListPresenter: CourseListPresenterImpl? = null
     private var courseListRecyclerAdapter: CourseListRecyclerAdapter? = null
 
@@ -74,7 +75,8 @@ class CourseListFragment : Fragment(), CourseListView {
 
     override fun setData(data: ExploreCoursesResponse) {
         Log.d("DashboardFragment: ", data.toString())
-        if (data.courses.size > 0) {
+        if (data.courses.isNotEmpty()) {
+            coursesList = data.courses
             recyclerView!!.visibility = View.VISIBLE
             courseListRecyclerAdapter!!.setData(data.courses)
             courseListRecyclerAdapter!!.notifyDataSetChanged()
@@ -104,8 +106,19 @@ class CourseListFragment : Fragment(), CourseListView {
         startActivity(i)
     }
 
+    fun updateSearchQuery(query: String) {
+        Log.d("CourseListFragment: ", query)
+        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
+        for (course in coursesList) {
+            if (course.title.toLowerCase().contains(query.toLowerCase())) {
+                filteredCourseList!!.add(course)
+            }
+        }
+        courseListRecyclerAdapter!!.setData(filteredCourseList!!)
+        courseListRecyclerAdapter!!.notifyDataSetChanged()
+    }
+
     companion object {
-        // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
@@ -128,4 +141,4 @@ class CourseListFragment : Fragment(), CourseListView {
             return fragment
         }
     }
-} // Required empty public constructor
+}

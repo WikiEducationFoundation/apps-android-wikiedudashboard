@@ -21,7 +21,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAd
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
@@ -43,6 +45,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     private var sharedPrefs: SharedPrefs? = null
     private var campaignListPresenter: CampaignListContract.Presenter? = null
     private var campaignListRecyclerAdapter: CampaignListRecyclerAdapter? = null
+    private var campaignList: List<CampaignListData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +82,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     override fun setData(data: ExploreCampaignsResponse) {
         Log.d(TAG, data.toString())
         if (data.campaigns.isNotEmpty()) {
+            campaignList = data.campaigns
             recyclerView!!.visibility = View.VISIBLE
             campaignListRecyclerAdapter!!.setData(data.campaigns)
             campaignListRecyclerAdapter!!.notifyDataSetChanged()
@@ -99,6 +103,18 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     override fun showMessage(message: String) {
         ViewUtils.showToast(context!!, message)
+    }
+
+    fun updateSearchQuery(query: String) {
+        Log.d("CampaignListFragment: ", query)
+        val filteredCampaignList: ArrayList<CampaignListData>? = ArrayList()
+        for (campaign in campaignList) {
+            if (campaign.title.toLowerCase().contains(query.toLowerCase())) {
+                filteredCampaignList!!.add(campaign)
+            }
+        }
+        campaignListRecyclerAdapter!!.setData(filteredCampaignList!!)
+        campaignListRecyclerAdapter!!.notifyDataSetChanged()
     }
 
     companion object {

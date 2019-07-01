@@ -14,4 +14,3 @@ script:
   - ./gradlew assembleDebug --stacktrace
 after_success:
 - bash scripts/update-apk.sh
-

@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.FragmentTransaction
 
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -23,22 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
     private var context: Context? = null
-
-//    private val mOnNavigationItemSelectedListener = { item ->
-//        when (item.getItemId()) {
-//            R.id.navigation_explore -> {
-//                replaceFragment(ExploreFragment())
-//            }
-//            R.id.navigation_dashboard -> {
-//                replaceFragment(RecentActivityFragment())
-//            }
-//            R.id.navigation_training -> {
-//                replaceFragment(ProfileFragment())
-//            }
-//        }
-//        false
-//    }
-
+    private var myDashboardFragment: MyDashboardFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_bar_main)
@@ -48,9 +35,8 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         context = this
         sharedPrefs = SharedPrefs(this)
-
+        myDashboardFragment = MyDashboardFragment()
         val navView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-//        navView.setOnNavigationItemSelectedListener(this.)
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_explore -> {
@@ -58,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_dashboard -> {
-                    replaceFragment(MyDashboardFragment())
+                    replaceFragment(myDashboardFragment)
                     true
                 } R.id.navigation_training -> {
                 replaceFragment(ProfileFragment())
@@ -75,31 +61,38 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val searchView = item!!.actionView as SearchView
+        searchView.queryHint = "Search"
+        searchView.isIconified = false
 
-        if (id == R.id.action_search) {
-            Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
-            //            TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.toolbar));
-            //            MenuItemCompat.expandActionView(item);
-            return true
-        }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                myDashboardFragment!!.updateSearchQuery(query)
+                if (!searchView.isIconified) {
+                    searchView.isIconified = true
+                }
+                item.collapseActionView()
+                return false
+            }
 
-        return super.onOptionsItemSelected(item)
+            override fun onQueryTextChange(query: String): Boolean {
+                myDashboardFragment!!.updateSearchQuery(query)
+                return false
+            }
+        })
+        return true
     }
 
-    fun addFragment(fragment: Fragment?) {
+
+
+    private fun addFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            //            fragmentTransaction.replace(R.id.home_layout, fragment);
-            //            fragmentTransaction.hide(fragmentManager.getFragments().get(fragmentManager.getBackStackEntryCount() - 1));
             fragmentTransaction.add(R.id.home_container, fragment)
             fragmentTransaction.addToBackStack(null)
-            //            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             fragmentTransaction.commit()
         }
     }
@@ -112,13 +105,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    fun replaceFragment(fragment: Fragment?) {
+    private fun replaceFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.home_container, fragment)
-            //            fragmentTransaction.addToBackStack(null);
-            //            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
             fragmentTransaction.commit()
         }
         if (fragment is MyDashboardFragment) {
