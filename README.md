@@ -1,5 +1,6 @@
 # Wiki Education Dashboard Android app
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/314da6eb3ef14d9e897a828464996791)](https://app.codacy.com/app/ujjwalagrawal17/apps-android-wikiedudashboard?utm_source=github.com&utm_medium=referral&utm_content=ujjwalagrawal17/apps-android-wikiedudashboard&utm_campaign=Badge_Grade_Dashboard)
 [![Build status](https://api.travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard.svg)](https://travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard) 
 [![Gitter](https://badges.gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android.svg)](https://gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
