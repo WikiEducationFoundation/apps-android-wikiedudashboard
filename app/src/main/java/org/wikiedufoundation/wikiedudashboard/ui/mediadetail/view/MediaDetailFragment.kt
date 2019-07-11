@@ -96,7 +96,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar = view.findViewById(R.id.toolbar)
 
         categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
-//        progressBar = view.findViewById(R.id.progressBar)
+        progressBar = view.findViewById(R.id.progressBar)
         tvNoCategories = view.findViewById(R.id.tv_no_categories)
         fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
         tvNoFileUses = view.findViewById(R.id.tv_no_uses)
@@ -107,8 +107,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         fileName = courseUpload!!.file_name
         tvTitle!!.text = fileName
         tvAuthor!!.text = courseUpload!!.uploader
-//        tvDescription!!.text = courseUpload!!.
-//        tvLicense!!.text = courseUpload!!.
         toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
         tvUploadDate!!.text = courseUpload!!.uploaded_at
         mediaDetailImage!!.setOnClickListener {
@@ -165,11 +163,14 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun setData(data: MediaDetailsResponse) {
         Log.d("MediaDetailFragment: ", data.toString())
 
-        // Description
         val imageinfo: ImageDetails = data.query.page.get(data.query.page.keys.first())!!.imageinfo.get(0)
-//        tvDescription!!.text = imageinfo.extMetaData
+
+        // Description
+        tvDescription?.text = imageinfo.extMetaData.description.value
 
         // License
+        tvLicense?.text = imageinfo.extMetaData.license.value
+        tvLicense?.setOnClickListener { ViewUtils.showCustomChromeTabs(context!!,imageinfo.extMetaData.licenseUrl.value) }
 
         // Categories
         val categories: List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories

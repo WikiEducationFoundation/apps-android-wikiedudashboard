@@ -12,7 +12,8 @@ class MediaDetail(
 )
 
 class ImageDetails(
-    extMetaData: ExtMetaData
+    @SerializedName("extmetadata")
+    val extMetaData: ExtMetaData
 )
 
 class ExtMetaData(
