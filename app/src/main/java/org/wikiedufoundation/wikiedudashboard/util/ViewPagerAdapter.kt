@@ -4,8 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-
-import java.util.ArrayList
+import java.util.*
 
 class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     private var fragmentList: List<Fragment?> = ArrayList()

@@ -1,12 +1,10 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider
 
 import android.util.Log
-
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
-import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
+import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

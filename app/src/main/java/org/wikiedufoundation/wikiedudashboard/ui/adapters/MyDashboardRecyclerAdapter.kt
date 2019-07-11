@@ -1,20 +1,16 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_rv_my_dashboard.view.*
 import org.wikiedufoundation.wikiedudashboard.R
-
-import java.util.ArrayList
-
-import kotlinx.android.synthetic.main.item_rv_my_dashboard.view.tv_course_title
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
+import java.util.*
 
 class MyDashboardRecyclerAdapter internal constructor(private val context: Context,
                           internal var myDashboardFragment: MyDashboardFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

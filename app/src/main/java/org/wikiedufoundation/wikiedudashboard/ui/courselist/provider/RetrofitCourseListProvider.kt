@@ -1,10 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.provider
 
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
-import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
+import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

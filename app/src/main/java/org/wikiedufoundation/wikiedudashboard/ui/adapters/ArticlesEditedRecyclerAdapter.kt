@@ -1,18 +1,15 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-import org.wikiedufoundation.wikiedudashboard.R
-
-import java.util.ArrayList
-
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rv_articles_edited.view.*
+import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.Article
+import java.util.*
 
 class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var edited: List<Article> = ArrayList()

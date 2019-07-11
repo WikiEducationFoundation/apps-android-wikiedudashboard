@@ -1,14 +1,12 @@
 package org.wikiedufoundation.wikiedudashboard.ui.welcome
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-
-import java.util.ArrayList
+import java.util.*
 
 class WelcomeActivity : AppCompatActivity() {
 

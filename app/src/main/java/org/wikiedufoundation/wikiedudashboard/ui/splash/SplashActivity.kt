@@ -1,10 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.ui.splash
 
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity

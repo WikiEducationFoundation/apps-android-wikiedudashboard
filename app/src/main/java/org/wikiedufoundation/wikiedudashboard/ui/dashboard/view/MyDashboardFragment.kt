@@ -3,25 +3,23 @@ package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.wikiedufoundation.wikiedudashboard.R
-
+import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**

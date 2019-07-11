@@ -2,21 +2,16 @@ package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_rv_recent_activity.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
-
-import java.util.ArrayList
-
-import kotlinx.android.synthetic.main.item_rv_recent_activity.view.*
 import java.text.SimpleDateFormat
-
-
+import java.util.*
 
 
 class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

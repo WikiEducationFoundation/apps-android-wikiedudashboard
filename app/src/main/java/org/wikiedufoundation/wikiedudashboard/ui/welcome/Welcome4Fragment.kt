@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.cardview.widget.CardView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +14,12 @@ import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
-
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
+import org.wikiedufoundation.wikiedudashboard.util.Urls
 
 /**
  * A simple [Fragment] subclass.

@@ -1,18 +1,15 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.timeline
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
+import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
-
-import java.text.MessageFormat
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
+import java.text.MessageFormat
 
 /**
  * A simple [Fragment] subclass.

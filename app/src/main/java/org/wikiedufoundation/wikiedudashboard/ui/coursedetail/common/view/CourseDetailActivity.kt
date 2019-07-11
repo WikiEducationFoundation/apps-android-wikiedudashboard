@@ -1,17 +1,19 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view
 
 import android.content.Context
-import com.google.android.material.tabs.TabLayout
-import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import org.wikiedufoundation.wikiedudashboard.R
+import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.RecentActivityFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
@@ -21,12 +23,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.timeline.CourseTimelineFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-
-import java.util.ArrayList
-import android.content.Intent
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
+import java.util.*
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 

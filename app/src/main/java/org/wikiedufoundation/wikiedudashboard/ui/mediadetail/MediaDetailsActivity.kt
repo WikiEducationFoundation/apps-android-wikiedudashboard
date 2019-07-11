@@ -2,13 +2,10 @@ package org.wikiedufoundation.wikiedudashboard.ui.mediadetail
 
 import android.content.Context
 import android.os.Bundle
-
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 

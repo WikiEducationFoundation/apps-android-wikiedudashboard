@@ -1,16 +1,15 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rv_students.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.User
-
-import java.util.ArrayList
+import java.util.*
 
 class StudentListRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<StudentListRecyclerAdapter.MyAdapter>() {
     private var studentList: List<User> = ArrayList()

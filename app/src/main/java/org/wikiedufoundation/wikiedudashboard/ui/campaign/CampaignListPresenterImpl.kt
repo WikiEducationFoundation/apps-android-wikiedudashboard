@@ -2,8 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign
 
 import android.util.Log
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
-
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 class CampaignListPresenterImpl(private val myDashboardView: CampaignListContract.View, private val myDashboardProvider: CampaignListContract.Provider) : CampaignListContract.Presenter {

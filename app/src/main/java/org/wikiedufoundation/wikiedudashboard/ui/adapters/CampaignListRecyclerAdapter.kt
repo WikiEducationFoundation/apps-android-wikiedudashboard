@@ -1,19 +1,16 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import kotlinx.android.synthetic.main.item_rv_campaign_list.view.tv_campaign_title
-
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_rv_campaign_list.view.*
 import org.wikiedufoundation.wikiedudashboard.R
-
-import java.util.ArrayList
-
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
+import java.util.*
 
 class CampaignListRecyclerAdapter internal constructor(
     private val context: Context,

@@ -1,14 +1,12 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
 import com.google.gson.GsonBuilder
-
-import java.util.concurrent.TimeUnit
-
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class ProviderUtils {
     companion object {

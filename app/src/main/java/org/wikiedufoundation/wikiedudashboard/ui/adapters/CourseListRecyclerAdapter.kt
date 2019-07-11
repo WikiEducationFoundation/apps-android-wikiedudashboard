@@ -1,19 +1,16 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-
-import java.util.ArrayList
-
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
+import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import java.util.*
 
 class CourseListRecyclerAdapter internal constructor(
     private val context: Context,

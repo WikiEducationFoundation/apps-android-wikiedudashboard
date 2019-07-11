@@ -2,21 +2,17 @@ package org.wikiedufoundation.wikiedudashboard.ui.home
 
 import android.content.Context
 import android.os.Bundle
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import butterknife.ButterKnife
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-
-import butterknife.ButterKnife
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 
 class HomeActivity : AppCompatActivity() {
