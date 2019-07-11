@@ -63,7 +63,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
-        val context: Context? = getContext()
+        val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(context!!, this)

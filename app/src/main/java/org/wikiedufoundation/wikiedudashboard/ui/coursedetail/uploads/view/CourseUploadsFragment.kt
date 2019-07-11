@@ -51,7 +51,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
-        val context: Context? = getContext()
+        val context: Context? = context
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_courses)

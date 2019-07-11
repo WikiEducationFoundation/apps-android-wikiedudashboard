@@ -87,7 +87,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_media_details, container, false)
-        val context: Context? = getContext()
+        val context: Context? = context
         mediaDetailImage = view.findViewById(R.id.iv_media_detail)
         tvAuthor = view.findViewById(R.id.mediaDetailAuthor)
         tvTitle = view.findViewById(R.id.mediaDetailTitle)
@@ -118,13 +118,13 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar!!.setOnMenuItemClickListener(this)
 
         mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
-        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(context!!, this)
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(context, this)
         val linearLayoutManager = LinearLayoutManager(context)
         categoriesRecyclerView!!.layoutManager = linearLayoutManager
         categoriesRecyclerView!!.setHasFixedSize(true)
         categoriesRecyclerView!!.adapter = categoryListRecyclerAdapter
 
-        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(context!!, this)
+        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(context, this)
         val linearLayoutManager2 = LinearLayoutManager(context)
         fileUsesRecyclerView!!.layoutManager = linearLayoutManager2
         fileUsesRecyclerView!!.setHasFixedSize(true)

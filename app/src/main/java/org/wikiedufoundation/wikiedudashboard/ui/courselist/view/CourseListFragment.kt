@@ -58,7 +58,7 @@ class CourseListFragment : Fragment(), CourseListView {
         tv_no_courses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
-        val context: Context? = getContext()
+        val context: Context? = context
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         tv_no_courses!!.text = sharedPrefs!!.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())

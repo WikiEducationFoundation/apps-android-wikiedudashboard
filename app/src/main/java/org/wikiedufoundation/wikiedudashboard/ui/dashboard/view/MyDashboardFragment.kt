@@ -63,7 +63,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        val context: Context? = getContext()
+        val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)

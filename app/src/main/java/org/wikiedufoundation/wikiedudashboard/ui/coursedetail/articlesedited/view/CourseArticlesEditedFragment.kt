@@ -34,7 +34,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         val view = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
         url = arguments!!.getString("url", null)
-        val context: Context? = getContext()
+        val context: Context? = context
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)

@@ -1,17 +1,12 @@
 <resources>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="app_name">WikiEdu Dashboard</string>
     <string name="title_home">Explore</string>
     <string name="title_dashboard">My Dashboard</string>
     <string name="title_notifications">Profile</string>
-    <string name="active_campaigns">Active Campaigns</string>
-    <string name="active_courses">Active Courses</string>
     <string name="title_search">Search</string>
     <string name="demo_course">WikiProject Medicine Winter 2018 UCF COM</string>
-    <string name="demo_course3">Digital History</string>
     <string name="demo_course2">ARCHY 319 Archaeology of Australia</string>
     <string name="articles_created">Articles Created</string>
     <string name="articles_edited">Articles Edited</string>
@@ -33,11 +28,6 @@
     <string name="wiki_education_dashboard">Wiki Education Dashboard</string>
     <string name="log_in_with_wikipedia">Log in with Wikipedia</string>
     <string name="sign_up_with_wikipedia">Sign up with Wikipedia</string>
-    <string name="nav_header_title">Title</string>
-    <string name="nav_header_subtitle">subtitle</string>
-    <string name="nav_logout">LOG OUT</string>
-    <string name="demo_username">demo_username</string>
-    <string name="title_settings">Settings</string>
     <string name="tv_no_programs">Looks like you haven\'t joined a program yet. Click on Explore to find your program and join it.</string>
     <string name="media_detail_author">Author</string>
     <string name="media_detail_license">License</string>
@@ -60,7 +50,6 @@
     <string name="tv_no_activity">No Activity</string>
     <string name="demo_course_name">Anti-rape movement</string>
     <string name="label_chars_added">Chars Added : </string>
-    <string name="label_views">Views : </string>
     <string name="label_edited_by">Edited By :</string>
     <string name="label_edited_on">Edited on :</string>
     <string name="time_format_12_hours">dd-MMM-yy hh.mm aa</string>

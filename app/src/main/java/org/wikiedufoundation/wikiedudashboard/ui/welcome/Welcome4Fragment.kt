@@ -62,7 +62,7 @@ class Welcome4Fragment : Fragment() {
         ll_login_layout = view.findViewById(R.id.ll_login_layout)
         progressBar = view.findViewById(R.id.progressBar)
 
-        val context: Context? = getContext()
+        val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         setWebView()
         setOnClickListeners()

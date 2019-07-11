@@ -37,7 +37,7 @@ class StudentListFragment : Fragment(), StudentListView {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
 
-        val context: Context? = getContext()
+        val context: Context? = context
         studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
         layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
