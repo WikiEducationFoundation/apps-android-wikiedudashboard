@@ -32,9 +32,8 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
-        url = arguments!!.getString("url", null)
+        url = arguments?.getString("url", null)
         val context: Context? = context
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoEditedArticles = view.findViewById(R.id.tv_no_edited_articles)
@@ -43,32 +42,32 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(context!!)
         val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = articlesEditedRecyclerAdapter
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = articlesEditedRecyclerAdapter
 
-        articlesEditedPresenter!!.requestArticlesEdited(url!!)
+        articlesEditedPresenter?.requestArticlesEdited(url!!)
         return view
     }
 
     override fun setData(data: ArticlesEdited) {
         Log.d("ArticlesEditedFragment", data.toString())
         if (data.course.articles.size > 0) {
-            recyclerView!!.visibility = View.VISIBLE
-            articlesEditedRecyclerAdapter!!.setData(data.course.articles)
-            articlesEditedRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoEditedArticles!!.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+            articlesEditedRecyclerAdapter?.setData(data.course.articles)
+            articlesEditedRecyclerAdapter?.notifyDataSetChanged()
+            tvNoEditedArticles?.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoEditedArticles!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tvNoEditedArticles?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 

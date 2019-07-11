@@ -15,7 +15,7 @@ import com.bumptech.glide.request.target.Target;
 public class GlideImageLoader implements ImageLoader {
 
     private static final String TAG = "GlideImageLoader";
-    Context mContext;
+    private Context mContext;
     private RequestManager requestManager;
 
     public GlideImageLoader(Context mContext) {

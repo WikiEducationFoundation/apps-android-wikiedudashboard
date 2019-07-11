@@ -20,6 +20,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 /**
@@ -37,6 +38,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     private var tvNoCourses: TextView? = null
     private var progressBar: ProgressBar? = null
     private var recyclerView: RecyclerView? = null
+    private var coursesList: List<CourseListData>? = ArrayList()
 
     private var sharedPrefs: SharedPrefs? = null
     private var myDashboardPresenter: MyDashboardContract.Presenter? = null
@@ -44,6 +46,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         if (arguments != null) {
             mParam1 = arguments!!.getString(ARG_PARAM1)
             mParam2 = arguments!!.getString(ARG_PARAM2)
@@ -78,6 +81,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         sharedPrefs!!.userName = data.user.username
         Log.d("DashboardFragment: ", data.toString())
         if (data.current_courses.isNotEmpty()) {
+            coursesList = data.current_courses
             recyclerView!!.visibility = View.VISIBLE
             myDashboardRecyclerAdapter!!.setData(data.current_courses)
             myDashboardRecyclerAdapter!!.notifyDataSetChanged()
@@ -106,6 +110,19 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         i.putExtra("enrolled", true)
         startActivity(i)
     }
+
+    fun updateSearchQuery(query: String) {
+        Log.d("CourseListFragment: ", query)
+        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
+        for (course in coursesList!!) {
+            if (course.title.toLowerCase().contains(query.toLowerCase())) {
+                filteredCourseList!!.add(course)
+            }
+        }
+        myDashboardRecyclerAdapter!!.setData(filteredCourseList!!)
+        myDashboardRecyclerAdapter!!.notifyDataSetChanged()
+    }
+
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match

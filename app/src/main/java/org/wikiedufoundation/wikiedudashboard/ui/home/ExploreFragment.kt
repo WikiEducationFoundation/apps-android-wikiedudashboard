@@ -1,9 +1,13 @@
 package org.wikiedufoundation.wikiedudashboard.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -20,14 +24,17 @@ import java.util.*
  * Use the [ExploreFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ExploreFragment : Fragment() {
+class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    var tabLayout: TabLayout? = null
-    var viewPager: ViewPager? = null
-    var viewPagerAdapter: ViewPagerAdapter? = null
+    private var tabLayout: TabLayout? = null
+    private var viewPager: ViewPager? = null
+    var toolbar: Toolbar? = null
+    var campaignListFragment: CampaignListFragment? = null
+    var courseListFragment: CourseListFragment? = null
+    private var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +54,9 @@ class ExploreFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         viewPager = view.viewPager
         tabLayout = view.tabLayout
+        toolbar = view.toolbar
+        toolbar!!.inflateMenu(R.menu.menu_explore)
+        toolbar!!.setOnMenuItemClickListener(this)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
         viewPager!!.adapter = viewPagerAdapter
         tabLayout!!.setupWithViewPager(viewPager)
@@ -58,16 +68,45 @@ class ExploreFragment : Fragment() {
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Active Campaigns")
-        fragmentList.add(CampaignListFragment())
+        campaignListFragment = CampaignListFragment()
+        fragmentList.add(campaignListFragment!!)
         titleList.add("Active Courses")
-        fragmentList.add(CourseListFragment())
+        courseListFragment= CourseListFragment()
+        fragmentList.add(courseListFragment!!)
         viewPagerAdapter!!.setTabData(fragmentList, titleList)
         viewPagerAdapter!!.notifyDataSetChanged()
     }
 
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        val searchView = item!!.actionView as SearchView
+        searchView.queryHint = "Search"
+        searchView.isIconified = false
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Log.d("Query:", query)
+                campaignListFragment!!.updateSearchQuery(query)
+                courseListFragment!!.updateSearchQuery(query)
+
+                if (!searchView.isIconified) {
+                    searchView.isIconified = true
+                }
+                item.collapseActionView()
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                Log.d("Query:", query)
+                campaignListFragment!!.updateSearchQuery(query)
+                courseListFragment!!.updateSearchQuery(query)
+                return false
+            }
+        })
+        return true
+    }
+
     companion object {
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+        private const val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM2 = "param2"
 
         /**
          * Use this factory method to create a new instance of
