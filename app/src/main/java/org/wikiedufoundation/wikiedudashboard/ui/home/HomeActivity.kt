@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
+import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
 
 class HomeActivity : AppCompatActivity() {
 
