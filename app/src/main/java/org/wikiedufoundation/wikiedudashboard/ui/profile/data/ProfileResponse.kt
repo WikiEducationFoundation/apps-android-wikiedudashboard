@@ -22,7 +22,7 @@ class CourseData(
         val user_count: Int,
         val user_role: String,
         val course_slug: String
-)
+) : Serializable
 
 
 class AsInstructorDetails(
@@ -30,7 +30,7 @@ class AsInstructorDetails(
         val courses_count: Int,
         val user_count: Int,
         val trained_percent: String
-)
+) : Serializable
 
 class ByStudentsDetails(
         val word_count: String,
@@ -41,7 +41,7 @@ class ByStudentsDetails(
         val upload_count: String,
         val uploads_in_use_count: Int,
         val upload_usage_count: Int
-)
+) : Serializable
 
 class AsStudentDetails(
         val course_string_prefix: String,
@@ -53,4 +53,4 @@ class AsStudentDetails(
         val individual_articles_created: String,
         val individual_upload_count: String,
         val individual_upload_usage_count: String
-)
+) : Serializable
