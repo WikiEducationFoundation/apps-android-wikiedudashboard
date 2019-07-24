@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(myDashboardFragment)
                     true
                 } R.id.navigation_training -> {
-                replaceFragment(ProfileFragment())
+                replaceFragment(ProfileFragment.newInstance(sharedPrefs!!.userName!!, false))
                     true
                 }
                 else -> false

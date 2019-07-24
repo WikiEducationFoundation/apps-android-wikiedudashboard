@@ -61,7 +61,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_4dp"
-                        android:text="User: Ujjwalagrawal17"
                         android:textColor="@color/white"
 
                         android:textStyle="bold" />
@@ -71,7 +70,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_4dp"
-                        android:text="This contains the description. This contains the description."
                         android:textColor="@color/white" />
 
                     <LinearLayout
@@ -89,7 +87,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"
-                            android:text="ujjwal.iitism@gmail.com"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
@@ -109,7 +106,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"
-                            android:text="Raipur"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
@@ -129,7 +125,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"
-                            android:text="IIT ISM Dhanbad"
                             android:textColor="@color/white" />
                     </LinearLayout>
 

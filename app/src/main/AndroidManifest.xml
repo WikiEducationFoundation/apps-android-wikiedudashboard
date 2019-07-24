@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.mediadetail.MediaDetailsActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/app_name">

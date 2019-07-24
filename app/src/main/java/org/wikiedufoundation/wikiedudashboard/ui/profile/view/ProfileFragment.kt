@@ -1,43 +1,41 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.graphics.drawable.RoundedBitmapDrawable
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.google.android.material.tabs.TabLayout
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
+import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ProfileFragment : Fragment(), ProfileContract.View {
 
+    private var mParam1: String? = null
+    private var mParam2: Boolean? = null
     private var toolbar: Toolbar? = null
     private var tabLayout: TabLayout? = null
     private var viewPager: ViewPager? = null
@@ -53,6 +51,19 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     private var tvEmail: TextView? = null
     private var tvLocation: TextView? = null
     private var tvInstitute: TextView? = null
+
+    private var llAsStudent: LinearLayout?=null
+    private var llByStudent: LinearLayout?=null
+//    private var llAsStudent: LinearLayout?=null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            mParam1 = arguments!!.getString(ARG_PARAM1)
+            mParam2 = arguments!!.getBoolean(ARG_PARAM2)
+        }
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_training, container, false)
@@ -75,8 +86,20 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         sharedPrefs = SharedPrefs(getContext())
         toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
-        presenter!!.requestProfile(sharedPrefs?.cookies!!, sharedPrefs?.userName!!)
-        presenter!!.requestProfileDetails(sharedPrefs?.userName!!)
+        if(mParam1!!.equals(sharedPrefs!!.userName)) {
+            presenter!!.requestProfile(sharedPrefs?.cookies!!, sharedPrefs?.userName!!)
+            presenter!!.requestProfileDetails(sharedPrefs?.userName!!)
+        }else{
+            presenter!!.requestProfile(sharedPrefs?.cookies!!, mParam1!!)
+            presenter!!.requestProfileDetails(mParam1!!)
+        }
+        if (mParam2!!){
+            toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            toolbar!!.setNavigationOnClickListener {
+                activity!!.onBackPressed()
+            }
+        }
+
         return view
     }
 
@@ -84,7 +107,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Contribution Statistics")
-        fragmentList.add(ProfileStatsFragment.newInstance(data))
+        fragmentList.add(ProfileStatsFragment.newInstance(data, mParam1!!, mParam2!!))
         titleList.add("Course Details")
         fragmentList.add(ProfileCourseListFragment.newInstance(data))
         titleList.add("Recent Uploads")
@@ -103,7 +126,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         }else{
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
-        tvUsername!!.text = sharedPrefs!!.userName
+        tvUsername!!.text = mParam1!!
         tvEmail!!.text = "demo@wikiedu.org"
         tvDescription!!.text = "Demo Description"
         tvLocation!!.text = "Demo Location"
@@ -126,4 +149,27 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         ViewUtils.showToast(context!!, message)
     }
 
+    companion object {
+        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+        private val ARG_PARAM1 = "param1"
+        private val ARG_PARAM2 = "param2"
+
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment ExploreFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        fun newInstance(param1: String, other_user: Boolean): ProfileFragment {
+            val fragment = ProfileFragment()
+            val args = Bundle()
+            args.putString(ARG_PARAM1, param1)
+            args.putBoolean(ARG_PARAM2, other_user)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 }

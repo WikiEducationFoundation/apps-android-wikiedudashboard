@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAda
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
+import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 
 class StudentListFragment : Fragment(), StudentListView {
@@ -42,7 +45,7 @@ class StudentListFragment : Fragment(), StudentListView {
         layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.setHasFixedSize(true)
-        studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!)
+        studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!, this)
         recyclerView!!.adapter = studentListRecyclerAdapter
         studentListPresenter!!.requestStudentList(url!!)
 
@@ -70,5 +73,11 @@ class StudentListFragment : Fragment(), StudentListView {
             recyclerView!!.visibility = View.GONE
             tvNoStudents!!.visibility = View.VISIBLE
         }
+    }
+
+    fun openStudentProfile(username: String) {
+        val i = Intent(context, ProfileActivity::class.java)
+        i.putExtra("username", username)
+        startActivity(i)
     }
 }
