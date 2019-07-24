@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -52,9 +53,13 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     private var tvLocation: TextView? = null
     private var tvInstitute: TextView? = null
 
-    private var llAsStudent: LinearLayout?=null
-    private var llByStudent: LinearLayout?=null
+    private var llAsStudent: LinearLayout? = null
+    private var llByStudent: LinearLayout? = null
 //    private var llAsStudent: LinearLayout?=null
+    private var llEmail:LinearLayout?=null
+    private var llLocation:LinearLayout?=null
+    private var llInstitute:LinearLayout?=null
+    private var llProfileParent: LinearLayout?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +83,10 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         tvEmail = view.findViewById(R.id.tv_profile_email)
         tvLocation = view.findViewById(R.id.tv_profile_location)
         tvInstitute = view.findViewById(R.id.tv_profile_institute)
-
+        llEmail = view.findViewById(R.id.ll_profile_email)
+        llLocation = view.findViewById(R.id.ll_profile_location)
+        llInstitute= view.findViewById(R.id.ll_profile_institute)
+        llProfileParent = view.findViewById(R.id.ll_profile_parent)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
         viewPager!!.adapter = viewPagerAdapter
         tabLayout!!.setupWithViewPager(viewPager)
@@ -86,14 +94,14 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         sharedPrefs = SharedPrefs(getContext())
         toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
-        if(mParam1!!.equals(sharedPrefs!!.userName)) {
+        if (mParam1!!.equals(sharedPrefs!!.userName)) {
             presenter!!.requestProfile(sharedPrefs?.cookies!!, sharedPrefs?.userName!!)
             presenter!!.requestProfileDetails(sharedPrefs?.userName!!)
-        }else{
+        } else {
             presenter!!.requestProfile(sharedPrefs?.cookies!!, mParam1!!)
             presenter!!.requestProfileDetails(mParam1!!)
         }
-        if (mParam2!!){
+        if (mParam2!!) {
             toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
             toolbar!!.setNavigationOnClickListener {
                 activity!!.onBackPressed()
@@ -119,18 +127,35 @@ class ProfileFragment : Fragment(), ProfileContract.View {
     }
 
     override fun setProfileData(data: ProfileDetailsResponse) {
+        llProfileParent!!.visibility = VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
         Log.d("ProfileFragment", profilePicUrl)
-        if (data.user_profile.profile_image==null || data.user_profile.profile_image.equals("")){
+        if (data.user_profile.profile_image == null || data.user_profile.profile_image.equals("")) {
             ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
-        }else{
+        } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
         tvUsername!!.text = mParam1!!
-        tvEmail!!.text = "demo@wikiedu.org"
-        tvDescription!!.text = "Demo Description"
-        tvLocation!!.text = "Demo Location"
-        tvInstitute!!.text = "Demo Institute"
+//        if (data.user_profile.email.isNotEmpty()) {
+//            tvEmail!!.text = data.user_profile.email
+//        } else {
+            llEmail!!.visibility = INVISIBLE
+//        }
+        if (data.user_profile.bio!=null) {
+            tvDescription!!.text = data.user_profile.bio
+        } else {
+            tvDescription!!.visibility = INVISIBLE
+        }
+        if (data.user_profile.location!=null) {
+            tvLocation!!.text = data.user_profile.location
+        } else {
+            llLocation!!.visibility = INVISIBLE
+        }
+//        if (data.user_profile.institution!=null) {
+//            tvInstitute!!.text = data.user_profile.institution
+//        } else{
+            llInstitute!!.visibility = INVISIBLE
+//        }
     }
 
     override fun setData(data: ProfileResponse) {

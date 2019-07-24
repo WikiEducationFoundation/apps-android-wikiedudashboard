@@ -7,8 +7,8 @@ class ProfileDetailsResponse (
 class ProfileDetails (
     val username: String,
     val profile_image: String,
-    val description: String,
+    val bio: String,
     val email: String,
     val location: String,
-    val insititute: String
+    val institution: String
 )

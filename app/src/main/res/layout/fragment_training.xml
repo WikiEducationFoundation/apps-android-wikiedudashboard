@@ -26,6 +26,8 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_profile_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -73,6 +75,7 @@
                         android:textColor="@color/white" />
 
                     <LinearLayout
+                        android:id="@+id/ll_profile_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -92,6 +95,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_profile_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -111,6 +115,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_profile_institute"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
