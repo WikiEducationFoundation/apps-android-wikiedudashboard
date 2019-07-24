@@ -105,7 +105,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         courseArticlesEditedFragment.arguments = bundle2
         fragmentList.add(courseArticlesEditedFragment)
         titleList.add("Uploads")
-        fragmentList.add(CourseUploadsFragment.newInstance(url!!))
+        fragmentList.add(CourseUploadsFragment.newInstance(type = 1, courseDetail = url!!, courseUploads = null))
         titleList.add("Activity")
         val recentActivityFragment = RecentActivityFragment()
         val bundle3 = Bundle()
