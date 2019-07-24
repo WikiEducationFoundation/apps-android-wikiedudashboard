@@ -54,4 +54,5 @@
     <string name="label_edited_on">Edited on :</string>
     <string name="time_format_12_hours">dd-MMM-yy hh.mm aa</string>
     <string name="menu_search">Search</string>
+    <string name="references_added">References Added</string>
 </resources>

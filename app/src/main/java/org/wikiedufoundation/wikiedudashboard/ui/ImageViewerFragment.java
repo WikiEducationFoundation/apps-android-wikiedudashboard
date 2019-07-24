@@ -10,12 +10,11 @@ import android.widget.ProgressBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import org.wikiedufoundation.wikiedudashboard.R;
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity;
-import org.wikiedufoundation.wikiedudashboard.util.GlideImageLoader;
-import org.wikiedufoundation.wikiedudashboard.util.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,8 +71,7 @@ public class ImageViewerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_image_viewer, container, false);
         Context context = getContext();
         ButterKnife.bind(this, v);
-        ImageLoader imageLoader = new GlideImageLoader(context);
-        imageLoader.loadImage(image_url, photoView, progressBar);
+        Glide.with(context).load(image_url).into(photoView);
         toolbar.setNavigationOnClickListener(v1 -> {
             ((MediaDetailsActivity)context).onBackPressed();
         });

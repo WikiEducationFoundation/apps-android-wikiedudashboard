@@ -10,15 +10,16 @@ import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileCourseListFragment
 import java.util.*
 
-class CourseListRecyclerAdapter internal constructor(
+class ProfileCourseListRecyclerAdapter internal constructor(
     private val context: Context,
-    private var courseListFragment: CourseListFragment
+    private var profileCourseListFragment: ProfileCourseListFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var courses: List<CourseListData> = ArrayList()
+    private var courses: List<CourseData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyDashboardViewHolder(LayoutInflater.from(context).inflate(R.layout.item_rv_explore_courses, parent, false))
@@ -26,13 +27,13 @@ class CourseListRecyclerAdapter internal constructor(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val course: CourseListData? = courses[position]
+        val course: CourseData? = courses[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tvCourseTitle.text = course!!.title
-        holder.itemView.setOnClickListener { courseListFragment.openCourseDetail(courses[position].slug) }
+        myDashboardViewHolder.tvCourseTitle.text = course!!.course_title
+        holder.itemView.setOnClickListener { profileCourseListFragment.openCourseDetail(courses[position].course_slug) }
     }
 
-    fun setData(courses: List<CourseListData>) {
+    fun setData(courses: List<CourseData>) {
         this.courses = courses
     }
 

@@ -5,29 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.ExploreFragment">
 
-
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:id="@+id/appBarLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:title="@string/active_courses"-->
-            <!--app:titleTextColor="@color/black"/>-->
-
-    <!--</android.support.design.widget.AppBarLayout>-->
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_course_list"
+        android:id="@+id/rv_upload_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/tv_no_courses"
+        android:id="@+id/tv_no_uploads"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:visibility="gone"

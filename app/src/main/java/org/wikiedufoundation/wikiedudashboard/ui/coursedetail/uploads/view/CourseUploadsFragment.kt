@@ -29,6 +29,8 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
     private var courseUrl: String? = null
+    private var type: Int = 0
+    private var courseUploadList: CourseUploadList? = null
 
     private var recyclerView: RecyclerView? = null
     private var progressBar: ProgressBar? = null
@@ -40,20 +42,22 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            courseUrl = arguments!!.getString(ARG_PARAM1)
+            type = arguments!!.getInt(ARG_PARAM1)
+            courseUrl = arguments!!.getString(ARG_PARAM2)
+            courseUploadList = arguments!!.getSerializable(ARG_PARAM3) as CourseUploadList?
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
         val context: Context? = context
-        recyclerView = view.findViewById(R.id.rv_course_list)
+        recyclerView = view.findViewById(R.id.rv_upload_list)
         progressBar = view.findViewById(R.id.progressBar)
-        tvNoStudents = view.findViewById(R.id.tv_no_courses)
+        tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
         courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(context!!, this)
@@ -61,7 +65,12 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
         recyclerView!!.adapter = courseUploadsRecyclerAdapter
-        courseUploadsPresenter!!.requestCourseUploads(courseUrl!!)
+        if (type == 1) {
+            courseUploadsPresenter!!.requestCourseUploads(courseUrl!!)
+        } else if (type == 2) {
+            setData(courseUploadList!!)
+            showProgressBar(false)
+        }
         return view
     }
 
@@ -99,11 +108,15 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
     companion object {
         private val ARG_PARAM1 = "param1"
+        private val ARG_PARAM2 = "param2"
+        private val ARG_PARAM3 = "param3"
 
-        fun newInstance(courseDetail: String): CourseUploadsFragment {
+        fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?): CourseUploadsFragment {
             val fragment = CourseUploadsFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, courseDetail)
+            args.putInt(ARG_PARAM1, type)
+            args.putString(ARG_PARAM2, courseDetail)
+            args.putSerializable(ARG_PARAM3, courseUploads)
             fragment.arguments = args
             return fragment
         }

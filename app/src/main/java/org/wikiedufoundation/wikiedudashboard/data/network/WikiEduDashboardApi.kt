@@ -9,9 +9,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface WikiEduDashboardApi {
@@ -63,6 +66,20 @@ interface WikiEduDashboardApi {
      ***/
     @GET("campaigns.json")
     fun getExploreCampaigns(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCampaignsResponse>
+
+    /**
+     * This API is used to fetch profile stats.
+     ***/
+    @GET("user_stats.json")
+    fun getProfileResponse(@Header("Cookie") sessionIdAndToken: String,
+                           @Query("username") username: String): Call<ProfileResponse>
+
+    /**
+     * This API is used to fetch profile stats.
+     ***/
+    @GET
+    fun getProfileDetailsResponse(@Url url: String
+                           ): Call<ProfileDetailsResponse>
 
     /**
      * This API is used to fetch media details including category list, file uses, description,

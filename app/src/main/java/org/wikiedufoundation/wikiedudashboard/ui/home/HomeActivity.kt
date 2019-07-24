@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
+import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -43,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(myDashboardFragment)
                     true
                 } R.id.navigation_training -> {
-                replaceFragment(ProfileFragment())
+                replaceFragment(ProfileFragment.newInstance(sharedPrefs!!.userName!!, false))
                     true
                 }
                 else -> false
