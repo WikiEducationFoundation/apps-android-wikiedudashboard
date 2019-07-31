@@ -3,6 +3,8 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -24,6 +26,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.timeli
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
+import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
 import java.util.*
 
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
@@ -48,6 +51,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
         progressBar = findViewById(R.id.progressBar)
+        toolbar!!.inflateMenu(R.menu.menu_course_detail)
 
         url = intent.getStringExtra("url")
         enrolled = intent.getBooleanExtra("enrolled", false)
@@ -124,4 +128,15 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
             progressBar!!.visibility = View.GONE
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_course_detail, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        ViewUtils.showToast(context!!, "Join")
+        return true
+    }
+
 }

@@ -131,6 +131,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
         Log.d("ProfileFragment", profilePicUrl)
         if (data.user_profile.profile_image == null || data.user_profile.profile_image.equals("")) {
+            if (context!=null)
             ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
