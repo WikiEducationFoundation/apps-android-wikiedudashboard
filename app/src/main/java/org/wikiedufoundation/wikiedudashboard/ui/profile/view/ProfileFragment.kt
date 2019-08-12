@@ -1,8 +1,10 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -21,10 +24,12 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
+import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
+import org.wikiedufoundation.wikiedudashboard.ui.settings.SettingsActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
@@ -33,7 +38,7 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
-class ProfileFragment : Fragment(), ProfileContract.View {
+class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClickListener {
 
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
@@ -63,6 +68,7 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         if (arguments != null) {
             mParam1 = arguments!!.getString(ARG_PARAM1)
             mParam2 = arguments!!.getBoolean(ARG_PARAM2)
@@ -76,6 +82,8 @@ class ProfileFragment : Fragment(), ProfileContract.View {
         tabLayout = view.findViewById(R.id.tabLayout)
         viewPager = view.findViewById(R.id.viewPager)
         progressBar = view.findViewById(R.id.progressBar)
+        toolbar!!.inflateMenu(R.menu.menu_profile)
+        toolbar!!.setOnMenuItemClickListener(this)
 
         ivProfilePic = view.findViewById(R.id.iv_profile_pic)
         tvUsername = view.findViewById(R.id.tv_profile_username)
@@ -110,6 +118,13 @@ class ProfileFragment : Fragment(), ProfileContract.View {
 
         return view
     }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        val i = Intent(context, SettingsActivity::class.java)
+        startActivity(i)
+        return true
+    }
+
 
     private fun setTabs(data: ProfileResponse) {
         val fragmentList = ArrayList<Fragment>()

@@ -88,10 +88,10 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         val titleList = ArrayList<String>()
         titleList.add("Home")
         fragmentList.add(courseHomeFragment)
-        if (sharedPrefs!!.cookies == sharedPrefs!!.wikiEduDashboardCookies) {
-            titleList.add("Timeline")
-            fragmentList.add(CourseTimelineFragment())
-        }
+//        if (sharedPrefs!!.cookies == sharedPrefs!!.wikiEduDashboardCookies) {
+//            titleList.add("Timeline")
+//            fragmentList.add(CourseTimelineFragment())
+//        }
         titleList.add("Students")
         val studentListFragment = StudentListFragment()
         val bundle = Bundle()

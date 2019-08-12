@@ -40,7 +40,7 @@
             <ImageView
                 android:layout_width="128dp"
                 android:layout_height="128dp"
-                android:src="@drawable/wiki_edu_logo"
+                android:src="@drawable/outreach_logo"
                 />
         </androidx.cardview.widget.CardView>
         <TextView
@@ -50,7 +50,7 @@
             android:textColor="@color/colorPrimary"
             android:lines="2"
             android:textSize="@dimen/text_size_30sp"
-            android:text="@string/wiki_education_dashboard" />
+            android:text="@string/outreach_programs_and_events_dashboard" />
 
         <androidx.cardview.widget.CardView
             android:layout_margin="@dimen/padding_16dp"
