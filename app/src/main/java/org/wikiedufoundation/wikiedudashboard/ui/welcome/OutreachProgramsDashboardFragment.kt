@@ -24,10 +24,10 @@ import org.wikiedufoundation.wikiedudashboard.util.Urls
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * Use the [Welcome4Fragment.newInstance] factory method to
+ * Use the [OutreachProgramsDashboardFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Welcome4Fragment : Fragment() {
+class OutreachProgramsDashboardFragment : Fragment() {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -54,7 +54,7 @@ class Welcome4Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_welcome4, container, false)
+        val view = inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
@@ -77,7 +77,7 @@ class Welcome4Fragment : Fragment() {
 
             override fun onPageFinished(view: WebView?, url: String) {
                 Log.d("WEB_URL: ", url)
-                if (url == "https://dashboard.wikiedu.org/" || url == "https://outreachdashboard.wmflabs.org/") {
+                if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
                     super.onPageFinished(view, url)
@@ -95,6 +95,7 @@ class Welcome4Fragment : Fragment() {
         sharedPrefs!!.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
         sharedPrefs!!.cookies = cookies
+        sharedPrefs!!.outreachDashboardCookies = cookies
         sharedPrefs!!.setLogin(true)
         startActivity(Intent(context, HomeActivity::class.java))
         activity!!.finish()
@@ -124,11 +125,11 @@ class Welcome4Fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Welcome4Fragment.
+         * @return A new instance of fragment WikiEducationDashboardFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): Welcome4Fragment {
-            val fragment = Welcome4Fragment()
+        fun newInstance(param1: String, param2: String): OutreachProgramsDashboardFragment {
+            val fragment = OutreachProgramsDashboardFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)

@@ -59,26 +59,31 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val searchView = item!!.actionView as SearchView
-        searchView.queryHint = "Search"
-        searchView.isIconified = false
+//        if (item!!.itemId==R.id.action_search) {
+            val searchView = item!!.actionView as SearchView
+            searchView.queryHint = "Search"
+            searchView.isIconified = false
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                myDashboardFragment!!.updateSearchQuery(query)
-                if (!searchView.isIconified) {
-                    searchView.isIconified = true
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    myDashboardFragment!!.updateSearchQuery(query)
+                    if (!searchView.isIconified) {
+                        searchView.isIconified = true
+                    }
+                    item.collapseActionView()
+                    return false
                 }
-                item.collapseActionView()
-                return false
-            }
 
-            override fun onQueryTextChange(query: String): Boolean {
-                myDashboardFragment!!.updateSearchQuery(query)
-                return false
-            }
-        })
-        return true
+                override fun onQueryTextChange(query: String): Boolean {
+                    myDashboardFragment!!.updateSearchQuery(query)
+                    return false
+                }
+            })
+            return true
+//        }else {
+//
+//        }
+//        return true
     }
 
 

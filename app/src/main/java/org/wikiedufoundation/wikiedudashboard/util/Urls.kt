@@ -1,9 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.util
 
 object Urls {
-    val WIKIEDU_DASHBOARD_BASE_URL = "https://dashboard.wikiedu.org/"
-    val OUTREACH_DASHBOARD_BASE_URL = "https://outreachdashboard.wmflabs.org/"
-    val WIKIMEDIA_COMMONS_BASE_URL = "https://commons.wikimedia.org/"
+    const val WIKIEDU_DASHBOARD_BASE_URL = "https://dashboard.wikiedu.org/"
+    const val OUTREACH_DASHBOARD_BASE_URL = "https://outreachdashboard.wmflabs.org/"
+    const val WIKIMEDIA_COMMONS_BASE_URL = "https://commons.wikimedia.org/"
 
     var BASE_URL = "https://outreachdashboard.wmflabs.org/"
 

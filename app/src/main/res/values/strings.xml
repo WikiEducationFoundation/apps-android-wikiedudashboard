@@ -55,4 +55,6 @@
     <string name="time_format_12_hours">dd-MMM-yy hh.mm aa</string>
     <string name="menu_search">Search</string>
     <string name="references_added">References Added</string>
+    <string name="outreach_programs_and_events_dashboard">Outreach Programs and Events Dashboard</string>
+    <string name="menu_settings">Settings</string>
 </resources>

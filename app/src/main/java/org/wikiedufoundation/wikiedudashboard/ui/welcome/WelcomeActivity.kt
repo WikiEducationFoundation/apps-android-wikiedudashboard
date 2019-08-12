@@ -22,7 +22,9 @@ class WelcomeActivity : AppCompatActivity() {
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Home")
-        fragmentList.add(Welcome4Fragment())
+        fragmentList.add(WikiEducationDashboardFragment())
+        titleList.add("Home")
+        fragmentList.add(OutreachProgramsDashboardFragment())
         viewPagerAdapter!!.setTabData(fragmentList, titleList)
         viewPagerAdapter!!.notifyDataSetChanged()
     }

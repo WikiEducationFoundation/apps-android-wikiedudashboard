@@ -33,7 +33,6 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         url = arguments!!.getString("url", null)
         val context: Context? = context
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoActivity = view.findViewById(R.id.tv_no_activity)
