@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.vi
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +51,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     }
 
     override fun setData(data: ArticlesEdited) {
-        Log.d("ArticlesEditedFragment", data.toString())
+        Timber.d(data.toString())
         if (data.course.articles.size > 0) {
             recyclerView?.visibility = View.VISIBLE
             articlesEditedRecyclerAdapter?.setData(data.course.articles)

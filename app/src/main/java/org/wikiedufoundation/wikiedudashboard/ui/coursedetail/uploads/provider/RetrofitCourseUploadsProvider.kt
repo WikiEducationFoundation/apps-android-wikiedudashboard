@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
@@ -18,14 +18,14 @@ class RetrofitCourseUploadsProvider : CourseUploadsProvider {
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseUploads(sub_url)
         courseDetailResponseCall.enqueue(object : Callback<CourseUploadResponse> {
             override fun onResponse(call: Call<CourseUploadResponse>, response: Response<CourseUploadResponse>) {
-                Log.d("Success: ", response.body()!!.course.toString() + "")
+                Timber.d(response.body()!!.course.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<CourseUploadResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }

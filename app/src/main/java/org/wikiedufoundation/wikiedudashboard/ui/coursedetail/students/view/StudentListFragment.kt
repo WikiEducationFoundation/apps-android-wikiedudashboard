@@ -3,7 +3,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,7 +66,7 @@ class StudentListFragment : Fragment(), StudentListView {
 
     override fun setData(data: StudentListResponse) {
         if (data.course.users.isNotEmpty()) {
-            Log.d("StudentListFragment: ", data.toString())
+            Timber.d(data.toString())
             studentListRecyclerAdapter!!.setData(data.course.users)
             studentListRecyclerAdapter!!.notifyDataSetChanged()
         } else {

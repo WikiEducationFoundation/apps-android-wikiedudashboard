@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
-import android.util.Log
+import timber.log.Timber
 
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -13,7 +13,7 @@ class RecentActivityPresenterImpl(private val view: RecentActivityContract.View,
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
                 val response = o as RecentActivityResponse
-                Log.d("Presenter: ", response.toString())
+                Timber.d(response.toString())
                 view.setData(response)
             }
 

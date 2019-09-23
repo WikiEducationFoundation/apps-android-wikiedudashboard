@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard
 
-import android.util.Log
+import timber.log.Timber
 
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -14,7 +14,7 @@ class MyDashboardPresenterImpl(private val myDashboardView: MyDashboardContract.
             override fun onSuccess(o: Any) {
                 myDashboardView.showProgressBar(false)
                 val myDashboardResponse = o as MyDashboardResponse
-                Log.d("Presenter: ", myDashboardResponse.toString())
+                Timber.d(myDashboardResponse.toString())
                 myDashboardView.setData(myDashboardResponse)
             }
 

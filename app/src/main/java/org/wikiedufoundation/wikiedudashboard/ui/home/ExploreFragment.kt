@@ -1,7 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +15,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
+import timber.log.Timber
 import java.util.*
 
 /**
@@ -83,7 +83,7 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         searchView.isIconified = false
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.d("Query:", query)
+                Timber.d(query)
                 campaignListFragment!!.updateSearchQuery(query)
                 courseListFragment!!.updateSearchQuery(query)
 
@@ -95,7 +95,7 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                Log.d("Query:", query)
+                Timber.d(query)
                 campaignListFragment!!.updateSearchQuery(query)
                 courseListFragment!!.updateSearchQuery(query)
                 return false

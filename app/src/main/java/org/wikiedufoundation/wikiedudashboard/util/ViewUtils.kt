@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
+import timber.log.Timber
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -49,7 +49,7 @@ object ViewUtils {
 
     fun showCustomChromeTabs(context: Context, webUrl: String) {
         try {
-            Log.d("WEB_URL", webUrl)
+            Timber.d(webUrl)
             val uri = Uri.parse(webUrl)
             val builder = CustomTabsIntent.Builder()
             builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))

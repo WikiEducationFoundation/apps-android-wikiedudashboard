@@ -2,7 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -33,6 +32,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.settings.SettingsActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import timber.log.Timber
 import java.util.*
 
 /**
@@ -144,7 +144,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent!!.visibility = VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
-        Log.d("ProfileFragment", profilePicUrl)
+        Timber.d(profilePicUrl)
         if (data.user_profile.profile_image == null || data.user_profile.profile_image.equals("")) {
             ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
         } else {

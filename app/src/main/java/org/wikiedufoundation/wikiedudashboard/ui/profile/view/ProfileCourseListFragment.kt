@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.Course
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -67,7 +67,7 @@ class ProfileCourseListFragment : Fragment() {
     }
 
     fun setData(courses: List<CourseData>) {
-        Log.d("Profile Courses: ", courses.toString())
+        Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
             recyclerView!!.visibility = View.VISIBLE
             courseListRecyclerAdapter!!.setData(courses)

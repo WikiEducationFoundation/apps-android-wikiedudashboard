@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
@@ -24,7 +24,7 @@ class RetrofitStudentListProvider : StudentListProvider {
             override fun onFailure(call: Call<StudentListResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }

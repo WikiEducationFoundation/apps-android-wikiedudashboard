@@ -1,9 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.ui.mediadetail
 
-import android.util.Log
-
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
+import timber.log.Timber
 
 class MediaDetailsPresenterImpl(private val mediaDetailsView: MediaDetailsContract.View, private val mediaDetailsProvider: MediaDetailsContract.Provider) : MediaDetailsContract.Presenter {
 
@@ -13,7 +12,7 @@ class MediaDetailsPresenterImpl(private val mediaDetailsView: MediaDetailsContra
             override fun onSuccess(o: Any) {
                 mediaDetailsView.showProgressBar(false)
                 val mediaDetailResponse = o as MediaDetailsResponse
-                Log.d("Presenter: ", mediaDetailResponse.toString())
+                Timber.d(mediaDetailResponse.toString())
                 mediaDetailsView.setData(mediaDetailResponse)
             }
 

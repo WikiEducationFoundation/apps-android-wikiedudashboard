@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +30,6 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
  */
 class CampaignListFragment : Fragment(), CampaignListContract.View {
 
-    private var TAG : String = "CampaignListFragment"
     private var mParam1: String? = null
     private var mParam2: String? = null
 
@@ -76,7 +75,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun setData(data: ExploreCampaignsResponse) {
-        Log.d(TAG, data.toString())
+        Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
             campaignList = data.campaigns
             recyclerView!!.visibility = View.VISIBLE
@@ -102,7 +101,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     fun updateSearchQuery(query: String) {
-        Log.d("CampaignListFragment: ", query)
+        Timber.d(query)
         val filteredCampaignList: ArrayList<CampaignListData>? = ArrayList()
         for (campaign in campaignList) {
             if (campaign.title.toLowerCase().contains(query.toLowerCase())) {

@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
@@ -17,14 +17,14 @@ class RetrofitArticlesEditedProvider : ArticlesEditedProvider {
         val articlesEditedResponseCall = wikiEduDashboardApi.getArticlesEdited(sub_url)
         articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
             override fun onResponse(call: Call<ArticlesEdited>, response: Response<ArticlesEdited>) {
-                Log.d("Success: ", response.body()!!.course.toString() + "")
+                Timber.d(response.body()!!.course.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<ArticlesEdited>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }
