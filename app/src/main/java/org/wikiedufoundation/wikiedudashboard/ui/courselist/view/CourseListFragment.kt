@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +20,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseList
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -73,7 +73,7 @@ class CourseListFragment : Fragment(), CourseListView {
     }
 
     override fun setData(data: ExploreCoursesResponse) {
-        Log.d("DashboardFragment: ", data.toString())
+        Timber.d(data.toString())
         if (data.courses.isNotEmpty()) {
             coursesList = data.courses
             recyclerView!!.visibility = View.VISIBLE
@@ -106,7 +106,7 @@ class CourseListFragment : Fragment(), CourseListView {
     }
 
     fun updateSearchQuery(query: String) {
-        Log.d("CourseListFragment: ", query)
+        Timber.d(query)
         val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
         for (course in coursesList) {
             if (course.title.toLowerCase().contains(query.toLowerCase())) {

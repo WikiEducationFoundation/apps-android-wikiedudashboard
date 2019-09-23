@@ -1,12 +1,11 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
-import android.util.Log
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
+import timber.log.Timber
 
 class ProfilePresenterImpl(private val view: ProfileContract.View,
                            private val provider: ProfileContract.Provider) : ProfileContract.Presenter {
@@ -17,7 +16,7 @@ class ProfilePresenterImpl(private val view: ProfileContract.View,
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
                 val response = o as ProfileDetailsResponse
-                Log.d("Presenter: ", response.toString())
+                Timber.d(response.toString())
                 view.setProfileData(response)
             }
 
@@ -34,7 +33,7 @@ class ProfilePresenterImpl(private val view: ProfileContract.View,
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
                 val response = o as ProfileResponse
-                Log.d("Presenter: ", response.toString())
+                Timber.d(response.toString())
                 view.setData(response)
             }
 

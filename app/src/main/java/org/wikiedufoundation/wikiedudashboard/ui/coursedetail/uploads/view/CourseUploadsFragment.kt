@@ -3,7 +3,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,7 +75,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     override fun setData(courseUploadList: CourseUploadList) {
-        Log.d("DashboardFragment: ", courseUploadList.toString())
+        Timber.d(courseUploadList.toString())
         if (courseUploadList.uploads.isNotEmpty()) {
             recyclerView!!.visibility = View.VISIBLE
             courseUploadsRecyclerAdapter!!.setData(courseUploadList)

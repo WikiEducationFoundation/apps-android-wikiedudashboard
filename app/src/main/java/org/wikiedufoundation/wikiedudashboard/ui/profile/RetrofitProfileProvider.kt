@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
@@ -19,14 +19,14 @@ class RetrofitProfileProvider : ProfileContract.Provider {
         val articlesEditedResponseCall = wikiEduDashboardApi.getProfileResponse(cookies, username)
         articlesEditedResponseCall.enqueue(object : Callback<ProfileResponse> {
             override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
-                Log.d("Success: ", response.body()!!.toString() + "")
+                Timber.d(response.body()!!.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }
@@ -36,14 +36,14 @@ class RetrofitProfileProvider : ProfileContract.Provider {
         val profileDetailsResponseCall = wikiEduDashboardApi.getProfileDetailsResponse(url)
         profileDetailsResponseCall.enqueue(object : Callback<ProfileDetailsResponse> {
             override fun onResponse(call: Call<ProfileDetailsResponse>, response: Response<ProfileDetailsResponse>) {
-                Log.d("Success: ", response.body()!!.toString() + "")
+                Timber.d(response.body()!!.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<ProfileDetailsResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }

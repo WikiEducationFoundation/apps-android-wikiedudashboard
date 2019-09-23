@@ -3,7 +3,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,7 +79,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
     override fun setData(data: MyDashboardResponse) {
         sharedPrefs!!.userName = data.user.username
-        Log.d("DashboardFragment: ", data.toString())
+        Timber.d(data.toString())
         if (data.current_courses.isNotEmpty()) {
             coursesList = data.current_courses
             recyclerView!!.visibility = View.VISIBLE
@@ -112,7 +112,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     fun updateSearchQuery(query: String) {
-        Log.d("CourseListFragment: ", query)
+        Timber.d(query)
         val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
         for (course in coursesList!!) {
             if (course.title.toLowerCase().contains(query.toLowerCase())) {

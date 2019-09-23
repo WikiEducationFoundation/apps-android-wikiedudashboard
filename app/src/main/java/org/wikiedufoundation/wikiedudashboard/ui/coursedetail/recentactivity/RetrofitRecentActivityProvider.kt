@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
@@ -17,14 +17,14 @@ class RetrofitRecentActivityProvider : RecentActivityContract.Provider {
         val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(sub_url)
         articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {
             override fun onResponse(call: Call<RecentActivityResponse>, response: Response<RecentActivityResponse>) {
-                Log.d("Success: ", response.body()!!.course.toString() + "")
+                Timber.d(response.body()!!.course.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<RecentActivityResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Log.d("Failure: ", t.message + "")
+                Timber.d(t.message + "")
             }
         })
     }

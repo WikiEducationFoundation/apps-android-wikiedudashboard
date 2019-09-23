@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
+import timber.log.Timber
 
 class SharedPrefs(private val _context: Context?) {
 
@@ -19,7 +19,7 @@ class SharedPrefs(private val _context: Context?) {
         set(cookies) {
             editor.putString(KEY_WIKI_EDU_DASHBOARD_COOKIES, cookies)
             editor.commit()
-            Log.d(TAG, "WikiEdu Dashboard Cookies modified!")
+            Timber.d("WikiEdu Dashboard Cookies modified!")
         }
 
     var cookies: String?
@@ -27,7 +27,7 @@ class SharedPrefs(private val _context: Context?) {
         set(cookies) {
             editor.putString(KEY_COOKIES, cookies)
             editor.commit()
-            Log.d(TAG, "Cookies modified!")
+            Timber.d("Cookies modified!")
         }
 
     var outreachDashboardCookies: String?
@@ -35,7 +35,7 @@ class SharedPrefs(private val _context: Context?) {
         set(cookies) {
             editor.putString(KEY_OUTREACH_DASHBOARD_COOKIES, cookies)
             editor.commit()
-            Log.d(TAG, "Outreach Dashboard Cookies modified!")
+            Timber.d("Outreach Dashboard Cookies modified!")
         }
 
     var userName: String?
@@ -43,7 +43,7 @@ class SharedPrefs(private val _context: Context?) {
         set(username) {
             editor.putString(KEY_USERNAME, username)
             editor.commit()
-            Log.d(TAG, "Username modified!")
+            Timber.d("Username modified!")
         }
 
     init {
@@ -54,11 +54,10 @@ class SharedPrefs(private val _context: Context?) {
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn)
         editor.commit()
-        Log.d(TAG, "User login session modified!")
+        Timber.d("User login session modified!")
     }
 
     companion object {
-        private val TAG = "Shared Preference"
 
         private val PREF_NAME = "prefs"
         private val KEY_IS_LOGGEDIN = "isLoggedIn"

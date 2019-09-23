@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.vi
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +50,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
     }
 
     override fun setData(data: RecentActivityResponse) {
-        Log.d("RecentActivityFragment", data.toString())
+        Timber.d(data.toString())
         if (data.course.revisions.isNotEmpty()) {
             recyclerView!!.visibility = View.VISIBLE
             recentActivityRecyclerAdapter!!.setData(data.course.revisions)

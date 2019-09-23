@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
@@ -11,7 +11,7 @@ class CampaignListPresenterImpl(private val myDashboardView: CampaignListContrac
             override fun onSuccess(o: Any) {
                 myDashboardView.showProgressBar(false)
                 val exploreCampaignsResponse = o as ExploreCampaignsResponse
-                Log.d("Presenter: ", exploreCampaignsResponse.toString())
+                Timber.d(exploreCampaignsResponse.toString())
                 myDashboardView.setData(exploreCampaignsResponse)
             }
 

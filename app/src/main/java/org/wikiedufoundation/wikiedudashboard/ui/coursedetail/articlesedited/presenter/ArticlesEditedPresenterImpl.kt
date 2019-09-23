@@ -1,6 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter
 
-import android.util.Log
+import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.ArticlesEditedProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.ArticlesEditedView
@@ -14,7 +14,7 @@ class ArticlesEditedPresenterImpl(private val articlesEditedProvider: ArticlesEd
             override fun onSuccess(o: Any) {
                 articlesEditedView.showProgressBar(false)
                 val articlesEditedResponse = o as ArticlesEdited
-                Log.d("Presenter: ", articlesEditedResponse.toString())
+                Timber.d(articlesEditedResponse.toString())
                 articlesEditedView.setData(articlesEditedResponse)
             }
 

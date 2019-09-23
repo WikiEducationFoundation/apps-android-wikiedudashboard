@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
+import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,7 +76,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
             }
 
             override fun onPageFinished(view: WebView?, url: String) {
-                Log.d("WEB_URL: ", url)
+                Timber.d(url)
                 if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
@@ -91,7 +91,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private fun proceedToLogin(url: String) {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
-        Log.d("Cookies: ", "All the cookies in a string:" + cookies!!)
+        Timber.d("All the cookies in a string:" + cookies!!)
         sharedPrefs!!.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
         sharedPrefs!!.cookies = cookies

@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -35,6 +34,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -161,7 +161,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun setData(data: MediaDetailsResponse) {
-        Log.d("MediaDetailFragment: ", data.toString())
+        Timber.d(data.toString())
 
         val imageinfo: ImageDetails = data.query.page.get(data.query.page.keys.first())!!.imageinfo.get(0)
 

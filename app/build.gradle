@@ -78,6 +78,9 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:2.21"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.21"
 
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     // Testing dependencies
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
