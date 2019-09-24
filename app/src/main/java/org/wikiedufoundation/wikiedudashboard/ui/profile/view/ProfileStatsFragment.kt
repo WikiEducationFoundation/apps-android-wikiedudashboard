@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -69,6 +70,7 @@ class ProfileStatsFragment : Fragment() {
 
         val llAsStudent: LinearLayout = view.ll_as_student
         val llByStudent: LinearLayout = view.ll_by_student
+        val llNotEnrolled: LinearLayout = view.ll_not_enrolled
         val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
         val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
 
@@ -91,6 +93,7 @@ class ProfileStatsFragment : Fragment() {
             tvCountCommonsUploads.text = asStudentDetails.individual_upload_count
         } else {
             llAsStudent.visibility = GONE
+            llNotEnrolled.visibility = VISIBLE
         }
 
         if (profileResponse!!.by_students != null) {
@@ -105,6 +108,7 @@ class ProfileStatsFragment : Fragment() {
             tvInstructorCountCommonsUpload.text = byStudentDetails.upload_count
         } else {
             llByStudent.visibility = GONE
+            llNotEnrolled.visibility = VISIBLE
         }
 
         return view
