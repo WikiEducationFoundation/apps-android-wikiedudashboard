@@ -119,8 +119,8 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
                 filteredCourseList!!.add(course)
             }
         }
-        myDashboardRecyclerAdapter!!.setData(filteredCourseList!!)
-        myDashboardRecyclerAdapter!!.notifyDataSetChanged()
+        myDashboardRecyclerAdapter?.setData(filteredCourseList!!)
+        myDashboardRecyclerAdapter?.notifyDataSetChanged()
     }
 
 
