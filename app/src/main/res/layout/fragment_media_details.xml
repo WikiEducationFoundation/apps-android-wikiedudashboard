@@ -44,18 +44,13 @@
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/description_constraint"
-                app:layout_constraintTop_toBottomOf="@id/iv_media_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_media_detail"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_margin="@dimen/margin_8dp"
                 android:textSize="@dimen/text_size_18sp"
@@ -67,10 +62,11 @@
                     android:id="@+id/desc_expandable"
                     android:layout_width="@dimen/layout_35dp"
                     android:layout_height="@dimen/layout_35dp"
-                    android:layout_marginRight="@dimen/margin_16dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"
                     android:src="@drawable/ic_expand_less_black_24dp"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_media_detail"
+                    />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mediaDetailDesc"
@@ -78,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.2"
                 android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_16dp"                android:textSize="@dimen/text_size_18sp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:textSize="@dimen/text_size_18sp"
                 app:layout_constraintTop_toBottomOf="@id/tv_description"
                 app:layout_constraintLeft_toLeftOf="@id/tv_description"
                 app:layout_constraintRight_toRightOf="@id/tv_description"
@@ -89,26 +86,22 @@
                 android:id="@+id/description_divider"
                 app:layout_constraintTop_toBottomOf="@id/mediaDetailDesc"
                 android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_16dp"                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/colorGrayLine" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/category_constraint"
-            app:layout_constraintTop_toBottomOf="@id/description_constraint"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/margin_8dp"
-            android:layout_height="wrap_content">
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/category_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginLeft="@dimen/margin_8dp"
                 android:textSize="@dimen/text_size_18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_divider"
                 android:text="@string/label_categories"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -118,10 +111,11 @@
                 android:layout_width="@dimen/layout_35dp"
                 android:layout_height="@dimen/layout_35dp"
                 android:textSize="@dimen/text_size_18sp"
-                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
                 android:src="@drawable/ic_expand_less_black_24dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/description_divider"
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_no_categories"
@@ -131,7 +125,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginBottom="@dimen/margin_8dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_divider"
                 android:text="@string/tv_no_categories"
                 android:visibility="visible" />
 
@@ -141,23 +135,17 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/category_label"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
         <View
             android:id="@+id/categories_divider"
             app:layout_constraintTop_toBottomOf="@id/rv_category_list"
             android:layout_marginLeft="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_16dp"            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/colorGrayLine" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/files_constraint"
-            app:layout_constraintTop_toBottomOf="@id/category_constraint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_files"
@@ -166,8 +154,9 @@
                 android:text="@string/label_file_uses"
                 android:textColor="@color/black"
                 android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_16dp"                android:textSize="@dimen/text_size_18sp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintTop_toBottomOf="@id/categories_divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:textStyle="bold" />
 
@@ -176,10 +165,11 @@
                 android:layout_width="@dimen/layout_35dp"
                 android:layout_height="@dimen/layout_35dp"
                 android:textSize="@dimen/text_size_18sp"
-                android:layout_marginRight="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
                 android:src="@drawable/ic_expand_less_black_24dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/categories_divider"
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_no_uses"
@@ -187,8 +177,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="@dimen/margin_16dp"                android:textSize="@dimen/text_size_18sp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintTop_toBottomOf="@id/categories_divider"
                 android:text="@string/tv_no_file_uses"
                 android:visibility="visible" />
 
@@ -204,11 +195,11 @@
                 android:id="@+id/file_divider"
                 app:layout_constraintTop_toBottomOf="@id/rv_file_uses_list"
                 android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_16dp"                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/colorGrayLine" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_author"
@@ -218,7 +209,7 @@
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:textSize="@dimen/text_size_18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/files_constraint"
+                app:layout_constraintTop_toBottomOf="@+id/file_divider"
                 android:text="@string/media_detail_author"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -228,9 +219,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_18sp"
-                android:layout_marginTop="@dimen/margin_16dp"                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/files_constraint"
+                app:layout_constraintTop_toBottomOf="@id/file_divider"
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -262,7 +254,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_licence"
                 android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_16dp"                android:text="@string/media_detail_uploaded_date"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:text="@string/media_detail_uploaded_date"
                 android:textSize="@dimen/text_size_18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -273,7 +266,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="@dimen/margin_16dp"                android:textSize="@dimen/text_size_18sp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:textSize="@dimen/text_size_18sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_licence"
                />
 
@@ -282,7 +276,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_16dp"            android:text="@string/media_detail_title"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:text="@string/media_detail_title"
             android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/colorAccent"
             app:layout_constraintTop_toBottomOf="@id/tv_date"
