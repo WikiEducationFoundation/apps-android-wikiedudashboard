@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -96,7 +96,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {

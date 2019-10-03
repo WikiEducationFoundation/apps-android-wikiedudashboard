@@ -17,7 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyc
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -88,7 +88,7 @@ class ProfileCourseListFragment : Fragment() {
     }
 
     fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {
