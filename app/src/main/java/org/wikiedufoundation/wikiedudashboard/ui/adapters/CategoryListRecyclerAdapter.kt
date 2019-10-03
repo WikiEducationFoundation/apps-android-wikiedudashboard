@@ -29,6 +29,7 @@ class CategoryListRecyclerAdapter internal constructor(private val context: Cont
 
     fun setData(courses: List<MediaCategory>) {
         this.courses = courses
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
