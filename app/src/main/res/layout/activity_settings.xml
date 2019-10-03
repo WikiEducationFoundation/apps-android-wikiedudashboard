@@ -34,27 +34,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorGrayBackground">
+            app:cardBackgroundColor="@color/colorGrayBackground">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView4"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="@dimen/padding_8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
-                app:layout_constraintBottom_toTopOf="@+id/cardView5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/constraintLayout3"
                 tools:cardUseCompatPadding="true">
 
 
@@ -94,19 +91,16 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView5"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="150dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
-                app:layout_constraintBottom_toTopOf="@+id/cardView6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView4"
                 tools:cardUseCompatPadding="true">
 
 
@@ -161,15 +155,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="330dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
-                app:layout_constraintBottom_toTopOf="@+id/iv_app_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView5"
                 tools:cardUseCompatPadding="true">
 
 
@@ -192,18 +183,17 @@
                 android:id="@+id/iv_app_icon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@mipmap/wiki_edu_logo"
-                app:layout_constraintBottom_toTopOf="@+id/tv_version_code"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="408dp"
+                android:src="@mipmap/wiki_edu_logo" />
 
             <TextView
                 android:id="@+id/tv_version_code"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="458dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="168dp"
@@ -211,13 +201,9 @@
                 android:padding="@dimen/padding_8dp"
                 android:text="Version 0.01"
                 android:textColor="@color/colorGrayText"
-                android:textSize="@dimen/text_size_16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_app_icon" />
+                android:textSize="@dimen/text_size_16sp" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
