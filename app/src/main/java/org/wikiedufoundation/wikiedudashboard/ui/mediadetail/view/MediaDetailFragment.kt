@@ -12,11 +12,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.constraintlayout.widget.Constraints
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_media_details.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
@@ -72,6 +74,12 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     private var categoryListRecyclerAdapter: CategoryListRecyclerAdapter? = null
     private var fileusesRecyclerAdapter: FileUsesRecyclerAdapter? = null
 
+    //Expandable ConstraintViews
+    private var descriptionExpandable : ImageView? = null
+    private var categoryExpandable : ImageView? = null
+    private var filesExpandable : ImageView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -94,6 +102,11 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         tvLicense = view.findViewById(R.id.mediaDetailLicense)
         tvDescription = view.findViewById(R.id.mediaDetailDesc)
         toolbar = view.findViewById(R.id.toolbar)
+
+        //Expandable views
+        descriptionExpandable = view.findViewById(R.id.desc_expandable)
+        categoryExpandable = view.findViewById(R.id.cat_expandable)
+        filesExpandable = view.findViewById(R.id.files_expandable)
 
         categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
         progressBar = view.findViewById(R.id.progressBar)
@@ -129,6 +142,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
         mediaDetailsPresenter!!.requestMediaDetails("")
 
+        expandableView()
         return view
     }
 
@@ -209,6 +223,40 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         ViewUtils.showToast(context!!, message)
     }
 
+    //This implements the expandables of the views
+    fun expandableView(){
+        descriptionExpandable?.setOnClickListener {
+                if (tvDescription?.getVisibility() == View.VISIBLE) {
+                    descriptionExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                    tvDescription?.setVisibility(View.GONE);
+                } else {
+                    descriptionExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                    tvDescription?.setVisibility(View.VISIBLE);
+                }
+
+        }
+
+        categoryExpandable?.setOnClickListener {
+            if (tvNoCategories?.getVisibility() == View.VISIBLE) {
+                categoryExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                tvNoCategories?.setVisibility(View.GONE);
+            } else {
+                categoryExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                tvNoCategories?.setVisibility(View.VISIBLE);
+            }
+        }
+
+        filesExpandable?.setOnClickListener {
+            if (fileUsesRecyclerView?.getVisibility() == View.VISIBLE) {
+                filesExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                fileUsesRecyclerView?.setVisibility(View.GONE);
+            } else {
+                filesExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                fileUsesRecyclerView?.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     companion object {
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
@@ -222,4 +270,5 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             return fragment
         }
     }
+
 }

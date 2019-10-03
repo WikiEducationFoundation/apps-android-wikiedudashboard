@@ -41,6 +41,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     private var sharedPrefs: SharedPrefs? = null
     private var viewPagerAdapter: ViewPagerAdapter? = null
     private var courseHomeFragment: CourseHomeFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_detail)
