@@ -33,7 +33,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.ImageDetails
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -170,7 +171,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
         // License
         tvLicense?.text = imageinfo.extMetaData.license.value
-        tvLicense?.setOnClickListener { ViewUtils.showCustomChromeTabs(context!!,imageinfo.extMetaData.licenseUrl.value) }
+        tvLicense?.setOnClickListener { context!!.showCustomChromeTabs(imageinfo.extMetaData.licenseUrl.value) }
 
         // Categories
         val categories: List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories
@@ -206,7 +207,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     companion object {
