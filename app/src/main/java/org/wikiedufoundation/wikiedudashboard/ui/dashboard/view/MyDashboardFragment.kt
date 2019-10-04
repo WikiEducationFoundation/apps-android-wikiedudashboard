@@ -47,9 +47,9 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -69,39 +69,39 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = myDashboardRecyclerAdapter
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = myDashboardRecyclerAdapter
 
-        myDashboardPresenter!!.requestDashboard(sharedPrefs!!.cookies!!)
+        sharedPrefs?.cookies?.let { myDashboardPresenter?.requestDashboard(it) }
         return view
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs!!.userName = data.user.username
+        sharedPrefs?.userName = data.user.username
         Timber.d(data.toString())
         if (data.current_courses.isNotEmpty()) {
             coursesList = data.current_courses
-            recyclerView!!.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter!!.setData(data.current_courses)
-            myDashboardRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoCourses!!.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+            myDashboardRecyclerAdapter?.setData(data.current_courses)
+            myDashboardRecyclerAdapter?.notifyDataSetChanged()
+            tvNoCourses?.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoCourses!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tvNoCourses?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {
@@ -114,12 +114,14 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     fun updateSearchQuery(query: String) {
         Timber.d(query)
         val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
-        for (course in coursesList!!) {
-            if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCourseList!!.add(course)
+        coursesList?.let {
+            for (course in it) {
+                if (course.title.toLowerCase().contains(query.toLowerCase())) {
+                    filteredCourseList?.add(course)
+                }
             }
         }
-        myDashboardRecyclerAdapter?.setData(filteredCourseList!!)
+        filteredCourseList?.let { myDashboardRecyclerAdapter?.setData(it) }
         myDashboardRecyclerAdapter?.notifyDataSetChanged()
     }
 

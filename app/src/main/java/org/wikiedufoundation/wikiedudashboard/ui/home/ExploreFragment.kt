@@ -40,8 +40,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+            mParam1 = arguments?.getString(ARG_PARAM1)
+            mParam2 = arguments?.getString(ARG_PARAM2)
         }
     }
 
@@ -55,11 +55,11 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         viewPager = view.viewPager
         tabLayout = view.tabLayout
         toolbar = view.toolbar
-        toolbar!!.inflateMenu(R.menu.menu_explore)
-        toolbar!!.setOnMenuItemClickListener(this)
+        toolbar?.inflateMenu(R.menu.menu_explore)
+        toolbar?.setOnMenuItemClickListener(this)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
+        viewPager?.adapter = viewPagerAdapter
+        tabLayout?.setupWithViewPager(viewPager)
         setTabs()
         return view
     }
@@ -69,23 +69,23 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         val titleList = ArrayList<String>()
         titleList.add("Active Campaigns")
         campaignListFragment = CampaignListFragment()
-        fragmentList.add(campaignListFragment!!)
+        campaignListFragment?.let { fragmentList.add(it) }
         titleList.add("Active Courses")
         courseListFragment= CourseListFragment()
-        fragmentList.add(courseListFragment!!)
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        campaignListFragment?.let { fragmentList.add(it) }
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
-        val searchView = item!!.actionView as SearchView
+        val searchView = item?.actionView as SearchView
         searchView.queryHint = "Search"
         searchView.isIconified = false
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment?.updateSearchQuery(query)
+                courseListFragment?.updateSearchQuery(query)
 
                 if (!searchView.isIconified) {
                     searchView.isIconified = true
@@ -96,8 +96,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
             override fun onQueryTextChange(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment?.updateSearchQuery(query)
+                courseListFragment?.updateSearchQuery(query)
                 return false
             }
         })

@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile
 
-import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
@@ -10,6 +9,7 @@ import org.wikiedufoundation.wikiedudashboard.util.Urls
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class RetrofitProfileProvider : ProfileContract.Provider {
 
@@ -19,7 +19,7 @@ class RetrofitProfileProvider : ProfileContract.Provider {
         val articlesEditedResponseCall = wikiEduDashboardApi.getProfileResponse(cookies, username)
         articlesEditedResponseCall.enqueue(object : Callback<ProfileResponse> {
             override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
-                Timber.d(response.body()!!.toString() + "")
+                Timber.d(response.body()?.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
@@ -36,7 +36,7 @@ class RetrofitProfileProvider : ProfileContract.Provider {
         val profileDetailsResponseCall = wikiEduDashboardApi.getProfileDetailsResponse(url)
         profileDetailsResponseCall.enqueue(object : Callback<ProfileDetailsResponse> {
             override fun onResponse(call: Call<ProfileDetailsResponse>, response: Response<ProfileDetailsResponse>) {
-                Timber.d(response.body()!!.toString() + "")
+                Timber.d(response.body()?.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 

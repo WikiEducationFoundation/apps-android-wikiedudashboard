@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -43,9 +43,9 @@ class WikiEducationDashboardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM2)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -69,10 +69,10 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun setWebView() {
-        webView!!.webViewClient = object : WebViewClient() {
+        webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                progressBar!!.visibility = View.VISIBLE
+                progressBar?.visibility = View.VISIBLE
             }
 
             override fun onPageFinished(view: WebView?, url: String) {
@@ -81,9 +81,9 @@ class WikiEducationDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     super.onPageFinished(view, url)
-                    webView!!.visibility = View.VISIBLE
+                    webView?.visibility = View.VISIBLE
                 }
-                progressBar!!.visibility = View.GONE
+                progressBar?.visibility = View.GONE
             }
         }
     }
@@ -91,24 +91,24 @@ class WikiEducationDashboardFragment : Fragment() {
     private fun proceedToLogin(url: String) {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
-        Timber.d("All the cookies in a string:" + cookies!!)
-        sharedPrefs!!.outreachDashboardCookies = cookies
+        Timber.d("All the cookies in a string: $cookies")
+        sharedPrefs?.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.WIKIEDU_DASHBOARD_BASE_URL
-        sharedPrefs!!.cookies = cookies
-        sharedPrefs!!.wikiEduDashboardCookies = cookies
-        sharedPrefs!!.setLogin(true)
+        sharedPrefs?.cookies = cookies
+        sharedPrefs?.wikiEduDashboardCookies = cookies
+        sharedPrefs?.setLogin(true)
         startActivity(Intent(context, HomeActivity::class.java))
-        activity!!.finish()
+        activity?.finish()
     }
 
     private fun setOnClickListeners() {
-        cv_login_wikipedia!!.setOnClickListener {
+        cv_login_wikipedia?.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
-            webView!!.loadUrl(url)
+            webView?.loadUrl(url)
         }
-        cv_signup_wikipedia!!.setOnClickListener {
+        cv_signup_wikipedia?.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup"
-            webView!!.loadUrl(url)
+            webView?.loadUrl(url)
         }
     }
 

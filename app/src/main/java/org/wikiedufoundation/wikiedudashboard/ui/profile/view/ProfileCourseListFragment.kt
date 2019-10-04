@@ -37,8 +37,8 @@ class ProfileCourseListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            coursesList = (arguments!!.getSerializable(ARG_PARAM1) as ProfileResponse).courses!!
+        arguments?.let {
+            coursesList = (it.getSerializable(ARG_PARAM1) as ProfileResponse).courses ?: emptyList()
         }
     }
 
@@ -55,12 +55,12 @@ class ProfileCourseListFragment : Fragment() {
 
         val context: Context? = context
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
-        tv_no_courses!!.text = sharedPrefs!!.cookies
+        tv_no_courses?.text = sharedPrefs?.cookies
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = courseListRecyclerAdapter
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = courseListRecyclerAdapter
         setData(coursesList)
         showProgressBar(false)
         return view
@@ -69,26 +69,26 @@ class ProfileCourseListFragment : Fragment() {
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
-            recyclerView!!.visibility = View.VISIBLE
-            courseListRecyclerAdapter!!.setData(courses)
-            courseListRecyclerAdapter!!.notifyDataSetChanged()
-            tv_no_courses!!.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+            courseListRecyclerAdapter?.setData(courses)
+            courseListRecyclerAdapter?.notifyDataSetChanged()
+            tv_no_courses?.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tv_no_courses!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tv_no_courses?.visibility = View.VISIBLE
         }
     }
 
     fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {

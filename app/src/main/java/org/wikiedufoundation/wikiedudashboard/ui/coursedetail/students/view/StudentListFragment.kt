@@ -34,7 +34,7 @@ class StudentListFragment : Fragment(), StudentListView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_explore_students, container, false)
-        url = arguments!!.getString("url", null)
+        url = arguments?.getString("url", null)
         recyclerView = view.findViewById(R.id.rv_students_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
@@ -42,35 +42,39 @@ class StudentListFragment : Fragment(), StudentListView {
         val context: Context? = context
         studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
         layoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = layoutManager
-        recyclerView!!.setHasFixedSize(true)
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.setHasFixedSize(true)
         studentListRecyclerAdapter = StudentListRecyclerAdapter(this)
-        recyclerView!!.adapter = studentListRecyclerAdapter
-        studentListPresenter!!.requestStudentList(url!!)
+        recyclerView?.adapter = studentListRecyclerAdapter
+        url?.let { studentListPresenter?.requestStudentList(it) }
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = studentListRecyclerAdapter
+        url?.let { studentListPresenter?.requestStudentList(it) }
 
         return view
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 
     override fun setData(data: StudentListResponse) {
         if (data.course.users.isNotEmpty()) {
             Timber.d(data.toString())
-            studentListRecyclerAdapter!!.setData(data.course.users)
-            studentListRecyclerAdapter!!.notifyDataSetChanged()
+            studentListRecyclerAdapter?.setData(data.course.users)
+            studentListRecyclerAdapter?.notifyDataSetChanged()
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoStudents!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tvNoStudents?.visibility = View.VISIBLE
         }
     }
 

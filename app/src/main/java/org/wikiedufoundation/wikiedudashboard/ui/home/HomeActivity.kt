@@ -1,24 +1,23 @@
 package org.wikiedufoundation.wikiedudashboard.ui.home
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import butterknife.ButterKnife
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.FragmentTransaction
-
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
-import android.graphics.Color
-import android.widget.EditText
 
 class HomeActivity : AppCompatActivity() {
 
@@ -46,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(myDashboardFragment)
                     true
                 } R.id.navigation_training -> {
-                replaceFragment(ProfileFragment.newInstance(sharedPrefs!!.userName!!, false))
+                sharedPrefs?.userName?.let { sharedName -> replaceFragment(ProfileFragment.newInstance(sharedName, false)) }
                     true
                 }
                 else -> false
@@ -61,8 +60,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        if (item!!.itemId==R.id.action_search) {
-            val searchView = item!!.actionView as SearchView
+//        if (item?.itemId==R.id.action_search) {
+        val searchView = item?.actionView as SearchView
             searchView.queryHint = "Search"
             searchView.isIconified = false
 
@@ -72,7 +71,7 @@ class HomeActivity : AppCompatActivity() {
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    myDashboardFragment!!.updateSearchQuery(query)
+                    myDashboardFragment?.updateSearchQuery(query)
                     if (!searchView.isIconified) {
                         searchView.isIconified = true
                     }
@@ -81,7 +80,7 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 override fun onQueryTextChange(query: String): Boolean {
-                    myDashboardFragment!!.updateSearchQuery(query)
+                    myDashboardFragment?.updateSearchQuery(query)
                     return false
                 }
             })
@@ -114,16 +113,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.home_container, fragment)
             fragmentTransaction.commit()
         }
         if (fragment is MyDashboardFragment) {
-            supportActionBar!!.show()
+            supportActionBar?.show()
         } else {
-            supportActionBar!!.hide()
+            supportActionBar?.hide()
         }
     }
 }

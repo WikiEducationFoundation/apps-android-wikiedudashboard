@@ -25,7 +25,7 @@ class MyDashboardRecyclerAdapter internal constructor(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         course = courses[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tvCourseTitle.text = course!!.title
+        myDashboardViewHolder.tvCourseTitle.text = course?.title
         holder.itemView.setOnClickListener { myDashboardFragment.openCourseDetail(courses[position].slug) }
     }
 

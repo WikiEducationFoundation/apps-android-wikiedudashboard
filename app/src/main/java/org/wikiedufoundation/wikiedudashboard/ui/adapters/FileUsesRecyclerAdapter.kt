@@ -25,7 +25,7 @@ class FileUsesRecyclerAdapter internal constructor(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         course = courses[position]
         val myDashboardViewHolder = holder as CategoryViewHolder
-        myDashboardViewHolder.tvCourseTitle.text = course!!.title
+        myDashboardViewHolder.tvCourseTitle.text = course?.title
     }
 
     fun setData(courses: List<FileUsage>) {

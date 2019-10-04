@@ -11,15 +11,14 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    private var sharedPrefs: SharedPrefs? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val context = this
-        sharedPrefs = SharedPrefs(context)
+        val sharedPrefs = SharedPrefs(context)
         val handler = Handler()
         handler.postDelayed({
-            if (sharedPrefs!!.isLoggedIn) {
+            if (sharedPrefs.isLoggedIn) {
                 startActivity(Intent(context, HomeActivity::class.java))
                 finish()
             } else {

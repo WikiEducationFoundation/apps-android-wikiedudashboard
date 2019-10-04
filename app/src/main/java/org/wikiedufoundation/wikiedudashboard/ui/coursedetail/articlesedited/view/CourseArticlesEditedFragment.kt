@@ -45,7 +45,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = articlesEditedRecyclerAdapter
 
-        articlesEditedPresenter?.requestArticlesEdited(url!!)
+        url?.let { articlesEditedPresenter?.requestArticlesEdited(it) }
         return view
     }
 
@@ -71,6 +71,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 }
