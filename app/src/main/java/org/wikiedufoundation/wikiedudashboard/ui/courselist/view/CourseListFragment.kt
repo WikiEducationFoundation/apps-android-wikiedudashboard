@@ -62,7 +62,7 @@ class CourseListFragment : Fragment(), CourseListView {
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         tv_no_courses!!.text = sharedPrefs!!.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
-        courseListRecyclerAdapter = CourseListRecyclerAdapter(context!!, this)
+        courseListRecyclerAdapter = CourseListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
