@@ -67,7 +67,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
+        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)

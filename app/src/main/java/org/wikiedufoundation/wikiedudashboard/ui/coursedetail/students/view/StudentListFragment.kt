@@ -44,7 +44,7 @@ class StudentListFragment : Fragment(), StudentListView {
         layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.setHasFixedSize(true)
-        studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!, this)
+        studentListRecyclerAdapter = StudentListRecyclerAdapter(this)
         recyclerView!!.adapter = studentListRecyclerAdapter
         studentListPresenter!!.requestStudentList(url!!)
 
