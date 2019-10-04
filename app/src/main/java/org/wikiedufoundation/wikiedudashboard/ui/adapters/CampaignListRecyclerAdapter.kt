@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragm
 import java.util.*
 
 class CampaignListRecyclerAdapter internal constructor(
-    private val context: Context,
     private var campaignListFragment: CampaignListFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var campaigns: List<CampaignListData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MyDashboardViewHolder(LayoutInflater.from(context).inflate(R.layout.item_rv_campaign_list, parent, false))
+        return MyDashboardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_rv_campaign_list, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

@@ -60,7 +60,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
         courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
-        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(context!!, this)
+        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)

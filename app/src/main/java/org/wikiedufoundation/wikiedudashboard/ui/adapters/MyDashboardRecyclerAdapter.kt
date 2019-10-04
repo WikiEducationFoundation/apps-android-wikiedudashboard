@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,14 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import java.util.*
 
-class MyDashboardRecyclerAdapter internal constructor(private val context: Context,
-                          internal var myDashboardFragment: MyDashboardFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyDashboardRecyclerAdapter internal constructor(
+        private var myDashboardFragment: MyDashboardFragment
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var courses: List<CourseListData> = ArrayList()
     private var course: CourseListData? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view1 = LayoutInflater.from(context).inflate(R.layout.item_rv_my_dashboard, parent, false)
+        val view1 = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_my_dashboard, parent, false)
         return MyDashboardViewHolder(view1)
     }
 

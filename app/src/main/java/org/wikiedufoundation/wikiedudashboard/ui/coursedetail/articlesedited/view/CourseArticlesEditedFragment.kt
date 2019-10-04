@@ -39,7 +39,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
         articlesEditedPresenter = ArticlesEditedPresenterImpl(RetrofitArticlesEditedProvider(), this)
 
-        articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(context!!)
+        articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)

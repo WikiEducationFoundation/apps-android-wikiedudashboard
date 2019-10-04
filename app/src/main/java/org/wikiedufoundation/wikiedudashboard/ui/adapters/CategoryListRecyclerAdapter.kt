@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,14 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 import java.util.*
 
-class CategoryListRecyclerAdapter internal constructor(private val context: Context, private var mediaDetailFragment: MediaDetailFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CategoryListRecyclerAdapter internal constructor(
+        private var mediaDetailFragment: MediaDetailFragment
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var courses: List<MediaCategory> = ArrayList()
     private var course: MediaCategory? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view1 = LayoutInflater.from(context).inflate(R.layout.item_rv_media_category, parent, false)
+        val view1 = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_media_category, parent, false)
         return CategoryViewHolder(view1)
     }
 

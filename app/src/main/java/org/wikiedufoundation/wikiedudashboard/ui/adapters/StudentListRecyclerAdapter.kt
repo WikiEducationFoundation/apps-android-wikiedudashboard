@@ -1,25 +1,23 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rv_students.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.User
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import java.util.*
 
-class StudentListRecyclerAdapter(private val context: Context, internal var studentListFragment: StudentListFragment) : RecyclerView.Adapter<StudentListRecyclerAdapter.MyAdapter>() {
+class StudentListRecyclerAdapter(
+        private var studentListFragment: StudentListFragment
+) : RecyclerView.Adapter<StudentListRecyclerAdapter.MyAdapter>() {
     private var studentList: List<User> = ArrayList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyAdapter {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_rv_students, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_rv_students, viewGroup, false)
 
         return MyAdapter(view)
     }
