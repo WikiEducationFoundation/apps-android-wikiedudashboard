@@ -7,23 +7,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_training.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
-import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
@@ -42,29 +35,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
-    private var toolbar: Toolbar? = null
-    private var tabLayout: TabLayout? = null
-    private var viewPager: ViewPager? = null
-    private var progressBar: ProgressBar? = null
 
     private var sharedPrefs: SharedPrefs? = null
     private var presenter: ProfileContract.Presenter? = null
     private var viewPagerAdapter: ViewPagerAdapter? = null
-
-    private var ivProfilePic: ImageView? = null
-    private var tvUsername: TextView? = null
-    private var tvDescription: TextView? = null
-    private var tvEmail: TextView? = null
-    private var tvLocation: TextView? = null
-    private var tvInstitute: TextView? = null
-
-    private var llAsStudent: LinearLayout? = null
-    private var llByStudent: LinearLayout? = null
-//    private var llAsStudent: LinearLayout?=null
-    private var llEmail:LinearLayout?=null
-    private var llLocation:LinearLayout?=null
-    private var llInstitute:LinearLayout?=null
-    private var llProfileParent: LinearLayout?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,29 +52,15 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_training, container, false)
-        toolbar = view.findViewById(R.id.toolbar)
-        tabLayout = view.findViewById(R.id.tabLayout)
-        viewPager = view.findViewById(R.id.viewPager)
-        progressBar = view.findViewById(R.id.progressBar)
-        toolbar!!.inflateMenu(R.menu.menu_profile)
-        toolbar!!.setOnMenuItemClickListener(this)
 
-        ivProfilePic = view.findViewById(R.id.iv_profile_pic)
-        tvUsername = view.findViewById(R.id.tv_profile_username)
-        tvDescription = view.findViewById(R.id.tv_profile_description)
-        tvEmail = view.findViewById(R.id.tv_profile_email)
-        tvLocation = view.findViewById(R.id.tv_profile_location)
-        tvInstitute = view.findViewById(R.id.tv_profile_institute)
-        llEmail = view.findViewById(R.id.ll_profile_email)
-        llLocation = view.findViewById(R.id.ll_profile_location)
-        llInstitute= view.findViewById(R.id.ll_profile_institute)
-        llProfileParent = view.findViewById(R.id.ll_profile_parent)
+        toolbar.inflateMenu(R.menu.menu_profile)
+        toolbar.setOnMenuItemClickListener(this)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
-//        context = getContext()
-        sharedPrefs = SharedPrefs(getContext())
-        toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
+        viewPager.adapter = viewPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+        sharedPrefs = SharedPrefs(context)
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         if (mParam1!!.equals(sharedPrefs!!.userName)) {
             presenter!!.requestProfile(sharedPrefs?.cookies!!, sharedPrefs?.userName!!)
@@ -144,13 +104,15 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent!!.visibility = VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
+
         Timber.d(profilePicUrl)
+
         if (data.user_profile.profile_image == null || data.user_profile.profile_image.equals("")) {
             ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
-        tvUsername!!.text = mParam1!!
+        tvUserName.text = mParam1!!
 //        if (data.user_profile.email.isNotEmpty()) {
 //            tvEmail!!.text = data.user_profile.email
 //        } else {
