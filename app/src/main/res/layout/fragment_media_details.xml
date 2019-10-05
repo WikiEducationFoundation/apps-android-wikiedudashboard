@@ -77,7 +77,8 @@
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
                 android:paddingLeft="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"                android:textSize="@dimen/text_size_16sp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:textSize="@dimen/text_size_16sp"
                 android:text="@string/media_detail_description"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -289,7 +290,8 @@
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
                 android:paddingLeft="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"                android:textSize="@dimen/text_size_16sp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:textSize="@dimen/text_size_16sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -303,7 +305,8 @@
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
                 android:paddingLeft="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"                android:textColor="@color/black"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/mediaDetailLicense"
                />
         </androidx.constraintlayout.widget.ConstraintLayout>
