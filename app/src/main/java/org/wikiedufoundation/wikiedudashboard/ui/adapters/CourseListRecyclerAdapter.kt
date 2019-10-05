@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +9,16 @@ import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileCourseListFragment
 import java.util.*
 
 class CourseListRecyclerAdapter internal constructor(
-    private val context: Context,
     private var courseListFragment: CourseListFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var courses: List<CourseListData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MyDashboardViewHolder(LayoutInflater.from(context).inflate(R.layout.item_rv_explore_courses, parent, false))
+        return MyDashboardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_rv_explore_courses, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

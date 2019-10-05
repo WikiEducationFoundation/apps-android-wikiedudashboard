@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView
     private var edited: List<Article> = ArrayList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
-        val view1 = LayoutInflater.from(context).inflate(R.layout.item_rv_articles_edited, viewGroup, false)
+        val view1 = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_rv_articles_edited, viewGroup, false)
         return ArticlesEditedViewHolder(view1)
     }
 

@@ -2,7 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.vi
 
 import android.content.Context
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.*
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityContract
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RetrofitRecentActivityProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
@@ -39,7 +40,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(context!!)
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
@@ -71,6 +72,6 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 }

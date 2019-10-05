@@ -14,11 +14,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecentActivityRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var ctx: Context
     private var activities: List<RecentActivity> = ArrayList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
-        val view1 = LayoutInflater.from(context).inflate(R.layout.item_rv_recent_activity, viewGroup, false)
+        ctx = viewGroup.context
+        val view1 = LayoutInflater.from(ctx).inflate(R.layout.item_rv_recent_activity, viewGroup, false)
         return ArticlesEditedViewHolder(view1)
     }
 
@@ -29,7 +31,7 @@ class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView
         articlesEditedViewHolder.tvCountCharactersAdded.text = activities[i].characters.toString()
         articlesEditedViewHolder.tvRevisor.text = activities[i].revisor
 
-        val dateFormat = SimpleDateFormat(context.getString(R.string.time_format_12_hours))
+        val dateFormat = SimpleDateFormat(ctx.getString(R.string.time_format_12_hours))
         val formattedDate = dateFormat.format(activities[i].date).toString()
 
         articlesEditedViewHolder.tvDate.text = formattedDate
