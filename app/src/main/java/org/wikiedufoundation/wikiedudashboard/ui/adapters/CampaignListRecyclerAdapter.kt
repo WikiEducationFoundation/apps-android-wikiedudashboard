@@ -12,6 +12,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
 import java.util.*
 
+/**
+ * RecyclerView adapter for campaign list data
+ * ***/
 class CampaignListRecyclerAdapter internal constructor(
     private val context: Context,
     private var campaignListFragment: CampaignListFragment
@@ -30,6 +33,10 @@ class CampaignListRecyclerAdapter internal constructor(
 //        holder.itemView.setOnClickListener { campaignListFragment.openCourseDetail(campaigns[position].slug) }
     }
 
+    /**
+     * Use [setData] to set a list of campaign data
+     * @param campaigns A list of campaign data
+     ***/
     fun setData(campaigns: List<CampaignListData>) {
         this.campaigns = campaigns
     }
@@ -38,6 +45,11 @@ class CampaignListRecyclerAdapter internal constructor(
         return campaigns.size
     }
 
+    /**
+     * Nested class that initializes [tvCampaignTitle]
+     *
+     * @property itemView to call [tv_campaign_title]
+     * ***/
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCampaignTitle: TextView = itemView.tv_campaign_title
     }

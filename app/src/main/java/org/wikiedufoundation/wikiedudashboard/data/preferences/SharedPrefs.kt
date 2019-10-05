@@ -4,6 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import timber.log.Timber
 
+/**
+ * SharedPreferences class to store temporary data or handle sessions
+ *
+ * @property _context Context
+ * */
 class SharedPrefs(private val _context: Context?) {
 
     private val pref: SharedPreferences
@@ -51,6 +56,11 @@ class SharedPrefs(private val _context: Context?) {
         editor = pref.edit()
     }
 
+    /**
+     * Use [setLogin] to check if user is logged in, then store the login session
+     *
+     * @param isLoggedIn boolean value to check whether the user has logged in
+     ***/
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn)
         editor.commit()

@@ -11,6 +11,10 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.Article
 import java.util.*
 
+/**
+ * A RecyclerView adapter for edited articles
+ * @property context Context
+***/
 class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var edited: List<Article> = ArrayList()
 
@@ -24,6 +28,10 @@ class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView
         articlesEditedViewHolder.tvCountArticlesEditedTitle.text = edited[i].title
     }
 
+    /**
+     * Use [setData] to set a list of edited articles
+     * @param edited A list of edited articles
+     ***/
     fun setData(edited: List<Article>) {
         this.edited = edited
     }
@@ -32,6 +40,10 @@ class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView
         return edited.size
     }
 
+    /**
+     * To initialize [tvCountArticlesEditedTitle] TextView
+     * @property itemView used to call textView
+     ***/
     inner class ArticlesEditedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCountArticlesEditedTitle: TextView = itemView.tv_count_articles_edited_title
     }
