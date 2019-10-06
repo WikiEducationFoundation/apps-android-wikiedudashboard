@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayout36"
+                android:id="@+id/constraintLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -321,10 +321,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginStart="8dp"
                 android:id="@+id/tv_course_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="48dp"
                 android:padding="@dimen/padding_8dp"
                 android:text="@string/demo_course_description"
@@ -341,16 +341,16 @@
             app:layout_constraintTop_toBottomOf="@+id/cv_course_description">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayout28"
+                android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary">
 
                 <TextView
-                    android:layout_marginStart="8dp"
                     android:id="@+id/textView35"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/details"
                     android:textColor="@color/colorAccent"
