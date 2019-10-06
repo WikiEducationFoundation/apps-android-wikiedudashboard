@@ -14,7 +14,7 @@ import java.util.*
  * A RecyclerView adapter for edited articles
  * @property context Context
 ***/
-class ArticlesEditedRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArticlesEditedRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var edited: List<Article> = ArrayList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
