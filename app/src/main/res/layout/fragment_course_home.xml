@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.coursedetail.common.view.home.CourseHomeFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGrayBackground"
@@ -20,456 +20,480 @@
             android:layout_margin="@dimen/padding_8dp"
             android:visibility="gone"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/padding_4dp">
+            app:cardCornerRadius="@dimen/padding_4dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_count_articles_edited"
+            app:layout_constraintStart_toStartOf="@+id/tv_count_articles_created"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout36"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_16dp">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/padding_8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/course_title"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_8dp"
-                    android:layout_marginBottom="@dimen/padding_8dp">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_16dp"
-                        android:background="@drawable/button_color_accent"
-                        android:text="@string/btn_join"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_16sp" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/padding_16dp"
-                        android:background="@drawable/button_border_accent_color"
-                        android:text="@string/btn_cancel"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_articles_created"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/articles_created" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_articles_edited"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/articles_edited" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_total_edits"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="Total Edits" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_student_editors"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/student_editors" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_words_added"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/words_added" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_article_views"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/article_views" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_count_commons_uploads"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/_45"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_30sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/commons_upload" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
-
-                <TextView
-                    android:id="@+id/tv_course_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/padding_8dp"
+                    android:layout_marginTop="40dp"
                     android:text="@string/course_title"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_24sp"
-                    android:textStyle="bold" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/button3"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_course_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/demo_course_description"
-                    android:textAlignment="textStart" />
 
-            </LinearLayout>
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginLeft="56dp"
+                    android:background="@drawable/button_color_accent"
+                    android:text="@string/btn_join"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/button4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/button4" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_border_accent_color"
+                    android:text="@string/btn_cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/button3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_count_articles_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_count_articles_edited"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_created"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_articles_created"
+            app:layout_constraintStart_toStartOf="@id/tv_count_articles_created"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_articles_created" />
+
+
+        <TextView
+            android:id="@+id/tv_count_articles_edited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_count_articles_created"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_edited"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_articles_edited"
+            app:layout_constraintStart_toStartOf="@id/tv_count_articles_edited"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_articles_edited" />
+
+
+        <TextView
+            android:id="@+id/tv_count_total_edits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/padding_16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textView51"
+            app:layout_constraintStart_toStartOf="@id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="Total Edits"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_total_edits"
+            app:layout_constraintStart_toStartOf="@id/tv_count_total_edits"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_total_edits" />
+
+
+        <TextView
+            android:id="@+id/tv_count_student_editors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textView52"
+            app:layout_constraintStart_toStartOf="@id/textView52"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/student_editors"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_student_editors"
+            app:layout_constraintStart_toStartOf="@id/tv_count_student_editors"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors" />
+
+
+        <TextView
+            android:id="@+id/tv_count_words_added"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/padding_16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="1dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textView53"
+            app:layout_constraintStart_toStartOf="@id/textView53"
+            app:layout_constraintTop_toBottomOf="@id/textView53" />
+
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/words_added"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_words_added"
+            app:layout_constraintStart_toStartOf="@id/tv_count_words_added"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_words_added" />
+
+
+        <TextView
+            android:id="@+id/tv_count_article_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textView54"
+            app:layout_constraintStart_toStartOf="@id/textView54"
+            app:layout_constraintTop_toBottomOf="@id/textView54" />
+
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/article_views"
+            app:layout_constraintEnd_toEndOf="@id/tv_count_article_views"
+            app:layout_constraintStart_toStartOf="@id/tv_count_article_views"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_article_views" />
+
+
+        <TextView
+            android:id="@+id/tv_count_commons_uploads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toStartOf="@id/textView56"
+            app:layout_constraintStart_toEndOf="@id/textView55"
+            app:layout_constraintTop_toBottomOf="@id/textView56" />
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/commons_upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_commons_uploads" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_course_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/textView57"
+            app:layout_constraintStart_toStartOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@id/textView57">
+
+            <TextView
+                android:id="@+id/tv_course_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/course_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_course_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/demo_course_description"
+                android:textAlignment="textStart" />
+
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_16dp">
+            android:layout_marginTop="@dimen/padding_16dp"
+            app:layout_constraintStart_toStartOf="@id/cv_course_description"
+            app:layout_constraintTop_toBottomOf="@+id/cv_course_description">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout28"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_8dp">
+                android:background="@color/colorPrimary">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/details"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/textView36"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/school"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_school"
+                    app:layout_constraintStart_toStartOf="@+id/textView35" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/school"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_course_school"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_course_school"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toEndOf="@+id/textView36"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/term"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_course_term"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/term"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_term"
+                    app:layout_constraintStart_toStartOf="@+id/textView36" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/passcode"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_course_passcode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_course_term"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toEndOf="@+id/textView37"
+                    app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/expected_students"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_course_expected_students"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/passcode"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_passcode"
+                    app:layout_constraintStart_toStartOf="@+id/textView37" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/start"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_course_start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_course_passcode"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toEndOf="@+id/textView38"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_course_term" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/end"
-                        android:textAlignment="textStart"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_course_end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/description"
-                        android:textAlignment="textStart" />
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/expected_students"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView38"
+                    app:layout_constraintTop_toBottomOf="@id/textView38" />
 
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_course_expected_students"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    app:layout_constraintStart_toEndOf="@+id/textView39"
+                    app:layout_constraintTop_toBottomOf="@id/tv_course_passcode" />
 
-            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/start"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView39"
+                    app:layout_constraintTop_toBottomOf="@id/textView39" />
+
+                <TextView
+                    android:id="@+id/tv_course_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toEndOf="@+id/textView40"
+                    app:layout_constraintTop_toBottomOf="@id/tv_course_expected_students" />
+
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/end"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/textView40"
+                    app:layout_constraintTop_toBottomOf="@id/textView40" />
+
+                <TextView
+                    android:id="@+id/tv_course_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/description"
+                    android:textAlignment="textStart"
+                    app:layout_constraintStart_toEndOf="@+id/textView41"
+                    app:layout_constraintTop_toBottomOf="@id/tv_course_start" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
