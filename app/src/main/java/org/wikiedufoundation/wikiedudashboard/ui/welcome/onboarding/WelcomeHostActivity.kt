@@ -2,6 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import org.wikiedufoundation.wikiedudashboard.R
 
 class WelcomeHostActivity : AppCompatActivity() {
 
