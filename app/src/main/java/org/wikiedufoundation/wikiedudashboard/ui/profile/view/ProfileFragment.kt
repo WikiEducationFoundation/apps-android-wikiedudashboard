@@ -99,12 +99,12 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         val courseUploadList = CourseUploadList(data.uploads!!)
         fragmentList.add(CourseUploadsFragment.newInstance(2, "", courseUploadList))
 
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 
     override fun setProfileData(data: ProfileDetailsResponse) {
-        llProfileParent!!.visibility = VISIBLE
+        llProfileParent?.visibility = VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
 
         Timber.d(profilePicUrl)
@@ -118,22 +118,22 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 //        if (data.user_profile.email.isNotEmpty()) {
 //            tvEmail!!.text = data.user_profile.email
 //        } else {
-            llEmail!!.visibility = INVISIBLE
+            llEmail?.visibility = INVISIBLE
 //        }
         if (data.user_profile.bio!=null) {
-            tvDescription!!.text = data.user_profile.bio
+            tvDescription?.text = data.user_profile.bio
         } else {
-            tvDescription!!.visibility = INVISIBLE
+            tvDescription?.visibility = INVISIBLE
         }
         if (data.user_profile.location!=null) {
-            tvLocation!!.text = data.user_profile.location
+            tvLocation?.text = data.user_profile.location
         } else {
-            llLocation!!.visibility = INVISIBLE
+            llLocation?.visibility = INVISIBLE
         }
 //        if (data.user_profile.institution!=null) {
 //            tvInstitute!!.text = data.user_profile.institution
 //        } else{
-            llInstitute!!.visibility = INVISIBLE
+            llInstitute?.visibility = INVISIBLE
 //        }
     }
 
