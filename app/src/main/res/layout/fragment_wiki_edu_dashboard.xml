@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wiki_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_wiki_background">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cv_signup_wikipedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_48dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_48dp"
+            android:background="@color/colorAccent"
+            android:drawableLeft="@drawable/wiki_white_logo_icon"
+            android:padding="@dimen/margin_8dp"
+            android:text="@string/sign_up_with_wikipedia"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintTop_toBottomOf="@id/cv_login_wikipedia" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cv_login_wikipedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_48dp"
+            android:background="@color/colorAccent"
+            android:drawableLeft="@drawable/wiki_white_logo_icon"
+            android:padding="@dimen/margin_8dp"
+            android:text="@string/log_in_with_wikipedia"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintTop_toBottomOf="@id/wiki_textView" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="@dimen/margin_140"
+            android:src="@drawable/wiki_transparent_logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/wiki_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@string/wiki_education_dashboard"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/colorAccent"
+        android:id="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

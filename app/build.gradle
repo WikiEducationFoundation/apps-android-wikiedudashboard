@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -91,6 +92,21 @@ dependencies {
     androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
     androidTestImplementation "com.google.truth:truth:$rootProject.truth"
     testImplementation "junit:junit:$rootProject.junitVersion"
+
+    //onboarding
+    // Motionlayout onboarding
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    //viewPager2 library
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
+
+    //Material design
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    // circular dots
+    implementation 'me.relex:circleindicator:2.1.4'
 
 
 }
