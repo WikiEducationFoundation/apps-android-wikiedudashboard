@@ -39,8 +39,8 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
     private var context: Context? = null
     private var sharedPrefs: SharedPrefs? = null
-    private var viewPagerAdapter: ViewPagerAdapter? = null
-    private var courseHomeFragment: CourseHomeFragment? = null
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private lateinit var courseHomeFragment: CourseHomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +85,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     }
 
     private fun setTabs() {
-        val fragmentList = ArrayList<Fragment?>()
+        val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Home")
         fragmentList.add(courseHomeFragment)

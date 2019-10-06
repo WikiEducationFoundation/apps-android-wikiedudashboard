@@ -2,7 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.OnBoardingPrefManager
 import timber.log.Timber
 
 class SharedPrefs(private val _context: Context?) {

@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context="org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeHostActivity">
 
+
+    <fragment
+        android:id="@+id/navHostfragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/welcome_nav_graph"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="255dp" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

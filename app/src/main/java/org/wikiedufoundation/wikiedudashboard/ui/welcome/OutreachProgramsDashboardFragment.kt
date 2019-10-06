@@ -11,11 +11,15 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
@@ -32,10 +36,10 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private var cv_signup_wikipedia: CardView? = null
-    private var cv_login_wikipedia: CardView? = null
+    private var cv_signup_wikipedia: Button? = null
+    private var cv_login_wikipedia: Button? = null
     private var webView: WebView? = null
-    private var ll_login_layout: LinearLayout? = null
+    private var constraint_outreach : ConstraintLayout? = null
     private var progressBar: ProgressBar? = null
 
     private var cookies: String? = null
@@ -58,7 +62,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        ll_login_layout = view.findViewById(R.id.ll_login_layout)
+        constraint_outreach = view.findViewById(R.id.constraint_outreach)
         progressBar = view.findViewById(R.id.progressBar)
 
         val context: Context? = context
@@ -71,8 +75,10 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private fun setWebView() {
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
                 progressBar!!.visibility = View.VISIBLE
+                constraint_outreach!!.visibility = View.GONE
+                super.onPageStarted(view, url, favicon)
+
             }
 
             override fun onPageFinished(view: WebView?, url: String) {
@@ -80,8 +86,9 @@ class OutreachProgramsDashboardFragment : Fragment() {
                 if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
-                    super.onPageFinished(view, url)
                     webView!!.visibility = View.VISIBLE
+                    constraint_outreach!!.visibility = View.GONE
+                    super.onPageFinished(view, url)
                 }
                 progressBar!!.visibility = View.GONE
             }
@@ -103,13 +110,14 @@ class OutreachProgramsDashboardFragment : Fragment() {
 
     private fun setOnClickListeners() {
         cv_login_wikipedia!!.setOnClickListener {
-            //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki"
+            progressBar!!.visibility = View.VISIBLE
             webView!!.loadUrl(url)
+
         }
         cv_signup_wikipedia!!.setOnClickListener {
-            //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup"
+            progressBar!!.visibility = View.VISIBLE
             webView!!.loadUrl(url)
         }
     }

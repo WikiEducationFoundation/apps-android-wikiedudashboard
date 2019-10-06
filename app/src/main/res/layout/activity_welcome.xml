@@ -1,0 +1,22 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeFragment">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        app:layout_constraintBottom_toBottomOf="@id/viewPager"
+        android:layout_width="match_parent"
+        app:ci_drawable="@drawable/selected"
+        app:ci_drawable_unselected="@drawable/default_selection"
+        android:layout_height="48dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

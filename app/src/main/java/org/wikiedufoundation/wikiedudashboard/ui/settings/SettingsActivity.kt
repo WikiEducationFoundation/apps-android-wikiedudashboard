@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.settings
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.Navigation
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
@@ -94,6 +96,7 @@ class SettingsActivity : AppCompatActivity() {
                     sharedPrefs!!.setLogin(false)
                     val i = Intent(context, WelcomeActivity::class.java)
                     startActivity(i)
+
                     dialog.dismiss()
                 }.show()
     }

@@ -11,10 +11,9 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.cardview.widget.CardView
+import android.widget.*
+import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -32,10 +31,10 @@ class WikiEducationDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private var cv_signup_wikipedia: CardView? = null
-    private var cv_login_wikipedia: CardView? = null
+    private var cv_signup_wikipedia: AppCompatButton? = null
+    private var cv_login_wikipedia: AppCompatButton? = null
     private var webView: WebView? = null
-    private var ll_login_layout: LinearLayout? = null
+    private var wiki_constraintlayout: ConstraintLayout? = null
     private var progressBar: ProgressBar? = null
 
     private var cookies: String? = null
@@ -54,11 +53,11 @@ class WikiEducationDashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_welcome4, container, false)
+        val view = inflater.inflate(R.layout.fragment_wiki_edu_dashboard, container, false)
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        ll_login_layout = view.findViewById(R.id.ll_login_layout)
+        wiki_constraintlayout = view.findViewById(R.id.wiki_constraint_layout)
         progressBar = view.findViewById(R.id.progressBar)
 
         val context: Context? = context
@@ -72,6 +71,7 @@ class WikiEducationDashboardFragment : Fragment() {
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
+                wiki_constraintlayout!!.visibility = View.GONE
                 progressBar!!.visibility = View.VISIBLE
             }
 
@@ -81,6 +81,7 @@ class WikiEducationDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     super.onPageFinished(view, url)
+                    wiki_constraintlayout!!.visibility = View.GONE
                     webView!!.visibility = View.VISIBLE
                 }
                 progressBar!!.visibility = View.GONE
@@ -104,10 +105,12 @@ class WikiEducationDashboardFragment : Fragment() {
     private fun setOnClickListeners() {
         cv_login_wikipedia!!.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
+            progressBar!!.visibility = View.VISIBLE
             webView!!.loadUrl(url)
         }
         cv_signup_wikipedia!!.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup"
+            progressBar!!.visibility = View.VISIBLE
             webView!!.loadUrl(url)
         }
     }
