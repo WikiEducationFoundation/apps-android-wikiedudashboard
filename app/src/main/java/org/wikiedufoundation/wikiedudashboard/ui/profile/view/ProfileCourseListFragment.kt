@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_explore_course_list.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyclerAdapter
@@ -26,19 +27,179 @@ import timber.log.Timber
  * Use the [ProfileCourseListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProfileCourseListFragment : Fragment() {
+class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.ProfileCourseListClickListener {
 
     private var mParam1: String? = null
-    private var tv_no_courses: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var coursesList: List<CourseData> = ArrayList()
-    private var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter? = null
+    private lateinit var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            coursesList = (arguments!!.getSerializable(ARG_PARAM1) as ProfileResponse).courses!!
+            coursesList = (arguments?.getSerializable(ARG_PARAM1) as? ProfileResponse)?.courses ?: emptyList()
+
+            coursesList = listOf(
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay"),
+                    CourseData(
+                            course_id = 1,
+                            course_term = " ",
+                            course_title = "Title of the course",
+                            user_count = 1,
+                            course_school = "Invented school",
+                            course_slug = "slug",
+                            user_role = "Yay")
+            )
         }
     }
 
@@ -48,34 +209,33 @@ class ProfileCourseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
-        progressBar = view.findViewById(R.id.progressBar)
-        tv_no_courses = view.findViewById(R.id.tv_no_courses)
-        recyclerView = view.findViewById(R.id.rv_course_list)
+        return inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+    }
 
-        val context: Context? = context
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
-        tv_no_courses!!.text = sharedPrefs!!.cookies
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val sharedPrefs = SharedPrefs(context)
+        tvNoCourses.text = sharedPrefs.cookies
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(context!!, this)
         val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = courseListRecyclerAdapter
+        rvCourseList.layoutManager = linearLayoutManager
+        rvCourseList.setHasFixedSize(true)
+        rvCourseList.adapter = courseListRecyclerAdapter
         setData(coursesList)
         showProgressBar(false)
-        return view
     }
 
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
-            recyclerView!!.visibility = View.VISIBLE
-            courseListRecyclerAdapter!!.setData(courses)
-            courseListRecyclerAdapter!!.notifyDataSetChanged()
-            tv_no_courses!!.visibility = View.GONE
+            rvCourseList.visibility = View.VISIBLE
+            courseListRecyclerAdapter.setData(courses)
+            courseListRecyclerAdapter.notifyDataSetChanged()
+            tvNoCourses.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tv_no_courses!!.visibility = View.VISIBLE
+            rvCourseList.visibility = View.GONE
+            tvNoCourses.visibility = View.VISIBLE
         }
     }
 
@@ -91,9 +251,9 @@ class ProfileCourseListFragment : Fragment() {
         ViewUtils.showToast(context!!, message)
     }
 
-    fun openCourseDetail(slug: String) {
+    override fun onCourseClicked(courseSlug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
-        i.putExtra("url", slug)
+        i.putExtra("url", courseSlug)
         i.putExtra("enrolled", false)
         startActivity(i)
     }

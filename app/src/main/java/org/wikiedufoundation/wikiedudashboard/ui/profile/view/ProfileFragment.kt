@@ -49,17 +49,21 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         }
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_training, container, false)
+        return inflater.inflate(R.layout.fragment_training, container, false)
+    }
 
-        toolbar.inflateMenu(R.menu.menu_profile)
-        toolbar.setOnMenuItemClickListener(this)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        toolbar?.inflateMenu(R.menu.menu_profile)
+        toolbar?.setOnMenuItemClickListener(this)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager.adapter = viewPagerAdapter
+        viewPager?.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
         sharedPrefs = SharedPrefs(context)
-        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
 
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         if (mParam1!!.equals(sharedPrefs!!.userName)) {
@@ -70,13 +74,11 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
             presenter!!.requestProfileDetails(mParam1!!)
         }
         if (mParam2!!) {
-            toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-            toolbar!!.setNavigationOnClickListener {
+            toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            toolbar?.setNavigationOnClickListener {
                 activity!!.onBackPressed()
             }
         }
-
-        return view
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -141,14 +143,16 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.let{
+            ViewUtils.showToast(it, message)
+        }
     }
 
     companion object {

@@ -16,7 +16,7 @@ import java.util.*
 
 class ProfileCourseListRecyclerAdapter internal constructor(
     private val context: Context,
-    private var profileCourseListFragment: ProfileCourseListFragment
+    private var profileCourseListClickListener: ProfileCourseListClickListener ? = null
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var courses: List<CourseData> = ArrayList()
@@ -27,10 +27,9 @@ class ProfileCourseListRecyclerAdapter internal constructor(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val course: CourseData? = courses[position]
-        val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tvCourseTitle.text = course!!.course_title
-        holder.itemView.setOnClickListener { profileCourseListFragment.openCourseDetail(courses[position].course_slug) }
+        val course = courses[position]
+        (holder as? MyDashboardViewHolder)?.setViewHolder(course)
+        holder.itemView.setOnClickListener { profileCourseListClickListener?.onCourseClicked(courses[position].course_slug) }
     }
 
     fun setData(courses: List<CourseData>) {
@@ -41,7 +40,14 @@ class ProfileCourseListRecyclerAdapter internal constructor(
         return courses.size
     }
 
+    interface ProfileCourseListClickListener {
+        fun onCourseClicked(courseSlug: String)
+    }
+
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvCourseTitle: TextView = itemView.tv_course_title
+
+        fun setViewHolder(course: CourseData) {
+            itemView.tvCourseTitle.text = course?.course_title
+        }
     }
 }

@@ -20,14 +20,14 @@
     <!--</android.support.design.widget.AppBarLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_course_list"
+        android:id="@+id/rvCourseList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/tv_no_courses"
+        android:id="@+id/tvNoCourses"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:visibility="gone"

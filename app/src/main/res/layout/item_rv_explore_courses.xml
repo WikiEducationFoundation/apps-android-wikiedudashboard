@@ -16,7 +16,7 @@
             android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_course_title"
+                android:id="@+id/tvCourseTitle"
                 android:paddingTop="@dimen/padding_16dp"
                 android:paddingStart="@dimen/padding_16dp"
                 android:paddingEnd="@dimen/padding_16dp"

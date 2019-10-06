@@ -41,6 +41,6 @@ class CourseListRecyclerAdapter internal constructor(
     }
 
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvCourseTitle: TextView = itemView.tv_course_title
+        val tvCourseTitle: TextView = itemView.tvCourseTitle
     }
 }
