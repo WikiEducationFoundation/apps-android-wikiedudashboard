@@ -1,4 +1,4 @@
-NOTE: Please review the pull request process before opening your first PR: https://github.com/WikiEducationFoundation/WikiEduDashboard/blob/master/CONTRIBUTING.md#pull-request-process
+NOTE: Please review the pull request process before opening your first PR: https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/CONTRIBUTING.md#pull-request-process
 
 ## What this PR does
 < describe the purpose of this pull request and note the issue it addresses >
