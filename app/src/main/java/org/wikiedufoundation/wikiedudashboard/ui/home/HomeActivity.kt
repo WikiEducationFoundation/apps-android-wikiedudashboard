@@ -60,7 +60,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        if (item?.itemId==R.id.action_search) {
         val searchView = item?.actionView as SearchView
             searchView.queryHint = "Search"
             searchView.isIconified = false
@@ -85,19 +84,15 @@ class HomeActivity : AppCompatActivity() {
                 }
             })
             return true
-//        }else {
-//
-//        }
-//        return true
     }
 
 
 
     private fun addFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.home_container, fragment)
+            fragmentTransaction.add(R.id.home_container, it)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             fragmentTransaction.commit()

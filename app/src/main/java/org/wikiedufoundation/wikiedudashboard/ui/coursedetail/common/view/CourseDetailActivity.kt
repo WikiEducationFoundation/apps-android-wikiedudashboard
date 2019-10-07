@@ -52,7 +52,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         enrolled = intent.getBooleanExtra("enrolled", false)
 
         context = this
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = context?.let { SharedPrefs(it) }
 
         val action = intent.action
         val data = intent.dataString

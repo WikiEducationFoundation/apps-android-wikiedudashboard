@@ -99,7 +99,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         viewPager?.adapter = viewPagerAdapter
         tabLayout?.setupWithViewPager(viewPager)
 //        context = getContext()
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = context?.let { SharedPrefs(it) }
         toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         val sharedUserName = sharedPrefs?.userName?.let { it }
@@ -145,11 +145,12 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         viewPagerAdapter?.notifyDataSetChanged()
     }
 
+    @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent?.visibility = VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
         Timber.d(profilePicUrl)
-        if (data.user_profile.profile_image.isBlank()) {
+        if (data.user_profile.profile_image.isNullOrEmpty()) {
             ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)

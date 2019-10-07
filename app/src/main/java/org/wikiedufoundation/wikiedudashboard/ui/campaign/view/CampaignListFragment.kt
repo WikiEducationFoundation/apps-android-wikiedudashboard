@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,8 +59,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
-        val context: Context? = context
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = context?.let { SharedPrefs(it) }
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)

@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -58,8 +57,8 @@ class CourseListFragment : Fragment(), CourseListView {
         tv_no_courses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
-        val context: Context? = context
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
+        val context = context
+        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses?.text = sharedPrefs?.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
         courseListRecyclerAdapter = CourseListRecyclerAdapter(this)

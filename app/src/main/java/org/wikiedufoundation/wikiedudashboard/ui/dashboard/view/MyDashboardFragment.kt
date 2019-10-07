@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -64,8 +63,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        val context: Context? = context
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = context?.let { SharedPrefs(it) }
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
