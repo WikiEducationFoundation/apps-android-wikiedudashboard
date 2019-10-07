@@ -18,4 +18,7 @@
     <dimen name="text_size_14sp">14sp</dimen>
     <dimen name="padding_2dp">2dp</dimen>
     <dimen name="margin_140">140dp</dimen>
+    <dimen name="padding_40dp">40dp</dimen>
+    <dimen name="padding_56dp">56dp</dimen>
+    <dimen name="padding_48dp">48dp</dimen>
 </resources>

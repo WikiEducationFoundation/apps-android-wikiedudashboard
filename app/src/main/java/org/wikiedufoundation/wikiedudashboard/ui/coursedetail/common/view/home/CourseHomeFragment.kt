@@ -58,14 +58,14 @@ class CourseHomeFragment : Fragment() {
         tvCountCommonsUploads = view.findViewById(R.id.tv_count_commons_uploads)
         tvCourseTitle = view.findViewById(R.id.tv_course_title)
         tvCourseDescription = view.findViewById(R.id.tv_course_description)
-        tvCourseSchool = view.findViewById(R.id.tv_course_school)
-        tvCourseTerm = view.findViewById(R.id.tv_course_term)
-        tvCoursePasscode = view.findViewById(R.id.tv_course_passcode)
-        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students)
+        tvCourseSchool = view.findViewById(R.id.tv_course_school_detail)
+        tvCourseTerm = view.findViewById(R.id.tv_course_term_detail)
+        tvCoursePasscode = view.findViewById(R.id.tv_course_passcode_detail)
+        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students_detail)
         tvCountArticlesCreated = view.findViewById(R.id.tv_count_articles_created)
-        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students)
-        tvCourseStart = view.findViewById(R.id.tv_course_start)
-        tvCourseEnd = view.findViewById(R.id.tv_course_end)
+        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students_detail)
+        tvCourseStart = view.findViewById(R.id.tv_course_start_detail)
+        tvCourseEnd = view.findViewById(R.id.tv_course_end_detail)
 
         tvCountArticlesCreated!!.text = courseDetail!!.created_count
         tvCountArticlesEdited!!.text = courseDetail!!.edited_count
