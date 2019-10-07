@@ -89,6 +89,7 @@ class WikiEducationDashboardFragment : Fragment() {
         }
     }
 
+
     private fun proceedToLogin(url: String) {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
@@ -102,6 +103,7 @@ class WikiEducationDashboardFragment : Fragment() {
         activity!!.finish()
     }
 
+    //This method handles the login and signup button click
     private fun setOnClickListeners() {
         cv_login_wikipedia!!.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
