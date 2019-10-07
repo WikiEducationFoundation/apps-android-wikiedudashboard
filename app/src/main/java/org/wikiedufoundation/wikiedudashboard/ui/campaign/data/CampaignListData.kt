@@ -1,5 +1,15 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.data
 
+
+/**
+ * [CampaignListData] model class
+ * @constructor primary constructor
+ *
+ * @property id Integer, campaign id
+ * @property title String, campaign title
+ * @property slug String, campaign slug
+ * @property description String, campaign description
+ * ***/
 class CampaignListData(
         val id: Int,
         val title: String,
