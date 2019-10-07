@@ -11,6 +11,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragm
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import java.util.*
 
+/**
+ * RecyclerView adapter for courses list data
+ * @constructor secondary constructor to initialize [CourseListFragment] variable
+ * ***/
 class CourseListRecyclerAdapter internal constructor(
     private var courseListFragment: CourseListFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,6 +33,10 @@ class CourseListRecyclerAdapter internal constructor(
         holder.itemView.setOnClickListener { courseListFragment.openCourseDetail(courses[position].slug) }
     }
 
+    /**
+     * Set [CourseListData] type [courses] list
+     * @param courses list of courses
+     * ***/
     fun setData(courses: List<CourseListData>) {
         this.courses = courses
     }
@@ -37,6 +45,11 @@ class CourseListRecyclerAdapter internal constructor(
         return courses.size
     }
 
+
+    /**
+     * Use [MyDashboardViewHolder] inner class to declare [tvCourseTitle] TextView
+     * @property itemView primary constructor property to call [tv_course_title]
+     * ***/
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCourseTitle: TextView = itemView.tv_course_title
     }
