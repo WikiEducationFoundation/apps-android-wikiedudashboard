@@ -40,7 +40,7 @@
         android:gravity="center"
         android:textColor="@color/blue"
         android:lines="2"
-        android:layout_margin="@dimen/dimen_16"
+        android:layout_margin="@dimen/dimen_16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo"
@@ -92,7 +92,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </androidx.constraintlayout.widget.ConstraintLayout>

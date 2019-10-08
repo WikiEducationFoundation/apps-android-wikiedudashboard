@@ -26,6 +26,7 @@
     <string name="details">Details</string>
     <string name="description">Description</string>
     <string name="wiki_education_dashboard">Wiki Education\n Dashboard</string>
+    <string name="wiki_edu_dashboard">Wiki Education\n Dashboard</string>
     <string name="log_in_with_wikipedia">Log in with Wikipedia</string>
     <string name="sign_up_with_wikipedia">Sign up with Wikipedia</string>
     <string name="tv_no_programs">Looks like you haven\'t joined a program yet. Click on Explore to find your program and join it.</string>

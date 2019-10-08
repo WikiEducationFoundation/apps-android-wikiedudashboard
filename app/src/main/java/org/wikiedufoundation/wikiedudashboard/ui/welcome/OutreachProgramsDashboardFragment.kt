@@ -20,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
@@ -39,7 +40,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private var cv_signup_wikipedia: Button? = null
     private var cv_login_wikipedia: Button? = null
     private var webView: WebView? = null
-    private var constraint_outreach : ConstraintLayout? = null
+    private var cl_outreach : ConstraintLayout? = null
     private var progressBar: ProgressBar? = null
 
     private var cookies: String? = null
@@ -62,7 +63,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        constraint_outreach = view.findViewById(R.id.constraint_outreach)
+        cl_outreach = view.findViewById(R.id.constraint_outreach)
         progressBar = view.findViewById(R.id.progressBar)
 
         val context: Context? = context

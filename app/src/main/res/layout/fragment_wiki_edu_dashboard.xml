@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lines="2"
-            android:text="@string/wiki_education_dashboard"
+            android:text="@string/wiki_edu_dashboard"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_30sp"
             android:textStyle="bold"
@@ -90,7 +90,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </androidx.constraintlayout.widget.ConstraintLayout>
