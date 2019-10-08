@@ -69,6 +69,12 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun setWebView() {
+        /** Enable JavaScript execution to display all web page content.
+         *  This enables users logging in for the first time to complete
+         *  the additional account set-up screens displayed after the
+         *  user clicks on the OAuth screen "Allow" button
+         */
+        webView?.getSettings()?.setJavaScriptEnabled(true)
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
