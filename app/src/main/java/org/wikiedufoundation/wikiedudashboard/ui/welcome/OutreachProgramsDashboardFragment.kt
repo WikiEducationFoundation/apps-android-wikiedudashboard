@@ -63,7 +63,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        cl_outreach = view.findViewById(R.id.constraint_outreach)
+        cl_outreach = view.findViewById(R.id.cl_outreach)
         progressBar = view.findViewById(R.id.progressBar)
 
         val context: Context? = context
@@ -77,7 +77,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 progressBar?.visibility = View.VISIBLE
-                constraint_outreach?.visibility = View.GONE
+                cl_outreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
 
             }
@@ -88,7 +88,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     webView?.visibility = View.VISIBLE
-                    constraint_outreach?.visibility = View.GONE
+                    cl_outreach?.visibility = View.GONE
                     super.onPageFinished(view, url)
                 }
                 progressBar?.visibility = View.GONE

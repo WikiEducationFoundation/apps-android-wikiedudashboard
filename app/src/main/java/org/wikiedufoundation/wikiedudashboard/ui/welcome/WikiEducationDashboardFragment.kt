@@ -34,7 +34,7 @@ class WikiEducationDashboardFragment : Fragment() {
     private var cv_signup_wikipedia: AppCompatButton? = null
     private var cv_login_wikipedia: AppCompatButton? = null
     private var webView: WebView? = null
-    private var wiki_constraintlayout: ConstraintLayout? = null
+    private var cl_wiki : ConstraintLayout? = null
     private var progressBar: ProgressBar? = null
 
     private var cookies: String? = null
@@ -57,7 +57,7 @@ class WikiEducationDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        wiki_constraintlayout = view.findViewById(R.id.wiki_constraint_layout)
+        cl_wiki = view.findViewById(R.id.cl_wiki)
         progressBar = view.findViewById(R.id.progressBar)
 
         val context: Context? = context
@@ -67,16 +67,19 @@ class WikiEducationDashboardFragment : Fragment() {
         return view
     }
 
+
     private fun setWebView() {
-    /** Enable JavaScript execution to display all web page content.
-     *  This enables users logging in for the first time to complete
-     *  the additional account set-up screens displayed after the
-     *  user clicks on the OAuth screen "Allow" button
-     */
+        /** Enable JavaScript execution to display all web page content.
+         *  This enables users logging in for the first time to complete
+         *  the additional account set-up screens displayed after the
+         *  user clicks on the OAuth screen "Allow" button
+         */
+
+        webView?.getSettings()?.setJavaScriptEnabled(true)
         webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                wiki_constraintlayout?.visibility = View.GONE
+                cl_wiki?.visibility = View.GONE
                 progressBar?.visibility = View.VISIBLE
             }
 
@@ -86,7 +89,7 @@ class WikiEducationDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     super.onPageFinished(view, url)
-                    wiki_constraintlayout?.visibility = View.GONE
+                    cl_wiki?.visibility = View.GONE
                     webView?.visibility = View.VISIBLE
                 }
                 progressBar?.visibility = View.GONE

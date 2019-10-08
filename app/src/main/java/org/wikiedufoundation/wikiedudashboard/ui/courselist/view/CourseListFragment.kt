@@ -19,7 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesR
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -62,7 +62,7 @@ class CourseListFragment : Fragment(), CourseListView {
         val sharedPrefs: SharedPrefs? = SharedPrefs(context)
         tv_no_courses!!.text = sharedPrefs!!.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
-        courseListRecyclerAdapter = CourseListRecyclerAdapter(context!!, this)
+        courseListRecyclerAdapter = CourseListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
@@ -95,7 +95,7 @@ class CourseListFragment : Fragment(), CourseListView {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {

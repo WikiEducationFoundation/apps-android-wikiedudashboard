@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +18,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.Course
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -67,7 +67,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
+        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
@@ -101,7 +101,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {
@@ -119,8 +119,8 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
                 filteredCourseList!!.add(course)
             }
         }
-        myDashboardRecyclerAdapter!!.setData(filteredCourseList!!)
-        myDashboardRecyclerAdapter!!.notifyDataSetChanged()
+        myDashboardRecyclerAdapter?.setData(filteredCourseList!!)
+        myDashboardRecyclerAdapter?.notifyDataSetChanged()
     }
 
 

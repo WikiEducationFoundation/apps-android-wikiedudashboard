@@ -13,12 +13,16 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+/**
+ * RecyclerView adapter for recent activities
+ * ***/
+class RecentActivityRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var ctx: Context
     private var activities: List<RecentActivity> = ArrayList()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
-        val view1 = LayoutInflater.from(context).inflate(R.layout.item_rv_recent_activity, viewGroup, false)
+        ctx = viewGroup.context
+        val view1 = LayoutInflater.from(ctx).inflate(R.layout.item_rv_recent_activity, viewGroup, false)
         return ArticlesEditedViewHolder(view1)
     }
 
@@ -29,12 +33,16 @@ class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView
         articlesEditedViewHolder.tvCountCharactersAdded.text = activities[i].characters.toString()
         articlesEditedViewHolder.tvRevisor.text = activities[i].revisor
 
-        val dateFormat = SimpleDateFormat(context.getString(R.string.time_format_12_hours))
+        val dateFormat = SimpleDateFormat(ctx.getString(R.string.time_format_12_hours))
         val formattedDate = dateFormat.format(activities[i].date).toString()
 
         articlesEditedViewHolder.tvDate.text = formattedDate
     }
 
+    /**
+     * Set [RecentActivity] type list of edited activities list
+     * @param edited list of courses
+     * ***/
     fun setData(edited: List<RecentActivity>) {
         this.activities = edited
     }
@@ -43,6 +51,10 @@ class RecentActivityRecyclerAdapter(private val context: Context) : RecyclerView
         return activities.size
     }
 
+    /**
+     * Use [ArticlesEditedViewHolder] inner class to declare Views component
+     * @property itemView primary constructor property
+     * ***/
     inner class ArticlesEditedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCountArticlesEditedTitle: TextView = itemView.tv_count_articles_edited_title
         val tvCountCharactersAdded: TextView = itemView.tv_count_characters_added

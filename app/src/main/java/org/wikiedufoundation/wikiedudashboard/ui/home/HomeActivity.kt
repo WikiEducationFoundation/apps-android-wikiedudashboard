@@ -17,6 +17,8 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
+import android.graphics.Color
+import android.widget.EditText
 
 class HomeActivity : AppCompatActivity() {
 
@@ -63,6 +65,10 @@ class HomeActivity : AppCompatActivity() {
             val searchView = item!!.actionView as SearchView
             searchView.queryHint = "Search"
             searchView.isIconified = false
+
+        val txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        txtSearch.setHintTextColor(Color.LTGRAY)
+        txtSearch.setTextColor(Color.BLACK)
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {

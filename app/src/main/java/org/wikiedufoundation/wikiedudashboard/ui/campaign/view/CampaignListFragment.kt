@@ -2,7 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign.view
 
 import android.content.Context
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -64,7 +63,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         val context: Context? = context
         sharedPrefs = SharedPrefs(context)
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
-        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(context!!, this)
+        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = linearLayoutManager
         recyclerView!!.setHasFixedSize(true)
@@ -97,7 +96,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     fun updateSearchQuery(query: String) {
