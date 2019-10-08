@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,9 +40,9 @@ class CourseListFragment : Fragment(), CourseListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = arguments?.getString(ARG_PARAM1)
+            mParam2 = arguments?.getString(ARG_PARAM2)
         }
     }
 
@@ -58,17 +57,17 @@ class CourseListFragment : Fragment(), CourseListView {
         tv_no_courses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
-        val context: Context? = context
-        val sharedPrefs: SharedPrefs? = SharedPrefs(context)
-        tv_no_courses!!.text = sharedPrefs!!.cookies
+        val context = context
+        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
+        tv_no_courses?.text = sharedPrefs?.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
         courseListRecyclerAdapter = CourseListRecyclerAdapter(this)
         val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = courseListRecyclerAdapter
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = courseListRecyclerAdapter
 
-        courseListPresenter!!.requestDashboard(sharedPrefs.cookies!!)
+        sharedPrefs?.cookies?.let { courseListPresenter?.requestDashboard(it) }
         return view
     }
 
@@ -76,26 +75,26 @@ class CourseListFragment : Fragment(), CourseListView {
         Timber.d(data.toString())
         if (data.courses.isNotEmpty()) {
             coursesList = data.courses
-            recyclerView!!.visibility = View.VISIBLE
-            courseListRecyclerAdapter!!.setData(data.courses)
-            courseListRecyclerAdapter!!.notifyDataSetChanged()
-            tv_no_courses!!.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+            courseListRecyclerAdapter?.setData(data.courses)
+            courseListRecyclerAdapter?.notifyDataSetChanged()
+            tv_no_courses?.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tv_no_courses!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tv_no_courses?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 
     fun openCourseDetail(slug: String) {
@@ -110,11 +109,11 @@ class CourseListFragment : Fragment(), CourseListView {
         val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
         for (course in coursesList) {
             if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCourseList!!.add(course)
+                filteredCourseList?.add(course)
             }
         }
-        courseListRecyclerAdapter!!.setData(filteredCourseList!!)
-        courseListRecyclerAdapter!!.notifyDataSetChanged()
+        filteredCourseList?.let { courseListRecyclerAdapter?.setData(it) }
+        courseListRecyclerAdapter?.notifyDataSetChanged()
     }
 
     companion object {

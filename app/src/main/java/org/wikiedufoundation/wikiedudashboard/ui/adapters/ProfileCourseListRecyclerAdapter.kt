@@ -29,7 +29,7 @@ class ProfileCourseListRecyclerAdapter internal constructor(
 
         val course: CourseData? = courses[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tvCourseTitle.text = course!!.course_title
+        myDashboardViewHolder.tvCourseTitle.text = course?.course_title
         holder.itemView.setOnClickListener { profileCourseListFragment.openCourseDetail(courses[position].course_slug) }
     }
 
