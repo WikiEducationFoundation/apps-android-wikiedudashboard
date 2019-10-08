@@ -18,6 +18,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.pro
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
+/**
+ * A [Fragment] subclass for edited course articles
+ * ***/
 class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     private var tvNoEditedArticles: TextView? = null
