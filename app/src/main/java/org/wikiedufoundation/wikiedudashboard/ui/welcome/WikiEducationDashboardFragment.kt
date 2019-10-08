@@ -73,7 +73,7 @@ class WikiEducationDashboardFragment : Fragment() {
      *  the additional account set-up screens displayed after the
      *  user clicks on the OAuth screen "Allow" button
      */
-        webView!!.getSettings().setJavaScriptEnabled(true)
+        webView?.getSettings()?.setJavaScriptEnabled(true)
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
