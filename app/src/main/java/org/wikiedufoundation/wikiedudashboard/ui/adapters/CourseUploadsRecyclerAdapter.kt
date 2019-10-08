@@ -15,6 +15,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import java.util.*
 
+/**
+ * RecyclerView adapter for courses list data
+ * @property courseUploadsFragment primary constructor property
+ * ***/
 class CourseUploadsRecyclerAdapter(
         private var courseUploadsFragment: CourseUploadsFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -39,6 +43,10 @@ class CourseUploadsRecyclerAdapter(
         }
     }
 
+    /**
+     * Set [courseUploads] list of data
+     * @param courseUploads list of courses
+     * ***/
     fun setData(courseUploads: CourseUploadList) {
         this.courseUploads = courseUploads.uploads
         this.courseUploadList = courseUploads
@@ -48,6 +56,10 @@ class CourseUploadsRecyclerAdapter(
         return courseUploads.size
     }
 
+    /**
+     * Use [MyDashboardViewHolder] inner class to declare [ivCourseUpload] TextView
+     * @property itemView primary constructor property to call [iv_course_upload]
+     * ***/
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvUploadTitle: TextView = itemView.tv_upload_title
         val ivCourseUpload: ImageView = itemView.iv_course_upload
