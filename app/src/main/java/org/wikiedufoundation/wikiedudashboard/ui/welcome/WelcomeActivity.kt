@@ -9,10 +9,10 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import java.util.ArrayList
 
-/*
+/**
 * This class launch the welcome page
 * when the users is logged out or on first login
-* */
+*/
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager
     private lateinit var viewPagerAdapter: ViewPagerAdapter

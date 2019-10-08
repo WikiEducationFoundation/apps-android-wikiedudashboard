@@ -1,7 +1,6 @@
 
 package org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.view
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -20,20 +19,23 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.OnBoardingPa
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.page.OnboardingPage
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.setParallaxTransformation
 
-//This is the minimum required API level to run the code
+/**
+ * This denotes that the annotated element should
+ * only be called on the given API level or higher.
+ */
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 
-/*
+/**
 * The OnBoardingView holds and inflate the views
 * It setup the behaviour of the views on scroll, swipe and on button clicks
-* It also displays the the selected views using the WormsDotIndicator*/
+* It also displays the the selected views using the WormsDotIndicator
+ */
 class OnBoardingView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
   FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
   private val numberOfPages by lazy { OnboardingPage.values().size }
   private  val prefManager: SharedPrefs
-//  private val prefManager : OnBoardingPrefManager
 
   init {
     val view = LayoutInflater.from(context).inflate(R.layout.onboarding_view, this, true)
@@ -89,7 +91,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
   private fun setFirstTimeLaunchToFalse() {
     !prefManager.isFirstTimeLaunch
-//    prefManager.isFirstTimeLaunch = false
   }
 
   private fun navigateToNextSlide() {

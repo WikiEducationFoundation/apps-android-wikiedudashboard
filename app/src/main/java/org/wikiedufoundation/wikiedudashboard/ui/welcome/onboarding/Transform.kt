@@ -3,7 +3,9 @@ package org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding
 import android.view.View
 import kotlinx.android.synthetic.main.item_onboarding_page.view.*
 
-//This sets the position of the image in the views
+/**
+* This sets the position of the image in the views
+*/
 fun setParallaxTransformation(page: View, position: Float){
     page.apply {
         val parallaxView = this.img

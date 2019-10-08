@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import org.wikiedufoundation.wikiedudashboard.R
 
-/*
+/**
 * This holds the OnBoardingView and launches the view
-* */
+*/
 class MainOnboardingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
