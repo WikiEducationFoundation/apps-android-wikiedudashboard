@@ -6,11 +6,11 @@
 
         <variable
             name="obj"
-            type="org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData" />
+            type="org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData" />
 
         <variable
             name="adp"
-            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter" />
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyclerAdapter" />
 
     </data>
 
@@ -23,8 +23,8 @@
         <include
             android:id="@+id/include_layout_courses"
             layout="@layout/include_layout_explore_courses"
-            app:courseData="@{null}"
-            app:courseListData="@{obj}" />
+            app:courseData="@{obj}"
+            app:courseListData="@{null}" />
 
         <View
             android:layout_width="match_parent"

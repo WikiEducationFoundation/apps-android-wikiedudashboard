@@ -6,25 +6,25 @@
 
         <variable
             name="obj"
-            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory" />
+            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage" />
 
         <variable
             name="adp"
-            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter" />
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> adp.mediaClicked(obj)}"
+        android:onClick="@{() -> adp.filesClicked(obj)}"
         android:orientation="vertical">
 
         <include
             android:id="@+id/include_layout_media_files"
             layout="@layout/include_files_media"
-            app:files="@{null}"
-            app:media="@{obj}" />
+            app:files="@{obj}"
+            app:media="@{null}" />
 
     </LinearLayout>
 </layout>

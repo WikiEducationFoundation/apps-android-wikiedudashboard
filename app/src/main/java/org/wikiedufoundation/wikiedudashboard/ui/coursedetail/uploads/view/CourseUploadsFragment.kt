@@ -60,7 +60,9 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
         courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
-        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(this)
+        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
+            openCourseDetail(uploadList, position)
+        }
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)
@@ -99,7 +101,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         context?.showToast(message)
     }
 
-    fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
+    private fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
         val i = Intent(context, MediaDetailsActivity::class.java)
         i.putExtra("uploads", courseUploads)
         i.putExtra("position", position)

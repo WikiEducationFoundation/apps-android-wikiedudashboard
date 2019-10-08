@@ -61,7 +61,9 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
         sharedPrefs = context?.let { SharedPrefs(it) }
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
-        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(this)
+        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
+            //            openCourseDetail(it)
+        }
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)

@@ -28,7 +28,7 @@ class CourseListRecyclerAdapter internal constructor(
 
     override fun getItemCount(): Int = courses.size
 
-    fun onCouseClicked(course: CourseListData) {
+    fun onCourseClicked(course: CourseListData) {
         onItemClickListener(course.slug)
     }
 
