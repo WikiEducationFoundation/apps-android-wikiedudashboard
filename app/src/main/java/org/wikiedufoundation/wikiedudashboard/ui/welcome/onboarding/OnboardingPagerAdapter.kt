@@ -39,17 +39,17 @@ class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnboardingPag
     }
 }
 
-/**
- * This holds the views in the adapter
- */
-class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
-    fun bind(onBoardingPage: OnboardingPage) {
-        val res = root.context.resources
-        root.titleTv?.text = res.getString(onBoardingPage.titleResource)
-        root.subTitleTv?.text = res.getString(onBoardingPage.subTitleResource)
-        root.descTV?.text = res.getString(onBoardingPage.descriptionResource)
-        root.img.setImageResource(onBoardingPage.logoResource)
-    }
+    /**
+     * This holds the views in the adapter
+     */
+    class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+        fun bind(onBoardingPage: OnboardingPage) {
+            val res = root.context.resources
+            root.titleTv?.text = res.getString(onBoardingPage.titleResource)
+            root.subTitleTv?.text = res.getString(onBoardingPage.subTitleResource)
+            root.descTV?.text = res.getString(onBoardingPage.descriptionResource)
+            root.img.setImageResource(onBoardingPage.logoResource)
+        }
 
     companion object {
         @LayoutRes

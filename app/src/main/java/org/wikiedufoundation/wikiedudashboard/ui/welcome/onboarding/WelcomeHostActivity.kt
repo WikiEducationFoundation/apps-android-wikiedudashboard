@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import org.wikiedufoundation.wikiedudashboard.R
 
-//This is the host activity for the welcome onboarding fragments
+/**
+ * This is the host activity for the welcome onboarding fragments
+ */
 class WelcomeHostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
