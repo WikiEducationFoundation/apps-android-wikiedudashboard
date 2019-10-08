@@ -11,6 +11,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 import java.util.*
 
+/**
+ * RecyclerView adapter for courses list data
+ * @property mediaDetailFragment primary constructor property
+ * ***/
 class FileUsesRecyclerAdapter internal constructor(
         private var mediaDetailFragment: MediaDetailFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,6 +32,10 @@ class FileUsesRecyclerAdapter internal constructor(
         myDashboardViewHolder.tvCourseTitle.text = course?.title
     }
 
+    /**
+     * Set [FileUsage] type [courses] list of data
+     * @param courses list of courses
+     * ***/
     fun setData(courses: List<FileUsage>) {
         this.courses = courses
     }
@@ -36,6 +44,10 @@ class FileUsesRecyclerAdapter internal constructor(
         return courses.size
     }
 
+    /**
+     * Use [CategoryViewHolder] inner class to declare [tvCourseTitle] TextView
+     * @property itemView primary constructor property to call [tv_course_title]
+     * ***/
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCourseTitle: TextView = itemView.tv_course_title
     }

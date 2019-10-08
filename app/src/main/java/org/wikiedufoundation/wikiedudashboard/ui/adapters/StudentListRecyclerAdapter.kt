@@ -11,6 +11,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.User
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import java.util.*
 
+/**
+ * RecyclerView adapter for recent activities
+ * @property studentListFragment primary constructor property
+ ***/
 class StudentListRecyclerAdapter(
         private var studentListFragment: StudentListFragment
 ) : RecyclerView.Adapter<StudentListRecyclerAdapter.MyAdapter>() {
@@ -29,6 +33,10 @@ class StudentListRecyclerAdapter(
         }
     }
 
+    /**
+     * Set [User] type list of edited activities list
+     * @param studentList a list of students
+     * ***/
     fun setData(studentList: List<User>) {
         this.studentList = studentList
     }
@@ -37,6 +45,10 @@ class StudentListRecyclerAdapter(
         return studentList.size
     }
 
+    /**
+     * Use [MyAdapter] inner class to declare Views component
+     * @property itemView primary constructor property
+     * ***/
     inner class MyAdapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.tv_students_name
     }

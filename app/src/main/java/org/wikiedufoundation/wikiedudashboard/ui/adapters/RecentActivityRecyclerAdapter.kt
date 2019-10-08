@@ -13,7 +13,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * RecyclerView adapter for recent activities
+ * ***/
 class RecentActivityRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var ctx: Context
     private var activities: List<RecentActivity> = ArrayList()
@@ -37,6 +39,10 @@ class RecentActivityRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHold
         articlesEditedViewHolder.tvDate.text = formattedDate
     }
 
+    /**
+     * Set [RecentActivity] type list of edited activities list
+     * @param edited list of courses
+     * ***/
     fun setData(edited: List<RecentActivity>) {
         this.activities = edited
     }
@@ -45,6 +51,10 @@ class RecentActivityRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHold
         return activities.size
     }
 
+    /**
+     * Use [ArticlesEditedViewHolder] inner class to declare Views component
+     * @property itemView primary constructor property
+     * ***/
     inner class ArticlesEditedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCountArticlesEditedTitle: TextView = itemView.tv_count_articles_edited_title
         val tvCountCharactersAdded: TextView = itemView.tv_count_characters_added
