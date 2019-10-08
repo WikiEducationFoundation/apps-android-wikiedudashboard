@@ -68,6 +68,11 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun setWebView() {
+    /** Enable JavaScript execution to display all web page content.
+     *  This enables users logging in for the first time to complete
+     *  the additional account set-up screens displayed after the
+     *  user clicks on the OAuth screen "Allow" button
+     */
         webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
@@ -108,7 +113,7 @@ class WikiEducationDashboardFragment : Fragment() {
         cv_login_wikipedia?.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
             progressBar?.visibility = View.VISIBLE
-            webView!!.loadUrl(url)
+            webView?.loadUrl(url)
         }
         cv_signup_wikipedia?.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup"
