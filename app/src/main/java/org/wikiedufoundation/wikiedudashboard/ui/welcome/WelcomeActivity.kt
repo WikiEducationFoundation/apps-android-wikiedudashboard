@@ -9,6 +9,10 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import java.util.ArrayList
 
+/*
+* This class launch the welcome page
+* when the users is logged out or on first login
+* */
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager
     private lateinit var viewPagerAdapter: ViewPagerAdapter
@@ -17,9 +21,9 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         viewPager = findViewById(R.id.viewPager)
-        val indicator = findViewById(R.id.indicator) as CircleIndicator
+        val indicator = findViewById<CircleIndicator>(R.id.indicator)
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
+        viewPager?.adapter = viewPagerAdapter
 
         indicator.setViewPager(viewPager)
         indicator.createIndicators(2,0);
@@ -32,7 +36,7 @@ class WelcomeActivity : AppCompatActivity() {
         fragmentList.add(WikiEducationDashboardFragment())
         titleList.add("")
         fragmentList.add(OutreachProgramsDashboardFragment())
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 }

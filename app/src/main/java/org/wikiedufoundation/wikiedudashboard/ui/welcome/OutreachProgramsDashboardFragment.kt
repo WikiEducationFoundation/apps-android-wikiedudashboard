@@ -48,8 +48,8 @@ class OutreachProgramsDashboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+            mParam1 = arguments?.getString(ARG_PARAM1)
+            mParam2 = arguments?.getString(ARG_PARAM2)
         }
     }
 
@@ -73,10 +73,10 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun setWebView() {
-        webView!!.webViewClient = object : WebViewClient() {
+        webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-                progressBar!!.visibility = View.VISIBLE
-                constraint_outreach!!.visibility = View.GONE
+                progressBar?.visibility = View.VISIBLE
+                constraint_outreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
 
             }
@@ -86,11 +86,11 @@ class OutreachProgramsDashboardFragment : Fragment() {
                 if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
-                    webView!!.visibility = View.VISIBLE
-                    constraint_outreach!!.visibility = View.GONE
+                    webView?.visibility = View.VISIBLE
+                    constraint_outreach?.visibility = View.GONE
                     super.onPageFinished(view, url)
                 }
-                progressBar!!.visibility = View.GONE
+                progressBar?.visibility = View.GONE
             }
         }
     }
@@ -99,26 +99,26 @@ class OutreachProgramsDashboardFragment : Fragment() {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string:" + cookies!!)
-        sharedPrefs!!.outreachDashboardCookies = cookies
+        sharedPrefs?.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
-        sharedPrefs!!.cookies = cookies
-        sharedPrefs!!.outreachDashboardCookies = cookies
-        sharedPrefs!!.setLogin(true)
+        sharedPrefs?.cookies = cookies
+        sharedPrefs?.outreachDashboardCookies = cookies
+        sharedPrefs?.setLogin(true)
         startActivity(Intent(context, HomeActivity::class.java))
-        activity!!.finish()
+        activity?.finish()
     }
 
     private fun setOnClickListeners() {
-        cv_login_wikipedia!!.setOnClickListener {
+        cv_login_wikipedia?.setOnClickListener {
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki"
-            progressBar!!.visibility = View.VISIBLE
-            webView!!.loadUrl(url)
+            progressBar?.visibility = View.VISIBLE
+            webView?.loadUrl(url)
 
         }
-        cv_signup_wikipedia!!.setOnClickListener {
+        cv_signup_wikipedia?.setOnClickListener {
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup"
-            progressBar!!.visibility = View.VISIBLE
-            webView!!.loadUrl(url)
+            progressBar?.visibility = View.VISIBLE
+            webView?.loadUrl(url)
         }
     }
 

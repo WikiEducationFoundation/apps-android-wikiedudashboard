@@ -9,25 +9,31 @@ import kotlinx.android.synthetic.main.item_onboarding_page.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.page.OnboardingPage
 
-
+/*
+* This OnBoardingPagerAdapter is used
+* for managing the onboarding views
+* */
 class OnBoardingPagerAdapter(private val onBoardingPageList:Array<OnboardingPage> = OnboardingPage.values())
     : RecyclerView.Adapter<PagerViewHolder>() {
 
 
-
+    //Here the item_on_boarding page is inflated
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
         return LayoutInflater.from(parent.context).inflate(
             PagerViewHolder.LAYOUT, parent, false
         ).let { PagerViewHolder(it) }
     }
 
+    //This get the size of the items in the OnBoardingPage
     override fun getItemCount() = onBoardingPageList.size
 
+    //This binds the views to the viewholder
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bind(onBoardingPageList[position])
     }
 }
 
+// This holds the views in the adapter
 class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
     fun bind(onBoardingPage: OnboardingPage) {
         val res = root.context.resources

@@ -34,6 +34,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import org.wikiedufoundation.wikiedudashboard.R
 
+//This model set the page items and contents
 enum class OnboardingPage(@StringRes val titleResource: Int,
                           @StringRes val subTitleResource: Int,
                           @StringRes val descriptionResource: Int,

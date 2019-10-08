@@ -20,9 +20,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.OnBoardingPa
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.page.OnboardingPage
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.setParallaxTransformation
 
-
+//This is the minimum required API level to run the code
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 
+/*
+* The OnBoardingView holds and inflate the views
+* It setup the behaviour of the views on scroll, swipe and on button clicks
+* It also displays the the selected views using the WormsDotIndicator*/
 class OnBoardingView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
   FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
@@ -93,8 +97,5 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     slider?.setCurrentItem(nextSlidePos, true)
   }
 
-  private fun navigateToMainACtivity() {
-
-  }
 
 }
