@@ -20,7 +20,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.timeline.CourseTimelineFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
@@ -88,7 +87,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Home")
-        fragmentList.add(courseHomeFragment!!)
+        courseHomeFragment?.let { fragmentList.add(it) }
 //        if (sharedPrefs!!.cookies == sharedPrefs!!.wikiEduDashboardCookies) {
 //            titleList.add("Timeline")
 //            fragmentList.add(CourseTimelineFragment())
