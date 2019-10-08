@@ -13,7 +13,7 @@ import androidx.navigation.Navigation
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -73,15 +73,15 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun openLicenses() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://creativecommons.org/licenses/by-sa/3.0/")
+        context!!.showCustomChromeTabs("https://creativecommons.org/licenses/by-sa/3.0/")
     }
 
     private fun openTermsAndConditions() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://wikiedu.org/terms-of-service/")
+        context!!.showCustomChromeTabs("https://wikiedu.org/terms-of-service/")
     }
 
     private fun openPrivacyPolicy() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://wikiedu.org/privacy-policy/")
+        context!!.showCustomChromeTabs("https://wikiedu.org/privacy-policy/")
     }
 
     private fun logOut() {

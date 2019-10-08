@@ -4,6 +4,11 @@ import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
+/**
+ * To retrieve list of campaign data and format the data to display in view
+ * @property myDashboardView CampaignListContract interface variable
+ * @property myDashboardProvider CampaignListContract interface variable
+ * ***/
 class CampaignListPresenterImpl(private val myDashboardView: CampaignListContract.View, private val myDashboardProvider: CampaignListContract.Provider) : CampaignListContract.Presenter {
     override fun requestCampaignList(cookies: String) {
         myDashboardView.showProgressBar(true)

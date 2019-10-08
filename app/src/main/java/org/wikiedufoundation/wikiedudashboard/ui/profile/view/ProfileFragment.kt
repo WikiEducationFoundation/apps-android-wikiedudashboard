@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -23,7 +23,6 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
-import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
@@ -31,7 +30,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.ui.settings.SettingsActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 import java.util.*
 
@@ -186,7 +185,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     companion object {

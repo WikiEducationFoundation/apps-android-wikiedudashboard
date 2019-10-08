@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +16,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAda
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 class StudentListFragment : Fragment(), StudentListView {
 
@@ -45,7 +44,7 @@ class StudentListFragment : Fragment(), StudentListView {
         layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.setHasFixedSize(true)
-        studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!, this)
+        studentListRecyclerAdapter = StudentListRecyclerAdapter(this)
         recyclerView!!.adapter = studentListRecyclerAdapter
         studentListPresenter!!.requestStudentList(url!!)
 
@@ -61,7 +60,7 @@ class StudentListFragment : Fragment(), StudentListView {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context!!.showToast(message)
     }
 
     override fun setData(data: StudentListResponse) {

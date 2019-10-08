@@ -30,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="70dp"
         android:layout_marginLeft="10dp"
         app:menu_colorNormal="@color/colorAccent"
         app:menu_colorPressed="@color/colorHeadingDark"
