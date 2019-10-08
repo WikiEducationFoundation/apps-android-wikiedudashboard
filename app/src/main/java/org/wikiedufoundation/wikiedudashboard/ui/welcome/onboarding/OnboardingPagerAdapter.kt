@@ -40,10 +40,13 @@ class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnboardingPag
 }
 
 /**
- * This holds the views in the adapter
+ * This PagerViewHolder holds the views in the adapter
  * and displays the views
  */
 class PagerViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+    /**
+     * This binds the views in the PageViewHolder
+     */
     fun bind(onBoardingPage: OnboardingPage) {
         val res = root.context.resources
         root.titleTv?.text = res.getString(onBoardingPage.titleResource)
