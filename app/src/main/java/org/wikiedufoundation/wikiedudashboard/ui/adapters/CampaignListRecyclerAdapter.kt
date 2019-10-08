@@ -27,7 +27,7 @@ class CampaignListRecyclerAdapter internal constructor(
 
         val campaign: CampaignListData? = campaigns[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        myDashboardViewHolder.tvCampaignTitle.text = campaign!!.title
+        myDashboardViewHolder.tvCampaignTitle.text = campaign?.title
 //        holder.itemView.setOnClickListener { campaignListFragment.openCourseDetail(campaigns[position].slug) }
     }
 
