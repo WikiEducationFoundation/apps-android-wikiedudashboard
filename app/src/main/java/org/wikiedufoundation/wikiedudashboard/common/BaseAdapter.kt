@@ -6,26 +6,53 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>() {
+/**
+ * An abstract class used as [BaseAdapter] for the [RecyclerView].
+ */
+abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+    internal var data = emptyList<T>()
+
+    /**
+     * Use [setData] to update the data from the adapter
+     * @param edited A list of the generic type
+     ***/
+    fun setData(list: List<T>) {
+        data = list
+        notifyDataSetChanged()
+    }
+
+    fun getItem(position: Int) = data[position]
+
+    override fun getItemCount(): Int = data.size
+
+    /**
+     * Use [onCreateViewHolder] to bind the adapter
+     * defining a [ViewDataBinding] for the layout
+     ***/
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
         val infalter = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ViewDataBinding>(infalter, viewType, parent, false)
-        val vh = BaseViewHolder(binding)
+        val vh = BaseViewHolder<T>(binding)
         vh.bindAdp(this)
 
         return vh
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val obj = getObjForPosition(position)
+    /**
+     * Use [onBindViewHolder] to bind the data item from the list
+     ***/
+    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
+        val obj = getItem(position)
         holder.bind(obj)
     }
 
     override fun getItemViewType(position: Int): Int = getLayoutIdForPosition(position)
 
-    protected abstract fun getObjForPosition(position: Int): Any
-
+    /**
+     * Use [getLayoutIdForPosition] to receive the layout id
+     * @param position layout position
+     ***/
     protected abstract fun getLayoutIdForPosition(position: Int): Int
 
 }

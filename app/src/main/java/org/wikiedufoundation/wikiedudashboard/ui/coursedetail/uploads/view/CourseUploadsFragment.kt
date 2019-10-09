@@ -80,7 +80,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         Timber.d(courseUploadList.toString())
         if (courseUploadList.uploads.isNotEmpty()) {
             recyclerView?.visibility = View.VISIBLE
-            courseUploadsRecyclerAdapter?.setData(courseUploadList)
+            courseUploadsRecyclerAdapter?.setData(courseUploadList.uploads)
             courseUploadsRecyclerAdapter?.notifyDataSetChanged()
             tvNoStudents?.visibility = View.GONE
         } else {

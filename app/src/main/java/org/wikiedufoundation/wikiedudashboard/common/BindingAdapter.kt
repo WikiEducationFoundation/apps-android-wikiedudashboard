@@ -9,6 +9,15 @@ import org.wikiedufoundation.wikiedudashboard.R
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * A simple [KotlinFile].
+ * It's responsible for custom bindings that are not allowed by default in Android Studio
+ */
+
+
+/**
+ * Use Kotlin [ExtensionFunctionType] to load the image with [BindingAdapter]
+ ***/
 @BindingAdapter("loadImageUrl")
 fun ImageView.setGlideImage(thumbUrl: String?) {
     Glide.with(this)
@@ -16,6 +25,9 @@ fun ImageView.setGlideImage(thumbUrl: String?) {
             .into(this)
 }
 
+/**
+ * Use Kotlin [ExtensionFunctionType] to load format and show the date with [BindingAdapter]
+ ***/
 @SuppressLint("SimpleDateFormat")
 @BindingAdapter("dateToString")
 fun TextView.setDate(date: Date?) {

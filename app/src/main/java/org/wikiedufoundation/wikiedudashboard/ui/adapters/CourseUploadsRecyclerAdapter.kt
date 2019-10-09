@@ -3,34 +3,19 @@ package org.wikiedufoundation.wikiedudashboard.ui.adapters
 import org.wikiedufoundation.wikiedudashboard.common.SingleLayoutAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
-import java.util.*
 
 /**
  * RecyclerView adapter for courses list data
- * @property courseUploadsFragment primary constructor property
+ * @param layoutId item layout id
+ * @param onClickListener using a high order function to implement o item click through a lambda
  * ***/
 class CourseUploadsRecyclerAdapter(
         layoutId: Int,
         private val onClickListener: (CourseUploadList, Int) -> Unit
-) : SingleLayoutAdapter(layoutId) {
-    private lateinit var courseUploadList: CourseUploadList
-    private var courseUploads: List<CourseUpload> = ArrayList()
-
-    override fun getObjForPosition(position: Int): Any = courseUploads[position]
-
-    /**
-     * Set [courseUploads] list of data
-     * @param courseUploads list of courses
-     * ***/
-    fun setData(courseUploads: CourseUploadList) {
-        this.courseUploads = courseUploads.uploads
-        this.courseUploadList = courseUploads
-    }
-
-    override fun getItemCount(): Int = courseUploads.size
+) : SingleLayoutAdapter<CourseUpload>(layoutId) {
 
     fun onCourseUpdatedClicked(course: CourseUpload) {
-        val position = courseUploads.indexOf(course)
-        onClickListener(courseUploadList, position)
+        val position = data.indexOf(course)
+        onClickListener(CourseUploadList(data), position)
     }
 }
