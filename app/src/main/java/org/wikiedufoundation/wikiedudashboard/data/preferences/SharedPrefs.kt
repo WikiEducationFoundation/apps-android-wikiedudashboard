@@ -9,7 +9,7 @@ import timber.log.Timber
  *
  * @property _context Context
  * */
-class SharedPrefs(private val _context: Context?) {
+class SharedPrefs(_context: Context) {
 
     private val pref: SharedPreferences
     private val editor: SharedPreferences.Editor
@@ -52,7 +52,7 @@ class SharedPrefs(private val _context: Context?) {
         }
 
     init {
-        pref = _context!!.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
         editor = pref.edit()
     }
 

@@ -24,11 +24,9 @@ class WelcomeActivity : AppCompatActivity() {
         val indicator = findViewById<CircleIndicator>(R.id.indicator)
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPager?.adapter = viewPagerAdapter
-
         indicator.setViewPager(viewPager)
         indicator.createIndicators(2,0);
         indicator.animatePageSelected(2)
-
 
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()

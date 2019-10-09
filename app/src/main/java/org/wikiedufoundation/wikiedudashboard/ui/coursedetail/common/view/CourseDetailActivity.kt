@@ -53,24 +53,25 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         enrolled = intent.getBooleanExtra("enrolled", false)
 
         context = this
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = context?.let { SharedPrefs(it) }
 
         val action = intent.action
         val data = intent.dataString
         if (Intent.ACTION_VIEW == action && data != null) {
 
             url = data.substring(data.lastIndexOf("courses/") + 8)
-            if (url!!.contains("?enroll")) {
-                val enrollParam = url!!.substring(url!!.lastIndexOf("?enroll") + 7)
-                url = url!!.substring(0, url!!.lastIndexOf("?enroll"))
+            val urlExists = url?.contains("?enroll") ?: false
+            if (urlExists) {
+                val enrollParam = url?.lastIndexOf("?enroll")?.plus(7)?.let { url?.substring(it) }
+                url = url?.lastIndexOf("?enroll")?.let { url?.substring(0, it) }
             }
         }
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
-        toolbar!!.setNavigationOnClickListener { onBackPressed() }
+        viewPager?.adapter = viewPagerAdapter
+        tabLayout?.setupWithViewPager(viewPager)
+        toolbar?.setNavigationOnClickListener { onBackPressed() }
         courseDetailPresenter = CourseDetailPresenterImpl(this, RetrofitCourseDetailProvider())
-        courseDetailPresenter!!.requestCourseDetail(url!!)
+        url?.let { courseDetailPresenter?.requestCourseDetail(it) }
     }
 
     override fun showMessage(message: String) {
@@ -78,7 +79,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     }
 
     override fun setData(data: CourseDetail) {
-        toolbar!!.title = data.title
+        toolbar?.title = data.title
         courseHomeFragment = CourseHomeFragment.newInstance(data)
         setTabs()
     }
@@ -105,7 +106,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         courseArticlesEditedFragment.arguments = bundle2
         fragmentList.add(courseArticlesEditedFragment)
         titleList.add("Uploads")
-        fragmentList.add(CourseUploadsFragment.newInstance(type = 1, courseDetail = url!!, courseUploads = null))
+        url?.let { fragmentList.add(CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null)) }
         titleList.add("Activity")
         val recentActivityFragment = RecentActivityFragment()
         val bundle3 = Bundle()
@@ -113,15 +114,15 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         recentActivityFragment.arguments = bundle3
         fragmentList.add(recentActivityFragment)
 
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 }
