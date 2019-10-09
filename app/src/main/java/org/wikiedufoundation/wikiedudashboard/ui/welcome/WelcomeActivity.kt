@@ -18,14 +18,14 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
         viewPager = findViewById(R.id.viewPager)
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
+        viewPager?.adapter = viewPagerAdapter
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Home")
         fragmentList.add(WikiEducationDashboardFragment())
         titleList.add("Home")
         fragmentList.add(OutreachProgramsDashboardFragment())
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 }

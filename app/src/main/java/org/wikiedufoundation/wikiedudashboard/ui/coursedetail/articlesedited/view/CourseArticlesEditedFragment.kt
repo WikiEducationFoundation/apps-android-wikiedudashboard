@@ -18,6 +18,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.pro
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
+/**
+ * A [Fragment] subclass for edited course articles
+ * ***/
 class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     private var tvNoEditedArticles: TextView? = null
@@ -45,7 +48,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = articlesEditedRecyclerAdapter
 
-        articlesEditedPresenter?.requestArticlesEdited(url!!)
+        url?.let { articlesEditedPresenter?.requestArticlesEdited(it) }
         return view
     }
 
@@ -71,6 +74,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 }

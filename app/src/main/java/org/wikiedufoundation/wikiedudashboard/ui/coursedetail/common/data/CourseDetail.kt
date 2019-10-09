@@ -2,6 +2,10 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data
 
 import java.io.Serializable
 
+/**
+ * [CourseDetail] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class CourseDetail(
     val id: Int,
     val title: String,
