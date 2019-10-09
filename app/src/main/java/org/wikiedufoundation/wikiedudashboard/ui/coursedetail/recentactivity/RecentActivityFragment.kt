@@ -19,6 +19,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
+/**
+ * A simple [Fragment] for recent activities
+ * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
     private var tvNoActivity: TextView? = null
