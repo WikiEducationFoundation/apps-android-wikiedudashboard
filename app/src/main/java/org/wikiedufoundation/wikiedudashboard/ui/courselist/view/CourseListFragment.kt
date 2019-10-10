@@ -57,15 +57,19 @@ class CourseListFragment : Fragment(), CourseListView {
         tv_no_courses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
-        val context = context
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses?.text = sharedPrefs?.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
-        courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) { openCourseDetail(it) }
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = courseListRecyclerAdapter
+
+        courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
+            openCourseDetail(it)
+        }
+
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = courseListRecyclerAdapter
+        }
 
         sharedPrefs?.cookies?.let { courseListPresenter?.requestDashboard(it) }
         return view

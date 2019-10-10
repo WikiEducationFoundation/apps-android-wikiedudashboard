@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,17 +41,16 @@ class StudentListFragment : Fragment(), StudentListView {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
 
-        val context: Context? = context
         studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
-        layoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.setHasFixedSize(true)
+
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
-        recyclerView?.adapter = studentListRecyclerAdapter
-        url?.let { studentListPresenter?.requestStudentList(it) }
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = studentListRecyclerAdapter
+
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = studentListRecyclerAdapter
+        }
+
         url?.let { studentListPresenter?.requestStudentList(it) }
 
         return view

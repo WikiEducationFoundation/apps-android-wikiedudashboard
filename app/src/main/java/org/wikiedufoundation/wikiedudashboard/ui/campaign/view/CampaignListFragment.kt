@@ -30,14 +30,15 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var tvNoCampaigns: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
-
     private var sharedPrefs: SharedPrefs? = null
-    private var campaignListPresenter: CampaignListContract.Presenter? = null
-    private var campaignListRecyclerAdapter: CampaignListRecyclerAdapter? = null
+
+    private lateinit var tvNoCampaigns: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var campaignListPresenter: CampaignListContract.Presenter
+    private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
+
     private var campaignList: List<CampaignListData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,13 +62,16 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
         sharedPrefs = context?.let { SharedPrefs(it) }
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
+
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
-            //            openCourseDetail(it)
+//                        openCourseDetail(it)
         }
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = campaignListRecyclerAdapter
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = campaignListRecyclerAdapter
+        }
 
         sharedPrefs?.cookies?.let { campaignListPresenter?.requestCampaignList(it) }
         return view

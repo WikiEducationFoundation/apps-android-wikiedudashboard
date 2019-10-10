@@ -54,13 +54,17 @@ class ProfileCourseListFragment : Fragment() {
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses?.text = sharedPrefs?.cookies
+
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
             openCourseDetail(it)
         }
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = courseListRecyclerAdapter
+
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = courseListRecyclerAdapter
+        }
+        
         setData(coursesList)
         showProgressBar(false)
         return view

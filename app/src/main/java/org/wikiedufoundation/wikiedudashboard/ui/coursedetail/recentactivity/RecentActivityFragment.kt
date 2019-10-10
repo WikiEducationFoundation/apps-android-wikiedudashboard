@@ -44,10 +44,12 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
         recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = recentActivityRecyclerAdapter
+
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = recentActivityRecyclerAdapter
+        }
 
         url?.let { recentActivityPresenter?.requestRecentActivity(it) }
         return view
