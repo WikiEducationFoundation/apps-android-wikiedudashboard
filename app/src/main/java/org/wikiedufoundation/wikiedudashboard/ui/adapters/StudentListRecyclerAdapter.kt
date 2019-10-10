@@ -13,6 +13,10 @@ class StudentListRecyclerAdapter(
         private val onClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<User>(layoutId) {
 
+    /**
+     * Use [onStudentClicked] to handle the item's click
+     * @param user item's object
+     ***/
     fun onStudentClicked(user: User) {
         onClickListener(user.userName)
     }

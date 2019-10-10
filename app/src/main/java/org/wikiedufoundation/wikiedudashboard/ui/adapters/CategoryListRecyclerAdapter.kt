@@ -13,6 +13,10 @@ class CategoryListRecyclerAdapter internal constructor(
 //        private val onClickListener: () -> Unit
 ) : SingleLayoutAdapter<MediaCategory>(layoutId) {
 
+    /**
+     * Use [mediaClicked] to handle the item's click
+     * @param mediaCategory item's object
+     ***/
     fun mediaClicked(mediaCategory: MediaCategory) {
 //        onClickListener(mediaCategory)
     }

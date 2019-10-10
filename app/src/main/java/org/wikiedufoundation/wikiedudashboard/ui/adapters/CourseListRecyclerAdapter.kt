@@ -13,6 +13,10 @@ class CourseListRecyclerAdapter internal constructor(
         private val onItemClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CourseListData>(layoutId) {
 
+    /**
+     * Use [onCourseClicked] to handle the item's click
+     * @param course item's object
+     ***/
     fun onCourseClicked(course: CourseListData) {
         onItemClickListener(course.slug)
     }

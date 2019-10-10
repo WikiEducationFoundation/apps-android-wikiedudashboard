@@ -13,6 +13,10 @@ class CampaignListRecyclerAdapter internal constructor(
         private val onClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CampaignListData>(layoutId) {
 
+    /**
+     * Use [onCampaignClicked] to handle the item's click
+     * @param campaign item's object
+     ***/
     fun onCampaignClicked(campaign: CampaignListData) {
         onClickListener(campaign.slug)
     }

@@ -22,6 +22,10 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
         notifyDataSetChanged()
     }
 
+    /**
+     * Use [getItem] to item per position
+     * @param position A position's list
+     ***/
     fun getItem(position: Int) = data[position]
 
     override fun getItemCount(): Int = data.size

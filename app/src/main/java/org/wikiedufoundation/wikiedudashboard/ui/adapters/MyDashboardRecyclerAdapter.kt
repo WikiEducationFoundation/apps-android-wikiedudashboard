@@ -13,6 +13,10 @@ class MyDashboardRecyclerAdapter internal constructor(
         private val onClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CourseListData>(layoutId) {
 
+    /**
+     * Use [onItemClicked] to handle the item's click
+     * @param course item's object
+     ***/
     fun onItemClicked(course: CourseListData) {
         onClickListener(course.slug)
     }

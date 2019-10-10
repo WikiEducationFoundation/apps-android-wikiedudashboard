@@ -13,6 +13,10 @@ class FileUsesRecyclerAdapter internal constructor(
 //        private val onClickListener: () -> Unit
 ) : SingleLayoutAdapter<FileUsage>(layoutId) {
 
+    /**
+     * Use [filesClicked] to handle the item's click
+     * @param file item's object
+     ***/
     fun filesClicked(file: FileUsage) {
 //        onClickListener(file)
     }
