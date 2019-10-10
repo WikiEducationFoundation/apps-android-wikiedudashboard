@@ -24,12 +24,13 @@ import timber.log.Timber
  * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
-    private var tvNoActivity: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var tvNoActivity: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
-    private var recentActivityPresenter: RecentActivityContract.Presenter? = null
-    private var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter? = null
+    private lateinit var recentActivityPresenter: RecentActivityContract.Presenter
+    private lateinit var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter
+
     private var url: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,34 +46,34 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
 
-        recyclerView?.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = recentActivityRecyclerAdapter
         }
 
-        url?.let { recentActivityPresenter?.requestRecentActivity(it) }
+        url?.let { recentActivityPresenter.requestRecentActivity(it) }
         return view
     }
 
     override fun setData(data: RecentActivityResponse) {
         Timber.d(data.toString())
         if (data.course.revisions.isNotEmpty()) {
-            recyclerView?.visibility = View.VISIBLE
-            recentActivityRecyclerAdapter?.setData(data.course.revisions)
-            recentActivityRecyclerAdapter?.notifyDataSetChanged()
-            tvNoActivity?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            recentActivityRecyclerAdapter.setData(data.course.revisions)
+            recentActivityRecyclerAdapter.notifyDataSetChanged()
+            tvNoActivity.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoActivity?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoActivity.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 

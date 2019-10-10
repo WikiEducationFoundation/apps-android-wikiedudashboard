@@ -73,7 +73,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             adapter = campaignListRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { campaignListPresenter?.requestCampaignList(it) }
+        sharedPrefs?.cookies?.let { campaignListPresenter.requestCampaignList(it) }
         return view
     }
 
@@ -81,21 +81,21 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
             campaignList = data.campaigns
-            recyclerView?.visibility = View.VISIBLE
-            campaignListRecyclerAdapter?.setData(data.campaigns)
-            campaignListRecyclerAdapter?.notifyDataSetChanged()
-            tvNoCampaigns?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            campaignListRecyclerAdapter.setData(data.campaigns)
+            campaignListRecyclerAdapter.notifyDataSetChanged()
+            tvNoCampaigns.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoCampaigns?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoCampaigns.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 
@@ -111,8 +111,8 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
                 filteredCampaignList?.add(campaign)
             }
         }
-        filteredCampaignList?.let { campaignListRecyclerAdapter?.setData(it) }
-        campaignListRecyclerAdapter?.notifyDataSetChanged()
+        filteredCampaignList?.let { campaignListRecyclerAdapter.setData(it) }
+        campaignListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {

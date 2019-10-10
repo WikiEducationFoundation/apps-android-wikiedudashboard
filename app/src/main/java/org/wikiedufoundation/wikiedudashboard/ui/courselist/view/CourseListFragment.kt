@@ -31,12 +31,13 @@ class CourseListFragment : Fragment(), CourseListView {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-    private var tv_no_courses: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var coursesList: List<CourseListData> = ArrayList()
-    private var courseListPresenter: CourseListPresenterImpl? = null
-    private var courseListRecyclerAdapter: CourseListRecyclerAdapter? = null
+
+    private lateinit var tv_no_courses: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var courseListPresenter: CourseListPresenterImpl
+    private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,20 +59,20 @@ class CourseListFragment : Fragment(), CourseListView {
         recyclerView = view.findViewById(R.id.rv_course_list)
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-        tv_no_courses?.text = sharedPrefs?.cookies
+        tv_no_courses.text = sharedPrefs?.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
 
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)
         }
 
-        recyclerView?.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseListRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { courseListPresenter?.requestDashboard(it) }
+        sharedPrefs?.cookies?.let { courseListPresenter.requestDashboard(it) }
         return view
     }
 
@@ -79,21 +80,21 @@ class CourseListFragment : Fragment(), CourseListView {
         Timber.d(data.toString())
         if (data.courses.isNotEmpty()) {
             coursesList = data.courses
-            recyclerView?.visibility = View.VISIBLE
-            courseListRecyclerAdapter?.setData(data.courses)
-            courseListRecyclerAdapter?.notifyDataSetChanged()
-            tv_no_courses?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            courseListRecyclerAdapter.setData(data.courses)
+            courseListRecyclerAdapter.notifyDataSetChanged()
+            tv_no_courses.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tv_no_courses?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tv_no_courses.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 
@@ -116,8 +117,8 @@ class CourseListFragment : Fragment(), CourseListView {
                 filteredCourseList?.add(course)
             }
         }
-        filteredCourseList?.let { courseListRecyclerAdapter?.setData(it) }
-        courseListRecyclerAdapter?.notifyDataSetChanged()
+        filteredCourseList?.let { courseListRecyclerAdapter.setData(it) }
+        courseListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {

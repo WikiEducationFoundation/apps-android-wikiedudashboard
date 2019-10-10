@@ -23,12 +23,13 @@ import timber.log.Timber
  * ***/
 class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
-    private var tvNoEditedArticles: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var tvNoEditedArticles: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
-    private var articlesEditedPresenter: ArticlesEditedPresenterImpl? = null
-    private var articlesEditedRecyclerAdapter: ArticlesEditedRecyclerAdapter? = null
+    private lateinit var articlesEditedPresenter: ArticlesEditedPresenterImpl
+    private lateinit var articlesEditedRecyclerAdapter: ArticlesEditedRecyclerAdapter
+
     private var url: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,34 +45,34 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(R.layout.item_rv_articles_edited)
 
-        recyclerView?.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = articlesEditedRecyclerAdapter
         }
 
-        url?.let { articlesEditedPresenter?.requestArticlesEdited(it) }
+        url?.let { articlesEditedPresenter.requestArticlesEdited(it) }
         return view
     }
 
     override fun setData(data: ArticlesEdited) {
         Timber.d(data.toString())
         if (data.course.articles.size > 0) {
-            recyclerView?.visibility = View.VISIBLE
-            articlesEditedRecyclerAdapter?.setData(data.course.articles)
-            articlesEditedRecyclerAdapter?.notifyDataSetChanged()
-            tvNoEditedArticles?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            articlesEditedRecyclerAdapter.setData(data.course.articles)
+            articlesEditedRecyclerAdapter.notifyDataSetChanged()
+            tvNoEditedArticles.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoEditedArticles?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoEditedArticles.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 

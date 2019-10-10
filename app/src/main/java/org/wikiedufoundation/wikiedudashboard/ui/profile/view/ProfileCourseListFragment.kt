@@ -28,11 +28,12 @@ import timber.log.Timber
 class ProfileCourseListFragment : Fragment() {
 
     private var mParam1: String? = null
-    private var tv_no_courses: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var coursesList: List<CourseData> = ArrayList()
-    private var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter? = null
+
+    private lateinit var tvNoCurse: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,22 +50,24 @@ class ProfileCourseListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
         progressBar = view.findViewById(R.id.progressBar)
-        tv_no_courses = view.findViewById(R.id.tv_no_courses)
+        tvNoCurse = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-        tv_no_courses?.text = sharedPrefs?.cookies
 
+        tvNoCurse.text = sharedPrefs?.cookies
+
+        tvNoCurse.text = sharedPrefs?.cookies
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
             openCourseDetail(it)
         }
 
-        recyclerView?.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseListRecyclerAdapter
         }
-        
+
         setData(coursesList)
         showProgressBar(false)
         return view
@@ -77,13 +80,13 @@ class ProfileCourseListFragment : Fragment() {
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
-            recyclerView?.visibility = View.VISIBLE
-            courseListRecyclerAdapter?.setData(courses)
-            courseListRecyclerAdapter?.notifyDataSetChanged()
-            tv_no_courses?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            courseListRecyclerAdapter.setData(courses)
+            courseListRecyclerAdapter.notifyDataSetChanged()
+            tvNoCurse.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tv_no_courses?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoCurse.visibility = View.VISIBLE
         }
     }
 
@@ -94,9 +97,9 @@ class ProfileCourseListFragment : Fragment() {
      * ***/
     fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 
