@@ -102,11 +102,11 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar?.inflateMenu(R.menu.menu_media_details)
         courseUpload = position?.let { (courseUploads?.uploads?.get(it)) }
         context?.let { Glide.with(it).load(courseUpload?.thumbUrl).into(mediaDetailImage) }
-        fileName = courseUpload?.file_name
+        fileName = courseUpload?.fileName
         tvTitle?.text = fileName
         tvAuthor?.text = courseUpload?.uploader
         toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
-        tvUploadDate?.text = courseUpload?.uploaded_at
+        tvUploadDate?.text = courseUpload?.uploadedAt
         mediaDetailImage?.setOnClickListener {
             (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }

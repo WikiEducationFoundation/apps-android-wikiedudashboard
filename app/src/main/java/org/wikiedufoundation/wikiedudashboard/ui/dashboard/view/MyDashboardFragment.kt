@@ -76,12 +76,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs?.userName = data.user.username
+        sharedPrefs?.userName = data.user.userName
         Timber.d(data.toString())
-        if (data.current_courses.isNotEmpty()) {
-            coursesList = data.current_courses
+        if (data.currentCourses.isNotEmpty()) {
+            coursesList = data.currentCourses
             recyclerView?.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter?.setData(data.current_courses)
+            myDashboardRecyclerAdapter?.setData(data.currentCourses)
             myDashboardRecyclerAdapter?.notifyDataSetChanged()
             tvNoCourses?.visibility = View.GONE
         } else {

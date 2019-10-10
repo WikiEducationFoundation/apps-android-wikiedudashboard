@@ -4,53 +4,101 @@ import com.google.gson.annotations.SerializedName
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import java.io.Serializable
 
+/**
+ * [ProfileResponse] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class ProfileResponse : Serializable {
     @SerializedName("user_recent_uploads")
     val uploads: List<CourseUpload>? = null
     @SerializedName("courses_details")
     val courses: List<CourseData>? = null
-    val as_instructor: AsInstructorDetails? = null
-    val by_students: ByStudentsDetails? = null
-    val as_student: AsStudentDetails? = null
+    val asInstructor: AsInstructorDetails? = null
+    val byStudents: ByStudentsDetails? = null
+    val asStudent: AsStudentDetails? = null
 }
 
+/**
+ * [CourseData] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class CourseData(
-        val course_id: Int,
-        val course_title: String,
-        val course_school: String,
-        val course_term: String,
-        val user_count: Int,
-        val user_role: String,
-        val course_slug: String
+        @SerializedName("course_id")
+        val courseId: Int,
+        @SerializedName("course_title")
+        val courseTitle: String,
+        @SerializedName("course_school")
+        val courseSchool: String,
+        @SerializedName("course_term")
+        val courseTerm: String,
+        @SerializedName("user_count")
+        val userCount: Int,
+        @SerializedName("user_role")
+        val userRole: String,
+        @SerializedName("course_slug")
+        val courseSlug: String
 ) : Serializable
 
 
+/**
+ * [AsInstructorDetails] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class AsInstructorDetails(
-        val course_string_prefix: String,
-        val courses_count: Int,
-        val user_count: Int,
-        val trained_percent: String
+        @SerializedName("course_string_prefix")
+        val courseStringPrefix: String,
+        @SerializedName("courses_count")
+        val coursesCount: Int,
+        @SerializedName("user_count")
+        val userCount: Int,
+        @SerializedName("trained_percent")
+        val trainedPercent: String
 ) : Serializable
 
+/**
+ * [ByStudentsDetails] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class ByStudentsDetails(
-        val word_count: String,
-        val references_count: String,
-        val view_sum: String,
-        val article_count: String,
-        val new_article_count: String,
-        val upload_count: String,
-        val uploads_in_use_count: Int,
-        val upload_usage_count: Int
+        @SerializedName("word_count")
+        val wordCount: String,
+        @SerializedName("references_count")
+        val referencesCount: String,
+        @SerializedName("view_sum")
+        val viewSum: String,
+        @SerializedName("article_count")
+        val articleCount: String,
+        @SerializedName("new_article_count")
+        val newArticleCount: String,
+        @SerializedName("upload_count")
+        val uploadCount: String,
+        @SerializedName("uploads_in_use_count")
+        val uploadsInUseCount: Int,
+        @SerializedName("upload_usage_count")
+        val uploadUsageCount: Int
 ) : Serializable
 
+/**
+ * [AsStudentDetails] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class AsStudentDetails(
-        val course_string_prefix: String,
-        val individual_courses_count: Int,
-        val individual_word_count: String,
-        val individual_references_count: String,
-        val individual_article_views: String,
-        val individual_article_count: String,
-        val individual_articles_created: String,
-        val individual_upload_count: String,
-        val individual_upload_usage_count: String
+        @SerializedName("course_string_prefix")
+        val courseStringPrefix: String,
+        @SerializedName("individual_courses_count")
+        val individualCoursesCount: Int,
+        @SerializedName("individual_word_count")
+        val individualWordCount: String,
+        @SerializedName("individual_references_count")
+        val individualReferencesCount: String,
+        @SerializedName("individual_article_views")
+        val individualArticleViews: String,
+        @SerializedName("individual_article_count")
+        val individualArticleCount: String,
+        @SerializedName("individual_articles_created")
+        val individualArticlesCreated: String,
+        @SerializedName("individual_upload_count")
+        val individualUploadCount: String,
+        @SerializedName("individual_upload_usage_count")
+        val individualUploadUsageCount: String
 ) : Serializable

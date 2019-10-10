@@ -73,36 +73,36 @@ class ProfileStatsFragment : Fragment() {
         val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
         val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
 
-        profileResponse?.as_instructor?.let {
+        profileResponse?.asInstructor?.let {
             val asInstructorDetails: AsInstructorDetails = it
         }
 
-        profileResponse?.as_student?.let {
+        profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text : String = "Total impact made by " + username +"'s students"
+            val text: String = "Total impact made by $username's students"
             tvTitleImpactByStudents.text = text
-            tvCountArticlesCreated.text = asStudentDetails.individual_articles_created
-            tvCountArticlesEdited.text = asStudentDetails.individual_article_views
-            tvCountTotalEdits.text = asStudentDetails.individual_article_count
-            tvCountStudentEditors.text = asStudentDetails.individual_upload_count
-            tvCountWordsAdded.text = asStudentDetails.individual_word_count
-            tvCountArticleViews.text = asStudentDetails.individual_article_views
-            tvCountCommonsUploads.text = asStudentDetails.individual_upload_count
+            tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
+            tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
+            tvCountTotalEdits.text = asStudentDetails.individualArticleCount
+            tvCountStudentEditors.text = asStudentDetails.individualUploadCount
+            tvCountWordsAdded.text = asStudentDetails.individualWordCount
+            tvCountArticleViews.text = asStudentDetails.individualArticleViews
+            tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
             llAsStudent.visibility = GONE
             llNotEnrolled.visibility = VISIBLE
         }
 
-        profileResponse?.by_students?.let {
+        profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
             val text : String = "Total impact made by " + username +"as a student"
             tvTitleImpactByStudents.text = text
-            tvInstructorCountWordsAdded.text = byStudentDetails.word_count
-            tvInstructorCountReferencesAdded.text = byStudentDetails.references_count
-            tvInstructorCountArticleViews.text = byStudentDetails.view_sum
-            tvInstructorCountArticlesCreated.text = byStudentDetails.new_article_count
-            tvInstructorCountArticlesEdited.text = byStudentDetails.article_count
-            tvInstructorCountCommonsUpload.text = byStudentDetails.upload_count
+            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
+            tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
+            tvInstructorCountArticleViews.text = byStudentDetails.viewSum
+            tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
+            tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
+            tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
             llByStudent.visibility = GONE
             llNotEnrolled.visibility = VISIBLE

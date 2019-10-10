@@ -1,5 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data
 
+import com.google.gson.annotations.SerializedName
+
 /**
  * [Article] model class
  * @constructor primary constructor
@@ -8,6 +10,8 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.da
  * @property title String, article title
  * ***/
 class Article(
-    val id: Int,
-    val title: String
+        @SerializedName("id")
+        val id: Int,
+        @SerializedName("title")
+        val title: String
 )
