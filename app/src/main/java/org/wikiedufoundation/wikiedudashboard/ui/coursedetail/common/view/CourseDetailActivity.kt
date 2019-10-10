@@ -25,6 +25,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.Cours
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import java.util.*
 
+/**
+ * Activity view for course detail
+ * ***/
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
     private var courseDetailPresenter: CourseDetailPresenter? = null
@@ -83,6 +86,9 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         setTabs()
     }
 
+    /**
+     * Set course detail tabs
+     * ***/
     private fun setTabs() {
         val fragmentList = ArrayList<Fragment?>()
         val titleList = ArrayList<String>()
