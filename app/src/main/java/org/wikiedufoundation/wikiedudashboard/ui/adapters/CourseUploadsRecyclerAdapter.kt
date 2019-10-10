@@ -14,6 +14,10 @@ class CourseUploadsRecyclerAdapter(
         private val onClickListener: (CourseUploadList, Int) -> Unit
 ) : SingleLayoutAdapter<CourseUpload>(layoutId) {
 
+    /**
+     * Use [onCourseUpdatedClicked] to handle the item's click
+     * @param course item's object
+     ***/
     fun onCourseUpdatedClicked(course: CourseUpload) {
         val position = data.indexOf(course)
         onClickListener(CourseUploadList(data), position)
