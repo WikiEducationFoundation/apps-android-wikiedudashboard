@@ -13,9 +13,12 @@ class MediaDetail(
         val ns: Int,
         @SerializedName("title")
         val title: String,
-        val globalusage: List<FileUsage>,
+        @SerializedName("globalusage")
+        val globalUsage: List<FileUsage>,
+        @SerializedName("categories")
         val categories: List<MediaCategory>,
-        val imageinfo: List<ImageDetails>
+        @SerializedName("imageinfo")
+        val imageInfo: List<ImageDetails>
 )
 
 /**

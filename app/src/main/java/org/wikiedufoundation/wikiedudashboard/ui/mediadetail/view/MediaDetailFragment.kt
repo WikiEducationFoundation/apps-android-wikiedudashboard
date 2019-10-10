@@ -159,7 +159,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun setData(data: MediaDetailsResponse) {
         Timber.d(data.toString())
 
-        val imageinfo = data.query.page[data.query.page.keys.first()]?.let { it.imageinfo[0] }
+        val imageinfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
 
         // Description
         tvDescription?.text = imageinfo?.extMetaData?.description?.value
@@ -181,7 +181,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         }
 
         // File Uses
-        val fileuses = data.query.page[data.query.page.keys.first()]?.globalusage
+        val fileuses = data.query.page[data.query.page.keys.first()]?.globalUsage
         if (categories.isNotEmpty()) {
             fileUsesRecyclerView?.visibility = View.VISIBLE
             fileuses?.let { fileusesRecyclerAdapter?.setData(it) }
