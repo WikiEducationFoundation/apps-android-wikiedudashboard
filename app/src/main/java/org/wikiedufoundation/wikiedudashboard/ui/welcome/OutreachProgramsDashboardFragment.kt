@@ -107,7 +107,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private fun proceedToLogin(url: String) {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
-        Timber.d("All the cookies in a string:" + cookies!!)
+        Timber.d("All the cookies in a string:" + cookies)
         Timber.d("All the cookies in a string: $cookies")
         sharedPrefs?.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
