@@ -36,11 +36,11 @@ class CourseUploadsRecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         courseUpload = courseUploads[position]
         val myDashboardViewHolder = holder as MyDashboardViewHolder
-        courseUpload?.let { myDashboardViewHolder.tvUploadTitle.text = it.file_name }
+        courseUpload?.let { myDashboardViewHolder.tvUploadTitle.text = it.fileName }
         courseUpload?.let {
             Glide.with(ctx).load(it.thumbUrl).into(myDashboardViewHolder.ivCourseUpload)
         }
-        myDashboardViewHolder.tvUploadTitle.text = courseUpload?.file_name
+        myDashboardViewHolder.tvUploadTitle.text = courseUpload?.fileName
         holder.itemView.setOnClickListener {
             courseUploadsFragment.openCourseDetail(courseUploadList, position)
         }

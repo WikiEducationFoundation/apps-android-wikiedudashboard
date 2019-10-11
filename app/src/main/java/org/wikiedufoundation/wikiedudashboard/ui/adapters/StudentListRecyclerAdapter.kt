@@ -27,9 +27,9 @@ class StudentListRecyclerAdapter(
     }
 
     override fun onBindViewHolder(myAdapter: MyAdapter, i: Int) {
-        myAdapter.textView.text = studentList[i].username
+        myAdapter.textView.text = studentList[i].userName
         myAdapter.itemView.setOnClickListener {
-            studentListFragment.openStudentProfile(studentList[i].username)
+            studentListFragment.openStudentProfile(studentList[i].userName)
         }
     }
 
