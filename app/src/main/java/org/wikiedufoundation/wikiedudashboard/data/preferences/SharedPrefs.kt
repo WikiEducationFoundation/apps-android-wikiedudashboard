@@ -67,6 +67,15 @@ class SharedPrefs(_context: Context) {
         Timber.d("User login session modified!")
     }
 
+    var isFirstTimeLaunch: Boolean
+        get() {
+            return pref.getBoolean(SharedPrefs.IS_FIRST_TIME_LAUNCH, true)
+        }
+        set(isFirstTime) {
+            editor.putBoolean(SharedPrefs.IS_FIRST_TIME_LAUNCH, isFirstTime)
+            editor.commit()
+        }
+
     companion object {
 
         private val PREF_NAME = "prefs"
@@ -75,5 +84,6 @@ class SharedPrefs(_context: Context) {
         private val KEY_WIKI_EDU_DASHBOARD_COOKIES = "wiki_edu_dashboard_cookies"
         private val KEY_OUTREACH_DASHBOARD_COOKIES = "outreach_dashboard_cookies"
         private val KEY_USERNAME = "username"
+        private const val IS_FIRST_TIME_LAUNCH = "IS_FIRST_TIME_LAUNCH"
     }
 }

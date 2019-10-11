@@ -38,6 +38,7 @@ class CategoryListRecyclerAdapter internal constructor(
      * ***/
     fun setData(courses: List<MediaCategory>) {
         this.courses = courses
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

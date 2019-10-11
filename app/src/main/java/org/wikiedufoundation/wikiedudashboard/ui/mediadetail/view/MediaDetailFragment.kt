@@ -218,4 +218,5 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             return fragment
         }
     }
+
 }

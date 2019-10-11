@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
-import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
+import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeHostActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(context, HomeActivity::class.java))
                 finish()
             } else {
-                startActivity(Intent(context, WelcomeActivity::class.java))
+                startActivity(Intent(context, WelcomeHostActivity::class.java))
                 finish()
             }
         }, 1000)

@@ -94,6 +94,7 @@ class SettingsActivity : AppCompatActivity() {
                     sharedPrefs?.setLogin(false)
                     val i = Intent(context, WelcomeActivity::class.java)
                     startActivity(i)
+
                     dialog.dismiss()
                 }.show()
     }
