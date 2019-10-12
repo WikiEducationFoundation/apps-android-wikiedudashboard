@@ -1,8 +1,11 @@
 package org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -10,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -33,6 +37,10 @@ import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
+import java.io.*
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -154,6 +162,36 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     private fun downloadImage() {
 //        TODO("not implemented")
+        try{
+            val url:URL = URL(courseUpload?.thumbUrl)
+
+            val inputStream:InputStream = BufferedInputStream(url.openStream())
+            val bitmapImg:Bitmap = BitmapFactory.decodeStream(inputStream)
+
+            val rootDir:String = context?.filesDir?.path + File.separator +"image_" +Date().toString()
+            val myDir:FileOutputStream = FileOutputStream(rootDir)
+
+            val outStream: ByteArrayOutputStream = ByteArrayOutputStream()
+            val bufByte: ByteArray = ByteArray(1024)
+            var num:Int = inputStream.read(bufByte)
+            while (num!=-1){
+                outStream.write(bufByte,0,num)
+                num = inputStream.read(bufByte)
+            }
+            bitmapImg.compress(Bitmap.CompressFormat.JPEG,90,outStream)
+
+            outStream.flush()
+            outStream.close()
+            inputStream.close()
+
+            val response:ByteArray = outStream.toByteArray()
+            myDir.write(response)
+            myDir.close()
+            Toast.makeText(context,"Downloaded",Toast.LENGTH_LONG).show()
+
+        }catch (ie:IOException){
+            ie.stackTrace
+        }
     }
 
     override fun setData(data: MediaDetailsResponse) {
