@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
@@ -23,7 +24,6 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
-import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
@@ -31,7 +31,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.ui.settings.SettingsActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 import java.util.*
 
@@ -69,9 +69,9 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getBoolean(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getBoolean(ARG_PARAM2)
         }
     }
 
@@ -82,8 +82,8 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         tabLayout = view.findViewById(R.id.tabLayout)
         viewPager = view.findViewById(R.id.viewPager)
         progressBar = view.findViewById(R.id.progressBar)
-        toolbar!!.inflateMenu(R.menu.menu_profile)
-        toolbar!!.setOnMenuItemClickListener(this)
+        toolbar?.inflateMenu(R.menu.menu_profile)
+        toolbar?.setOnMenuItemClickListener(this)
 
         ivProfilePic = view.findViewById(R.id.iv_profile_pic)
         tvUsername = view.findViewById(R.id.tv_profile_username)
@@ -96,23 +96,27 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         llInstitute= view.findViewById(R.id.ll_profile_institute)
         llProfileParent = view.findViewById(R.id.ll_profile_parent)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
+        viewPager?.adapter = viewPagerAdapter
+        tabLayout?.setupWithViewPager(viewPager)
 //        context = getContext()
-        sharedPrefs = SharedPrefs(getContext())
-        toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
+        sharedPrefs = context?.let { SharedPrefs(it) }
+        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
-        if (mParam1!!.equals(sharedPrefs!!.userName)) {
-            presenter!!.requestProfile(sharedPrefs?.cookies!!, sharedPrefs?.userName!!)
-            presenter!!.requestProfileDetails(sharedPrefs?.userName!!)
+        val sharedUserName = sharedPrefs?.userName?.let { it }
+        val param1Exists = mParam1?.let { it } ?: ""
+        if (param1Exists == sharedUserName) {
+            sharedPrefs?.cookies?.let { presenter?.requestProfile(it, sharedUserName) }
+            presenter?.requestProfileDetails(sharedUserName)
         } else {
-            presenter!!.requestProfile(sharedPrefs?.cookies!!, mParam1!!)
-            presenter!!.requestProfileDetails(mParam1!!)
+            mParam1?.let { param1 ->
+                sharedPrefs?.cookies?.let { presenter?.requestProfile(it, param1) }
+                presenter?.requestProfileDetails(param1)
+            }
         }
-        if (mParam2!!) {
-            toolbar!!.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-            toolbar!!.setNavigationOnClickListener {
-                activity!!.onBackPressed()
+        mParam2.let {
+            toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            toolbar?.setNavigationOnClickListener {
+                activity?.onBackPressed()
             }
         }
 
@@ -130,46 +134,42 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Contribution Statistics")
-        fragmentList.add(ProfileStatsFragment.newInstance(data, mParam1!!, mParam2!!))
+        fragmentList.add(ProfileStatsFragment.newInstance(data, mParam1, mParam2))
         titleList.add("Course Details")
         fragmentList.add(ProfileCourseListFragment.newInstance(data))
         titleList.add("Recent Uploads")
-        val courseUploadList = CourseUploadList(data.uploads!!)
+        val courseUploadList = data.uploads?.let { CourseUploadList(it) }
         fragmentList.add(CourseUploadsFragment.newInstance(2, "", courseUploadList))
 
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        viewPagerAdapter?.setTabData(fragmentList, titleList)
+        viewPagerAdapter?.notifyDataSetChanged()
     }
 
+    @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
-        llProfileParent!!.visibility = VISIBLE
-        val profilePicUrl = Urls.BASE_URL + data.user_profile.profile_image
+        llProfileParent?.visibility = VISIBLE
+        val profilePicUrl = Urls.BASE_URL + data.userProfile.profileImage
         Timber.d(profilePicUrl)
-        if (data.user_profile.profile_image == null || data.user_profile.profile_image.equals("")) {
-            ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
+        if (data.userProfile.profileImage.isNullOrEmpty()) {
+            ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
-        tvUsername!!.text = mParam1!!
+        tvUsername?.text = mParam1
 //        if (data.user_profile.email.isNotEmpty()) {
-//            tvEmail!!.text = data.user_profile.email
+//            tvEmail?.text = data.user_profile.email
 //        } else {
-            llEmail!!.visibility = INVISIBLE
+        llEmail?.visibility = INVISIBLE
 //        }
-        if (data.user_profile.bio!=null) {
-            tvDescription!!.text = data.user_profile.bio
-        } else {
-            tvDescription!!.visibility = INVISIBLE
+        data.userProfile.bio.let {
+            tvDescription?.text = data.userProfile.bio
         }
-        if (data.user_profile.location!=null) {
-            tvLocation!!.text = data.user_profile.location
-        } else {
-            llLocation!!.visibility = INVISIBLE
-        }
+        tvDescription?.text = data.userProfile.bio
+        tvLocation?.text = data.userProfile.location
 //        if (data.user_profile.institution!=null) {
-//            tvInstitute!!.text = data.user_profile.institution
+//            tvInstitute?.text = data.user_profile.institution
 //        } else{
-            llInstitute!!.visibility = INVISIBLE
+        llInstitute?.visibility = INVISIBLE
 //        }
     }
 
@@ -179,14 +179,14 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 
     companion object {
@@ -203,10 +203,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, other_user: Boolean): ProfileFragment {
+        fun newInstance(param1: String?, other_user: Boolean): ProfileFragment {
             val fragment = ProfileFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
+            param1?.let { args.putString(ARG_PARAM1, it) }
             args.putBoolean(ARG_PARAM2, other_user)
             fragment.arguments = args
             return fragment

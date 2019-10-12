@@ -25,7 +25,8 @@
     <string name="course_title">Course Title</string>
     <string name="details">Details</string>
     <string name="description">Description</string>
-    <string name="wiki_education_dashboard">Wiki Education Dashboard</string>
+    <string name="wiki_education_dashboard">Wiki Education\n Dashboard</string>
+    <string name="wiki_edu_dashboard">Wiki Education\n Dashboard</string>
     <string name="log_in_with_wikipedia">Log in with Wikipedia</string>
     <string name="sign_up_with_wikipedia">Sign up with Wikipedia</string>
     <string name="tv_no_programs">Looks like you haven\'t joined a program yet. Click on Explore to find your program and join it.</string>
@@ -58,4 +59,14 @@
     <string name="outreach_programs_and_events_dashboard">Outreach Programs and Events Dashboard</string>
     <string name="menu_settings">Settings</string>
     <string name="not_enrolled">You are not enrolled in any course</string>
+    <string name="media_detail_desc">Description of the media goes here. This can potentially be fairly long, and will need to wrap across multiple lines. We hope it looks nice though.</string>
+    <string name="screen1_title">Wiki Education Dashboard</string>
+    <string name="sub1_description">Monitor and Manage your Courses  on Wiki Education Dashboard</string>
+    <string name="main_description1">The Wiki Education Dashboard is an application that supports Wikipedia  education assignments, edit-a-thons, and other editing projects.</string>
+    <string name="screen2_title"><![CDATA[Outreach Programs & Events Dashboard]]></string>
+    <string name="sub2_description">Manage and track Wikimedia programs and events</string>
+    <string name="main_description2">Facilitates educational programs by adding features for teachers and students. Features include various interfaces to manage courses, institutions, students, mentors, etc.</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
 </resources>

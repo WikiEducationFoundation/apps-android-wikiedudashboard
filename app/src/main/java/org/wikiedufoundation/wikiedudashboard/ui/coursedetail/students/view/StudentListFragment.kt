@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +16,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAda
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 class StudentListFragment : Fragment(), StudentListView {
 
@@ -35,7 +34,7 @@ class StudentListFragment : Fragment(), StudentListView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_explore_students, container, false)
-        url = arguments!!.getString("url", null)
+        url = arguments?.getString("url", null)
         recyclerView = view.findViewById(R.id.rv_students_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
@@ -43,35 +42,39 @@ class StudentListFragment : Fragment(), StudentListView {
         val context: Context? = context
         studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
         layoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = layoutManager
-        recyclerView!!.setHasFixedSize(true)
-        studentListRecyclerAdapter = StudentListRecyclerAdapter(context!!, this)
-        recyclerView!!.adapter = studentListRecyclerAdapter
-        studentListPresenter!!.requestStudentList(url!!)
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.setHasFixedSize(true)
+        studentListRecyclerAdapter = StudentListRecyclerAdapter(this)
+        recyclerView?.adapter = studentListRecyclerAdapter
+        url?.let { studentListPresenter?.requestStudentList(it) }
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = studentListRecyclerAdapter
+        url?.let { studentListPresenter?.requestStudentList(it) }
 
         return view
     }
 
     override fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 
     override fun setData(data: StudentListResponse) {
         if (data.course.users.isNotEmpty()) {
             Timber.d(data.toString())
-            studentListRecyclerAdapter!!.setData(data.course.users)
-            studentListRecyclerAdapter!!.notifyDataSetChanged()
+            studentListRecyclerAdapter?.setData(data.course.users)
+            studentListRecyclerAdapter?.notifyDataSetChanged()
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoStudents!!.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+            tvNoStudents?.visibility = View.VISIBLE
         }
     }
 

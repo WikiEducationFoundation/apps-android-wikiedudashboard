@@ -6,6 +6,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.pro
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.ArticlesEditedView
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
+/**
+ * Presenter to handle edited articles data and display the data in view
+ * @constructor primary constructor
+ * @property articlesEditedProvider edited articles api service
+ * @property articlesEditedView edited article view to display data
+ * ***/
 class ArticlesEditedPresenterImpl(private val articlesEditedProvider: ArticlesEditedProvider, private val articlesEditedView: ArticlesEditedView) : ArticlesEditedPresenter {
 
     override fun requestArticlesEdited(url: String) {

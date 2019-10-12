@@ -23,24 +23,24 @@ class MediaDetailsActivity : AppCompatActivity() {
         courseUploads = intent.getSerializableExtra("uploads") as CourseUploadList
         context = this
         sharedPrefs = SharedPrefs(this)
-        setFragment(MediaDetailFragment.newInstance(courseUploads, position!!))
+        position?.let { setFragment(MediaDetailFragment.newInstance(courseUploads, it)) }
     }
 
     private fun setFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.container, fragment)
+            fragmentTransaction.replace(R.id.container, it)
             fragmentTransaction.commit()
         }
     }
 
     fun addFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.replace(R.id.container, fragment)
+            fragmentTransaction.replace(R.id.container, it)
             fragmentTransaction.commit()
         }
     }

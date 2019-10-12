@@ -1,35 +1,92 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
 
+import com.google.gson.annotations.SerializedName
+
+/**
+ * [CourseListData] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class CourseListData(
-    val id: Int,
-    val title: String,
-    val created_at: String,
-    val updated_at: String,
-    val start: String,
-    val end: String,
-    val school: String,
-    val term: String,
-    val character_sum: String,
-    val view_sum: String,
-    val user_count: String,
-    val article_count: String,
-    val revision_count: String,
-    val slug: String,
-    val subject: String,
-    val expected_students: Int,
-    val description: String,
-    val isSubmitted: Boolean,
-    val passcode: String,
-    val timeline_start: String,
-    val timeline_end: String,
-    val day_exceptions: String,
-    val weekdays: String,
-    val new_article_count: Int,
-    val isNo_day_exceptions: Boolean,
-    val trained_count: Int
+        @SerializedName("id")
+        val id: Int,
+        @SerializedName("title")
+        val title: String,
+        @SerializedName("created_at")
+        val createdAt: String,
+        @SerializedName("updated_at")
+        val updatedAt: String,
+        @SerializedName("start")
+        val start: String,
+        @SerializedName("end")
+        val end: String,
+        @SerializedName("school")
+        val school: String,
+        @SerializedName("term")
+        val term: String,
+        @SerializedName("character_sum")
+        val characterSum: String,
+        @SerializedName("view_sum")
+        val viewSum: String,
+        @SerializedName("user_count")
+        val userCount: String,
+        @SerializedName("article_count")
+        val articleCount: String,
+        @SerializedName("revision_count")
+        val revisionCount: String,
+        @SerializedName("slug")
+        val slug: String,
+        @SerializedName("subject")
+        val subject: String,
+        @SerializedName("expected_students")
+        val expectedStudents: Int,
+        @SerializedName("description")
+        val description: String,
+        @SerializedName("isSubmitted")
+        val isSubmitted: Boolean,
+        @SerializedName("passcode")
+        val passcode: String,
+        @SerializedName("timeline_start")
+        val timelineStart: String,
+        @SerializedName("timeline_end")
+        val timelineEnd: String,
+        @SerializedName("day_exceptions")
+        val dayExceptions: String,
+        @SerializedName("weekdays")
+        val weekdays: String,
+        @SerializedName("new_article_count")
+        val newArticleCount: Int,
+        @SerializedName("isNo_day_exceptions")
+        val isNoDayExceptions: Boolean,
+        @SerializedName("trained_count")
+        val trainedCount: Int
 
 ) {
     override fun toString(): String {
-        return "CourseListData(id=$id, title='$title', created_at='$created_at', updated_at='$updated_at', start='$start', end='$end', school='$school', term='$term', character_sum='$character_sum', view_sum='$view_sum', user_count='$user_count', article_count='$article_count', revision_count='$revision_count', slug='$slug', subject='$subject', expected_students=$expected_students, description='$description', isSubmitted=$isSubmitted, passcode='$passcode', timeline_start='$timeline_start', timeline_end='$timeline_end', day_exceptions='$day_exceptions', weekdays='$weekdays', new_article_count=$new_article_count, isNo_day_exceptions=$isNo_day_exceptions, trained_count=$trained_count)"
+        return "CourseListData(id=$id, " +
+                "title='$title', " +
+                "created_at='$createdAt', " +
+                "updated_at='$updatedAt', " +
+                "start='$start', " +
+                "end='$end', " +
+                "school='$school', " +
+                "term='$term', " +
+                "character_sum='$characterSum', " +
+                "view_sum='$viewSum', " +
+                "user_count='$userCount', " +
+                "article_count='$articleCount', " +
+                "revision_count='$revisionCount', " +
+                "slug='$slug', " +
+                "subject='$subject', " +
+                "expected_students=$expectedStudents, " +
+                "description='$description', " +
+                "isSubmitted=$isSubmitted, " +
+                "passcode='$passcode', " +
+                "timeline_start='$timelineStart', " +
+                "timeline_end='$timelineEnd', " +
+                "day_exceptions='$dayExceptions', " +
+                "weekdays='$weekdays', " +
+                "new_article_count=$newArticleCount, " +
+                "isNo_day_exceptions=$isNoDayExceptions, " +
+                "trained_count=$trainedCount)"
     }
 }
