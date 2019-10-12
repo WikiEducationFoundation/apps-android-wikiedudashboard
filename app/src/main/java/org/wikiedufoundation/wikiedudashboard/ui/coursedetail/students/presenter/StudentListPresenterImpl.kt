@@ -6,6 +6,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.Stud
 
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
+/**
+ * Retrofit http request to get student list data and display it in view
+ * ***/
 class StudentListPresenterImpl(private val studentListView: StudentListView, private val studentListProvider: StudentListProvider) : StudentListPresenter {
 
     override fun requestStudentList(url: String) {
