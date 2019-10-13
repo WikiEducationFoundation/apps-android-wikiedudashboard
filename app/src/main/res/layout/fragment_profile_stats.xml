@@ -43,6 +43,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tvInstructorCountWordsAddedTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -90,6 +91,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tv_instructor_count_article_views_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -138,6 +140,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tv_instructor_count_articles_created_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -199,6 +202,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tv_count_articles_created_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -247,6 +251,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tv_count_total_edits_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -295,6 +300,7 @@
             app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
 
         <TextView
+            android:id="@+id/tv_count_words_added_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"

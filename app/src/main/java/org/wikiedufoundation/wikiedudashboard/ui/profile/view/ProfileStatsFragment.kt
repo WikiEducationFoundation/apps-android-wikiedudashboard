@@ -12,6 +12,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import kotlinx.android.synthetic.main.fragment_profile_stats.*
 import kotlinx.android.synthetic.main.fragment_profile_stats.view.*
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
@@ -49,69 +50,116 @@ class ProfileStatsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_profile_stats, container, false)
+                              savedInstanceState: Bundle?): View?  = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
-        val tvInstructorCountWordsAdded: TextView = view.tv_instructor_count_words_added
-        val tvInstructorCountReferencesAdded: TextView = view.tv_instructor_count_references_added
-        val tvInstructorCountArticleViews: TextView = view.tv_instructor_count_article_views
-        val tvInstructorCountArticlesCreated: TextView = view.tv_instructor_count_articles_created
-        val tvInstructorCountArticlesEdited: TextView = view.tv_instructor_count_articles_edited
-        val tvInstructorCountCommonsUpload: TextView = view.tv_instructor_count_commons_upload
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val tvCountArticlesCreated: TextView = view.tv_count_articles_created
-        val tvCountArticlesEdited: TextView = view.tv_count_articles_edited
-        val tvCountTotalEdits: TextView = view.tv_count_total_edits
-        val tvCountStudentEditors: TextView = view.tv_count_student_editors
-        val tvCountWordsAdded: TextView = view.tv_count_words_added
-        val tvCountArticleViews: TextView = view.tv_count_article_views
-        val tvCountCommonsUploads: TextView = view.tv_count_commons_uploads
-
-        val llAsStudent: LinearLayout = view.ll_as_student
-        val llByStudent: LinearLayout = view.ll_by_student
-        val llNotEnrolled: LinearLayout = view.ll_not_enrolled
-        val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
-        val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
-
-        if (profileResponse!!.as_instructor != null) {
-            val asInstructorDetails: AsInstructorDetails = profileResponse!!.as_instructor!!
+        if (profileResponse?.as_instructor != null) {
+            val asInstructorDetails: AsInstructorDetails? = profileResponse?.as_instructor
         } else {
 
         }
 
-        if (profileResponse!!.as_student != null) {
+        if (profileResponse?.as_student != null) {
             val asStudentDetails: AsStudentDetails = profileResponse!!.as_student!!
             val text : String = "Total impact made by " + username +"'s students"
-            tvTitleImpactByStudents.text = text
-            tvCountArticlesCreated.text = asStudentDetails.individual_articles_created
-            tvCountArticlesEdited.text = asStudentDetails.individual_article_views
-            tvCountTotalEdits.text = asStudentDetails.individual_article_count
-            tvCountStudentEditors.text = asStudentDetails.individual_upload_count
-            tvCountWordsAdded.text = asStudentDetails.individual_word_count
-            tvCountArticleViews.text = asStudentDetails.individual_article_views
-            tvCountCommonsUploads.text = asStudentDetails.individual_upload_count
+            tv_title_impact_as_student.text = text
+            tv_count_articles_created.text = asStudentDetails.individual_articles_created
+            tv_count_articles_edited.text = asStudentDetails.individual_article_views
+            tv_count_total_edits.text = asStudentDetails.individual_article_count
+            tv_count_student_editors.text = asStudentDetails.individual_upload_count
+            tv_count_words_added.text = asStudentDetails.individual_word_count
+            tv_count_article_views.text = asStudentDetails.individual_article_views
+            tv_count_commons_uploads.text = asStudentDetails.individual_upload_count
         } else {
-            llAsStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
+            setViewsToShow(tv_title_impact_as_student,
+                    tv_count_articles_created,
+                    tv_count_articles_created_text,
+                    tv_count_articles_edited,
+                    tv_count_articles_edited_text,
+                    tv_count_total_edits,
+                    tv_count_total_edits_text,
+                    tv_count_student_editors,
+                    tv_count_student_editors_text,
+                    tv_count_words_added,
+                    tv_count_words_added_text,
+                    tv_count_article_views,
+                    tv_count_article_views_text,
+                    tv_count_commons_uploads,
+                    tv_count_commons_uploads_text)
+
+            setViewsToHide(
+                    tv_title_impact_by_student,
+                    tvInstructorCountWordsAdded,
+                    tvInstructorCountWordsAddedTitle,
+                    tv_instructor_count_references_added,
+                    tv_instructor_count_references_added_title,
+                    tv_instructor_count_article_views,
+                    tv_instructor_count_article_views_title,
+                    tv_instructor_count_articles_edited,
+                    tv_instructor_count_articles_edited_text,
+                    tv_instructor_count_articles_created,
+                    tv_instructor_count_articles_created_title,
+                    tv_instructor_count_commons_upload,
+                    tv_instructor_count_commons_upload_text)
         }
 
-        if (profileResponse!!.by_students != null) {
+        if (profileResponse?.by_students != null) {
             val byStudentDetails: ByStudentsDetails = profileResponse!!.by_students!!
             val text : String = "Total impact made by " + username +"as a student"
-            tvTitleImpactByStudents.text = text
+            tv_title_impact_by_student.text = text
             tvInstructorCountWordsAdded.text = byStudentDetails.word_count
-            tvInstructorCountReferencesAdded.text = byStudentDetails.references_count
-            tvInstructorCountArticleViews.text = byStudentDetails.view_sum
-            tvInstructorCountArticlesCreated.text = byStudentDetails.new_article_count
-            tvInstructorCountArticlesEdited.text = byStudentDetails.article_count
-            tvInstructorCountCommonsUpload.text = byStudentDetails.upload_count
+            tv_instructor_count_references_added.text = byStudentDetails.references_count
+            tv_instructor_count_article_views.text = byStudentDetails.view_sum
+            tv_instructor_count_articles_created.text = byStudentDetails.new_article_count
+            tv_instructor_count_articles_edited.text = byStudentDetails.article_count
+            tv_instructor_count_commons_upload.text = byStudentDetails.upload_count
         } else {
-            llByStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
-        }
+            setViewsToShow(
+                    tv_title_impact_by_student,
+                    tvInstructorCountWordsAdded,
+                    tvInstructorCountWordsAddedTitle,
+                    tv_instructor_count_references_added,
+                    tv_instructor_count_references_added_title,
+                    tv_instructor_count_article_views,
+                    tv_instructor_count_article_views_title,
+                    tv_instructor_count_articles_edited,
+                    tv_instructor_count_articles_edited_text,
+                    tv_instructor_count_articles_created,
+                    tv_instructor_count_articles_created_title,
+                    tv_instructor_count_commons_upload,
+                    tv_instructor_count_commons_upload_text)
 
-        return view
+            setViewsToHide(tv_title_impact_as_student,
+                    tv_count_articles_created,
+                    tv_count_articles_created_text,
+                    tv_count_articles_edited,
+                    tv_count_articles_edited_text,
+                    tv_count_total_edits,
+                    tv_count_total_edits_text,
+                    tv_count_student_editors,
+                    tv_count_student_editors_text,
+                    tv_count_words_added,
+                    tv_count_words_added_text,
+                    tv_count_article_views,
+                    tv_count_article_views_text,
+                    tv_count_commons_uploads,
+                    tv_count_commons_uploads_text)
+        }
+    }
+
+
+    fun setViewsToHide(vararg views: View) {
+        views.forEach {
+            it.visibility = View.GONE
+        }
+    }
+
+    fun setViewsToShow(vararg views: View) {
+        views.forEach {
+            it.visibility = View.VISIBLE
+        }
     }
 
     companion object {
