@@ -8,6 +8,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Retrofit api service request call for campaign list
+ ***/
 class RetrofitCampaignListProvider : CampaignListContract.Provider {
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
 

@@ -26,40 +26,40 @@ import java.util.*
  */
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
+    private lateinit var toolbar: Toolbar
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private lateinit var campaignListFragment: CampaignListFragment
+    private lateinit var courseListFragment: CourseListFragment
+
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var tabLayout: TabLayout? = null
-    private var viewPager: ViewPager? = null
-    var toolbar: Toolbar? = null
-    var campaignListFragment: CampaignListFragment? = null
-    var courseListFragment: CourseListFragment? = null
-    private var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         viewPager = view.viewPager
         tabLayout = view.tabLayout
         toolbar = view.toolbar
-        toolbar!!.inflateMenu(R.menu.menu_explore)
-        toolbar!!.setOnMenuItemClickListener(this)
+        toolbar.inflateMenu(R.menu.menu_explore)
+        toolbar.setOnMenuItemClickListener(this)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
+        viewPager.adapter = viewPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
         setTabs()
         return view
     }
@@ -69,12 +69,12 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         val titleList = ArrayList<String>()
         titleList.add("Active Campaigns")
         campaignListFragment = CampaignListFragment()
-        fragmentList.add(campaignListFragment!!)
+        fragmentList.add(campaignListFragment)
         titleList.add("Active Courses")
-        courseListFragment= CourseListFragment()
-        fragmentList.add(courseListFragment!!)
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+        courseListFragment = CourseListFragment()
+        fragmentList.add(courseListFragment)
+        viewPagerAdapter.setTabData(fragmentList, titleList)
+        viewPagerAdapter.notifyDataSetChanged()
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -84,8 +84,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment.updateSearchQuery(query)
+                courseListFragment.updateSearchQuery(query)
 
                 if (!searchView.isIconified) {
                     searchView.isIconified = true
@@ -96,8 +96,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
             override fun onQueryTextChange(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment.updateSearchQuery(query)
+                courseListFragment.updateSearchQuery(query)
                 return false
             }
         })

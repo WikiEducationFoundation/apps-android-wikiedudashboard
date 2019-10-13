@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         username = intent.getStringExtra("username")
         context = this
         sharedPrefs = SharedPrefs(this)
-        setFragment(ProfileFragment.newInstance(username!!, true))
+        username?.let { setFragment(ProfileFragment.newInstance(it, true)) }
     }
 
     private fun setFragment(fragment: Fragment?) {

@@ -38,8 +38,8 @@ class CourseHomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            courseDetail = arguments!!.getSerializable(ARG_PARAM1) as CourseDetail
+        arguments?.let {
+            courseDetail = it.getSerializable(ARG_PARAM1) as CourseDetail
         }
     }
 
@@ -67,21 +67,21 @@ class CourseHomeFragment : Fragment() {
         tvCourseStart = view.findViewById(R.id.tv_course_start)
         tvCourseEnd = view.findViewById(R.id.tv_course_end)
 
-        tvCountArticlesCreated!!.text = courseDetail!!.created_count
-        tvCountArticlesEdited!!.text = courseDetail!!.edited_count
-        tvCountTotalEdits!!.text = courseDetail!!.edit_count
-        tvCountStudentEditors!!.text = MessageFormat.format("{0}", courseDetail!!.student_count)
-        tvCountWordsAdded!!.text = courseDetail!!.word_count
-        tvCountArticleViews!!.text = courseDetail!!.view_count
-        tvCountCommonsUploads!!.text = MessageFormat.format("{0}", courseDetail!!.upload_count)
-        tvCourseTitle!!.text = courseDetail!!.title
-        tvCourseDescription!!.text = courseDetail!!.description
-        tvCourseSchool!!.text = courseDetail!!.school
-        tvCourseTerm!!.text = courseDetail!!.term
-        tvCoursePasscode!!.text = courseDetail!!.passcode
-        tvCourseExpectedStudents!!.text = MessageFormat.format("{0}", courseDetail!!.expected_students)
-        tvCourseStart!!.text = courseDetail!!.start
-        tvCourseEnd!!.text = courseDetail!!.end
+        tvCountArticlesCreated?.text = courseDetail?.createdCount
+        tvCountArticlesEdited?.text = courseDetail?.editedCount
+        tvCountTotalEdits?.text = courseDetail?.editCount
+        tvCountStudentEditors?.text = MessageFormat.format("{0}", courseDetail?.studentCount)
+        tvCountWordsAdded?.text = courseDetail?.wordCount
+        tvCountArticleViews?.text = courseDetail?.viewCount
+        tvCountCommonsUploads?.text = MessageFormat.format("{0}", courseDetail?.uploadCount)
+        tvCourseTitle?.text = courseDetail?.title
+        tvCourseDescription?.text = courseDetail?.description
+        tvCourseSchool?.text = courseDetail?.school
+        tvCourseTerm?.text = courseDetail?.term
+        tvCoursePasscode?.text = courseDetail?.passCode
+        tvCourseExpectedStudents?.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
+        tvCourseStart?.text = courseDetail?.start
+        tvCourseEnd?.text = courseDetail?.end
         return view
     }
 

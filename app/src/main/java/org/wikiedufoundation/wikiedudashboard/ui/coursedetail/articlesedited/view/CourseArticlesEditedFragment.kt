@@ -2,7 +2,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.vi
 
 import android.content.Context
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesEditedRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.RetrofitArticlesEditedProvider
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
+/**
+ * A [Fragment] subclass for edited course articles
+ * ***/
 class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     private var tvNoEditedArticles: TextView? = null
@@ -40,13 +42,13 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
         articlesEditedPresenter = ArticlesEditedPresenterImpl(RetrofitArticlesEditedProvider(), this)
 
-        articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(context!!)
+        articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = articlesEditedRecyclerAdapter
 
-        articlesEditedPresenter?.requestArticlesEdited(url!!)
+        url?.let { articlesEditedPresenter?.requestArticlesEdited(it) }
         return view
     }
 
@@ -72,6 +74,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 }

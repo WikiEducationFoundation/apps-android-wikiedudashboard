@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyc
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -35,8 +34,13 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+<<<<<<< HEAD
         if (arguments != null) {
             coursesList = (arguments?.getSerializable(ARG_PARAM1) as? ProfileResponse)?.courses ?: emptyList()
+=======
+        arguments?.let {
+            coursesList = (it.getSerializable(ARG_PARAM1) as ProfileResponse).courses ?: emptyList()
+>>>>>>> master
         }
     }
 
@@ -52,11 +56,21 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+<<<<<<< HEAD
         val sharedPrefs = SharedPrefs(context)
         tvNoCourses.text = sharedPrefs.cookies
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(context!!, this)
         rvCourseList.layoutManager = LinearLayoutManager(context)
         rvCourseList.adapter = courseListRecyclerAdapter
+=======
+        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
+        tv_no_courses?.text = sharedPrefs?.cookies
+        courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(this)
+        val linearLayoutManager = LinearLayoutManager(context)
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = courseListRecyclerAdapter
+>>>>>>> master
         setData(coursesList)
         showProgressBar(false)
     }
@@ -64,6 +78,7 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
+<<<<<<< HEAD
             rvCourseList.visibility = View.VISIBLE
             courseListRecyclerAdapter.setData(courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
@@ -71,19 +86,28 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
         } else {
             rvCourseList.visibility = View.GONE
             tvNoCourses.visibility = View.VISIBLE
+=======
+            recyclerView?.visibility = View.VISIBLE
+            courseListRecyclerAdapter?.setData(courses)
+            courseListRecyclerAdapter?.notifyDataSetChanged()
+            tv_no_courses?.visibility = View.GONE
+        } else {
+            recyclerView?.visibility = View.GONE
+            tv_no_courses?.visibility = View.VISIBLE
+>>>>>>> master
         }
     }
 
     fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar!!.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
     fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 
     override fun onCourseClicked(courseSlug: String) {

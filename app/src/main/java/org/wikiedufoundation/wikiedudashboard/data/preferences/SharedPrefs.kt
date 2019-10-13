@@ -4,7 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import timber.log.Timber
 
-class SharedPrefs(private val _context: Context?) {
+/**
+ * SharedPreferences class to store temporary data or handle sessions
+ *
+ * @property _context Context
+ * */
+class SharedPrefs(_context: Context) {
 
     private val pref: SharedPreferences
     private val editor: SharedPreferences.Editor
@@ -47,15 +52,29 @@ class SharedPrefs(private val _context: Context?) {
         }
 
     init {
-        pref = _context!!.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
+        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
         editor = pref.edit()
     }
 
+    /**
+     * Use [setLogin] to check if user is logged in, then store the login session
+     *
+     * @param isLoggedIn boolean value to check whether the user has logged in
+     ***/
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn)
         editor.commit()
         Timber.d("User login session modified!")
     }
+
+    var isFirstTimeLaunch: Boolean
+        get() {
+            return pref.getBoolean(SharedPrefs.IS_FIRST_TIME_LAUNCH, true)
+        }
+        set(isFirstTime) {
+            editor.putBoolean(SharedPrefs.IS_FIRST_TIME_LAUNCH, isFirstTime)
+            editor.commit()
+        }
 
     companion object {
 
@@ -65,5 +84,6 @@ class SharedPrefs(private val _context: Context?) {
         private val KEY_WIKI_EDU_DASHBOARD_COOKIES = "wiki_edu_dashboard_cookies"
         private val KEY_OUTREACH_DASHBOARD_COOKIES = "outreach_dashboard_cookies"
         private val KEY_USERNAME = "username"
+        private const val IS_FIRST_TIME_LAUNCH = "IS_FIRST_TIME_LAUNCH"
     }
 }
