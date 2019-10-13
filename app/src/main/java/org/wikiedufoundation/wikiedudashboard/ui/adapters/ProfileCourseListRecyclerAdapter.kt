@@ -43,7 +43,14 @@ class ProfileCourseListRecyclerAdapter internal constructor(
         return courses.size
     }
 
+    /**
+     * Listener for events related with the list interactions
+     */
     interface ProfileCourseListClickListener {
+        /**
+         * This method is called when a course from the list have been clicked
+         * @param courseSlug Slug of selected course
+         * ***/
         fun onCourseClicked(courseSlug: String)
     }
 
@@ -54,6 +61,10 @@ class ProfileCourseListRecyclerAdapter internal constructor(
 
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        /**
+         * Sets the ViewHolder with the data of the [CourseData] provided
+         * @param course [CourseData] that is going to be shown in the [ViewHolder]
+         * ***/
         fun setViewHolder(course: CourseData) {
             itemView.tvCourseTitle.text = course?.courseTitle
         }

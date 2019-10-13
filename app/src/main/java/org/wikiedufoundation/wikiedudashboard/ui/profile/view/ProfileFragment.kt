@@ -27,7 +27,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.settings.SettingsActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import org.wikiedufoundation.wikiedudashboard.util.showToast
-import timber.log.Timber
 import java.util.*
 
 /**
@@ -57,14 +56,9 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        toolbar?.inflateMenu(R.menu.menu_profile)
-        toolbar?.setOnMenuItemClickListener(this)
-        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager?.adapter = viewPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
+        setToolbar(mParam2)
+        setViewPager()
         sharedPrefs = SharedPrefs(requireContext())
-        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         val sharedUserName = sharedPrefs?.userName?.let { it }
         val param1Exists = mParam1?.let { it } ?: ""
@@ -77,16 +71,22 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
                 presenter?.requestProfileDetails(param1)
             }
         }
-        if (mParam2!!) {
+    }
+
+    private fun setViewPager() {
+        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
+        viewPager?.adapter = viewPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    private fun setToolbar(param2: Boolean?) {
+        toolbar?.inflateMenu(R.menu.menu_profile)
+        toolbar?.setOnMenuItemClickListener(this)
+        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
+        if (param2 != null && param2) {
             toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
             toolbar?.setNavigationOnClickListener {
-                activity!!.onBackPressed()
-                mParam2.let {
-                    toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-                    toolbar?.setNavigationOnClickListener {
-                        activity?.onBackPressed()
-                    }
-                }
+                activity?.onBackPressed()
             }
         }
     }
@@ -116,32 +116,41 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent?.visibility = VISIBLE
-        tvUserName.text = mParam1!!
+        tvUserName.text = mParam1
+        setUserProfileImage(data)
+        llEmail?.visibility = INVISIBLE
+        setUserProfileBio(data)
+        setUserProfileLocation(data)
+        tvDescription?.text = data.userProfile?.bio
+        tvLocation?.text = data.userProfile?.location
 
+        llInstitute?.visibility = INVISIBLE
+
+    }
+
+    private fun setUserProfileLocation(data: ProfileDetailsResponse) {
+        if (data.userProfile?.location != null) {
+            tvLocation?.text = data.userProfile.location
+        } else {
+            llLocation?.visibility = INVISIBLE
+        }
+    }
+
+    private fun setUserProfileBio(data: ProfileDetailsResponse) {
+        if (data.userProfile?.bio != null) {
+            tvDescription?.text = data.userProfile.bio
+        } else {
+            tvDescription?.visibility = INVISIBLE
+        }
+    }
+
+    private fun setUserProfileImage(data: ProfileDetailsResponse) {
         if (data.userProfile?.profileImage == null) {
             ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             val profilePicUrl = Urls.BASE_URL + data.userProfile.profileImage
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
-
-        llEmail?.visibility = INVISIBLE
-        if (data.userProfile?.bio!=null) {
-            tvDescription?.text = data.userProfile.bio
-        } else {
-            tvDescription?.visibility = INVISIBLE
-        }
-        if (data.userProfile?.location!=null) {
-            tvLocation?.text = data.userProfile.location
-        } else {
-            llLocation?.visibility = INVISIBLE
-        }
-
-        tvDescription?.text = data.userProfile?.bio
-        tvLocation?.text = data.userProfile?.location
-
-        llInstitute?.visibility = INVISIBLE
-
     }
 
     override fun setData(data: ProfileResponse) {
