@@ -1,447 +1,372 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context="org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileStatsFragment">
+        android:layout_height="wrap_content">
 
 
-        <LinearLayout
-            android:id="@+id/ll_by_student"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/halfScreenGuideLine"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            />
 
-            <TextView
-                android:id="@+id/tv_title_impact_by_student"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_16dp"
-                android:layout_marginTop="@dimen/padding_16dp"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_words_added"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/words_added" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_references_added"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/references_added" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_article_views"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/article_views" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_articles_edited"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/articles_edited" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_articles_created"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/articles_created" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_instructor_count_commons_upload"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/commons_upload" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_as_student"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_title_impact_by_student"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_title_impact_as_student"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_16dp"
-                android:layout_marginTop="@dimen/padding_16dp"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_articles_created"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/articles_created" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_articles_edited"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/articles_edited" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_total_edits"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="Total Edits" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_student_editors"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/student_editors" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_words_added"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/words_added" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_article_views"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/article_views" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical"
-                    android:padding="@dimen/padding_8dp">
-
-                    <TextView
-                        android:id="@+id/tv_count_commons_uploads"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/_45"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_size_30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/padding_8dp"
-                        android:text="@string/commons_upload" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
 
 
-        <LinearLayout
-            android:id="@+id/ll_not_enrolled"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvInstructorCountWordsAdded"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_impact_by_student"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/words_added"
+            app:layout_constraintTop_toBottomOf="@id/tvInstructorCountWordsAdded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_references_added"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_impact_by_student"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_references_added_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/references_added"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_references_added"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_article_views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_references_added_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/article_views"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_article_views"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+
+        <TextView
+            android:id="@+id/tv_instructor_count_articles_edited"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_references_added_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_articles_edited_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_edited"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_edited"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_articles_created"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_edited_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_created"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_created"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_commons_upload"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_edited_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_instructor_count_commons_upload_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/commons_upload"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_commons_upload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+
+        <TextView
+            android:id="@+id/tv_title_impact_as_student"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_16dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_commons_upload_text"/>
+
+
+        <TextView
+            android:id="@+id/tv_count_articles_created"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_impact_as_student"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_created"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_articles_created"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_articles_edited"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_impact_as_student"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_articles_edited_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_edited"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+
+        <TextView
+            android:id="@+id/tv_count_total_edits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="Total Edits"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_total_edits"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_student_editors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_student_editors_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/student_editors"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+
+        <TextView
+            android:id="@+id/tv_count_words_added"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/words_added"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_words_added"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_article_views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_article_views_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/article_views"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_article_views"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfScreenGuideLine"/>
+
+        <TextView
+            android:id="@+id/tv_count_commons_uploads"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_article_views_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_count_commons_uploads_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/commons_upload"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_commons_uploads"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/ll_not_enrolled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_140"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_20sp"
+            android:text="@string/not_enrolled"
+            app:layout_constraintTop_toBottomOf="@id/tv_count_commons_uploads_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="@dimen/text_size_20sp"
-                android:text="@string/not_enrolled" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
