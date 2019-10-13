@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rv_explore_courses.view.*
 import org.wikiedufoundation.wikiedudashboard.R
@@ -56,7 +55,7 @@ class ProfileCourseListRecyclerAdapter internal constructor(
     inner class MyDashboardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setViewHolder(course: CourseData) {
-            itemView.tvCourseTitle.text = course?.course_title
+            itemView.tvCourseTitle.text = course?.courseTitle
         }
     }
 }

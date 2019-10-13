@@ -9,7 +9,6 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.widget.ViewUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -64,7 +63,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
         viewPager?.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
-        sharedPrefs = SharedPrefs(context)
+        sharedPrefs = SharedPrefs(requireContext())
         toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         val sharedUserName = sharedPrefs?.userName?.let { it }
@@ -117,37 +116,29 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent?.visibility = VISIBLE
-        val profilePicUrl = Urls.BASE_URL + data.userProfile.profileImage
-
-        Timber.d(profilePicUrl)
-
-        if (data.userProfile.profileImage == null || data.userProfile.profileImage.equals("")) {
-            ivProfilePic!!.setImageDrawable(resources.getDrawable(R.drawable.ic_account_circle_white_48dp))
-        } else {
-            Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
-        }
         tvUserName.text = mParam1!!
 
-        Timber.d(profilePicUrl)
-        if (data.userProfile.profileImage.isNullOrEmpty()) {
+        if (data.userProfile?.profileImage == null) {
             ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
+            val profilePicUrl = Urls.BASE_URL + data.userProfile.profileImage
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
 
         llEmail?.visibility = INVISIBLE
-        if (data.userProfile.bio!=null) {
+        if (data.userProfile?.bio!=null) {
             tvDescription?.text = data.userProfile.bio
         } else {
             tvDescription?.visibility = INVISIBLE
         }
-        if (data.userProfile.location!=null) {
+        if (data.userProfile?.location!=null) {
             tvLocation?.text = data.userProfile.location
         } else {
             llLocation?.visibility = INVISIBLE
+        }
 
-        tvDescription?.text = data.userProfile.bio
-        tvLocation?.text = data.userProfile.location
+        tvDescription?.text = data.userProfile?.bio
+        tvLocation?.text = data.userProfile?.location
 
         llInstitute?.visibility = INVISIBLE
 
