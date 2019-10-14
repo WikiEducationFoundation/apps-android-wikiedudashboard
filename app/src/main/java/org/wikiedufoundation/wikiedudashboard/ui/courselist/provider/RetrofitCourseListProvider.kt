@@ -8,6 +8,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Class that implements [requestCourseList] to get CourseList data
+ * ***/
 class RetrofitCourseListProvider : CourseListProvider {
 
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
