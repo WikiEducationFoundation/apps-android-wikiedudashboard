@@ -125,6 +125,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
          * @param type course type
          * @param courseDetail course detail data
          * @param courseUploads course uploads
+         * @return A new instance of fragment [CourseUploadsFragment]
          * ***/
         fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?): CourseUploadsFragment {
             val fragment = CourseUploadsFragment()
