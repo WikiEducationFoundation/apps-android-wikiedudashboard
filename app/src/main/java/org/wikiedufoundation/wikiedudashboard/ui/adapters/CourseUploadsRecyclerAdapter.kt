@@ -7,7 +7,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 /**
  * RecyclerView adapter for courses list data
  * @param layoutId item layout id
- * @param onClickListener using a high order function to implement o item click through a lambda
+ * @param onClickListener using a high order function to implement on clicked itm through a lambda
  * ***/
 class CourseUploadsRecyclerAdapter(
         layoutId: Int,

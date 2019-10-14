@@ -6,7 +6,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 /**
  * RecyclerView adapter for my dasboard list data
  * @param layoutId item layout id
- * @param onClickListener using a high order function to implement o item click through a lambda
+ * @param onClickListener using a high order function to implement on clicked item through a lambda
  * ***/
 class MyDashboardRecyclerAdapter internal constructor(
         layoutId: Int,
