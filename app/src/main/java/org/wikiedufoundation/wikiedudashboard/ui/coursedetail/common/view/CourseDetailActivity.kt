@@ -7,7 +7,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import org.wikiedufoundation.wikiedudashboard.R
@@ -22,7 +21,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.Rec
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-import java.util.*
 
 /**
  * Activity view for course detail
@@ -65,8 +63,8 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
                 url = url.lastIndexOf("?enroll").let { url.substring(0, it) }
             }
         }
-        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.adapter = viewPagerAdapter
+
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         courseDetailPresenter = CourseDetailPresenterImpl(this, RetrofitCourseDetailProvider())
@@ -87,33 +85,32 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
      * Set course detail tabs
      * ***/
     private fun setTabs() {
-        val fragmentList = ArrayList<Fragment>()
-        val titleList = ArrayList<String>()
-        titleList.add("Home")
-        fragmentList.add(courseHomeFragment)
-        titleList.add("Students")
         val studentListFragment = StudentListFragment()
         val bundle = Bundle()
         bundle.putString("url", url)
-        titleList.add("Article")
         studentListFragment.arguments = bundle
-        fragmentList.add(studentListFragment)
+
         val courseArticlesEditedFragment = CourseArticlesEditedFragment()
         val bundle2 = Bundle()
         bundle2.putString("url", url)
         courseArticlesEditedFragment.arguments = bundle2
-        fragmentList.add(courseArticlesEditedFragment)
-        titleList.add("Uploads")
-        url.let { fragmentList.add(CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null)) }
-        titleList.add("Activity")
+
         val recentActivityFragment = RecentActivityFragment()
         val bundle3 = Bundle()
         bundle3.putString("url", url)
         recentActivityFragment.arguments = bundle3
-        fragmentList.add(recentActivityFragment)
 
-        viewPagerAdapter.setTabData(fragmentList, titleList)
-        viewPagerAdapter.notifyDataSetChanged()
+        val fragmentList = listOf(courseHomeFragment,
+                studentListFragment,
+                courseArticlesEditedFragment,
+                recentActivityFragment,
+                url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) })
+        val titleList = listOf("Home", "Students", "Article", "Uploads", "Activity")
+
+        viewPagerAdapter.apply {
+            setTabData(fragmentList, titleList)
+            notifyDataSetChanged()
+        }
     }
 
     override fun showProgressBar(show: Boolean) {

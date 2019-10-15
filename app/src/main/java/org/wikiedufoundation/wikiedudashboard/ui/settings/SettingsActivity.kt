@@ -58,7 +58,7 @@ class SettingsActivity : AppCompatActivity() {
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, emailArray)
         intent.putExtra(Intent.EXTRA_SUBJECT, "Android App 1.01 Feedback")
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         }
     }

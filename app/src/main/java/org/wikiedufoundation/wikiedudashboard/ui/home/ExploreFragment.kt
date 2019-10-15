@@ -16,7 +16,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragm
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import timber.log.Timber
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -27,8 +26,6 @@ import java.util.*
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
     private lateinit var toolbar: Toolbar
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var campaignListFragment: CampaignListFragment
     private lateinit var courseListFragment: CourseListFragment
@@ -52,27 +49,24 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
-        viewPager = view.viewPager
-        tabLayout = view.tabLayout
+        val viewPager = view.viewPager
+        val tabLayout = view.tabLayout
         toolbar = view.toolbar
         toolbar.inflateMenu(R.menu.menu_explore)
         toolbar.setOnMenuItemClickListener(this)
-        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager.adapter = viewPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
-        setTabs()
+
+        setTabs(tabLayout, viewPager)
         return view
     }
 
-    private fun setTabs() {
-        val fragmentList = ArrayList<Fragment>()
-        val titleList = ArrayList<String>()
-        titleList.add("Active Campaigns")
-        campaignListFragment = CampaignListFragment()
-        fragmentList.add(campaignListFragment)
-        titleList.add("Active Courses")
-        courseListFragment = CourseListFragment()
-        fragmentList.add(courseListFragment)
+    private fun setTabs(tabLayout: TabLayout, viewPager: ViewPager) {
+        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
+        viewPager.adapter = viewPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+
+        val fragmentList = listOf<Fragment>(CampaignListFragment(), CourseListFragment())
+        val titleList = listOf("Active Campaigns", "Active Courses")
+
         viewPagerAdapter.setTabData(fragmentList, titleList)
         viewPagerAdapter.notifyDataSetChanged()
     }
