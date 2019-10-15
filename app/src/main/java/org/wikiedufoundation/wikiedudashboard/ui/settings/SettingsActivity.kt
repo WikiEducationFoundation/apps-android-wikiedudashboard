@@ -13,7 +13,9 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 
-
+/**
+ * Activity for user settings of the profile part
+ * ***/
 class SettingsActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null

@@ -9,6 +9,9 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeHostActivity
 
+/**
+ * Splash screen activity
+ * ***/
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
