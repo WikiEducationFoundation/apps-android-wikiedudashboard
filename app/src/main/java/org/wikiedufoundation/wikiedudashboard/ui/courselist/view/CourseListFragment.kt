@@ -18,6 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesR
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
@@ -91,10 +92,10 @@ class CourseListFragment : Fragment(), CourseListView {
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -111,13 +112,13 @@ class CourseListFragment : Fragment(), CourseListView {
 
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
-        for (course in coursesList) {
-            if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCourseList?.add(course)
-            }
+
+        val filterCourseQuery = coursesList.filterOrEmptyList {
+            it.title.toLowerCase()
+                    .contains(query.toLowerCase())
         }
-        filteredCourseList?.let { courseListRecyclerAdapter.setData(it) }
+
+        courseListRecyclerAdapter.setData(filterCourseQuery)
         courseListRecyclerAdapter.notifyDataSetChanged()
     }
 

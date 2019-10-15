@@ -17,8 +17,11 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -50,9 +53,9 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_campaign_list, container, false)
@@ -92,10 +95,10 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -105,13 +108,13 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCampaignList: ArrayList<CampaignListData>? = ArrayList()
-        for (campaign in campaignList) {
-            if (campaign.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCampaignList?.add(campaign)
-            }
+
+        val campaignQueryFilter = campaignList.filterOrEmptyList {
+            it.title.toLowerCase(Locale.getDefault())
+                    .contains(query.toLowerCase(Locale.getDefault()))
         }
-        filteredCampaignList?.let { campaignListRecyclerAdapter.setData(it) }
+
+        campaignListRecyclerAdapter.setData(campaignQueryFilter)
         campaignListRecyclerAdapter.notifyDataSetChanged()
     }
 

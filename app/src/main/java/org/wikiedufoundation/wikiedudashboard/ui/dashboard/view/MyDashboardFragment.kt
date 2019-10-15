@@ -19,6 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
@@ -98,10 +99,10 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -118,15 +119,13 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
-        coursesList?.let {
-            for (course in it) {
-                if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                    filteredCourseList?.add(course)
-                }
-            }
+
+        val courseFilterQuery = coursesList.filterOrEmptyList {
+            it.title.toLowerCase()
+                    .contains(query.toLowerCase())
         }
-        filteredCourseList?.let { myDashboardRecyclerAdapter.setData(it) }
+
+        myDashboardRecyclerAdapter.setData(courseFilterQuery)
         myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
 

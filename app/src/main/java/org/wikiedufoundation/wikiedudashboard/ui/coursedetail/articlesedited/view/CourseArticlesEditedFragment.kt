@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +35,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         val view = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
         url = arguments?.getString("url", null)
-        val context: Context? = context
+
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoEditedArticles = view.findViewById(R.id.tv_no_edited_articles)
@@ -57,7 +56,7 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     override fun setData(data: ArticlesEdited) {
         Timber.d(data.toString())
-        if (data.course.articles.size > 0) {
+        if (data.course.articles.isNotEmpty()) {
             recyclerView.visibility = View.VISIBLE
             articlesEditedRecyclerAdapter.setData(data.course.articles)
             articlesEditedRecyclerAdapter.notifyDataSetChanged()
@@ -69,10 +68,10 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            View.GONE
         }
     }
 

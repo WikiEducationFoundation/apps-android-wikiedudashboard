@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -33,7 +31,6 @@ import org.wikiedufoundation.wikiedudashboard.util.Urls
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -42,29 +39,27 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
-    private var toolbar: Toolbar? = null
-    private var tabLayout: TabLayout? = null
-    private var viewPager: ViewPager? = null
-    private var progressBar: ProgressBar? = null
-
     private var sharedPrefs: SharedPrefs? = null
-    private var presenter: ProfileContract.Presenter? = null
-    private var viewPagerAdapter: ViewPagerAdapter? = null
 
-    private var ivProfilePic: ImageView? = null
-    private var tvUsername: TextView? = null
-    private var tvDescription: TextView? = null
-    private var tvEmail: TextView? = null
-    private var tvLocation: TextView? = null
-    private var tvInstitute: TextView? = null
+    private lateinit var toolbar: Toolbar
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager
+    private lateinit var progressBar: ProgressBar
 
-    private var llAsStudent: LinearLayout? = null
-    private var llByStudent: LinearLayout? = null
-//    private var llAsStudent: LinearLayout?=null
-    private var llEmail:LinearLayout?=null
-    private var llLocation:LinearLayout?=null
-    private var llInstitute:LinearLayout?=null
-    private var llProfileParent: LinearLayout?=null
+    private lateinit var presenter: ProfileContract.Presenter
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
+
+    private lateinit var ivProfilePic: ImageView
+    private lateinit var tvUsername: TextView
+    private lateinit var tvDescription: TextView
+    private lateinit var tvEmail: TextView
+    private lateinit var tvLocation: TextView
+    private lateinit var tvInstitute: TextView
+
+    private lateinit var llEmail: LinearLayout
+    private lateinit var llLocation: LinearLayout
+    private lateinit var llInstitute: LinearLayout
+    private lateinit var llProfileParent: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,8 +77,8 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         tabLayout = view.findViewById(R.id.tabLayout)
         viewPager = view.findViewById(R.id.viewPager)
         progressBar = view.findViewById(R.id.progressBar)
-        toolbar?.inflateMenu(R.menu.menu_profile)
-        toolbar?.setOnMenuItemClickListener(this)
+        toolbar.inflateMenu(R.menu.menu_profile)
+        toolbar.setOnMenuItemClickListener(this)
 
         ivProfilePic = view.findViewById(R.id.iv_profile_pic)
         tvUsername = view.findViewById(R.id.tv_profile_username)
@@ -96,26 +91,26 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         llInstitute= view.findViewById(R.id.ll_profile_institute)
         llProfileParent = view.findViewById(R.id.ll_profile_parent)
         viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager?.adapter = viewPagerAdapter
-        tabLayout?.setupWithViewPager(viewPager)
-//        context = getContext()
+        viewPager.adapter = viewPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+
         sharedPrefs = context?.let { SharedPrefs(it) }
-        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
         val sharedUserName = sharedPrefs?.userName?.let { it }
         val param1Exists = mParam1?.let { it } ?: ""
         if (param1Exists == sharedUserName) {
-            sharedPrefs?.cookies?.let { presenter?.requestProfile(it, sharedUserName) }
-            presenter?.requestProfileDetails(sharedUserName)
+            sharedPrefs?.cookies?.let { presenter.requestProfile(it, sharedUserName) }
+            presenter.requestProfileDetails(sharedUserName)
         } else {
             mParam1?.let { param1 ->
-                sharedPrefs?.cookies?.let { presenter?.requestProfile(it, param1) }
-                presenter?.requestProfileDetails(param1)
+                sharedPrefs?.cookies?.let { presenter.requestProfile(it, param1) }
+                presenter.requestProfileDetails(param1)
             }
         }
         mParam2.let {
-            toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-            toolbar?.setNavigationOnClickListener {
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            toolbar.setNavigationOnClickListener {
                 activity?.onBackPressed()
             }
         }
@@ -131,44 +126,39 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
 
     private fun setTabs(data: ProfileResponse) {
-        val fragmentList = ArrayList<Fragment>()
-        val titleList = ArrayList<String>()
-        titleList.add("Contribution Statistics")
-        fragmentList.add(ProfileStatsFragment.newInstance(data, mParam1, mParam2))
-        titleList.add("Course Details")
-        fragmentList.add(ProfileCourseListFragment.newInstance(data))
-        titleList.add("Recent Uploads")
         val courseUploadList = data.uploads?.let { CourseUploadList(it) }
-        fragmentList.add(CourseUploadsFragment.newInstance(2, "", courseUploadList))
 
-        viewPagerAdapter?.setTabData(fragmentList, titleList)
-        viewPagerAdapter?.notifyDataSetChanged()
+        val fragmentList = listOf(ProfileStatsFragment.newInstance(data, mParam1, mParam2),
+                ProfileCourseListFragment.newInstance(data),
+                CourseUploadsFragment.newInstance(2, "", courseUploadList))
+
+        val titleList = listOf("Contribution Statistics", "Course Details", "Recent Uploads")
+
+        viewPagerAdapter.apply {
+            setTabData(fragmentList, titleList)
+            notifyDataSetChanged()
+        }
     }
 
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
-        llProfileParent?.visibility = VISIBLE
+        llProfileParent.visibility = View.VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.userProfile?.profileImage
         Timber.d(profilePicUrl)
         if (data.userProfile?.profileImage.isNullOrEmpty()) {
-            ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
+            ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
-        tvUsername?.text = mParam1
-//        if (data.user_profile.email.isNotEmpty()) {
-//            tvEmail?.text = data.user_profile.email
-//        } else {
-        llEmail?.visibility = INVISIBLE
-//        }
-        data.userProfile?.bio.let { tvDescription?.text = it }
-        tvDescription?.text = data.userProfile?.bio
-        tvLocation?.text = data.userProfile?.location
-//        if (data.user_profile.institution!=null) {
-//            tvInstitute?.text = data.user_profile.institution
-//        } else{
-        llInstitute?.visibility = INVISIBLE
-//        }
+        tvUsername.text = mParam1
+
+        llEmail.visibility = View.INVISIBLE
+
+        data.userProfile?.bio.let { tvDescription.text = it }
+        tvDescription.text = data.userProfile?.bio
+        tvLocation.text = data.userProfile?.location
+
+        llInstitute.visibility = View.INVISIBLE
     }
 
     override fun setData(data: ProfileResponse) {
@@ -176,11 +166,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar?.visibility = View.VISIBLE
-        } else {
-            progressBar?.visibility = View.GONE
-        }
+        progressBar.visibility = if (show) { View.VISIBLE } else { View.GONE }
     }
 
     override fun showMessage(message: String) {
