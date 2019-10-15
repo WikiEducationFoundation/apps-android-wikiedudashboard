@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class ProfileDetailsResponse (
-        val userProfile: ProfileDetails
+        val userProfile: ProfileDetails?
 )
 
 /**
