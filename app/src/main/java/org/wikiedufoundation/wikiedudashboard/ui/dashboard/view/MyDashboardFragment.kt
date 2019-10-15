@@ -102,6 +102,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         context?.showToast(message)
     }
 
+    /**
+     * Use [openCourseDetail] to put url slug and the boolean value of enrolled
+     * Send the data through Bundle then start the [CourseDetailActivity]
+     *
+     * @param slug url slug
+     * ***/
     fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
@@ -109,6 +115,11 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         startActivity(i)
     }
 
+    /**
+     * Use [updateSearchQuery] to search course
+     *
+     * @param query query statement
+     * ***/
     fun updateSearchQuery(query: String) {
         Timber.d(query)
         val filteredCourseList: ArrayList<CourseListData>? = ArrayList()

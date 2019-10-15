@@ -9,6 +9,9 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 
+/**
+ * Activity for course media detail
+ * ***/
 class MediaDetailsActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
@@ -26,6 +29,11 @@ class MediaDetailsActivity : AppCompatActivity() {
         position?.let { setFragment(MediaDetailFragment.newInstance(courseUploads, it)) }
     }
 
+    /**
+     * Use [setFragment] to set any media detail fragment
+     *
+     * @param fragment course media detail fragment
+     * ***/
     private fun setFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
@@ -35,6 +43,11 @@ class MediaDetailsActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * To add a fragment
+     *
+     * @param fragment course media detail fragment
+     * ***/
     fun addFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
