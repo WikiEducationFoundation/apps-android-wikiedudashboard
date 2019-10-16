@@ -89,11 +89,6 @@ class HomeActivity : AppCompatActivity() {
             return true
     }
 
-    /**
-     * Use [addFragment] to initialize a fragment
-     *
-     * @param fragment Any [Fragment] class
-     * ***/
     private fun addFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
@@ -116,10 +111,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Use [replaceFragment] to replace a fragment with other fragment
-     * @param fragment Any [Fragment] that needs to be replaced
-     * ***/
     private fun replaceFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
