@@ -112,5 +112,9 @@ dependencies {
     // circular dots
     implementation 'me.relex:circleindicator:2.1.4'
 
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
 
 }
