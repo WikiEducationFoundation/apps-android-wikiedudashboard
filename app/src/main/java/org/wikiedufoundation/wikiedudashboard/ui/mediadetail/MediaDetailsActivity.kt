@@ -29,11 +29,6 @@ class MediaDetailsActivity : AppCompatActivity() {
         position?.let { setFragment(MediaDetailFragment.newInstance(courseUploads, it)) }
     }
 
-    /**
-     * Use [setFragment] to set any media detail fragment
-     *
-     * @param fragment course media detail fragment
-     * ***/
     private fun setFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
