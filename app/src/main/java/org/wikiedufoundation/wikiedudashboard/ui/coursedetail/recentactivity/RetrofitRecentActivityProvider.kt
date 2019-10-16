@@ -9,6 +9,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
+/**
+ * Retrofit http request for recent activities
+ * ***/
 class RetrofitRecentActivityProvider : RecentActivityContract.Provider {
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
 

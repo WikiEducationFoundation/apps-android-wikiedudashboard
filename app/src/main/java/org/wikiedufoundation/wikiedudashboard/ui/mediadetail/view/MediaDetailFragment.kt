@@ -102,24 +102,24 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar?.inflateMenu(R.menu.menu_media_details)
         courseUpload = position?.let { (courseUploads?.uploads?.get(it)) }
         context?.let { Glide.with(it).load(courseUpload?.thumbUrl).into(mediaDetailImage) }
-        fileName = courseUpload?.file_name
+        fileName = courseUpload?.fileName
         tvTitle?.text = fileName
         tvAuthor?.text = courseUpload?.uploader
         toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
-        tvUploadDate?.text = courseUpload?.uploaded_at
+        tvUploadDate?.text = courseUpload?.uploadedAt
         mediaDetailImage?.setOnClickListener {
             (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }
         toolbar?.setOnMenuItemClickListener(this)
 
         mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
-        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(this)
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
         val linearLayoutManager = LinearLayoutManager(context)
         categoriesRecyclerView?.layoutManager = linearLayoutManager
         categoriesRecyclerView?.setHasFixedSize(true)
         categoriesRecyclerView?.adapter = categoryListRecyclerAdapter
 
-        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(this)
+        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(R.layout.item_rv_files)
         val linearLayoutManager2 = LinearLayoutManager(context)
         fileUsesRecyclerView?.layoutManager = linearLayoutManager2
         fileUsesRecyclerView?.setHasFixedSize(true)
@@ -159,7 +159,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun setData(data: MediaDetailsResponse) {
         Timber.d(data.toString())
 
-        val imageinfo = data.query.page[data.query.page.keys.first()]?.let { it.imageinfo[0] }
+        val imageinfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
 
         // Description
         tvDescription?.text = imageinfo?.extMetaData?.description?.value
@@ -181,7 +181,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         }
 
         // File Uses
-        val fileuses = data.query.page[data.query.page.keys.first()]?.globalusage
+        val fileuses = data.query.page[data.query.page.keys.first()]?.globalUsage
         if (categories.isNotEmpty()) {
             fileUsesRecyclerView?.visibility = View.VISIBLE
             fileuses?.let { fileusesRecyclerAdapter?.setData(it) }
@@ -218,4 +218,5 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             return fragment
         }
     }
+
 }

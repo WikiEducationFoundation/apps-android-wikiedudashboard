@@ -19,6 +19,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
+/**
+ * A simple [Fragment] for recent activities
+ * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
     private var tvNoActivity: TextView? = null
@@ -40,7 +43,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter()
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)

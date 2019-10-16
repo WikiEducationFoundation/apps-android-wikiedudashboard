@@ -61,7 +61,7 @@ class CourseListFragment : Fragment(), CourseListView {
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses?.text = sharedPrefs?.cookies
         courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
-        courseListRecyclerAdapter = CourseListRecyclerAdapter(this)
+        courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) { openCourseDetail(it) }
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)
@@ -97,7 +97,7 @@ class CourseListFragment : Fragment(), CourseListView {
         context?.showToast(message)
     }
 
-    fun openCourseDetail(slug: String) {
+    private fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
         i.putExtra("enrolled", false)
