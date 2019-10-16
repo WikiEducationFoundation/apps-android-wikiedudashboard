@@ -28,9 +28,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivit
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.ImageDetails
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
@@ -75,9 +72,9 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            courseUploads = arguments!!.getSerializable(ARG_PARAM1) as CourseUploadList
-            position = arguments!!.getInt(ARG_PARAM2)
+        arguments?.let {
+            courseUploads = it.getSerializable(ARG_PARAM1) as CourseUploadList
+            position = it.getInt(ARG_PARAM2)
         }
     }
 
@@ -102,56 +99,54 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
         tvNoFileUses = view.findViewById(R.id.tv_no_uses)
 
-        toolbar!!.inflateMenu(R.menu.menu_media_details)
-        courseUpload = (courseUploads!!.uploads[position!!])
-        Glide.with(context!!).load(courseUpload!!.thumbUrl).into(mediaDetailImage!!)
-        fileName = courseUpload!!.file_name
-        tvTitle!!.text = fileName
-        tvAuthor!!.text = courseUpload!!.uploader
-        toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
-        tvUploadDate!!.text = courseUpload!!.uploaded_at
-        mediaDetailImage!!.setOnClickListener {
-            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload!!.thumbUrl))
+        toolbar?.inflateMenu(R.menu.menu_media_details)
+        courseUpload = position?.let { (courseUploads?.uploads?.get(it)) }
+        context?.let { Glide.with(it).load(courseUpload?.thumbUrl).into(mediaDetailImage) }
+        fileName = courseUpload?.fileName
+        tvTitle?.text = fileName
+        tvAuthor?.text = courseUpload?.uploader
+        toolbar?.setNavigationOnClickListener { activity?.onBackPressed() }
+        tvUploadDate?.text = courseUpload?.uploadedAt
+        mediaDetailImage?.setOnClickListener {
+            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }
-        toolbar!!.setOnMenuItemClickListener(this)
+        toolbar?.setOnMenuItemClickListener(this)
 
         mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
-        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(this)
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
         val linearLayoutManager = LinearLayoutManager(context)
-        categoriesRecyclerView!!.layoutManager = linearLayoutManager
-        categoriesRecyclerView!!.setHasFixedSize(true)
-        categoriesRecyclerView!!.adapter = categoryListRecyclerAdapter
+        categoriesRecyclerView?.layoutManager = linearLayoutManager
+        categoriesRecyclerView?.setHasFixedSize(true)
+        categoriesRecyclerView?.adapter = categoryListRecyclerAdapter
 
-        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(this)
+        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(R.layout.item_rv_files)
         val linearLayoutManager2 = LinearLayoutManager(context)
-        fileUsesRecyclerView!!.layoutManager = linearLayoutManager2
-        fileUsesRecyclerView!!.setHasFixedSize(true)
-        fileUsesRecyclerView!!.adapter = fileusesRecyclerAdapter
+        fileUsesRecyclerView?.layoutManager = linearLayoutManager2
+        fileUsesRecyclerView?.setHasFixedSize(true)
+        fileUsesRecyclerView?.adapter = fileusesRecyclerAdapter
 
-        mediaDetailsPresenter!!.requestMediaDetails("")
+        mediaDetailsPresenter?.requestMediaDetails("")
 
         return view
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
-        if (item!!.itemId == R.id.item_download) {
+        if (item?.itemId == R.id.item_download) {
             downloadImage()
             return true
-        } else if (item.itemId == R.id.item_customtabs) {
+        } else if (item?.itemId == R.id.item_customtabs) {
             val builder = CustomTabsIntent.Builder()
-            builder.setToolbarColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
+            context?.let { builder.setToolbarColor(ContextCompat.getColor(it, R.color.colorPrimary)) }
             builder.addDefaultShareMenuItem()
             builder.setShowTitle(true)
-            builder.setExitAnimations(context!!, android.R.anim.fade_in, android.R.anim.fade_out)
+            context?.let { builder.setExitAnimations(it, android.R.anim.fade_in, android.R.anim.fade_out) }
             val customTabsIntent = builder.build()
 
-            val packageName = customTabHelper.getPackageNameToUse(context!!, baseURL + fileName)
-            if (packageName == null) {
-                // webview.
-            } else {
+            val packageName = context?.let { customTabHelper.getPackageNameToUse(it, baseURL + fileName) }
+            packageName?.let {
                 customTabsIntent.intent.setPackage(packageName)
                 customTabsIntent.launchUrl(context, Uri.parse(baseURL + fileName))
-            }
+            } /*?: webView*/
             return true
         }
         return false
@@ -164,50 +159,50 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun setData(data: MediaDetailsResponse) {
         Timber.d(data.toString())
 
-        val imageinfo: ImageDetails = data.query.page.get(data.query.page.keys.first())!!.imageinfo.get(0)
+        val imageinfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
 
         // Description
-        tvDescription?.text = imageinfo.extMetaData.description.value
+        tvDescription?.text = imageinfo?.extMetaData?.description?.value
 
         // License
-        tvLicense?.text = imageinfo.extMetaData.license.value
-        tvLicense?.setOnClickListener { context!!.showCustomChromeTabs(imageinfo.extMetaData.licenseUrl.value) }
+        tvLicense?.text = imageinfo?.extMetaData?.license?.value
+        tvLicense?.setOnClickListener { imageinfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
         // Categories
-        val categories: List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories
+        val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
         if (categories.isNotEmpty()) {
-            categoriesRecyclerView!!.visibility = View.VISIBLE
-            categoryListRecyclerAdapter!!.setData(categories)
-            categoryListRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoCategories!!.visibility = View.GONE
+            categoriesRecyclerView?.visibility = View.VISIBLE
+            categoryListRecyclerAdapter?.setData(categories)
+            categoryListRecyclerAdapter?.notifyDataSetChanged()
+            tvNoCategories?.visibility = View.GONE
         } else {
-            categoriesRecyclerView!!.visibility = View.GONE
-            tvNoCategories!!.visibility = View.VISIBLE
+            categoriesRecyclerView?.visibility = View.GONE
+            tvNoCategories?.visibility = View.VISIBLE
         }
 
         // File Uses
-        val fileuses: List<FileUsage> = data.query.page.get(data.query.page.keys.first())!!.globalusage
+        val fileuses = data.query.page[data.query.page.keys.first()]?.globalUsage
         if (categories.isNotEmpty()) {
-            fileUsesRecyclerView!!.visibility = View.VISIBLE
-            fileusesRecyclerAdapter!!.setData(fileuses)
-            fileusesRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoFileUses!!.visibility = View.GONE
+            fileUsesRecyclerView?.visibility = View.VISIBLE
+            fileuses?.let { fileusesRecyclerAdapter?.setData(it) }
+            fileusesRecyclerAdapter?.notifyDataSetChanged()
+            tvNoFileUses?.visibility = View.GONE
         } else {
-            fileUsesRecyclerView!!.visibility = View.GONE
-            tvNoFileUses!!.visibility = View.VISIBLE
+            fileUsesRecyclerView?.visibility = View.GONE
+            tvNoFileUses?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
 //        if (show) {
-//            progressBar!!.visibility = View.VISIBLE
+//            progressBar?.visibility = View.VISIBLE
 //        } else {
-//            progressBar!!.visibility = View.GONE
+//            progressBar?.visibility = View.GONE
 //        }
     }
 
     override fun showMessage(message: String) {
-        context!!.showToast(message)
+        context?.showToast(message)
     }
 
     companion object {
@@ -223,4 +218,5 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             return fragment
         }
     }
+
 }

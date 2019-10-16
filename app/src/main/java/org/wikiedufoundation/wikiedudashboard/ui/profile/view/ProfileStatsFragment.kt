@@ -1,10 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
 import android.annotation.SuppressLint
-import org.wikiedufoundation.wikiedudashboard.R
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -12,7 +9,9 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_profile_stats.view.*
+import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ByStudentsDetails
@@ -74,39 +73,37 @@ class ProfileStatsFragment : Fragment() {
         val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
         val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
 
-        if (profileResponse!!.as_instructor != null) {
-            val asInstructorDetails: AsInstructorDetails = profileResponse!!.as_instructor!!
-        } else {
-
+        profileResponse?.asInstructor?.let {
+            val asInstructorDetails: AsInstructorDetails = it
         }
 
-        if (profileResponse!!.as_student != null) {
-            val asStudentDetails: AsStudentDetails = profileResponse!!.as_student!!
-            val text : String = "Total impact made by " + username +"'s students"
+        profileResponse?.asStudent?.let {
+            val asStudentDetails: AsStudentDetails = it
+            val text: String = "Total impact made by $username's students"
             tvTitleImpactByStudents.text = text
-            tvCountArticlesCreated.text = asStudentDetails.individual_articles_created
-            tvCountArticlesEdited.text = asStudentDetails.individual_article_views
-            tvCountTotalEdits.text = asStudentDetails.individual_article_count
-            tvCountStudentEditors.text = asStudentDetails.individual_upload_count
-            tvCountWordsAdded.text = asStudentDetails.individual_word_count
-            tvCountArticleViews.text = asStudentDetails.individual_article_views
-            tvCountCommonsUploads.text = asStudentDetails.individual_upload_count
-        } else {
+            tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
+            tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
+            tvCountTotalEdits.text = asStudentDetails.individualArticleCount
+            tvCountStudentEditors.text = asStudentDetails.individualUploadCount
+            tvCountWordsAdded.text = asStudentDetails.individualWordCount
+            tvCountArticleViews.text = asStudentDetails.individualArticleViews
+            tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
+        } ?: run {
             llAsStudent.visibility = GONE
             llNotEnrolled.visibility = VISIBLE
         }
 
-        if (profileResponse!!.by_students != null) {
-            val byStudentDetails: ByStudentsDetails = profileResponse!!.by_students!!
+        profileResponse?.byStudents?.let {
+            val byStudentDetails: ByStudentsDetails = it
             val text : String = "Total impact made by " + username +"as a student"
             tvTitleImpactByStudents.text = text
-            tvInstructorCountWordsAdded.text = byStudentDetails.word_count
-            tvInstructorCountReferencesAdded.text = byStudentDetails.references_count
-            tvInstructorCountArticleViews.text = byStudentDetails.view_sum
-            tvInstructorCountArticlesCreated.text = byStudentDetails.new_article_count
-            tvInstructorCountArticlesEdited.text = byStudentDetails.article_count
-            tvInstructorCountCommonsUpload.text = byStudentDetails.upload_count
-        } else {
+            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
+            tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
+            tvInstructorCountArticleViews.text = byStudentDetails.viewSum
+            tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
+            tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
+            tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
+        } ?: run {
             llByStudent.visibility = GONE
             llNotEnrolled.visibility = VISIBLE
         }
@@ -124,12 +121,12 @@ class ProfileStatsFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: ProfileResponse, param2: String, param3: Boolean) =
+        fun newInstance(param1: ProfileResponse, param2: String?, param3: Boolean?) =
                 ProfileStatsFragment().apply {
                     arguments = Bundle().apply {
                         putSerializable(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                        putBoolean(ARG_PARAM3, param3)
+                        param2?.let { putString(ARG_PARAM2, it) }
+                        param3?.let { putBoolean(ARG_PARAM3, it) }
                     }
                 }
     }

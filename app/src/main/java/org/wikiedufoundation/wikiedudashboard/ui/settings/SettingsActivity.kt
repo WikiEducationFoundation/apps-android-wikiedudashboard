@@ -40,14 +40,14 @@ class SettingsActivity : AppCompatActivity() {
         tvTermsAndConditions = findViewById(R.id.tv_terms_and_conditions)
         tvLogout = findViewById(R.id.tv_logout)
         tvVersionCode = findViewById(R.id.tv_version_code)
-        toolbar!!.setNavigationOnClickListener { onBackPressed() }
-        tvFeedback!!.setOnClickListener { sendEmailFeedback() }
-        tvShareApp!!.setOnClickListener { shareApp() }
-        tvLicenses!!.setOnClickListener { openLicenses() }
-        tvPrivacyPolicy!!.setOnClickListener { openPrivacyPolicy() }
-        tvTermsAndConditions!!.setOnClickListener { openTermsAndConditions() }
-        tvLogout!!.setOnClickListener { logOut() }
-        tvVersionCode!!.text = "1.001"
+        toolbar?.setNavigationOnClickListener { onBackPressed() }
+        tvFeedback?.setOnClickListener { sendEmailFeedback() }
+        tvShareApp?.setOnClickListener { shareApp() }
+        tvLicenses?.setOnClickListener { openLicenses() }
+        tvPrivacyPolicy?.setOnClickListener { openPrivacyPolicy() }
+        tvTermsAndConditions?.setOnClickListener { openTermsAndConditions() }
+        tvLogout?.setOnClickListener { logOut() }
+        tvVersionCode?.text = "1.001"
 
     }
 
@@ -71,15 +71,15 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun openLicenses() {
-        context!!.showCustomChromeTabs("https://creativecommons.org/licenses/by-sa/3.0/")
+        context?.showCustomChromeTabs("https://creativecommons.org/licenses/by-sa/3.0/")
     }
 
     private fun openTermsAndConditions() {
-        context!!.showCustomChromeTabs("https://wikiedu.org/terms-of-service/")
+        context?.showCustomChromeTabs("https://wikiedu.org/terms-of-service/")
     }
 
     private fun openPrivacyPolicy() {
-        context!!.showCustomChromeTabs("https://wikiedu.org/privacy-policy/")
+        context?.showCustomChromeTabs("https://wikiedu.org/privacy-policy/")
     }
 
     private fun logOut() {
@@ -89,11 +89,12 @@ class SettingsActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
                 .setPositiveButton("Yes") { dialog, _ ->
-                    sharedPrefs!!.userName = ""
-                    sharedPrefs!!.cookies = ""
-                    sharedPrefs!!.setLogin(false)
+                    sharedPrefs?.userName = ""
+                    sharedPrefs?.cookies = ""
+                    sharedPrefs?.setLogin(false)
                     val i = Intent(context, WelcomeActivity::class.java)
                     startActivity(i)
+
                     dialog.dismiss()
                 }.show()
     }

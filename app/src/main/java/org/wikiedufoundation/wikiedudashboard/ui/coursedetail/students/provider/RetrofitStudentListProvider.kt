@@ -9,6 +9,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * [RetrofitStudentListProvider] to make retrofit http request for getting list of student data
+ * ***/
 class RetrofitStudentListProvider : StudentListProvider {
 
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject

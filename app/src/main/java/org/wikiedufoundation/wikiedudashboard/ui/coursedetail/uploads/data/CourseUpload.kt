@@ -1,21 +1,31 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data
 
 import com.google.gson.annotations.SerializedName
-
 import java.io.Serializable
 
+/**
+ * [CourseUpload] model class
+ * @constructor primary constructor to initialize properties and variables
+ * ***/
 class CourseUpload : Serializable {
+    @SerializedName("id")
     val id: Int? = null
-    val uploaded_at: String? = null
-    val usage_count: String? = null
+    @SerializedName("uploaded_at")
+    val uploadedAt: String? = null
+    @SerializedName("usage_count")
+    val usageCount: String? = null
+    @SerializedName("url")
     val url: String? = null
-    @field:SerializedName("thumburl")
+    @SerializedName("thumburl")
     val thumbUrl: String? = null
+    @SerializedName("deleted")
     val deleted: Boolean? = null
-    @field:SerializedName("thumbwidth")
+    @SerializedName("thumbwidth")
     val thumbWidth: String? = null
-    @field:SerializedName("thumbheight")
+    @SerializedName("thumbheight")
     val thumbHeight: String? = null
-    val file_name: String? = null
+    @SerializedName("file_name")
+    val fileName: String? = null
+    @SerializedName("uploader")
     val uploader: String? = null
 }

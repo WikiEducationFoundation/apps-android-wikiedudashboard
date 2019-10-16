@@ -5,6 +5,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsView
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
+/**
+ * Use [CourseUploadsPresenterImpl] to handle data and display it in view
+ * @constructor primary constructor
+ *
+ * @property courseUploadsView
+ * @property courseUploadsProvider
+ * ***/
 class CourseUploadsPresenterImpl(private val courseUploadsView: CourseUploadsView, private val courseUploadsProvider: CourseUploadsProvider) : CourseUploadsPresenter {
 
     override fun requestCourseUploads(url: String) {
