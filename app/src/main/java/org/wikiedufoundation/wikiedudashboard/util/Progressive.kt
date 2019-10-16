@@ -1,7 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.util
 
 /**
- * [showProgressBar] callback
+ *  Interface to containing [showProgressBar] function.
  * ***/
 interface Progressive {
     /**
