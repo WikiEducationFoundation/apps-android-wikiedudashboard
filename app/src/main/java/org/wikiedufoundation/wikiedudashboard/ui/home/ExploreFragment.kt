@@ -64,10 +64,6 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         return view
     }
 
-    /**
-     * Set tabs for Explore fragment
-     * Tabs: Active Campaigns and Active Courses
-     * ***/
     private fun setTabs() {
         val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
