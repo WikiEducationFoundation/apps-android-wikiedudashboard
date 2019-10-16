@@ -1,7 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.util
 
 /**
- * [showMessage] callback
+ * Interface that contains [showMessage] function. 
  * ***/
 interface Toaster {
     /**
