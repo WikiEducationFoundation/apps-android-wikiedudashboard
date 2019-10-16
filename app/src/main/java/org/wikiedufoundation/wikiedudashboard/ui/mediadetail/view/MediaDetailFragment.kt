@@ -1,11 +1,16 @@
 package org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view
 
+import android.app.DownloadManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +21,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +47,7 @@ import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
+import java.util.jar.Manifest
 
 /**
  * A simple [Fragment] subclass.
@@ -162,36 +169,33 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     private fun downloadImage() {
 //        TODO("not implemented")
+        val url = Uri.parse(courseUpload?.thumbUrl)
+        val mDir = File(Environment.getExternalStorageDirectory(),"Wikiedu/images/")
+        val downloadMgr : DownloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         try{
-            val url:URL = URL(courseUpload?.thumbUrl)
+            val request : DownloadManager.Request = DownloadManager.Request(url)
 
-            val inputStream:InputStream = BufferedInputStream(url.openStream())
-            val bitmapImg:Bitmap = BitmapFactory.decodeStream(inputStream)
-
-            val rootDir:String = context?.filesDir?.path + File.separator +"image_" +Date().toString()
-            val myDir:FileOutputStream = FileOutputStream(rootDir)
-
-            val outStream: ByteArrayOutputStream = ByteArrayOutputStream()
-            val bufByte: ByteArray = ByteArray(1024)
-            var num:Int = inputStream.read(bufByte)
-            while (num!=-1){
-                outStream.write(bufByte,0,num)
-                num = inputStream.read(bufByte)
+            if(!mDir.exists()){
+                mDir.mkdirs()
             }
-            bitmapImg.compress(Bitmap.CompressFormat.JPEG,90,outStream)
 
-            outStream.flush()
-            outStream.close()
-            inputStream.close()
+            //downloaded image will be stored in Downloads directory of a device
+            //if no destination dir is set
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or
+                    DownloadManager.Request.NETWORK_MOBILE).setAllowedOverMetered(true).
+                    setAllowedOverRoaming(false).setTitle("Image downloading..." + url).
+                    setVisibleInDownloadsUi(true)
+                    .setDestinationInExternalPublicDir("Wikiedu/images/",url.toString())
 
-            val response:ByteArray = outStream.toByteArray()
-            myDir.write(response)
-            myDir.close()
-            Toast.makeText(context,"Downloaded",Toast.LENGTH_LONG).show()
+            downloadMgr.enqueue(request)
+
+            Toast.makeText(context,"Image downloaded successfully!\n"+
+                    url,Toast.LENGTH_LONG).show()
 
         }catch (ie:IOException){
             ie.stackTrace
         }
+
     }
 
     override fun setData(data: MediaDetailsResponse) {
