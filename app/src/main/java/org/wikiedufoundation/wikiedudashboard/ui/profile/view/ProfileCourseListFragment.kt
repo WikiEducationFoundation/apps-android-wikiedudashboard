@@ -54,7 +54,9 @@ class ProfileCourseListFragment : Fragment() {
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses?.text = sharedPrefs?.cookies
-        courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(this)
+        courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
+            openCourseDetail(it)
+        }
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)
@@ -103,12 +105,7 @@ class ProfileCourseListFragment : Fragment() {
         context?.showToast(message)
     }
 
-    /**
-     * Pass url slug and enrolment boolean value through bundles to [CourseDetailActivity]
-     *
-     * @param slug url slug
-     * ***/
-    fun openCourseDetail(slug: String) {
+    private fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
         i.putExtra("enrolled", false)

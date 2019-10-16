@@ -1,38 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
+    <data>
+
+        <variable
+            name="obj"
+            type="org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.User" />
+
+        <variable
+            name="adp"
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAdapter" />
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> adp.onStudentClicked(obj)}"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:minHeight="60dp"
-            android:gravity="center"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_students_name"
-                android:paddingTop="@dimen/padding_16dp"
-                android:paddingStart="@dimen/padding_16dp"
-                android:paddingEnd="@dimen/padding_16dp"
-                android:paddingBottom="@dimen/padding_16dp"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_20sp"
-                android:text="@string/demo_course" />
+                android:gravity="center"
+                android:minHeight="60dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_students_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/padding_16dp"
+                    android:paddingTop="@dimen/padding_16dp"
+                    android:paddingEnd="@dimen/padding_16dp"
+                    android:paddingBottom="@dimen/padding_16dp"
+                    android:text="@{obj.userName}"
+                    android:textSize="@dimen/text_size_20sp"
+                    tools:text="@string/demo_course" />
 
-    </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-    <View
-        android:background="@color/colorGrayBackground"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrayBackground" />
+
+    </LinearLayout>
+</layout>
