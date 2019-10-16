@@ -21,7 +21,7 @@ class CustomTabHelper {
     }
 
     /**
-     * Use [getPackageNameToUse] to open chrome custom tabs for browsing image in Chrome browser
+     * Method used to open chrome custom tabs for browsing image in Chrome browser
      *
      * @param context Context
      * @param url course uploads file name url
