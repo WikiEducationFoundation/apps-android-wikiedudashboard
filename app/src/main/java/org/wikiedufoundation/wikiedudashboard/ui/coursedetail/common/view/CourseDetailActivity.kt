@@ -58,7 +58,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
             url = data.substring(data.lastIndexOf("courses/") + 8)
             val urlExists = url.contains("?enroll")
             if (urlExists) {
-                val enrollParam = url.lastIndexOf("?enroll").plus(7).let { url.substring(it) }
+//                val enrollParam = url.lastIndexOf("?enroll").plus(7).let { url.substring(it) }
                 url = url.lastIndexOf("?enroll").let { url.substring(0, it) }
             }
         }
