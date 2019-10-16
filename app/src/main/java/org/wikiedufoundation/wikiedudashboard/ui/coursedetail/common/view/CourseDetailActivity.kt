@@ -43,6 +43,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     private var sharedPrefs: SharedPrefs? = null
     private var viewPagerAdapter: ViewPagerAdapter? = null
     private var courseHomeFragment: CourseHomeFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_detail)
@@ -90,11 +91,11 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
      * Set course detail tabs
      * ***/
     private fun setTabs() {
-        val fragmentList = ArrayList<Fragment?>()
+        val fragmentList = ArrayList<Fragment>()
         val titleList = ArrayList<String>()
         titleList.add("Home")
-        fragmentList.add(courseHomeFragment)
-//        if (sharedPrefs?.cookies == sharedPrefs?.wikiEduDashboardCookies) {
+        courseHomeFragment?.let { fragmentList.add(it) }
+//        if (sharedPrefs!!.cookies == sharedPrefs!!.wikiEduDashboardCookies) {
 //            titleList.add("Timeline")
 //            fragmentList.add(CourseTimelineFragment())
 //        }

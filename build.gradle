@@ -32,6 +32,7 @@ buildscript {
         testExtJunit = '1.1.0'
         uiAutomatorVersion = '2.2.0'
         workVersion = '2.1.0-alpha02'
+        safeArgs = '1.0.0-alpha04'
     }
 
     repositories {
@@ -42,6 +43,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:${gradleVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        //safe args
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$safeArgs"
     }
 }
 

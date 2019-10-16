@@ -9,11 +9,16 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
@@ -31,10 +36,10 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private var cv_signup_wikipedia: CardView? = null
-    private var cv_login_wikipedia: CardView? = null
+    private var cv_signup_wikipedia: Button? = null
+    private var cv_login_wikipedia: Button? = null
     private var webView: WebView? = null
-    private var ll_login_layout: LinearLayout? = null
+    private var cl_outreach : ConstraintLayout? = null
     private var progressBar: ProgressBar? = null
 
     private var cookies: String? = null
@@ -42,12 +47,15 @@ class OutreachProgramsDashboardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            mParam1 = it.getString(ARG_PARAM2)
-            mParam2 = it.getString(ARG_PARAM2)
+        if (arguments != null) {
+            mParam1 = arguments?.getString(ARG_PARAM1)
+            mParam2 = arguments?.getString(ARG_PARAM2)
+            arguments?.let {
+                mParam1 = it.getString(ARG_PARAM2)
+                mParam2 = it.getString(ARG_PARAM2)
+            }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,7 +65,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        ll_login_layout = view.findViewById(R.id.ll_login_layout)
+        cl_outreach = view.findViewById(R.id.cl_outreach)
         progressBar = view.findViewById(R.id.progressBar)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
@@ -75,6 +83,8 @@ class OutreachProgramsDashboardFragment : Fragment() {
         webView?.getSettings()?.setJavaScriptEnabled(true)
         webView?.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+                progressBar?.visibility = View.VISIBLE
+                cl_outreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
                 progressBar?.visibility = View.VISIBLE
             }
@@ -84,6 +94,8 @@ class OutreachProgramsDashboardFragment : Fragment() {
                 if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
+                    webView?.visibility = View.VISIBLE
+                    cl_outreach?.visibility = View.GONE
                     super.onPageFinished(view, url)
                     webView?.visibility = View.VISIBLE
                 }
@@ -95,6 +107,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private fun proceedToLogin(url: String) {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
+        Timber.d("All the cookies in a string:" + cookies)
         Timber.d("All the cookies in a string: $cookies")
         sharedPrefs?.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
@@ -107,13 +120,14 @@ class OutreachProgramsDashboardFragment : Fragment() {
 
     private fun setOnClickListeners() {
         cv_login_wikipedia?.setOnClickListener {
-            //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki";
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki"
+            progressBar?.visibility = View.VISIBLE
             webView?.loadUrl(url)
+
         }
         cv_signup_wikipedia?.setOnClickListener {
-            //                String url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup";
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup"
+            progressBar?.visibility = View.VISIBLE
             webView?.loadUrl(url)
         }
     }

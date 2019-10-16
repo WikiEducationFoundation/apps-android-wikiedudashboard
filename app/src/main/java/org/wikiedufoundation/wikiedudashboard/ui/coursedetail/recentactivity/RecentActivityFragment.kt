@@ -43,7 +43,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter()
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcome_nav_graph"
+    app:startDestination="@id/mainOnboardingFragment">
+
+    <fragment
+        android:id="@+id/mainOnboardingFragment"
+        android:name="org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.MainOnboardingFragment"
+        android:label="fragment_main_onboarding"
+        tools:layout="@layout/fragment_main_onboarding" >
+
+        <action
+            android:id="@+id/action_mainOnboardingFragment_to_wikiEducationDashboardFragment"
+            app:destination="@id/wikiEducationDashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wikiEducationDashboardFragment"
+        android:name="org.wikiedufoundation.wikiedudashboard.ui.welcome.WikiEducationDashboardFragment"
+        android:label="WikiEducationDashboardFragment" >
+        <action
+            android:id="@+id/action_wikiEducationDashboardFragment_to_outreachProgramsDashboardFragment"
+            app:destination="@id/outreachProgramsDashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outreachProgramsDashboardFragment"
+        android:name="org.wikiedufoundation.wikiedudashboard.ui.welcome.OutreachProgramsDashboardFragment"
+        android:label="OutreachProgramsDashboardFragment" >
+
+    </fragment>
+
+</navigation>

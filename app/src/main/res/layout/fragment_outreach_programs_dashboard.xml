@@ -1,149 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/welcome4_background"
-    android:orientation="vertical"
-    android:gravity="center" >
+    android:orientation="vertical">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/welcome4_background"
-    android:orientation="vertical"
-    android:gravity="center" >
+
     <WebView
         android:visibility="gone"
         android:id="@+id/webView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:id="@+id/ll_login_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_outreach"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/welcome4_background"
-        android:orientation="vertical"
+        android:background="@drawable/ic_wiki_background"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/margin_140"
+        android:src="@drawable/ic_wikimedia_logo"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/wiki_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="@dimen/padding_16dp"
-        tools:context=".ui.welcome.WikiEducationDashboardFragment">
+        android:textColor="@color/blue"
+        android:lines="2"
+        android:layout_margin="@dimen/dimen_16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_30sp"
+        android:text="@string/outreach_programs_and_events_dashboard" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            app:cardCornerRadius="@dimen/card_corner_radius_8dp"
-            android:layout_margin="@dimen/padding_16dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:src="@drawable/outreach_logo"
-                />
-        </androidx.cardview.widget.CardView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:lines="2"
-            android:textSize="@dimen/text_size_30sp"
-            android:text="@string/outreach_programs_and_events_dashboard" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_margin="@dimen/padding_16dp"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/cv_login_wikipedia"
-            app:cardCornerRadius="@dimen/card_corner_radius_4dp"
-            android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cv_login_wikipedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/wiki_textView"
+        android:layout_margin="@dimen/margin_48dp"
+        android:textAlignment="center"
+        android:padding="@dimen/margin_8dp"
+        android:text="@string/log_in_with_wikipedia"
+        android:background="@color/colorAccent"
+        android:textSize="@dimen/text_size_16sp"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/wiki_white_logo_icon"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:background="@color/colorPrimary"
-                >
 
-                <ImageView
-                    android:layout_width="@dimen/icon_size_24dp"
-                    android:layout_height="@dimen/icon_size_24dp"
-                    android:layout_margin="@dimen/padding_8dp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:src="@drawable/wikipedia_logo"/>
-                <TextView
-                    android:padding="@dimen/padding_8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginEnd="@dimen/card_corner_radius_4dp"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_16sp"
-                    android:text="@string/log_in_with_wikipedia" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cv_signup_wikipedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cv_login_wikipedia"
+        android:layout_marginLeft="@dimen/margin_48dp"
+        android:layout_marginRight="@dimen/margin_48dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:textAlignment="center"
+        android:padding="@dimen/margin_8dp"
+        android:text="@string/sign_up_with_wikipedia"
+        android:background="@color/colorAccent"
+        android:textSize="@dimen/text_size_16sp"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/wiki_white_logo_icon"/>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_margin="@dimen/padding_16dp"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            app:cardCornerRadius="@dimen/card_corner_radius_4dp"
-            android:id="@+id/cv_signup_wikipedia"
-            android:layout_height="wrap_content">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:background="@color/colorPrimary"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size_24dp"
-                    android:layout_height="@dimen/icon_size_24dp"
-                    android:layout_margin="@dimen/padding_8dp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:src="@drawable/wikipedia_logo"/>
-                <TextView
-                    android:padding="@dimen/padding_8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_16sp"
-                    android:text="@string/sign_up_with_wikipedia" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_margin="@dimen/padding_16dp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--app:cardCornerRadius="@dimen/card_corner_radius_4dp"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<TextView-->
-        <!--android:padding="@dimen/padding_16dp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="@dimen/text_size_16sp"-->
-        <!--android:text="To use the dashboard, you'll need to sign in through Wikipedia and give it permission to access your account. You can log in with an existing Wikipedia account, or create a new one." />-->
-        <!--</android.support.v7.widget.CardView>-->
-    </LinearLayout>
-</LinearLayout>
     <ProgressBar
         android:visibility="gone"
         android:indeterminate="true"
         android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTint="@color/colorAccent"
         android:id="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-</RelativeLayout>
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>
