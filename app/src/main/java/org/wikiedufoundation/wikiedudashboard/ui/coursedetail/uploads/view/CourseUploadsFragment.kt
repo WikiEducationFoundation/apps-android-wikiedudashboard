@@ -60,7 +60,9 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
         courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
-        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(this)
+        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
+            openCourseDetail(uploadList, position)
+        }
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.setHasFixedSize(true)
@@ -78,7 +80,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         Timber.d(courseUploadList.toString())
         if (courseUploadList.uploads.isNotEmpty()) {
             recyclerView?.visibility = View.VISIBLE
-            courseUploadsRecyclerAdapter?.setData(courseUploadList)
+            courseUploadsRecyclerAdapter?.setData(courseUploadList.uploads)
             courseUploadsRecyclerAdapter?.notifyDataSetChanged()
             tvNoStudents?.visibility = View.GONE
         } else {
@@ -106,7 +108,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
      * @param courseUploads list of course uploads data to be sent through Bundle extras
      * @param position the position of each course uploads to be sent through Bundle extras
      * ***/
-    fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
+    private fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
         val i = Intent(context, MediaDetailsActivity::class.java)
         i.putExtra("uploads", courseUploads)
         i.putExtra("position", position)
