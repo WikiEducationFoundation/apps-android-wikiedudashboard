@@ -152,9 +152,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         return false
     }
 
-    /***
-     * Use [downloadImage] to download media detail images of a course
-     * ***/
     private fun downloadImage() {
 //        TODO("not implemented")
     }
