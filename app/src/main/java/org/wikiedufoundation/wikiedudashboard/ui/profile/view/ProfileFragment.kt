@@ -148,9 +148,9 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
         llProfileParent?.visibility = VISIBLE
-        val profilePicUrl = Urls.BASE_URL + data.userProfile.profileImage
+        val profilePicUrl = Urls.BASE_URL + data.userProfile?.profileImage
         Timber.d(profilePicUrl)
-        if (data.userProfile.profileImage.isNullOrEmpty()) {
+        if (data.userProfile?.profileImage.isNullOrEmpty()) {
             ivProfilePic?.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
@@ -161,11 +161,9 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 //        } else {
         llEmail?.visibility = INVISIBLE
 //        }
-        data.userProfile.bio.let {
-            tvDescription?.text = data.userProfile.bio
-        }
-        tvDescription?.text = data.userProfile.bio
-        tvLocation?.text = data.userProfile.location
+        data.userProfile?.bio.let { tvDescription?.text = it }
+        tvDescription?.text = data.userProfile?.bio
+        tvLocation?.text = data.userProfile?.location
 //        if (data.user_profile.institution!=null) {
 //            tvInstitute?.text = data.user_profile.institution
 //        } else{
