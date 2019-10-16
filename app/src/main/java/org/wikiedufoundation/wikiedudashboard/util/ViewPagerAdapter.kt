@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import java.util.*
 
+/**
+ * Adapter class for ViewPager
+ * ***/
 class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     private var fragmentList: List<Fragment> = ArrayList()
     private var fragmentTitleList: List<String> = ArrayList()
@@ -18,6 +21,12 @@ class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager)
         return fragmentList.size
     }
 
+    /**
+     * Set [fragmentList] and [fragmentTitleList] to ViewPager
+     *
+     * @param fragmentList list of fragments
+     * @param fragmentTitleList list of fragment text titles
+     * ***/
     fun setTabData(fragmentList: List<Fragment>, fragmentTitleList: List<String>) {
         this.fragmentList = fragmentList
         this.fragmentTitleList = fragmentTitleList

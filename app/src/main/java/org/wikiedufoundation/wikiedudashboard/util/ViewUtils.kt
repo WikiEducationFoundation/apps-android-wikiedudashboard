@@ -36,7 +36,7 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-/**
+ /**
  * Use Kotlin [ExtensionFunctionType] to use [hideKeyboard] as a view extension function.
  ***/
 fun View.hideKeyboard() {

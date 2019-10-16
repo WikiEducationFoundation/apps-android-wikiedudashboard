@@ -66,6 +66,10 @@ class ProfileCourseListFragment : Fragment() {
         return view
     }
 
+    /**
+     * Use [setData] to set list of courses data
+     * @param courses list of courses data
+     * ***/
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
@@ -79,6 +83,11 @@ class ProfileCourseListFragment : Fragment() {
         }
     }
 
+    /**
+     * User [showProgressBar] to show loading progress
+     *
+     * @param show boolean value to determine the visibility of the progress bar
+     * ***/
     fun showProgressBar(show: Boolean) {
         if (show) {
             progressBar?.visibility = View.VISIBLE
@@ -87,6 +96,11 @@ class ProfileCourseListFragment : Fragment() {
         }
     }
 
+    /**
+     * Use [showMessage] to show a toast
+     *
+     * @param message text message in String
+     * ***/
     fun showMessage(message: String) {
         context?.showToast(message)
     }
