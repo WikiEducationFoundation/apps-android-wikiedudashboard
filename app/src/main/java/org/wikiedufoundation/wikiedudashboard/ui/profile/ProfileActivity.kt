@@ -26,10 +26,6 @@ class ProfileActivity : AppCompatActivity() {
         username?.let { setFragment(ProfileFragment.newInstance(it, true)) }
     }
 
-    /***
-     * Put [fragment] variables into param to initialize fragment
-     * @param fragment profile fragments that needs to be set at first place
-     * ***/
     private fun setFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
