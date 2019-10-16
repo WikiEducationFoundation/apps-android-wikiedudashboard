@@ -113,13 +113,13 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar?.setOnMenuItemClickListener(this)
 
         mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
-        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(this)
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
         val linearLayoutManager = LinearLayoutManager(context)
         categoriesRecyclerView?.layoutManager = linearLayoutManager
         categoriesRecyclerView?.setHasFixedSize(true)
         categoriesRecyclerView?.adapter = categoryListRecyclerAdapter
 
-        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(this)
+        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(R.layout.item_rv_files)
         val linearLayoutManager2 = LinearLayoutManager(context)
         fileUsesRecyclerView?.layoutManager = linearLayoutManager2
         fileUsesRecyclerView?.setHasFixedSize(true)

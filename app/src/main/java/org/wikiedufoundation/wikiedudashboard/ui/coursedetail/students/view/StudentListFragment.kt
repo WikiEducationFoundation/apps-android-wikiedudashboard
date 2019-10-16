@@ -47,7 +47,7 @@ class StudentListFragment : Fragment(), StudentListView {
         layoutManager = LinearLayoutManager(context)
         recyclerView?.layoutManager = layoutManager
         recyclerView?.setHasFixedSize(true)
-        studentListRecyclerAdapter = StudentListRecyclerAdapter(this)
+        studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
         recyclerView?.adapter = studentListRecyclerAdapter
         url?.let { studentListPresenter?.requestStudentList(it) }
         recyclerView?.layoutManager = layoutManager
