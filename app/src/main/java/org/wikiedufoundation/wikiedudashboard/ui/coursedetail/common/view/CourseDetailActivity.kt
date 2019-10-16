@@ -35,7 +35,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var progressBar: ProgressBar
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var courseHomeFragment: CourseHomeFragment
     private lateinit var courseDetailPresenter: CourseDetailPresenter
 
@@ -64,7 +63,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
             }
         }
 
-        viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         courseDetailPresenter = CourseDetailPresenterImpl(this, RetrofitCourseDetailProvider())
@@ -107,10 +105,10 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
                 url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) })
         val titleList = listOf("Home", "Students", "Article", "Uploads", "Activity")
 
-        viewPagerAdapter.apply {
-            setTabData(fragmentList, titleList)
-            notifyDataSetChanged()
+        viewPager.apply {
+            adapter = ViewPagerAdapter(supportFragmentManager, fragmentList, titleList)
         }
+
     }
 
     override fun showProgressBar(show: Boolean) {

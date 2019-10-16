@@ -26,7 +26,6 @@ import timber.log.Timber
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
     private lateinit var toolbar: Toolbar
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var campaignListFragment: CampaignListFragment
     private lateinit var courseListFragment: CourseListFragment
 
@@ -60,15 +59,14 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     }
 
     private fun setTabs(tabLayout: TabLayout, viewPager: ViewPager) {
-        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager.adapter = viewPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
-
         val fragmentList = listOf<Fragment>(CampaignListFragment(), CourseListFragment())
         val titleList = listOf("Active Campaigns", "Active Courses")
 
-        viewPagerAdapter.setTabData(fragmentList, titleList)
-        viewPagerAdapter.notifyDataSetChanged()
+        viewPager.apply {
+            adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
+        }
+        tabLayout.setupWithViewPager(viewPager)
+
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {

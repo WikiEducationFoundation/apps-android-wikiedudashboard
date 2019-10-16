@@ -47,7 +47,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private lateinit var progressBar: ProgressBar
 
     private lateinit var presenter: ProfileContract.Presenter
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
 
     private lateinit var ivProfilePic: ImageView
     private lateinit var tvUsername: TextView
@@ -90,8 +89,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         llLocation = view.findViewById(R.id.ll_profile_location)
         llInstitute= view.findViewById(R.id.ll_profile_institute)
         llProfileParent = view.findViewById(R.id.ll_profile_parent)
-        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
@@ -134,10 +131,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
         val titleList = listOf("Contribution Statistics", "Course Details", "Recent Uploads")
 
-        viewPagerAdapter.apply {
-            setTabData(fragmentList, titleList)
-            notifyDataSetChanged()
+        viewPager.apply {
+            adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
         }
+
     }
 
     @Suppress("UselessCallOnNotNull")
