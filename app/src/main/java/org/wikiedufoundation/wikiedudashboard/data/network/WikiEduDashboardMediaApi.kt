@@ -5,6 +5,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 
+/**
+ * Interface [WikiEduDashboardMediaApi]
+ * to fetch the media endpoit with another url
+ *
+ **/
 interface WikiEduDashboardMediaApi {
 
     /**

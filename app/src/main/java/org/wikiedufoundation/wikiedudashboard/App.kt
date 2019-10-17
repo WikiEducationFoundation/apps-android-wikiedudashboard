@@ -8,6 +8,10 @@ import org.wikiedufoundation.wikiedudashboard.di.persistenceModule
 import org.wikiedufoundation.wikiedudashboard.di.presenterModule
 import org.wikiedufoundation.wikiedudashboard.di.provideModule
 
+/**
+ * Use the [App] to initialize koin dependency injection
+ * for WikiEduDashboardApi
+ **/
 class App : Application() {
 
     override fun onCreate() {

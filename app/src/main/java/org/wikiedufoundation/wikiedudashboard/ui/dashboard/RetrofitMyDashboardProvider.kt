@@ -7,6 +7,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Class that implements [requestCourseList] to get CourseList data
+ * ***/
 class RetrofitMyDashboardProvider(
         private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : MyDashboardContract.Provider {

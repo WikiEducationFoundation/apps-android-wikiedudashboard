@@ -4,6 +4,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardRespo
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import timber.log.Timber
 
+/**
+ * Class to implement [requestDashboard]
+ * @constructor primary constructor
+ *
+ * @property myDashboardView view component for course list
+ * @property myDashboardProvider retrofit HTTP request call for course list
+ * ***/
 class MyDashboardPresenterImpl(
         private val myDashboardView: MyDashboardContract.View,
         private val myDashboardProvider: MyDashboardContract.Provider

@@ -84,14 +84,5 @@ interface WikiEduDashboardApi {
     fun getProfileDetailsResponse(
             @Url url: String
     ): Call<ProfileDetailsResponse>
-/*
-    */
-    /**
-     * This API is used to fetch media details including category list, file uses, description,
-     * license from Wikimedia Commons.
-     ***//*
-    @GET("w/api.php?action=query&format=json&pageids=79744855&prop=globalusage|categories|imageinfo&iiprop=size|extmetadata|url&clshow=!hidden")
-    fun getMediaDetailsFromCommons(
-            @Header("Cookie") sessionIdAndToken: String
-    ): Call<MediaDetailsResponse>*/
+
 }
