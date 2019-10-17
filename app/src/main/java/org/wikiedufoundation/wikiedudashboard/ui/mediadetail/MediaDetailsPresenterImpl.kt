@@ -4,6 +4,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsRe
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import timber.log.Timber
 
+/**
+ * Class that implements [requestMediaDetails] to handle data and display in view
+ * @constructor primary constructor
+ *
+ * @property mediaDetailsView variable of [MediaDetailsContract.View]
+ * @property mediaDetailsProvider variable of [MediaDetailsContract.Provider]
+ * ***/
 class MediaDetailsPresenterImpl(private val mediaDetailsView: MediaDetailsContract.View, private val mediaDetailsProvider: MediaDetailsContract.Provider) : MediaDetailsContract.Presenter {
 
     override fun requestMediaDetails(cookies: String) {

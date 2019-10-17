@@ -19,6 +19,9 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
 
+/**
+ * Wikimedia homepage activity
+ * ***/
 class HomeActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
@@ -87,7 +90,6 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-
     private fun addFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
@@ -100,6 +102,9 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Use [clearStack] to clear fragment back stack
+     * ***/
     fun clearStack() {
         val manager = supportFragmentManager
         if (manager.backStackEntryCount > 1) {

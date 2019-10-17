@@ -7,6 +7,9 @@ import android.net.Uri
 import android.text.TextUtils
 import androidx.browser.customtabs.CustomTabsService
 
+/**
+ * A helper class to define customized tabs
+ * ***/
 class CustomTabHelper {
 
     companion object {
@@ -17,6 +20,13 @@ class CustomTabHelper {
         val LOCAL_PACKAGE = "com.google.android.apps.chrome"
     }
 
+    /**
+     * Method used to open chrome custom tabs for browsing image in Chrome browser
+     *
+     * @param context Context
+     * @param url course uploads file name url
+     * @return [sPackageNameToUse] package name to user in String
+     * ***/
     fun getPackageNameToUse(context: Context, url: String): String? {
 
         sPackageNameToUse?.let {
