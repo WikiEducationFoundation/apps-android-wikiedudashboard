@@ -36,11 +36,11 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
         parametersOf(this, retrofitMyDashboardProvider)
     }
+    private val sharedPrefs: SharedPrefs by inject()
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
-    private var sharedPrefs: SharedPrefs? = null
 
     private var coursesList: List<CourseListData>? = ArrayList()
 
@@ -70,8 +70,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
-
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
         }
@@ -82,12 +80,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
             adapter = myDashboardRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { myDashboardPresenter.requestDashboard(it) }
+        sharedPrefs.cookies?.let { myDashboardPresenter.requestDashboard(it) }
         return view
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs?.userName = data.user.userName
+        sharedPrefs.userName = data.user.userName
         Timber.d(data.toString())
 
         if (data.currentCourses.isNotEmpty()) {

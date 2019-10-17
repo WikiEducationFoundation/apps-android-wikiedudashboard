@@ -36,6 +36,7 @@ class CourseListFragment : Fragment(), CourseListView {
     private val courseListPresenter: CourseListPresenter by inject {
         parametersOf(this, retrofitCourseListProvider)
     }
+    private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -65,8 +66,7 @@ class CourseListFragment : Fragment(), CourseListView {
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
-        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-        tvNoCourses.text = sharedPrefs?.cookies
+        tvNoCourses.text = sharedPrefs.cookies
 
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)
@@ -78,7 +78,7 @@ class CourseListFragment : Fragment(), CourseListView {
             adapter = courseListRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { courseListPresenter.requestDashboard(it) }
+        sharedPrefs.cookies?.let { courseListPresenter.requestDashboard(it) }
         return view
     }
 

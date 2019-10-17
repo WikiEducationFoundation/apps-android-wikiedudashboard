@@ -12,7 +12,6 @@ import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
@@ -34,7 +33,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     }
 
     private var enrolled = false
-    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var url: String
     private lateinit var toolbar: Toolbar
@@ -53,8 +51,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
         url = intent.getStringExtra("url")
         enrolled = intent.getBooleanExtra("enrolled", false)
-
-        sharedPrefs = SharedPrefs(this)
 
         val action = intent.action
         val data = intent.dataString

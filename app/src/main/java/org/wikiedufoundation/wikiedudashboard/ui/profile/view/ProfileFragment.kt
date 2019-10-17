@@ -42,10 +42,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private val profilePresenter: ProfileContract.Presenter by inject {
         parametersOf(this, retrofitProfileProvider)
     }
+    private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
-    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var toolbar: Toolbar
     private lateinit var tabLayout: TabLayout
@@ -95,17 +95,17 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         llProfileParent = view.findViewById(R.id.ll_profile_parent)
         tabLayout.setupWithViewPager(viewPager)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
 
-        val sharedUserName = sharedPrefs?.userName?.let { it }
+        val sharedUserName = sharedPrefs.userName?.let { it }
         val param1Exists = mParam1?.let { it } ?: ""
+
         if (param1Exists == sharedUserName) {
-            sharedPrefs?.cookies?.let { profilePresenter.requestProfile(it, sharedUserName) }
+            sharedPrefs.cookies?.let { profilePresenter.requestProfile(it, sharedUserName) }
             profilePresenter.requestProfileDetails(sharedUserName)
         } else {
             mParam1?.let { param1 ->
-                sharedPrefs?.cookies?.let { profilePresenter.requestProfile(it, param1) }
+                sharedPrefs.cookies?.let { profilePresenter.requestProfile(it, param1) }
                 profilePresenter.requestProfileDetails(param1)
             }
         }

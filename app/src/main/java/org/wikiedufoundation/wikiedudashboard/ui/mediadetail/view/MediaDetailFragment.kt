@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
@@ -69,7 +68,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     private lateinit var tvNoFileUses: TextView
     private lateinit var fileUsesRecyclerView: RecyclerView
 
-    private var sharedPrefs: SharedPrefs? = null
     private lateinit var categoryListRecyclerAdapter: CategoryListRecyclerAdapter
     private lateinit var fileUsesRecyclerAdapter: FileUsesRecyclerAdapter
 

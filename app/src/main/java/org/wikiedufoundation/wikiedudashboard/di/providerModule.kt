@@ -13,29 +13,58 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetail
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 
 /**
- * Use the [provideModule] to creating Providers
- * for WikiEduDashboardApi
+ * Use the [provideModule] to creating the Providers
  **/
 val provideModule = module {
 
+    /**
+     * Singleton for [RetrofitCampaignListProvider]
+     **/
     single { RetrofitCampaignListProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitCourseListProvider]
+     **/
     single { RetrofitCourseListProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitMyDashboardProvider]
+     **/
     single { RetrofitMyDashboardProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitMediaDetailsProvider]
+     **/
     single { RetrofitMediaDetailsProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitProfileProvider]
+     **/
     single { RetrofitProfileProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitArticlesEditedProvider]
+     **/
     single { RetrofitArticlesEditedProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitCourseDetailProvider]
+     **/
     single { RetrofitCourseDetailProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitRecentActivityProvider]
+     **/
     single { RetrofitRecentActivityProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitStudentListProvider]
+     **/
     single { RetrofitStudentListProvider(get()) }
 
+    /**
+     * Singleton for [RetrofitCourseUploadsProvider]
+     **/
     single { RetrofitCourseUploadsProvider(get()) }
 
 }

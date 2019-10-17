@@ -32,44 +32,77 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresent
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfilePresenterImpl
 
+/**
+ * Use the [presenterModule] to creating the mvp presenter for each view
+ **/
 val presenterModule = module {
 
+    /**
+     * Factory for [CampaignListPresenterImpl] injecting the [CampaignListContract] and [CampaignListContract.Provider]
+     **/
     factory<CampaignListContract.Presenter> { (view: CampaignListContract.View, provider: CampaignListContract.Provider) ->
         CampaignListPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [CourseListPresenter] injecting the [CourseListView] and [CourseListProvider]
+     **/
     factory<CourseListPresenter> { (view: CourseListView, provider: CourseListProvider) ->
         CourseListPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
+     **/
     factory<MyDashboardContract.Presenter> { (view: MyDashboardContract.View, provider: MyDashboardContract.Provider) ->
         MyDashboardPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
+     **/
     factory<MediaDetailsContract.Presenter> { (view: MediaDetailsContract.View, provider: MediaDetailsContract.Provider) ->
         MediaDetailsPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [ProfileContract.Presenter] injecting the [ProfileContract.View] and [ProfileContract.Provider]
+     **/
     factory<ProfileContract.Presenter> { (view: ProfileContract.View, provider: ProfileContract.Provider) ->
         ProfilePresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [ArticlesEditedPresenter] injecting the [ArticlesEditedView] and [ArticlesEditedProvider]
+     **/
     factory<ArticlesEditedPresenter> { (view: ArticlesEditedView, provider: ArticlesEditedProvider) ->
         ArticlesEditedPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [CourseDetailPresenter] injecting the [CourseDetailView] and [CourseDetailProvider]
+     **/
     factory<CourseDetailPresenter> { (view: CourseDetailView, provider: CourseDetailProvider) ->
         CourseDetailPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [RecentActivityContract.Presenter] injecting the [RecentActivityContract.View] and [RecentActivityContract.Provider]
+     **/
     factory<RecentActivityContract.Presenter> { (view: RecentActivityContract.View, provider: RecentActivityContract.Provider) ->
         RecentActivityPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [StudentListPresenter] injecting the [StudentListView] and [StudentListProvider]
+     **/
     factory<StudentListPresenter> { (view: StudentListView, provider: StudentListProvider) ->
         StudentListPresenterImpl(view, provider)
     }
 
+    /**
+     * Factory for [CourseUploadsPresenter] injecting the [CourseUploadsView] and [CourseUploadsProvider]
+     **/
     factory<CourseUploadsPresenter> { (view: CourseUploadsView, provider: CourseUploadsProvider) ->
         CourseUploadsPresenterImpl(view, provider)
     }

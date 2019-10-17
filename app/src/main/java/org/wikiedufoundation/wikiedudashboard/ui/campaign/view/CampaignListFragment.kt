@@ -36,10 +36,11 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     private val campaignListPresenter: CampaignListContract.Presenter by inject {
         parametersOf(this, retrofitCampaignListProvider)
     }
+    private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-    private var sharedPrefs: SharedPrefs? = null
+//    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var tvNoCampaigns: TextView
     private lateinit var progressBar: ProgressBar
@@ -68,7 +69,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
+//        sharedPrefs = context?.let { SharedPrefs(it) }
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
 //                        openCourseDetail(it)
@@ -80,7 +81,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             adapter = campaignListRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { campaignListPresenter.requestCampaignList(it) }
+        sharedPrefs.cookies?.let { campaignListPresenter.requestCampaignList(it) }
         return view
     }
 
@@ -119,7 +120,6 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         }
 
         campaignListRecyclerAdapter.setData(campaignQueryFilter)
-        campaignListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {
