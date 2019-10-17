@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
-import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -12,22 +11,24 @@ import timber.log.Timber
 /**
  * Retrofit http request for recent activities
  * ***/
-class RetrofitRecentActivityProvider : RecentActivityContract.Provider {
-    private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
+class RetrofitRecentActivityProvider(
+        private val wikiEduDashboardApi: WikiEduDashboardApi
+) : RecentActivityContract.Provider {
+//     = ProviderUtils.apiObject
 
     override fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<*>) {
-        val sub_url = "courses/$url/revisions.json"
-        val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(sub_url)
+        val subUrl = "courses/$url/revisions.json"
+        val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(subUrl)
         articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {
             override fun onResponse(call: Call<RecentActivityResponse>, response: Response<RecentActivityResponse>) {
-                Timber.d(response.body()?.course.toString() + "")
+                Timber.d("${response.body()?.course.toString()} ")
                 presenterCallback.onSuccess(response.body())
             }
 
             override fun onFailure(call: Call<RecentActivityResponse>, t: Throwable) {
                 presenterCallback.onFailure()
                 t.printStackTrace()
-                Timber.d(t.message + "")
+                Timber.d("${t.message} ")
             }
         })
     }

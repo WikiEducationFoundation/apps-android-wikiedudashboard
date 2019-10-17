@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
@@ -17,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
@@ -42,6 +42,8 @@ import timber.log.Timber
  */
 class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDetailsContract.View {
 
+    private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
+
     private var position: Int? = null
     private var courseUpload: CourseUpload? = null
     private var customTabHelper: CustomTabHelper = CustomTabHelper()
@@ -59,7 +61,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     private lateinit var fileName: String
 
     // Other Utils
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var tvNoCategories: TextView
     private lateinit var categoriesRecyclerView: RecyclerView
     private lateinit var tvNoFileUses: TextView
@@ -94,7 +96,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar = view.findViewById(R.id.toolbar)
 
         categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
-        progressBar = view.findViewById(R.id.progressBar)
+//        progressBar = view.findViewById(R.id.progressBar)
         tvNoCategories = view.findViewById(R.id.tv_no_categories)
         fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
         tvNoFileUses = view.findViewById(R.id.tv_no_uses)
@@ -113,7 +115,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         }
         toolbar.setOnMenuItemClickListener(this)
 
-        mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
+        mediaDetailsPresenter = MediaDetailsPresenterImpl(this, retrofitMediaDetailsProvider)
 
         categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
         categoriesRecyclerView.apply {

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
@@ -23,6 +24,8 @@ import timber.log.Timber
  * A [Fragment] that displays list of students
  * ***/
 class StudentListFragment : Fragment(), StudentListView {
+
+    private val retrofitStudentListProvider: RetrofitStudentListProvider by inject()
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -40,7 +43,7 @@ class StudentListFragment : Fragment(), StudentListView {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
 
-        studentListPresenter = StudentListPresenterImpl(this, RetrofitStudentListProvider())
+        studentListPresenter = StudentListPresenterImpl(this, retrofitStudentListProvider)
 
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
 

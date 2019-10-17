@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
@@ -30,6 +31,8 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
+
+    private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -66,7 +69,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
-        myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
+        myDashboardPresenter = MyDashboardPresenterImpl(this, retrofitMyDashboardProvider)
 
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
@@ -26,6 +27,8 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
  * Activity view for course detail
  * ***/
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
+
+    private val retrofitCourseDetailProvider: RetrofitCourseDetailProvider by inject()
 
     private var enrolled = false
     private var sharedPrefs: SharedPrefs? = null
@@ -65,7 +68,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
         tabLayout.setupWithViewPager(viewPager)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        courseDetailPresenter = CourseDetailPresenterImpl(this, RetrofitCourseDetailProvider())
+        courseDetailPresenter = CourseDetailPresenterImpl(this, retrofitCourseDetailProvider)
         url.let { courseDetailPresenter.requestCourseDetail(it) }
     }
 

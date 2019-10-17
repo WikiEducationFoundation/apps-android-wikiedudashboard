@@ -6,6 +6,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
+import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardMediaApi
+import org.wikiedufoundation.wikiedudashboard.util.Urls
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -19,7 +21,7 @@ val apiModule = module {
 
     single { provideBaseRetrofit().create(WikiEduDashboardApi::class.java) }
 
-//    single { provideCommonsRetrofit().create(WikiEduDashboardApi::class.java) }
+    single { provideCommonsRetrofit().create(WikiEduDashboardMediaApi::class.java) }
 
 }
 
@@ -55,19 +57,17 @@ fun provideClient(): OkHttpClient =
  * @return  Retrofit*/
 fun provideBaseRetrofit(): Retrofit =
         Retrofit.Builder()
-//                .baseUrl(Urls.BASE_URL)
-//                .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
+                .baseUrl(Urls.BASE_URL)
                 .client(provideClient())
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
                 .build()
 
-/*
-*
+/**
  * Use the [provideCommonsRetrofit] to provide a Retrofit with WIKI_MEDIA_COMMONS instance
- * @return  Retrofit
+ * @return  Retrofit*/
 fun provideCommonsRetrofit(): Retrofit =
         Retrofit.Builder()
                 .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
                 .client(provideClient())
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
-                .build()*/
+                .build()

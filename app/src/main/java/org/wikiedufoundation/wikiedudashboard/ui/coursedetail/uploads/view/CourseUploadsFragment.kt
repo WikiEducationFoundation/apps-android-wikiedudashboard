@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
@@ -27,6 +28,8 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class CourseUploadsFragment : Fragment(), CourseUploadsView {
+
+    private val retrofitCourseUploadsProvider: RetrofitCourseUploadsProvider by inject()
 
     private var type: Int = 0
     private var courseUrl: String? = null
@@ -59,7 +62,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
-        courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
+        courseUploadsPresenter = CourseUploadsPresenterImpl(this, retrofitCourseUploadsProvider)
 
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
             openCourseDetail(uploadList, position)

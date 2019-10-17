@@ -8,7 +8,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.Stud
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import retrofit2.Call
@@ -53,7 +52,9 @@ interface WikiEduDashboardApi {
      * This API is used to fetch Dashboard details. Ex - My Courses - Active, Archived.
      ***/
     @GET("dashboard.json")
-    fun getDashboardDetail(@Header("Cookie") sessionIdAndToken: String): Call<MyDashboardResponse>
+    fun getDashboardDetail(
+            @Header("Cookie") sessionIdAndToken: String
+    ): Call<MyDashboardResponse>
 
     /**
      * This API is used to fetch list of active courses.
@@ -71,20 +72,26 @@ interface WikiEduDashboardApi {
      * This API is used to fetch profile stats.
      ***/
     @GET("user_stats.json")
-    fun getProfileResponse(@Header("Cookie") sessionIdAndToken: String,
-                           @Query("username") username: String): Call<ProfileResponse>
+    fun getProfileResponse(
+            @Header("Cookie") sessionIdAndToken: String,
+            @Query("username") username: String
+    ): Call<ProfileResponse>
 
     /**
      * This API is used to fetch profile stats.
      ***/
     @GET
-    fun getProfileDetailsResponse(@Url url: String
-                           ): Call<ProfileDetailsResponse>
-
+    fun getProfileDetailsResponse(
+            @Url url: String
+    ): Call<ProfileDetailsResponse>
+/*
+    */
     /**
      * This API is used to fetch media details including category list, file uses, description,
      * license from Wikimedia Commons.
-     ***/
+     ***//*
     @GET("w/api.php?action=query&format=json&pageids=79744855&prop=globalusage|categories|imageinfo&iiprop=size|extmetadata|url&clshow=!hidden")
-    fun getMediaDetailsFromCommons(@Header("Cookie") sessionIdAndToken: String): Call<MediaDetailsResponse>
+    fun getMediaDetailsFromCommons(
+            @Header("Cookie") sessionIdAndToken: String
+    ): Call<MediaDetailsResponse>*/
 }

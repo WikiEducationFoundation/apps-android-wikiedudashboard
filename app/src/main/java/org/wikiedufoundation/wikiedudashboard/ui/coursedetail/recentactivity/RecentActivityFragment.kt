@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
@@ -20,6 +21,8 @@ import timber.log.Timber
  * A simple [Fragment] for recent activities
  * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
+
+    private val retrofitRecentActivityProvider: RetrofitRecentActivityProvider by inject()
 
     private lateinit var tvNoActivity: TextView
     private lateinit var progressBar: ProgressBar
@@ -39,7 +42,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoActivity = view.findViewById(R.id.tv_no_activity)
 
-        recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
+        recentActivityPresenter = RecentActivityPresenterImpl(this, retrofitRecentActivityProvider)
 
         recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
 

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
@@ -29,6 +30,8 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class CourseListFragment : Fragment(), CourseListView {
+
+    private val retrofitCourseListProvider: RetrofitCourseListProvider by inject()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -61,7 +64,7 @@ class CourseListFragment : Fragment(), CourseListView {
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
         tv_no_courses.text = sharedPrefs?.cookies
-        courseListPresenter = CourseListPresenterImpl(this, RetrofitCourseListProvider())
+        courseListPresenter = CourseListPresenterImpl(this, retrofitCourseListProvider)
 
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)

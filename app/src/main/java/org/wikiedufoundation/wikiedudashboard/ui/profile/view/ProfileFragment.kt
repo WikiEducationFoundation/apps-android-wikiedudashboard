@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.ProfilePresenterImpl
@@ -36,6 +37,8 @@ import timber.log.Timber
  * A simple [Fragment] subclass.
  */
 class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClickListener {
+
+    private val retrofitProfileProvider: RetrofitProfileProvider by inject()
 
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
@@ -93,7 +96,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
         sharedPrefs = context?.let { SharedPrefs(it) }
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
-        presenter = ProfilePresenterImpl(this, RetrofitProfileProvider())
+        presenter = ProfilePresenterImpl(this, retrofitProfileProvider)
         val sharedUserName = sharedPrefs?.userName?.let { it }
         val param1Exists = mParam1?.let { it } ?: ""
         if (param1Exists == sharedUserName) {

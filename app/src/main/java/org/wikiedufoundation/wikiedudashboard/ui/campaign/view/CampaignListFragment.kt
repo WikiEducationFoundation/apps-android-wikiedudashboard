@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
@@ -30,6 +31,8 @@ import kotlin.collections.ArrayList
  * create an instance of this fragment.
  */
 class CampaignListFragment : Fragment(), CampaignListContract.View {
+
+    private val retrofitCampaignListProvider: RetrofitCampaignListProvider by inject()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -64,7 +67,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
-        campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
+        campaignListPresenter = CampaignListPresenterImpl(this, retrofitCampaignListProvider)
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
 //                        openCourseDetail(it)
