@@ -101,6 +101,13 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         context?.showToast(message)
     }
 
+    /**
+     * Use [openCourseDetail] to send course uploads data and each uploads' position
+     * and then start MediaDetailsActivity
+     *
+     * @param courseUploads list of course uploads data to be sent through Bundle extras
+     * @param position the position of each course uploads to be sent through Bundle extras
+     * ***/
     private fun openCourseDetail(courseUploads: CourseUploadList?, position: Int) {
         val i = Intent(context, MediaDetailsActivity::class.java)
         i.putExtra("uploads", courseUploads)
@@ -113,6 +120,14 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         private val ARG_PARAM2 = "param2"
         private val ARG_PARAM3 = "param3"
 
+        /**
+         * [CourseUploadsFragment.newInstance] factory that creates an instance of this fragment
+         * and put [type],[courseDetail],and [courseUploads] variables into Bundle
+         *
+         * @param type course type
+         * @param courseDetail course detail data
+         * @param courseUploads course uploads
+         * ***/
         fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?): CourseUploadsFragment {
             val fragment = CourseUploadsFragment()
             val args = Bundle()
