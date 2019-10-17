@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
@@ -26,7 +27,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
@@ -43,6 +43,9 @@ import timber.log.Timber
 class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDetailsContract.View {
 
     private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
+    private val mediaDetailsPresenter: MediaDetailsContract.Presenter by inject {
+        parametersOf(this, retrofitMediaDetailsProvider)
+    }
 
     private var position: Int? = null
     private var courseUpload: CourseUpload? = null
@@ -61,14 +64,12 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     private lateinit var fileName: String
 
     // Other Utils
-//    private lateinit var progressBar: ProgressBar
     private lateinit var tvNoCategories: TextView
     private lateinit var categoriesRecyclerView: RecyclerView
     private lateinit var tvNoFileUses: TextView
     private lateinit var fileUsesRecyclerView: RecyclerView
 
     private var sharedPrefs: SharedPrefs? = null
-    private lateinit var mediaDetailsPresenter: MediaDetailsContract.Presenter
     private lateinit var categoryListRecyclerAdapter: CategoryListRecyclerAdapter
     private lateinit var fileUsesRecyclerAdapter: FileUsesRecyclerAdapter
 
@@ -96,7 +97,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar = view.findViewById(R.id.toolbar)
 
         categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
-//        progressBar = view.findViewById(R.id.progressBar)
         tvNoCategories = view.findViewById(R.id.tv_no_categories)
         fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
         tvNoFileUses = view.findViewById(R.id.tv_no_uses)
@@ -114,8 +114,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }
         toolbar.setOnMenuItemClickListener(this)
-
-        mediaDetailsPresenter = MediaDetailsPresenterImpl(this, retrofitMediaDetailsProvider)
 
         categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
         categoriesRecyclerView.apply {

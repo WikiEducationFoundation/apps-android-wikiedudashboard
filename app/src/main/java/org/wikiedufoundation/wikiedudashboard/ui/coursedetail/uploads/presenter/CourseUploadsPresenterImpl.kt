@@ -12,7 +12,10 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * @property courseUploadsView
  * @property courseUploadsProvider
  * ***/
-class CourseUploadsPresenterImpl(private val courseUploadsView: CourseUploadsView, private val courseUploadsProvider: CourseUploadsProvider) : CourseUploadsPresenter {
+class CourseUploadsPresenterImpl(
+        private val courseUploadsView: CourseUploadsView,
+        private val courseUploadsProvider: CourseUploadsProvider
+) : CourseUploadsPresenter {
 
     override fun requestCourseUploads(url: String) {
         courseUploadsView.showProgressBar(true)

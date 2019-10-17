@@ -11,10 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -26,12 +27,13 @@ import timber.log.Timber
 class StudentListFragment : Fragment(), StudentListView {
 
     private val retrofitStudentListProvider: RetrofitStudentListProvider by inject()
+    private val studentListPresenter: StudentListPresenter by inject {
+        parametersOf(this, retrofitStudentListProvider)
+    }
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var tvNoStudents: TextView
-
-    private lateinit var studentListPresenter: StudentListPresenterImpl
 
     private lateinit var url: String
     private lateinit var studentListRecyclerAdapter: StudentListRecyclerAdapter
@@ -42,8 +44,6 @@ class StudentListFragment : Fragment(), StudentListView {
         recyclerView = view.findViewById(R.id.rv_students_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_students)
-
-        studentListPresenter = StudentListPresenterImpl(this, retrofitStudentListProvider)
 
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
 

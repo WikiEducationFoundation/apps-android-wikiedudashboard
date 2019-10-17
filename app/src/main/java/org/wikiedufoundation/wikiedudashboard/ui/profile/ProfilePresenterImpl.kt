@@ -1,7 +1,5 @@
-package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
+package org.wikiedufoundation.wikiedudashboard.ui.profile
 
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
-import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -14,8 +12,10 @@ import timber.log.Timber
  * @property view view to display profile data
  * @property provider Retrofit http request provider
  * ***/
-class ProfilePresenterImpl(private val view: ProfileContract.View,
-                           private val provider: ProfileContract.Provider) : ProfileContract.Presenter {
+class ProfilePresenterImpl(
+        private val view: ProfileContract.View,
+        private val provider: ProfileContract.Provider
+) : ProfileContract.Presenter {
 
     override fun requestProfileDetails(username: String) {
         view.showProgressBar(true)
@@ -36,7 +36,7 @@ class ProfilePresenterImpl(private val view: ProfileContract.View,
 
     override fun requestProfile(cookies: String, username: String) {
         view.showProgressBar(true)
-        provider.requestProfile(cookies,username, object : PresenterCallback<Any> {
+        provider.requestProfile(cookies, username, object : PresenterCallback<Any> {
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
                 val response = o as ProfileResponse

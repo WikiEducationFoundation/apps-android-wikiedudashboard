@@ -11,7 +11,10 @@ import timber.log.Timber
  * @property mediaDetailsView variable of [MediaDetailsContract.View]
  * @property mediaDetailsProvider variable of [MediaDetailsContract.Provider]
  * ***/
-class MediaDetailsPresenterImpl(private val mediaDetailsView: MediaDetailsContract.View, private val mediaDetailsProvider: MediaDetailsContract.Provider) : MediaDetailsContract.Presenter {
+class MediaDetailsPresenterImpl(
+        private val mediaDetailsView: MediaDetailsContract.View,
+        private val mediaDetailsProvider: MediaDetailsContract.Provider
+) : MediaDetailsContract.Presenter {
 
     override fun requestMediaDetails(cookies: String) {
         mediaDetailsView.showProgressBar(true)

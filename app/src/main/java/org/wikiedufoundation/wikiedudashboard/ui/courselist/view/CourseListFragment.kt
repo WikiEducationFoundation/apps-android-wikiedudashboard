@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
@@ -32,15 +33,17 @@ import timber.log.Timber
 class CourseListFragment : Fragment(), CourseListView {
 
     private val retrofitCourseListProvider: RetrofitCourseListProvider by inject()
+    private val courseListPresenter: CourseListPresenter by inject {
+        parametersOf(this, retrofitCourseListProvider)
+    }
 
     private var mParam1: String? = null
     private var mParam2: String? = null
     private var coursesList: List<CourseListData> = ArrayList()
 
-    private lateinit var tv_no_courses: TextView
+    private lateinit var tvNoCourses: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private lateinit var courseListPresenter: CourseListPresenterImpl
     private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,12 +62,11 @@ class CourseListFragment : Fragment(), CourseListView {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
         progressBar = view.findViewById(R.id.progressBar)
-        tv_no_courses = view.findViewById(R.id.tv_no_courses)
+        tvNoCourses = view.findViewById(R.id.tv_no_courses)
         recyclerView = view.findViewById(R.id.rv_course_list)
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-        tv_no_courses.text = sharedPrefs?.cookies
-        courseListPresenter = CourseListPresenterImpl(this, retrofitCourseListProvider)
+        tvNoCourses.text = sharedPrefs?.cookies
 
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)
@@ -87,10 +89,10 @@ class CourseListFragment : Fragment(), CourseListView {
             recyclerView.visibility = View.VISIBLE
             courseListRecyclerAdapter.setData(data.courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
-            tv_no_courses.visibility = View.GONE
+            tvNoCourses.visibility = View.GONE
         } else {
             recyclerView.visibility = View.GONE
-            tv_no_courses.visibility = View.VISIBLE
+            tvNoCourses.visibility = View.VISIBLE
         }
     }
 
@@ -122,7 +124,6 @@ class CourseListFragment : Fragment(), CourseListView {
         }
 
         courseListRecyclerAdapter.setData(filterCourseQuery)
-        courseListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {

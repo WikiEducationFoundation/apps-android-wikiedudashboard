@@ -12,7 +12,10 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * @property courseDetailView view for course detail
  * @property courseDetailProvider api service for course detail
  * ***/
-class CourseDetailPresenterImpl(private val courseDetailView: CourseDetailView, private val courseDetailProvider: CourseDetailProvider) : CourseDetailPresenter {
+class CourseDetailPresenterImpl(
+        private val courseDetailView: CourseDetailView,
+        private val courseDetailProvider: CourseDetailProvider
+) : CourseDetailPresenter {
 
     override fun requestCourseDetail(url: String) {
         courseDetailView.showProgressBar(true)

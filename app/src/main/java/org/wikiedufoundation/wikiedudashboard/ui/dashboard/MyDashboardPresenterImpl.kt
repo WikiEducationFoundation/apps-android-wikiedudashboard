@@ -1,12 +1,13 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard
 
-import timber.log.Timber
-
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
+import timber.log.Timber
 
-class MyDashboardPresenterImpl(private val myDashboardView: MyDashboardContract.View,
-                               private val myDashboardProvider: MyDashboardContract.Provider) : MyDashboardContract.Presenter {
+class MyDashboardPresenterImpl(
+        private val myDashboardView: MyDashboardContract.View,
+        private val myDashboardProvider: MyDashboardContract.Provider
+) : MyDashboardContract.Presenter {
 
     override fun requestDashboard(cookies: String) {
         myDashboardView.showProgressBar(true)

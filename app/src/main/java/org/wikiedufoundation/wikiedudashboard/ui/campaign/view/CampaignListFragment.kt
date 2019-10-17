@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
@@ -33,6 +33,9 @@ import kotlin.collections.ArrayList
 class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     private val retrofitCampaignListProvider: RetrofitCampaignListProvider by inject()
+    private val campaignListPresenter: CampaignListContract.Presenter by inject {
+        parametersOf(this, retrofitCampaignListProvider)
+    }
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -42,7 +45,6 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var campaignListPresenter: CampaignListContract.Presenter
     private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
 
     private var campaignList: List<CampaignListData> = ArrayList()
@@ -67,7 +69,6 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
-        campaignListPresenter = CampaignListPresenterImpl(this, retrofitCampaignListProvider)
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
 //                        openCourseDetail(it)
