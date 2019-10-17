@@ -7,6 +7,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import timber.log.Timber
 
+/**
+ * Presenter implementation for user profile
+ * @constructor primary constructor
+ *
+ * @property view view to display profile data
+ * @property provider Retrofit http request provider
+ * ***/
 class ProfilePresenterImpl(private val view: ProfileContract.View,
                            private val provider: ProfileContract.Provider) : ProfileContract.Presenter {
 

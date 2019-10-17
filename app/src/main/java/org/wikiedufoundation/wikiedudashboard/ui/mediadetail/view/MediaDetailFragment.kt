@@ -209,6 +209,13 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
 
+        /**
+         * Returns a new instance of [MediaDetailFragment]
+         *
+         * @param courseUploadList course uploads list
+         * @param position course upload position
+         * @return a [MediaDetailFragment] instance
+         * ***/
         fun newInstance(courseUploadList: CourseUploadList?, position: Int): MediaDetailFragment {
             val fragment = MediaDetailFragment()
             val args = Bundle()

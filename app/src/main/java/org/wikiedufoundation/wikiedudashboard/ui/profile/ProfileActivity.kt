@@ -8,6 +8,9 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
 
+/**
+ * An activity for user profile
+ * ***/
 class ProfileActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
@@ -32,6 +35,10 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Use [addFragment] to add new fragments to [ProfileActivity]
+     * @param fragment any fragment need to be add
+     * ***/
     fun addFragment(fragment: Fragment?) {
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
