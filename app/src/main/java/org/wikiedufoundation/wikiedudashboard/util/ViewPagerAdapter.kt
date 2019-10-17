@@ -4,39 +4,33 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import java.util.*
 
 /**
  * Adapter class for ViewPager
  * ***/
-class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-    private var fragmentList: List<Fragment> = ArrayList()
-    private var fragmentTitleList: List<String> = ArrayList()
-
-    override fun getItem(position: Int): Fragment {
-        return fragmentList[position]
-    }
-
-    override fun getCount(): Int {
-        return fragmentList.size
-    }
+class ViewPagerAdapter(
+        manager: FragmentManager,
+        private val fragmentList: List<Fragment>,
+        private val fragmentTitleList: List<String>
+) : FragmentPagerAdapter(manager) {
 
     /**
-     * Set [fragmentList] and [fragmentTitleList] to ViewPager
-     *
-     * @param fragmentList list of fragments
-     * @param fragmentTitleList list of fragment text titles
-     * ***/
-    fun setTabData(fragmentList: List<Fragment>, fragmentTitleList: List<String>) {
-        this.fragmentList = fragmentList
-        this.fragmentTitleList = fragmentTitleList
-    }
+     * Use [getItem] get item per position
+     ***/
+    override fun getItem(position: Int): Fragment = fragmentList[position]
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return fragmentTitleList[position]
-    }
+    /**
+     * Use [getCount] get size of fragmentList
+     ***/
+    override fun getCount(): Int = fragmentList.size
 
-    override fun getItemPosition(`object`: Any): Int {
-        return PagerAdapter.POSITION_NONE
-    }
+    /**
+     * Use [getPageTitle] get title per position
+     ***/
+    override fun getPageTitle(position: Int): CharSequence? = fragmentTitleList[position]
+
+    /**
+     * Use [getItemPosition] get item per position
+     ***/
+    override fun getItemPosition(`object`: Any): Int = PagerAdapter.POSITION_NONE
 }

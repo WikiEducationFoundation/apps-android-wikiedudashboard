@@ -19,6 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
@@ -33,15 +34,16 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
+    private var sharedPrefs: SharedPrefs? = null
 
-    private var tvNoCourses: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var coursesList: List<CourseListData>? = ArrayList()
 
-    private var sharedPrefs: SharedPrefs? = null
-    private var myDashboardPresenter: MyDashboardContract.Presenter? = null
-    private var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter? = null
+    private lateinit var tvNoCourses: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var myDashboardPresenter: MyDashboardContract.Presenter
+    private lateinit var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,36 +67,42 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
         sharedPrefs = context?.let { SharedPrefs(it) }
         myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) { openCourseDetail(it) }
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = myDashboardRecyclerAdapter
 
-        sharedPrefs?.cookies?.let { myDashboardPresenter?.requestDashboard(it) }
+        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
+            openCourseDetail(it)
+        }
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = myDashboardRecyclerAdapter
+        }
+
+        sharedPrefs?.cookies?.let { myDashboardPresenter.requestDashboard(it) }
         return view
     }
 
     override fun setData(data: MyDashboardResponse) {
         sharedPrefs?.userName = data.user.userName
         Timber.d(data.toString())
+
         if (data.currentCourses.isNotEmpty()) {
             coursesList = data.currentCourses
-            recyclerView?.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter?.setData(data.currentCourses)
-            myDashboardRecyclerAdapter?.notifyDataSetChanged()
-            tvNoCourses?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            myDashboardRecyclerAdapter.setData(data.currentCourses)
+            myDashboardRecyclerAdapter.notifyDataSetChanged()
+            tvNoCourses.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoCourses?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoCourses.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar?.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -122,16 +130,14 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
      * ***/
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
-        coursesList?.let {
-            for (course in it) {
-                if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                    filteredCourseList?.add(course)
-                }
-            }
+
+        val courseFilterQuery = coursesList.filterOrEmptyList {
+            it.title.toLowerCase()
+                    .contains(query.toLowerCase())
         }
-        filteredCourseList?.let { myDashboardRecyclerAdapter?.setData(it) }
-        myDashboardRecyclerAdapter?.notifyDataSetChanged()
+
+        myDashboardRecyclerAdapter.setData(courseFilterQuery)
+        myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
 
 

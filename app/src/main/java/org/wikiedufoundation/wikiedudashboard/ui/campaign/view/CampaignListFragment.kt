@@ -17,8 +17,11 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterI
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -30,14 +33,15 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var tvNoCampaigns: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
-
     private var sharedPrefs: SharedPrefs? = null
-    private var campaignListPresenter: CampaignListContract.Presenter? = null
-    private var campaignListRecyclerAdapter: CampaignListRecyclerAdapter? = null
+
+    private lateinit var tvNoCampaigns: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var campaignListPresenter: CampaignListContract.Presenter
+    private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
+
     private var campaignList: List<CampaignListData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +53,9 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_campaign_list, container, false)
@@ -61,15 +65,18 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
         sharedPrefs = context?.let { SharedPrefs(it) }
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
-        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
-            //            openCourseDetail(it)
-        }
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = campaignListRecyclerAdapter
 
-        sharedPrefs?.cookies?.let { campaignListPresenter?.requestCampaignList(it) }
+        campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
+//                        openCourseDetail(it)
+        }
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = campaignListRecyclerAdapter
+        }
+
+        sharedPrefs?.cookies?.let { campaignListPresenter.requestCampaignList(it) }
         return view
     }
 
@@ -77,21 +84,21 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
             campaignList = data.campaigns
-            recyclerView?.visibility = View.VISIBLE
-            campaignListRecyclerAdapter?.setData(data.campaigns)
-            campaignListRecyclerAdapter?.notifyDataSetChanged()
-            tvNoCampaigns?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            campaignListRecyclerAdapter.setData(data.campaigns)
+            campaignListRecyclerAdapter.notifyDataSetChanged()
+            tvNoCampaigns.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoCampaigns?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoCampaigns.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar?.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -101,14 +108,14 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCampaignList: ArrayList<CampaignListData>? = ArrayList()
-        for (campaign in campaignList) {
-            if (campaign.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCampaignList?.add(campaign)
-            }
+
+        val campaignQueryFilter = campaignList.filterOrEmptyList {
+            it.title.toLowerCase(Locale.getDefault())
+                    .contains(query.toLowerCase(Locale.getDefault()))
         }
-        filteredCampaignList?.let { campaignListRecyclerAdapter?.setData(it) }
-        campaignListRecyclerAdapter?.notifyDataSetChanged()
+
+        campaignListRecyclerAdapter.setData(campaignQueryFilter)
+        campaignListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {

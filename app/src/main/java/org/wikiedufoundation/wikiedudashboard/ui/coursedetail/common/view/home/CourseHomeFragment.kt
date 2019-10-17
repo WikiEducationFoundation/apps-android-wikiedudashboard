@@ -20,21 +20,21 @@ class CourseHomeFragment : Fragment() {
 
     private var courseDetail: CourseDetail? = null
 
-    private var tvCountArticlesCreated: TextView? = null
-    private var tvCountArticlesEdited: TextView? = null
-    private var tvCountTotalEdits: TextView? = null
-    private var tvCountStudentEditors: TextView? = null
-    private var tvCountWordsAdded: TextView? = null
-    private var tvCountArticleViews: TextView? = null
-    private var tvCountCommonsUploads: TextView? = null
-    private var tvCourseTitle: TextView? = null
-    private var tvCourseDescription: TextView? = null
-    private var tvCourseSchool: TextView? = null
-    private var tvCourseTerm: TextView? = null
-    private var tvCoursePasscode: TextView? = null
-    private var tvCourseExpectedStudents: TextView? = null
-    private var tvCourseStart: TextView? = null
-    private var tvCourseEnd: TextView? = null
+    private lateinit var tvCountArticlesCreated: TextView
+    private lateinit var tvCountArticlesEdited: TextView
+    private lateinit var tvCountTotalEdits: TextView
+    private lateinit var tvCountStudentEditors: TextView
+    private lateinit var tvCountWordsAdded: TextView
+    private lateinit var tvCountArticleViews: TextView
+    private lateinit var tvCountCommonsUploads: TextView
+    private lateinit var tvCourseTitle: TextView
+    private lateinit var tvCourseDescription: TextView
+    private lateinit var tvCourseSchool: TextView
+    private lateinit var tvCourseTerm: TextView
+    private lateinit var tvCoursePasscode: TextView
+    private lateinit var tvCourseExpectedStudents: TextView
+    private lateinit var tvCourseStart: TextView
+    private lateinit var tvCourseEnd: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,21 +67,22 @@ class CourseHomeFragment : Fragment() {
         tvCourseStart = view.findViewById(R.id.tv_course_start_detail)
         tvCourseEnd = view.findViewById(R.id.tv_course_end_detail)
 
-        tvCountArticlesCreated?.text = courseDetail?.createdCount
-        tvCountArticlesEdited?.text = courseDetail?.editedCount
-        tvCountTotalEdits?.text = courseDetail?.editCount
-        tvCountStudentEditors?.text = MessageFormat.format("{0}", courseDetail?.studentCount)
-        tvCountWordsAdded?.text = courseDetail?.wordCount
-        tvCountArticleViews?.text = courseDetail?.viewCount
-        tvCountCommonsUploads?.text = MessageFormat.format("{0}", courseDetail?.uploadCount)
-        tvCourseTitle?.text = courseDetail?.title
-        tvCourseDescription?.text = courseDetail?.description
-        tvCourseSchool?.text = courseDetail?.school
-        tvCourseTerm?.text = courseDetail?.term
-        tvCoursePasscode?.text = courseDetail?.passCode
-        tvCourseExpectedStudents?.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
-        tvCourseStart?.text = courseDetail?.start
-        tvCourseEnd?.text = courseDetail?.end
+        tvCountArticlesCreated.text = courseDetail?.createdCount
+        tvCountArticlesEdited.text = courseDetail?.editedCount
+        tvCountTotalEdits.text = courseDetail?.editCount
+        tvCountStudentEditors.text = MessageFormat.format("{0}", courseDetail?.studentCount)
+        tvCountWordsAdded.text = courseDetail?.wordCount
+        tvCountArticleViews.text = courseDetail?.viewCount
+        tvCountCommonsUploads.text = MessageFormat.format("{0}", courseDetail?.uploadCount)
+        tvCourseTitle.text = courseDetail?.title
+        tvCourseDescription.text = courseDetail?.description
+        tvCourseSchool.text = courseDetail?.school
+        tvCourseTerm.text = courseDetail?.term
+        tvCoursePasscode.text = courseDetail?.passCode
+        tvCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
+        tvCourseStart.text = courseDetail?.start
+        tvCourseEnd.text = courseDetail?.end
+
         return view
     }
 
