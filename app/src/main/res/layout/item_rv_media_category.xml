@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory" />
+
+        <variable
+            name="adp"
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:minHeight="60dp"
+        android:onClick="@{() -> adp.mediaClicked(obj)}"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_course_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/demo_course"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_size_14sp" />
+        <include
+            android:id="@+id/include_layout_media_files"
+            layout="@layout/include_files_media"
+            app:files="@{null}"
+            app:media="@{obj}" />
 
     </LinearLayout>
-
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:background="@color/colorGrayBackground" />-->
-</LinearLayout>
+</layout>

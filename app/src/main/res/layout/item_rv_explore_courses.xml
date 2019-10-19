@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
+    <data>
+
+        <variable
+            name="obj"
+            type="org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData" />
+
+        <variable
+            name="adp"
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter" />
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> adp.onCourseClicked(obj)}"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include_layout_courses"
+            layout="@layout/include_layout_explore_courses"
+            app:courseData="@{null}"
+            app:courseListData="@{obj}" />
+
+        <View
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:minHeight="60dp"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_course_title"
-                android:paddingTop="@dimen/padding_16dp"
-                android:paddingStart="@dimen/padding_16dp"
-                android:paddingEnd="@dimen/padding_16dp"
-                android:paddingBottom="@dimen/padding_16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_20sp"
-                android:text="@string/demo_course" />
+            android:layout_height="1dp"
+            android:background="@color/colorGrayBackground" />
 
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <View
-        android:background="@color/colorGrayBackground"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-</LinearLayout>
+    </LinearLayout>
+</layout>

@@ -4,6 +4,14 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.util.Progressive
 import org.wikiedufoundation.wikiedudashboard.util.Toaster
 
+/**
+ * [CourseUploadsView] interface that defines [setData]
+ * ***/
 interface CourseUploadsView : Progressive, Toaster {
+    /**
+     * Use [setData] to set a list of course upload data
+     *
+     * @param courseUploadList list of course upload
+     * ***/
     fun setData(courseUploadList: CourseUploadList)
 }

@@ -8,6 +8,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Class that implements [requestMediaDetails]
+ * ***/
 class RetrofitMediaDetailsProvider : MediaDetailsContract.Provider {
 
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.commonsApiObject

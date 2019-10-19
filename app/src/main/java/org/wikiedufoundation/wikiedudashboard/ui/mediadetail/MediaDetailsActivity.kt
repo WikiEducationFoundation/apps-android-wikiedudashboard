@@ -9,6 +9,9 @@ import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view.MediaDetailFragment
 
+/**
+ * Activity for course media detail
+ * ***/
 class MediaDetailsActivity : AppCompatActivity() {
 
     private var sharedPrefs: SharedPrefs? = null
@@ -23,24 +26,29 @@ class MediaDetailsActivity : AppCompatActivity() {
         courseUploads = intent.getSerializableExtra("uploads") as CourseUploadList
         context = this
         sharedPrefs = SharedPrefs(this)
-        setFragment(MediaDetailFragment.newInstance(courseUploads, position!!))
+        position?.let { setFragment(MediaDetailFragment.newInstance(courseUploads, it)) }
     }
 
     private fun setFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.container, fragment)
+            fragmentTransaction.replace(R.id.container, it)
             fragmentTransaction.commit()
         }
     }
 
+    /**
+     * To add a fragment
+     *
+     * @param fragment course media detail fragment
+     * ***/
     fun addFragment(fragment: Fragment?) {
-        if (fragment != null) {
+        fragment?.let {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.replace(R.id.container, fragment)
+            fragmentTransaction.replace(R.id.container, it)
             fragmentTransaction.commit()
         }
     }

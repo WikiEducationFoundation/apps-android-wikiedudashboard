@@ -1,8 +1,7 @@
-package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view
+package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
 import android.content.Context
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,26 +11,29 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.*
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
+/**
+ * A simple [Fragment] for recent activities
+ * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
-    private var tvNoActivity: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var tvNoActivity: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
-    private var recentActivityPresenter: RecentActivityContract.Presenter? = null
-    private var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter? = null
+    private lateinit var recentActivityPresenter: RecentActivityContract.Presenter
+    private lateinit var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter
+
     private var url: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_recent_activity, container, false)
 
-        url = arguments!!.getString("url", null)
+        url = arguments?.getString("url", null)
         val context: Context? = context
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
@@ -39,38 +41,40 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(context!!)
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = recentActivityRecyclerAdapter
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
 
-        recentActivityPresenter!!.requestRecentActivity(url!!)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = recentActivityRecyclerAdapter
+        }
+
+        url?.let { recentActivityPresenter.requestRecentActivity(it) }
         return view
     }
 
     override fun setData(data: RecentActivityResponse) {
         Timber.d(data.toString())
         if (data.course.revisions.isNotEmpty()) {
-            recyclerView!!.visibility = View.VISIBLE
-            recentActivityRecyclerAdapter!!.setData(data.course.revisions)
-            recentActivityRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoActivity!!.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            recentActivityRecyclerAdapter.setData(data.course.revisions)
+            recentActivityRecyclerAdapter.notifyDataSetChanged()
+            tvNoActivity.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoActivity!!.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoActivity.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar!!.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 }

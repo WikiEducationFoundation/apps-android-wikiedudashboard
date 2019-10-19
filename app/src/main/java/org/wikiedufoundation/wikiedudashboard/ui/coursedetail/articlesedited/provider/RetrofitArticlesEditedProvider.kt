@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider
 
-import timber.log.Timber
 import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
@@ -8,7 +7,11 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
+/**
+ * Retrofit http request for edited articles
+ * ***/
 class RetrofitArticlesEditedProvider : ArticlesEditedProvider {
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
 
@@ -17,7 +20,7 @@ class RetrofitArticlesEditedProvider : ArticlesEditedProvider {
         val articlesEditedResponseCall = wikiEduDashboardApi.getArticlesEdited(sub_url)
         articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
             override fun onResponse(call: Call<ArticlesEdited>, response: Response<ArticlesEdited>) {
-                Timber.d(response.body()!!.course.toString() + "")
+                Timber.d(response.body()?.course.toString() + "")
                 presenterCallback.onSuccess(response.body())
             }
 
