@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,38 +11,45 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:layout_constrainedHeight="true">
+
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView8"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:minHeight="60dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/view4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/tv_count_articles_edited_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_count_articles_edited_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{obj.title}"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:padding="@dimen/padding_8dp"
-                    tools:text="@string/demo_course_name" />
-
-            </LinearLayout>
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/demo_course_name"
+                android:textSize="@dimen/text_size_20sp" />
 
         </androidx.cardview.widget.CardView>
 
         <View
-            android:layout_width="match_parent"
+            android:id="@+id/view4"
+            android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@color/colorGrayBackground" />
+            android:background="@color/colorGrayBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cardView8"
+            app:layout_constraintTop_toBottomOf="@+id/cardView8" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
+
