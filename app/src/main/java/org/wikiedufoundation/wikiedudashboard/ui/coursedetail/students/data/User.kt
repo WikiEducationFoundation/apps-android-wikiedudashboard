@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 /**
  * [User] model class
- * @constructor primary constructor to initialize properties and variables
+ * @constructor primary constructor to initialize properties and variables related to an user
  * ***/
 class User(
         @SerializedName("id")

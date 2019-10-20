@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -26,10 +23,11 @@ import timber.log.Timber
  * Use the [ProfileCourseListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.ProfileCourseListClickListener {
+class ProfileCourseListFragment : Fragment() {
 
     private var mParam1: String? = null
     private var coursesList: List<CourseData> = ArrayList()
+
     private lateinit var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,14 +51,28 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
         super.onViewCreated(view, savedInstanceState)
 
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
+
         tvNoCourses.text = sharedPrefs?.cookies
-        courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(this)
-        rvCourseList.layoutManager = LinearLayoutManager(context)
-        rvCourseList.adapter = courseListRecyclerAdapter
+
+        tvNoCourses.text = sharedPrefs?.cookies
+        courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
+            openCourseDetail(it)
+        }
+
+        rvCourseList.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = courseListRecyclerAdapter
+        }
+
         setData(coursesList)
         showProgressBar(false)
     }
 
+    /**
+     * Use [setData] to set list of courses data
+     * @param courses list of courses data
+     * ***/
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
@@ -74,21 +86,31 @@ class ProfileCourseListFragment : Fragment(), ProfileCourseListRecyclerAdapter.P
         }
     }
 
+    /**
+     * User [showProgressBar] to show loading progress
+     *
+     * @param show boolean value to determine the visibility of the progress bar
+     * ***/
     fun showProgressBar(show: Boolean) {
         if (show) {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
     }
 
+    /**
+     * Use [showMessage] to show a toast
+     *
+     * @param message text message in String
+     * ***/
     fun showMessage(message: String) {
         context?.showToast(message)
     }
 
-    override fun onCourseClicked(courseSlug: String) {
+    private fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
-        i.putExtra("url", courseSlug)
+        i.putExtra("url", slug)
         i.putExtra("enrolled", false)
         startActivity(i)
     }

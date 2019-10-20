@@ -59,6 +59,7 @@
     <string name="outreach_programs_and_events_dashboard">Outreach Programs and Events Dashboard</string>
     <string name="menu_settings">Settings</string>
     <string name="not_enrolled">You are not enrolled in any course</string>
+    <string name="total_edits">Total Edits</string>
     <string name="media_detail_desc">Description of the media goes here. This can potentially be fairly long, and will need to wrap across multiple lines. We hope it looks nice though.</string>
     <string name="screen1_title">Wiki Education Dashboard</string>
     <string name="sub1_description">Monitor and Manage your Courses  on Wiki Education Dashboard</string>
