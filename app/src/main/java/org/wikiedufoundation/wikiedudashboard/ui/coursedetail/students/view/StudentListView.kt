@@ -4,6 +4,14 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.Stud
 import org.wikiedufoundation.wikiedudashboard.util.Progressive
 import org.wikiedufoundation.wikiedudashboard.util.Toaster
 
+/**
+ * Interface [StudentListView] that defines [setData]
+ * ***/
 interface StudentListView : Progressive, Toaster {
+
+    /**
+     * Implement [setData] in [StudentListFragment] to set list of student data from API response
+     * @param data list of student data from API response
+     * ***/
     fun setData(data: StudentListResponse)
 }

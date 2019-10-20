@@ -29,15 +29,14 @@ class WikiEducationDashboardFragment : Fragment() {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var cv_signup_wikipedia: AppCompatButton? = null
-    private var cv_login_wikipedia: AppCompatButton? = null
-    private var webView: WebView? = null
-    private var cl_wiki : ConstraintLayout? = null
-    private var progressBar: ProgressBar? = null
-
-    private var cookies: String? = null
     private var sharedPrefs: SharedPrefs? = null
+
+    private lateinit var cv_signup_wikipedia: AppCompatButton
+    private lateinit var cv_login_wikipedia: AppCompatButton
+    private lateinit var webView: WebView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var cookies: String
+    private lateinit var clWiki : ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +56,8 @@ class WikiEducationDashboardFragment : Fragment() {
         cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
         cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        cl_wiki = view.findViewById(R.id.cl_wiki)
+        clWiki = view.findViewById(R.id.cl_wiki)
         progressBar = view.findViewById(R.id.progressBar)
-
         sharedPrefs = context?.let { SharedPrefs(it) }
         setWebView()
         setOnClickListeners()
@@ -74,12 +72,12 @@ class WikiEducationDashboardFragment : Fragment() {
      *  user clicks on the OAuth screen "Allow" button
      */
 
-        webView?.getSettings()?.setJavaScriptEnabled(true)
-        webView?.webViewClient = object : WebViewClient() {
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                cl_wiki?.visibility = View.GONE
-                progressBar?.visibility = View.VISIBLE
+                clWiki.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
             }
 
             override fun onPageFinished(view: WebView?, url: String) {
@@ -88,10 +86,10 @@ class WikiEducationDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     super.onPageFinished(view, url)
-                    cl_wiki?.visibility = View.GONE
-                    webView?.visibility = View.VISIBLE
+                    clWiki.visibility = View.GONE
+                    webView.visibility = View.VISIBLE
                 }
-                progressBar?.visibility = View.GONE
+                progressBar.visibility = View.GONE
             }
         }
     }
@@ -112,15 +110,15 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        cv_login_wikipedia?.setOnClickListener {
+        cv_login_wikipedia.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
-            progressBar?.visibility = View.VISIBLE
-            webView?.loadUrl(url)
+            progressBar.visibility = View.VISIBLE
+            webView.loadUrl(url)
         }
-        cv_signup_wikipedia?.setOnClickListener {
+        cv_signup_wikipedia.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup"
-            progressBar?.visibility = View.VISIBLE
-            webView?.loadUrl(url)
+            progressBar.visibility = View.VISIBLE
+            webView.loadUrl(url)
         }
     }
 

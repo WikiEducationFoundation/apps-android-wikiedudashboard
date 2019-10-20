@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view
+package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
 import android.content.Context
 import android.os.Bundle
@@ -12,21 +12,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityContract
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RetrofitRecentActivityProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
+/**
+ * A simple [Fragment] for recent activities
+ * ***/
 class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
-    private var tvNoActivity: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var tvNoActivity: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
-    private var recentActivityPresenter: RecentActivityContract.Presenter? = null
-    private var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter? = null
+    private lateinit var recentActivityPresenter: RecentActivityContract.Presenter
+    private lateinit var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter
+
     private var url: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,34 +41,36 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityPresenter = RecentActivityPresenterImpl(this, RetrofitRecentActivityProvider())
 
-        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = linearLayoutManager
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = recentActivityRecyclerAdapter
+        recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
 
-        url?.let { recentActivityPresenter?.requestRecentActivity(it) }
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = recentActivityRecyclerAdapter
+        }
+
+        url?.let { recentActivityPresenter.requestRecentActivity(it) }
         return view
     }
 
     override fun setData(data: RecentActivityResponse) {
         Timber.d(data.toString())
         if (data.course.revisions.isNotEmpty()) {
-            recyclerView?.visibility = View.VISIBLE
-            recentActivityRecyclerAdapter?.setData(data.course.revisions)
-            recentActivityRecyclerAdapter?.notifyDataSetChanged()
-            tvNoActivity?.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            recentActivityRecyclerAdapter.setData(data.course.revisions)
+            recentActivityRecyclerAdapter.notifyDataSetChanged()
+            tvNoActivity.visibility = View.GONE
         } else {
-            recyclerView?.visibility = View.GONE
-            tvNoActivity?.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoActivity.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar?.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar?.visibility = View.GONE
+            View.GONE
         }
     }
 

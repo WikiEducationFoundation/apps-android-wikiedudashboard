@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     signingConfigs {
@@ -36,6 +37,9 @@ android {
     compileOptions {
         sourceCompatibility '1.8'
         targetCompatibility '1.8'
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -107,8 +111,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
     // circular dots
     implementation 'me.relex:circleindicator:2.1.4'
-
-
-
 
 }

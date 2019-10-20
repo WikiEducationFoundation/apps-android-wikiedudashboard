@@ -10,14 +10,10 @@ import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -35,13 +31,11 @@ class OutreachProgramsDashboardFragment : Fragment() {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var cv_signup_wikipedia: Button? = null
-    private var cv_login_wikipedia: Button? = null
-    private var webView: WebView? = null
-    private var cl_outreach : ConstraintLayout? = null
-    private var progressBar: ProgressBar? = null
-
+    private lateinit var clOutreach : ConstraintLayout
+    private lateinit var cvSignUpWikipedia: Button
+    private lateinit var cvLoginWikipedia: Button
+    private lateinit var webView: WebView
+    private lateinit var progressBar: ProgressBar
     private var cookies: String? = null
     private var sharedPrefs: SharedPrefs? = null
 
@@ -62,10 +56,11 @@ class OutreachProgramsDashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
-        cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
-        cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
+        cvSignUpWikipedia = view.findViewById(R.id.cv_signup_wikipedia)
+        cvSignUpWikipedia = view.findViewById(R.id.cv_login_wikipedia)
+        cvLoginWikipedia = view.findViewById(R.id.cv_login_wikipedia)
         webView = view.findViewById(R.id.webView)
-        cl_outreach = view.findViewById(R.id.cl_outreach)
+        clOutreach = view.findViewById(R.id.cl_outreach)
         progressBar = view.findViewById(R.id.progressBar)
 
         sharedPrefs = context?.let { SharedPrefs(it) }
@@ -80,13 +75,13 @@ class OutreachProgramsDashboardFragment : Fragment() {
          *  the additional account set-up screens displayed after the
          *  user clicks on the OAuth screen "Allow" button
          */
-        webView?.getSettings()?.setJavaScriptEnabled(true)
-        webView?.webViewClient = object : WebViewClient() {
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 progressBar?.visibility = View.VISIBLE
                 cl_outreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
-                progressBar?.visibility = View.VISIBLE
+                progressBar.visibility = View.VISIBLE
             }
 
             override fun onPageFinished(view: WebView?, url: String) {
@@ -94,12 +89,12 @@ class OutreachProgramsDashboardFragment : Fragment() {
                 if (url == "https://outreachdashboard.wmflabs.org/") {
                     proceedToLogin(url)
                 } else {
-                    webView?.visibility = View.VISIBLE
+                    webView.visibility = View.VISIBLE
                     cl_outreach?.visibility = View.GONE
                     super.onPageFinished(view, url)
-                    webView?.visibility = View.VISIBLE
+                    webView.visibility = View.VISIBLE
                 }
-                progressBar?.visibility = View.GONE
+                progressBar.visibility = View.GONE
             }
         }
     }
@@ -119,16 +114,13 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        cv_login_wikipedia?.setOnClickListener {
+        cvLoginWikipedia.setOnClickListener {
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki"
-            progressBar?.visibility = View.VISIBLE
-            webView?.loadUrl(url)
-
+            webView.loadUrl(url)
         }
-        cv_signup_wikipedia?.setOnClickListener {
+        cvSignUpWikipedia.setOnClickListener {
             val url = "https://outreachdashboard.wmflabs.org/users/auth/mediawiki_signup"
-            progressBar?.visibility = View.VISIBLE
-            webView?.loadUrl(url)
+            webView.loadUrl(url)
         }
     }
 

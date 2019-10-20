@@ -11,6 +11,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
+/**
+ * Implementation of [requestProfile] & [requestProfileDetails] to perform http request
+ * to get profile data
+ * ***/
 class RetrofitProfileProvider : ProfileContract.Provider {
 
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject

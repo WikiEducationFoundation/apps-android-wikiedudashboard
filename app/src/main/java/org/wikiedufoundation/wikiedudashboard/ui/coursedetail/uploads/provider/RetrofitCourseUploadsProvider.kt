@@ -9,6 +9,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
+/**
+ * Class that implementing [requestCourseUploads] method to get course uploads data
+ * ***/
 class RetrofitCourseUploadsProvider : CourseUploadsProvider {
 
     private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
