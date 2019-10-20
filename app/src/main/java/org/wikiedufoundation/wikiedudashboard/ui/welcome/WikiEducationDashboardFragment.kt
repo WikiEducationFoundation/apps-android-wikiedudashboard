@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.*
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
@@ -27,10 +29,10 @@ import timber.log.Timber
  */
 class WikiEducationDashboardFragment : Fragment() {
 
+    private val sharedPrefs: SharedPrefs by inject()
+
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var cv_signup_wikipedia: AppCompatButton
     private lateinit var cv_login_wikipedia: AppCompatButton
@@ -60,7 +62,6 @@ class WikiEducationDashboardFragment : Fragment() {
         clWiki = view.findViewById(R.id.cl_wiki)
         progressBar = view.findViewById(R.id.progressBar)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
         setWebView()
         setOnClickListeners()
         return view
@@ -100,11 +101,11 @@ class WikiEducationDashboardFragment : Fragment() {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string: $cookies")
-        sharedPrefs?.outreachDashboardCookies = cookies
+        sharedPrefs.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.WIKIEDU_DASHBOARD_BASE_URL
-        sharedPrefs?.cookies = cookies
-        sharedPrefs?.wikiEduDashboardCookies = cookies
-        sharedPrefs?.setLogin(true)
+        sharedPrefs.cookies = cookies
+        sharedPrefs.wikiEduDashboardCookies = cookies
+        sharedPrefs.setLogin(true)
         startActivity(Intent(context, HomeActivity::class.java))
         activity?.finish()
     }

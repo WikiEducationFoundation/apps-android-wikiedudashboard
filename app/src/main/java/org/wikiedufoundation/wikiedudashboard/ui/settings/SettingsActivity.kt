@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
@@ -17,7 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
  * ***/
 class SettingsActivity : AppCompatActivity() {
 
-    private var sharedPrefs: SharedPrefs? = null
+    private val sharedPrefs: SharedPrefs by inject()
 
     private lateinit var toolbar: Toolbar
     private lateinit var tvFeedback: TextView
@@ -32,7 +33,6 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        sharedPrefs = SharedPrefs(this)
         toolbar = findViewById(R.id.toolbar)
         tvFeedback = findViewById(R.id.tv_feedback)
         tvShareApp = findViewById(R.id.tv_share_app)
@@ -90,9 +90,9 @@ class SettingsActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
                 .setPositiveButton("Yes") { dialog, _ ->
-                    sharedPrefs?.userName = ""
-                    sharedPrefs?.cookies = ""
-                    sharedPrefs?.setLogin(false)
+                    sharedPrefs.userName = ""
+                    sharedPrefs.cookies = ""
+                    sharedPrefs.setLogin(false)
                     val i = Intent(this, WelcomeActivity::class.java)
                     startActivity(i)
 

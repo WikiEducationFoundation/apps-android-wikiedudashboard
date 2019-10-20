@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import butterknife.ButterKnife
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
@@ -24,9 +25,11 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
  * ***/
 class HomeActivity : AppCompatActivity() {
 
-    private var sharedPrefs: SharedPrefs? = null
+    private val sharedPrefs: SharedPrefs by inject()
+
     private var context: Context? = null
     private var myDashboardFragment: MyDashboardFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_bar_main)
@@ -35,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
         toolbar.inflateMenu(R.menu.menu_explore)
         setSupportActionBar(toolbar)
         context = this
-        sharedPrefs = SharedPrefs(this)
         myDashboardFragment = MyDashboardFragment()
         val navView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         navView.setOnNavigationItemSelectedListener {
@@ -49,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_training -> {
-                    sharedPrefs?.userName?.let { sharedName -> replaceFragment(ProfileFragment.newInstance(sharedName, false)) }
+                    sharedPrefs.userName?.let { sharedName -> replaceFragment(ProfileFragment.newInstance(sharedName, false)) }
                     true
                 }
                 else -> false

@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard
 
-import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -8,9 +7,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RetrofitMyDashboardProvider : MyDashboardContract.Provider {
-
-    private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
+/**
+ * Class that implements [requestCourseList] to get CourseList data
+ * ***/
+class RetrofitMyDashboardProvider(
+        private val wikiEduDashboardApi: WikiEduDashboardApi
+) : MyDashboardContract.Provider {
 
     override fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<*>) {
         val courseDetailResponseCall = wikiEduDashboardApi.getDashboardDetail(cookies)

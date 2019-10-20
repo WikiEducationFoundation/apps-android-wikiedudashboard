@@ -11,10 +11,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -28,6 +30,12 @@ import timber.log.Timber
  */
 class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
+    private val retrofitCourseUploadsProvider: RetrofitCourseUploadsProvider by inject()
+    private val courseUploadsPresenter: CourseUploadsPresenter by inject {
+        parametersOf(this, retrofitCourseUploadsProvider)
+    }
+
+
     private var type: Int = 0
     private var courseUrl: String? = null
     private var courseUploadList: CourseUploadList? = null
@@ -36,7 +44,6 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     private lateinit var progressBar: ProgressBar
     private lateinit var tvNoStudents: TextView
 
-    private lateinit var courseUploadsPresenter: CourseUploadsPresenterImpl
     private lateinit var courseUploadsRecyclerAdapter: CourseUploadsRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,8 +65,6 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         recyclerView = view.findViewById(R.id.rv_upload_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoStudents = view.findViewById(R.id.tv_no_uploads)
-
-        courseUploadsPresenter = CourseUploadsPresenterImpl(this, RetrofitCourseUploadsProvider())
 
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
             openCourseDetail(uploadList, position)

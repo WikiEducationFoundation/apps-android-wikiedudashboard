@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityFragment
@@ -27,8 +27,12 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
  * ***/
 class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
+    private val retrofitCourseDetailProvider: RetrofitCourseDetailProvider by inject()
+    private val courseDetailPresenter: CourseDetailPresenter by inject {
+        parametersOf(this, retrofitCourseDetailProvider)
+    }
+
     private var enrolled = false
-    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var url: String
     private lateinit var toolbar: Toolbar
@@ -36,7 +40,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     private lateinit var viewPager: ViewPager
     private lateinit var progressBar: ProgressBar
     private lateinit var courseHomeFragment: CourseHomeFragment
-    private lateinit var courseDetailPresenter: CourseDetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +51,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
         url = intent.getStringExtra("url")
         enrolled = intent.getBooleanExtra("enrolled", false)
-
-        sharedPrefs = SharedPrefs(this)
 
         val action = intent.action
         val data = intent.dataString
@@ -65,7 +66,7 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
 
         tabLayout.setupWithViewPager(viewPager)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        courseDetailPresenter = CourseDetailPresenterImpl(this, RetrofitCourseDetailProvider())
+
         url.let { courseDetailPresenter.requestCourseDetail(it) }
     }
 

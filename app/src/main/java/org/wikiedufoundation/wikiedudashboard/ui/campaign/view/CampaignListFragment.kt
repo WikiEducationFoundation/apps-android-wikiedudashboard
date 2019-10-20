@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
@@ -31,15 +32,20 @@ import kotlin.collections.ArrayList
  */
 class CampaignListFragment : Fragment(), CampaignListContract.View {
 
+    private val retrofitCampaignListProvider: RetrofitCampaignListProvider by inject()
+    private val campaignListPresenter: CampaignListContract.Presenter by inject {
+        parametersOf(this, retrofitCampaignListProvider)
+    }
+    private val sharedPrefs: SharedPrefs by inject()
+
     private var mParam1: String? = null
     private var mParam2: String? = null
-    private var sharedPrefs: SharedPrefs? = null
+//    private var sharedPrefs: SharedPrefs? = null
 
     private lateinit var tvNoCampaigns: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var campaignListPresenter: CampaignListContract.Presenter
     private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
 
     private var campaignList: List<CampaignListData> = ArrayList()
@@ -63,8 +69,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
-        campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
+//        sharedPrefs = context?.let { SharedPrefs(it) }
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
 //                        openCourseDetail(it)
@@ -76,7 +81,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             adapter = campaignListRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { campaignListPresenter.requestCampaignList(it) }
+        sharedPrefs.cookies?.let { campaignListPresenter.requestCampaignList(it) }
         return view
     }
 
@@ -115,7 +120,6 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         }
 
         campaignListRecyclerAdapter.setData(campaignQueryFilter)
-        campaignListRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {

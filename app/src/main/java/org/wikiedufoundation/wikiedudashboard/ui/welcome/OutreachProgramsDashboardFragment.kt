@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
@@ -29,6 +30,8 @@ import timber.log.Timber
  */
 class OutreachProgramsDashboardFragment : Fragment() {
 
+    private val sharedPrefs: SharedPrefs by inject()
+
     private var mParam1: String? = null
     private var mParam2: String? = null
 
@@ -39,7 +42,6 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
 
     private var cookies: String? = null
-    private var sharedPrefs: SharedPrefs? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +69,6 @@ class OutreachProgramsDashboardFragment : Fragment() {
 
         progressBar = view.findViewById(R.id.progressBar)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
         setWebView()
         setOnClickListeners()
         return view
@@ -82,7 +83,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         webView.settings.javaScriptEnabled = true
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-                progressBar?.visibility = View.VISIBLE
+                progressBar.visibility = View.VISIBLE
                 cl_outreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
                 progressBar.visibility = View.VISIBLE
@@ -107,11 +108,11 @@ class OutreachProgramsDashboardFragment : Fragment() {
         Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string: $cookies")
-        sharedPrefs?.outreachDashboardCookies = cookies
+        sharedPrefs.outreachDashboardCookies = cookies
         Urls.BASE_URL = Urls.OUTREACH_DASHBOARD_BASE_URL
-        sharedPrefs?.cookies = cookies
-        sharedPrefs?.outreachDashboardCookies = cookies
-        sharedPrefs?.setLogin(true)
+        sharedPrefs.cookies = cookies
+        sharedPrefs.outreachDashboardCookies = cookies
+        sharedPrefs.setLogin(true)
         startActivity(Intent(context, HomeActivity::class.java))
         activity?.finish()
     }
