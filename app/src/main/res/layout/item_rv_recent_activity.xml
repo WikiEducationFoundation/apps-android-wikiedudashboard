@@ -20,7 +20,8 @@
         app:cardElevation="@dimen/padding_2dp"
         card_view:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -34,93 +35,105 @@
                 android:paddingEnd="@dimen/padding_8dp"
                 android:text="@{obj.title}"
                 android:textSize="@dimen/text_size_20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                card_view:layout_editor_absoluteX="8dp"
+                card_view:layout_editor_absoluteY="9dp"
                 tools:text="@string/demo_course2" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/padding_8dp"
-                android:weightSum="2">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="@dimen/padding_8dp"
-                        android:text="@string/label_edited_by"
-                        android:textSize="@dimen/text_size_12sp"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/tv_revisor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{obj.revisor}"
-                        android:textSize="@dimen/text_size_12sp"
-                        android:textStyle="italic"
-                        tools:text="Ujjwalagrawal17" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="@dimen/padding_8dp"
-                        android:text="@string/label_chars_added"
-                        android:textSize="@dimen/text_size_12sp"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/tv_count_characters_added"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(obj.characters)}"
-                        android:textSize="@dimen/text_size_12sp"
-                        android:textStyle="italic"
-                        tools:text="2500" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_editedby"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/padding_8dp"
-                android:paddingEnd="@dimen/padding_8dp">
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingEnd="@dimen/padding_8dp"
+                android:text="@string/label_edited_by"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@id/tv_count_articles_edited_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited_title"
+                card_view:layout_editor_absoluteX="16dp"
+                card_view:layout_editor_absoluteY="44dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/padding_8dp"
-                    android:text="@string/label_edited_on"
-                    android:textSize="@dimen/text_size_12sp"
-                    android:textStyle="italic" />
+            <TextView
+                android:id="@+id/tv_revisor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_8dp"
+                android:text="@{obj.revisor}"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@id/tv_date"
+                app:layout_constraintTop_toTopOf="@id/tv_editedby"
+                card_view:layout_editor_absoluteX="79dp"
+                card_view:layout_editor_absoluteY="44dp"
+                tools:text="Ujjwalagrawal17" />
 
-                <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_size_12sp"
-                    android:textStyle="italic"
-                    app:dateToString="@{obj.date}"
-                    tools:text="2019-03-31 5:29 PM" />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_charsadded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingEnd="@dimen/padding_8dp"
+                android:text="@string/label_chars_added"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_revisor"
+                app:layout_constraintTop_toTopOf="@id/tv_revisor"
+                card_view:layout_editor_absoluteY="44dp" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_count_characters_added"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_8dp"
+                android:text="@{String.valueOf(obj.characters)}"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@id/tv_charsadded"
+                app:layout_constraintTop_toTopOf="@id/tv_charsadded"
+                card_view:layout_editor_absoluteX="284dp"
+                card_view:layout_editor_absoluteY="44dp"
+                tools:text="2500" />
+
+
+            <TextView
+                android:id="@+id/tv_editedon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_8dp"
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingEnd="@dimen/padding_8dp"
+                android:text="@string/label_edited_on"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_editedby"
+                app:layout_constraintTop_toBottomOf="@id/tv_editedby"
+                card_view:layout_editor_absoluteX="16dp"
+                card_view:layout_editor_absoluteY="68dp" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_8dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_12sp"
+                android:textStyle="italic"
+                app:dateToString="@{obj.date}"
+                app:layout_constraintStart_toEndOf="@id/tv_editedon"
+                app:layout_constraintTop_toTopOf="@id/tv_editedon"
+                card_view:layout_editor_absoluteX="80dp"
+                card_view:layout_editor_absoluteY="68dp"
+                tools:text="2019-03-31 5:29 PM" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
 
