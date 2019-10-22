@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import java.text.MessageFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -19,7 +22,6 @@ import java.text.MessageFormat
 class CourseHomeFragment : Fragment() {
 
     private var courseDetail: CourseDetail? = null
-
     private lateinit var tvCountArticlesCreated: TextView
     private lateinit var tvCountArticlesEdited: TextView
     private lateinit var tvCountTotalEdits: TextView
