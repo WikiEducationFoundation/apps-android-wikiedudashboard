@@ -19,13 +19,13 @@
             app:title="@string/title_home"
             app:titleTextColor="@color/black">
 
-            <!--<SearchView-->
-                <!--android:id="@+id/searchView"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="end"-->
-                <!--android:queryHint="Search"-->
-                <!--android:layout_centerHorizontal="true" />-->
+<!--            <SearchView-->
+<!--                android:id="@+id/searchView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:queryHint="Search"-->
+<!--                android:layout_centerHorizontal="true" />-->
 
         </androidx.appcompat.widget.Toolbar>
 
