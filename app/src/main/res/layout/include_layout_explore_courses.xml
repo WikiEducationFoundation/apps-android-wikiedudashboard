@@ -22,8 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="60dp"
-            android:orientation="vertical">
+            android:minHeight="60dp">
 
             <TextView
                 android:id="@+id/tv_course_title"
@@ -38,6 +37,7 @@
                 tools:text="@string/demo_course" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 </layout>
