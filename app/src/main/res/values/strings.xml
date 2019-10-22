@@ -70,4 +70,6 @@
     <string name="next">Next</string>
     <string name="get_started">Get Started</string>
     <string name="skip">Skip</string>
+    <string name="chars_added">2500</string>
+    <string name="date_edited">2019-03-31 5:29 PM</string>
 </resources>

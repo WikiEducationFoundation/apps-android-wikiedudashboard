@@ -18,6 +18,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivit
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -30,13 +31,14 @@ public class ImageViewerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private String image_url;
-
+    private Unbinder unbinder;
     @BindView(R.id.photo_view)
     PhotoView photoView;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     public ImageViewerFragment() {
         // Required empty public constructor
     }
@@ -69,12 +71,19 @@ public class ImageViewerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_image_viewer, container, false);
-        Context context = getContext();
-        ButterKnife.bind(this, v);
+        unbinder = ButterKnife.bind(this, v);
+        Context context = v.getContext();
+
         Glide.with(context).load(image_url).into(photoView);
         toolbar.setNavigationOnClickListener(v1 -> {
-            ((MediaDetailsActivity)context).onBackPressed();
+            ((MediaDetailsActivity) context).onBackPressed();
         });
         return v;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }
