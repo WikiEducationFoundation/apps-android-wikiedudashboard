@@ -9,10 +9,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesEditedRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.RetrofitArticlesEditedProvider
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
@@ -22,11 +24,15 @@ import timber.log.Timber
  * ***/
 class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
+    private val retrofitArticlesEditedProvider: RetrofitArticlesEditedProvider by inject()
+    private val articlesEditedPresenter: ArticlesEditedPresenter by inject {
+        parametersOf(this, retrofitArticlesEditedProvider)
+    }
+
     private lateinit var tvNoEditedArticles: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var articlesEditedPresenter: ArticlesEditedPresenterImpl
     private lateinit var articlesEditedRecyclerAdapter: ArticlesEditedRecyclerAdapter
 
     private var url: String? = null
@@ -39,8 +45,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         recyclerView = view.findViewById(R.id.rv_edited_articles_list)
         progressBar = view.findViewById(R.id.progress_bar)
         tvNoEditedArticles = view.findViewById(R.id.tv_no_edited_articles)
-
-        articlesEditedPresenter = ArticlesEditedPresenterImpl(RetrofitArticlesEditedProvider(), this)
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(R.layout.item_rv_articles_edited)
 

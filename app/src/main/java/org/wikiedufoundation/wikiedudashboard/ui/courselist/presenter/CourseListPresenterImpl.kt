@@ -13,7 +13,10 @@ import timber.log.Timber
  * @property courseListView view component for course list
  * @property courseListProvider retrofit HTTP request call for course list
  * ***/
-class CourseListPresenterImpl(private val courseListView: CourseListView, private val courseListProvider: CourseListProvider) : CourseListPresenter {
+class CourseListPresenterImpl(
+        private val courseListView: CourseListView,
+        private val courseListProvider: CourseListProvider
+) : CourseListPresenter {
 
     override fun requestDashboard(cookies: String) {
         courseListView.showProgressBar(true)

@@ -1,82 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.ExploreFragment"
-    >
+    tools:context=".ui.home.ExploreFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_no_courses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/tv_no_programs"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_course_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/tv_no_courses"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/tv_no_programs" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="70dp"
-        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:menu_colorNormal="@color/colorAccent"
         app:menu_colorPressed="@color/colorHeadingDark"
-        app:menu_shadowColor="@color/colorAccent"
-        >
+        app:menu_shadowColor="@color/colorAccent">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_item1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_label="Participate in a Campaign"
-            app:fab_colorPressed="@color/colorHeadingDark"
             android:background="@color/colorAccent"
             android:src="@drawable/ic_arrow_forward_white_24dp"
-            />
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_colorPressed="@color/colorHeadingDark"
+            app:fab_label="Participate in a Campaign"
+            app:fab_size="mini" />
+
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_size="mini"
             android:background="@color/colorAccent"
+            android:src="@drawable/ic_add_white_24dp"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/colorHeadingDark"
             app:fab_label="Create an Independent Program"
-            android:src="@drawable/ic_add_white_24dp"
-            />
+            app:fab_size="mini" />
+
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_item3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_size="mini"
             android:background="@color/colorAccent"
-            app:fab_colorPressed="@color/colorHeadingDark"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_label="Find a Program"
             android:src="@drawable/ic_arrow_forward_white_24dp"
-            />
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_colorPressed="@color/colorHeadingDark"
+            app:fab_label="Find a Program"
+            app:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

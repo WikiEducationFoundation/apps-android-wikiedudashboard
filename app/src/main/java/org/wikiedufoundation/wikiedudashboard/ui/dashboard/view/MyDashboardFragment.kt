@@ -10,12 +10,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
@@ -31,10 +32,15 @@ import timber.log.Timber
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
+    private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
+    private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
+        parametersOf(this, retrofitMyDashboardProvider)
+    }
+    private val sharedPrefs: SharedPrefs by inject()
+
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
-    private var sharedPrefs: SharedPrefs? = null
 
     private var coursesList: List<CourseListData>? = ArrayList()
 
@@ -42,7 +48,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var myDashboardPresenter: MyDashboardContract.Presenter
     private lateinit var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,9 +70,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        sharedPrefs = context?.let { SharedPrefs(it) }
-        myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
         }
@@ -78,12 +80,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
             adapter = myDashboardRecyclerAdapter
         }
 
-        sharedPrefs?.cookies?.let { myDashboardPresenter.requestDashboard(it) }
+        sharedPrefs.cookies?.let { myDashboardPresenter.requestDashboard(it) }
         return view
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs?.userName = data.user.userName
+        sharedPrefs.userName = data.user.userName
         Timber.d(data.toString())
 
         if (data.currentCourses.isNotEmpty()) {
