@@ -72,11 +72,12 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/padding_8dp"
                 android:paddingEnd="@dimen/padding_8dp"
+                android:paddingStart="@dimen/padding_8dp"
                 android:text="@string/label_chars_added"
                 android:textSize="@dimen/text_size_12sp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_revisor"
+                app:layout_constraintStart_toStartOf="@id/tv_revisor"
                 app:layout_constraintTop_toTopOf="@id/tv_revisor" />
 
             <TextView
