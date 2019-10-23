@@ -14,7 +14,7 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> adp.mediaClicked(obj)}"
@@ -23,8 +23,9 @@
         <include
             android:id="@+id/include_layout_media_files"
             layout="@layout/include_files_media"
+            app:layout_constraintTop_toTopOf="parent"
             app:files="@{null}"
             app:media="@{obj}" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
