@@ -16,7 +16,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragm
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
 import timber.log.Timber
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -26,55 +25,48 @@ import java.util.*
  */
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
+    private lateinit var toolbar: Toolbar
+    private lateinit var campaignListFragment: CampaignListFragment
+    private lateinit var courseListFragment: CourseListFragment
+
     private var mParam1: String? = null
     private var mParam2: String? = null
-
-    private var tabLayout: TabLayout? = null
-    private var viewPager: ViewPager? = null
-    var toolbar: Toolbar? = null
-    var campaignListFragment: CampaignListFragment? = null
-    var courseListFragment: CourseListFragment? = null
-    private var viewPagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
-        viewPager = view.viewPager
-        tabLayout = view.tabLayout
+        val viewPager = view.viewPager
+        val tabLayout = view.tabLayout
         toolbar = view.toolbar
-        toolbar!!.inflateMenu(R.menu.menu_explore)
-        toolbar!!.setOnMenuItemClickListener(this)
-        viewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager!!.adapter = viewPagerAdapter
-        tabLayout!!.setupWithViewPager(viewPager)
-        setTabs()
+        toolbar.inflateMenu(R.menu.menu_explore)
+        toolbar.setOnMenuItemClickListener(this)
+
+        setTabs(tabLayout, viewPager)
         return view
     }
 
-    private fun setTabs() {
-        val fragmentList = ArrayList<Fragment>()
-        val titleList = ArrayList<String>()
-        titleList.add("Active Campaigns")
-        campaignListFragment = CampaignListFragment()
-        fragmentList.add(campaignListFragment!!)
-        titleList.add("Active Courses")
-        courseListFragment= CourseListFragment()
-        fragmentList.add(courseListFragment!!)
-        viewPagerAdapter!!.setTabData(fragmentList, titleList)
-        viewPagerAdapter!!.notifyDataSetChanged()
+    private fun setTabs(tabLayout: TabLayout, viewPager: ViewPager) {
+        val fragmentList = listOf<Fragment>(CampaignListFragment(), CourseListFragment())
+        val titleList = listOf("Active Campaigns", "Active Courses")
+
+        viewPager.apply {
+            adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
+        }
+        tabLayout.setupWithViewPager(viewPager)
+
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -84,8 +76,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment.updateSearchQuery(query)
+                courseListFragment.updateSearchQuery(query)
 
                 if (!searchView.isIconified) {
                     searchView.isIconified = true
@@ -96,8 +88,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
             override fun onQueryTextChange(query: String): Boolean {
                 Timber.d(query)
-                campaignListFragment!!.updateSearchQuery(query)
-                courseListFragment!!.updateSearchQuery(query)
+                campaignListFragment.updateSearchQuery(query)
+                courseListFragment.updateSearchQuery(query)
                 return false
             }
         })

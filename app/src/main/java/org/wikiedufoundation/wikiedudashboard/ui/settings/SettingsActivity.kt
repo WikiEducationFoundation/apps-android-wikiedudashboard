@@ -1,37 +1,38 @@
 package org.wikiedufoundation.wikiedudashboard.ui.settings
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 
-
+/**
+ * Activity for user settings of the profile part
+ * ***/
 class SettingsActivity : AppCompatActivity() {
 
-    private var sharedPrefs: SharedPrefs? = null
-    private var context: Context? = null
-    private var toolbar: Toolbar? = null
-    private var tvFeedback: TextView? = null
-    private var tvShareApp: TextView? = null
-    private var tvLicenses: TextView? = null
-    private var tvPrivacyPolicy: TextView? = null
-    private var tvTermsAndConditions: TextView? = null
-    private var tvLogout: TextView? = null
-    private var tvVersionCode: TextView? = null
+    private val sharedPrefs: SharedPrefs by inject()
+
+    private lateinit var toolbar: Toolbar
+    private lateinit var tvFeedback: TextView
+    private lateinit var tvShareApp: TextView
+    private lateinit var tvLicenses: TextView
+    private lateinit var tvPrivacyPolicy: TextView
+    private lateinit var tvTermsAndConditions: TextView
+    private lateinit var tvLogout: TextView
+    private lateinit var tvVersionCode: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        context = this
-        sharedPrefs = SharedPrefs(this)
+
         toolbar = findViewById(R.id.toolbar)
         tvFeedback = findViewById(R.id.tv_feedback)
         tvShareApp = findViewById(R.id.tv_share_app)
@@ -40,14 +41,14 @@ class SettingsActivity : AppCompatActivity() {
         tvTermsAndConditions = findViewById(R.id.tv_terms_and_conditions)
         tvLogout = findViewById(R.id.tv_logout)
         tvVersionCode = findViewById(R.id.tv_version_code)
-        toolbar!!.setNavigationOnClickListener { onBackPressed() }
-        tvFeedback!!.setOnClickListener { sendEmailFeedback() }
-        tvShareApp!!.setOnClickListener { shareApp() }
-        tvLicenses!!.setOnClickListener { openLicenses() }
-        tvPrivacyPolicy!!.setOnClickListener { openPrivacyPolicy() }
-        tvTermsAndConditions!!.setOnClickListener { openTermsAndConditions() }
-        tvLogout!!.setOnClickListener { logOut() }
-        tvVersionCode!!.text = "1.001"
+        toolbar.setNavigationOnClickListener { onBackPressed() }
+        tvFeedback.setOnClickListener { sendEmailFeedback() }
+        tvShareApp.setOnClickListener { shareApp() }
+        tvLicenses.setOnClickListener { openLicenses() }
+        tvPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
+        tvTermsAndConditions.setOnClickListener { openTermsAndConditions() }
+        tvLogout.setOnClickListener { logOut() }
+        tvVersionCode.text = "1.001"
 
     }
 
@@ -57,8 +58,8 @@ class SettingsActivity : AppCompatActivity() {
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, emailArray)
         intent.putExtra(Intent.EXTRA_SUBJECT, "Android App 1.01 Feedback")
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
         }
     }
 
@@ -71,29 +72,30 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun openLicenses() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://creativecommons.org/licenses/by-sa/3.0/")
+        this.showCustomChromeTabs("https://creativecommons.org/licenses/by-sa/3.0/")
     }
 
     private fun openTermsAndConditions() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://wikiedu.org/terms-of-service/")
+        this.showCustomChromeTabs("https://wikiedu.org/terms-of-service/")
     }
 
     private fun openPrivacyPolicy() {
-        ViewUtils.showCustomChromeTabs(context!!, "https://wikiedu.org/privacy-policy/")
+        this.showCustomChromeTabs("https://wikiedu.org/privacy-policy/")
     }
 
     private fun logOut() {
-        val alertDialog = AlertDialog.Builder(context)
+        val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Log Out")
                 .setMessage("Are you sure? Logging out will remove all data from this device. ")
                 .setCancelable(false)
                 .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
                 .setPositiveButton("Yes") { dialog, _ ->
-                    sharedPrefs!!.userName = ""
-                    sharedPrefs!!.cookies = ""
-                    sharedPrefs!!.setLogin(false)
-                    val i = Intent(context, WelcomeActivity::class.java)
+                    sharedPrefs.userName = ""
+                    sharedPrefs.cookies = ""
+                    sharedPrefs.setLogin(false)
+                    val i = Intent(this, WelcomeActivity::class.java)
                     startActivity(i)
+
                     dialog.dismiss()
                 }.show()
     }

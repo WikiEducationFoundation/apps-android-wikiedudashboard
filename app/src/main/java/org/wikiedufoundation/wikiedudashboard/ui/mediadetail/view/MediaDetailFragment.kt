@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
@@ -18,9 +17,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_media_details.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
@@ -28,14 +27,11 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.ImageDetails
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -46,45 +42,42 @@ import timber.log.Timber
  */
 class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDetailsContract.View {
 
-    private var courseUploads: CourseUploadList? = null
+    private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
+    private val mediaDetailsPresenter: MediaDetailsContract.Presenter by inject {
+        parametersOf(this, retrofitMediaDetailsProvider)
+    }
+
     private var position: Int? = null
+    private var courseUpload: CourseUpload? = null
     private var customTabHelper: CustomTabHelper = CustomTabHelper()
+    private val baseURL = "https://commons.wikimedia.org/wiki/File:"
 
     // Media Details
-    private var mediaDetailImage: ImageView? = null
-    private var tvTitle: TextView? = null
-    private var tvDescription: TextView? = null
-    private var tvUploadDate: TextView? = null
-    private var tvAuthor: TextView? = null
-    private var tvLicense: TextView? = null
-    private var courseUpload: CourseUpload? = null
-    private var toolbar: Toolbar? = null
-    private val baseURL: String? = "https://commons.wikimedia.org/wiki/File:"
-    private var fileName: String? = null
+    private lateinit var courseUploads: CourseUploadList
+    private lateinit var mediaDetailImage: ImageView
+    private lateinit var tvTitle: TextView
+    private lateinit var tvDescription: TextView
+    private lateinit var tvUploadDate: TextView
+    private lateinit var tvAuthor: TextView
+    private lateinit var tvLicense: TextView
+    private lateinit var toolbar: Toolbar
+    private lateinit var fileName: String
 
     // Other Utils
-    private var progressBar: ProgressBar? = null
-    private var tvNoCategories: TextView? = null
-    private var categoriesRecyclerView: RecyclerView? = null
-    private var tvNoFileUses: TextView? = null
-    private var fileUsesRecyclerView: RecyclerView? = null
+    private lateinit var tvNoCategories: TextView
+    private lateinit var categoriesRecyclerView: RecyclerView
+    private lateinit var tvNoFileUses: TextView
+    private lateinit var fileUsesRecyclerView: RecyclerView
 
-    private var sharedPrefs: SharedPrefs? = null
-    private var mediaDetailsPresenter: MediaDetailsContract.Presenter? = null
-    private var categoryListRecyclerAdapter: CategoryListRecyclerAdapter? = null
-    private var fileusesRecyclerAdapter: FileUsesRecyclerAdapter? = null
-
-    //Expandable ConstraintViews
-    private var descriptionExpandable : ImageView? = null
-    private var categoryExpandable : ImageView? = null
-    private var filesExpandable : ImageView? = null
+    private lateinit var categoryListRecyclerAdapter: CategoryListRecyclerAdapter
+    private lateinit var fileUsesRecyclerAdapter: FileUsesRecyclerAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            courseUploads = arguments!!.getSerializable(ARG_PARAM1) as CourseUploadList
-            position = arguments!!.getInt(ARG_PARAM2)
+        arguments?.let {
+            courseUploads = it.getSerializable(ARG_PARAM1) as CourseUploadList
+            position = it.getInt(ARG_PARAM2)
         }
     }
 
@@ -103,68 +96,61 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         tvDescription = view.findViewById(R.id.mediaDetailDesc)
         toolbar = view.findViewById(R.id.toolbar)
 
-        //Expandable views
-        descriptionExpandable = view.findViewById(R.id.desc_expandable)
-        categoryExpandable = view.findViewById(R.id.cat_expandable)
-        filesExpandable = view.findViewById(R.id.files_expandable)
-
         categoriesRecyclerView = view.findViewById(R.id.rv_category_list)
-        progressBar = view.findViewById(R.id.progressBar)
         tvNoCategories = view.findViewById(R.id.tv_no_categories)
         fileUsesRecyclerView = view.findViewById(R.id.rv_file_uses_list)
         tvNoFileUses = view.findViewById(R.id.tv_no_uses)
 
-        toolbar!!.inflateMenu(R.menu.menu_media_details)
-        courseUpload = (courseUploads!!.uploads[position!!])
-        Glide.with(context!!).load(courseUpload!!.thumbUrl).into(mediaDetailImage!!)
-        fileName = courseUpload!!.file_name
-        tvTitle!!.text = fileName
-        tvAuthor!!.text = courseUpload!!.uploader
-        toolbar!!.setNavigationOnClickListener { activity!!.onBackPressed() }
-        tvUploadDate!!.text = courseUpload!!.uploaded_at
-        mediaDetailImage!!.setOnClickListener {
-            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload!!.thumbUrl))
+        toolbar.inflateMenu(R.menu.menu_media_details)
+        courseUpload = position?.let { (courseUploads.uploads[it]) }
+        context?.let { Glide.with(it).load(courseUpload?.thumbUrl).into(mediaDetailImage) }
+
+        fileName = courseUpload?.fileName.toString()
+        tvTitle.text = fileName
+        tvAuthor.text = courseUpload?.uploader
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+        tvUploadDate.text = courseUpload?.uploadedAt
+        mediaDetailImage.setOnClickListener {
+            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }
-        toolbar!!.setOnMenuItemClickListener(this)
+        toolbar.setOnMenuItemClickListener(this)
 
-        mediaDetailsPresenter = MediaDetailsPresenterImpl(this, RetrofitMediaDetailsProvider())
-        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(context, this)
-        val linearLayoutManager = LinearLayoutManager(context)
-        categoriesRecyclerView!!.layoutManager = linearLayoutManager
-        categoriesRecyclerView!!.setHasFixedSize(true)
-        categoriesRecyclerView!!.adapter = categoryListRecyclerAdapter
+        categoryListRecyclerAdapter = CategoryListRecyclerAdapter(R.layout.item_rv_media_category)
+        categoriesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = categoryListRecyclerAdapter
+        }
 
-        fileusesRecyclerAdapter = FileUsesRecyclerAdapter(context, this)
-        val linearLayoutManager2 = LinearLayoutManager(context)
-        fileUsesRecyclerView!!.layoutManager = linearLayoutManager2
-        fileUsesRecyclerView!!.setHasFixedSize(true)
-        fileUsesRecyclerView!!.adapter = fileusesRecyclerAdapter
+        fileUsesRecyclerAdapter = FileUsesRecyclerAdapter(R.layout.item_rv_files)
 
-        mediaDetailsPresenter!!.requestMediaDetails("")
+        fileUsesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = fileUsesRecyclerAdapter
+        }
 
-        expandableView()
+        mediaDetailsPresenter.requestMediaDetails("")
         return view
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
-        if (item!!.itemId == R.id.item_download) {
+        if (item?.itemId == R.id.item_download) {
             downloadImage()
             return true
-        } else if (item.itemId == R.id.item_customtabs) {
+        } else if (item?.itemId == R.id.item_customtabs) {
             val builder = CustomTabsIntent.Builder()
-            builder.setToolbarColor(ContextCompat.getColor(context!!, R.color.colorPrimary))
+            context?.let { builder.setToolbarColor(ContextCompat.getColor(it, R.color.colorPrimary)) }
             builder.addDefaultShareMenuItem()
             builder.setShowTitle(true)
-            builder.setExitAnimations(context!!, android.R.anim.fade_in, android.R.anim.fade_out)
+            context?.let { builder.setExitAnimations(it, android.R.anim.fade_in, android.R.anim.fade_out) }
             val customTabsIntent = builder.build()
 
-            val packageName = customTabHelper.getPackageNameToUse(context!!, baseURL + fileName)
-            if (packageName == null) {
-                // webview.
-            } else {
+            val packageName = context?.let { customTabHelper.getPackageNameToUse(it, baseURL + fileName) }
+            packageName?.let {
                 customTabsIntent.intent.setPackage(packageName)
                 customTabsIntent.launchUrl(context, Uri.parse(baseURL + fileName))
-            }
+            } /*?: webView*/
             return true
         }
         return false
@@ -177,90 +163,64 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun setData(data: MediaDetailsResponse) {
         Timber.d(data.toString())
 
-        val imageinfo: ImageDetails = data.query.page.get(data.query.page.keys.first())!!.imageinfo.get(0)
+        val imageInfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
 
         // Description
-        tvDescription?.text = imageinfo.extMetaData.description.value
+        tvDescription.text = imageInfo?.extMetaData?.description?.value
 
         // License
-        tvLicense?.text = imageinfo.extMetaData.license.value
-        tvLicense?.setOnClickListener { ViewUtils.showCustomChromeTabs(context!!,imageinfo.extMetaData.licenseUrl.value) }
+        tvLicense.text = imageInfo?.extMetaData?.license?.value
+        tvLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
         // Categories
-        val categories: List<MediaCategory> = data.query.page.get(data.query.page.keys.first())!!.categories
+        val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
         if (categories.isNotEmpty()) {
-            categoriesRecyclerView!!.visibility = View.VISIBLE
-            categoryListRecyclerAdapter!!.setData(categories)
-            categoryListRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoCategories!!.visibility = View.GONE
+            categoriesRecyclerView.visibility = View.VISIBLE
+            categoryListRecyclerAdapter.setData(categories)
+            categoryListRecyclerAdapter.notifyDataSetChanged()
+            tvNoCategories.visibility = View.GONE
         } else {
-            categoriesRecyclerView!!.visibility = View.GONE
-            tvNoCategories!!.visibility = View.VISIBLE
+            categoriesRecyclerView.visibility = View.GONE
+            tvNoCategories.visibility = View.VISIBLE
         }
 
         // File Uses
-        val fileuses: List<FileUsage> = data.query.page.get(data.query.page.keys.first())!!.globalusage
+        val fileUses = data.query.page[data.query.page.keys.first()]?.globalUsage
         if (categories.isNotEmpty()) {
-            fileUsesRecyclerView!!.visibility = View.VISIBLE
-            fileusesRecyclerAdapter!!.setData(fileuses)
-            fileusesRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoFileUses!!.visibility = View.GONE
+            fileUsesRecyclerView.visibility = View.VISIBLE
+            fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
+            fileUsesRecyclerAdapter.notifyDataSetChanged()
+            tvNoFileUses.visibility = View.GONE
         } else {
-            fileUsesRecyclerView!!.visibility = View.GONE
-            tvNoFileUses!!.visibility = View.VISIBLE
+            fileUsesRecyclerView.visibility = View.GONE
+            tvNoFileUses.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
 //        if (show) {
-//            progressBar!!.visibility = View.VISIBLE
+//            progressBar?.visibility = View.VISIBLE
 //        } else {
-//            progressBar!!.visibility = View.GONE
+//            progressBar?.visibility = View.GONE
 //        }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 
-    //This implements the expandables of the views
-    fun expandableView(){
-        descriptionExpandable?.setOnClickListener {
-                if (tvDescription?.getVisibility() == View.VISIBLE) {
-                    descriptionExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                    tvDescription?.setVisibility(View.GONE);
-                } else {
-                    descriptionExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
-                    tvDescription?.setVisibility(View.VISIBLE);
-                }
-
-        }
-
-        categoryExpandable?.setOnClickListener {
-            if (tvNoCategories?.getVisibility() == View.VISIBLE) {
-                categoryExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                tvNoCategories?.setVisibility(View.GONE);
-            } else {
-                categoryExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
-                tvNoCategories?.setVisibility(View.VISIBLE);
-            }
-        }
-
-        filesExpandable?.setOnClickListener {
-            if (fileUsesRecyclerView?.getVisibility() == View.VISIBLE) {
-                filesExpandable?.setImageResource(R.drawable.ic_expand_more_black_24dp);
-                fileUsesRecyclerView?.setVisibility(View.GONE);
-            } else {
-                filesExpandable?.setImageResource(R.drawable.ic_expand_less_black_24dp);
-                fileUsesRecyclerView?.setVisibility(View.VISIBLE);
-            }
-        }
-    }
 
     companion object {
         private val ARG_PARAM1 = "param1"
         private val ARG_PARAM2 = "param2"
 
+        /**
+         * Returns a new instance of [MediaDetailFragment]
+         *
+         * @param courseUploadList course uploads list
+         * @param position course upload position
+         * @return a [MediaDetailFragment] instance
+         * ***/
         fun newInstance(courseUploadList: CourseUploadList?, position: Int): MediaDetailFragment {
             val fragment = MediaDetailFragment()
             val args = Bundle()

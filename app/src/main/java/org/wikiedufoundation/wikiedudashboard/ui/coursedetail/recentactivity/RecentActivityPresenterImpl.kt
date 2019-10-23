@@ -1,12 +1,21 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity
 
-import timber.log.Timber
-
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
+import timber.log.Timber
 
-class RecentActivityPresenterImpl(private val view: RecentActivityContract.View,
-                                  private val provider: RecentActivityContract.Provider) : RecentActivityContract.Presenter {
+/**
+ * Recent activity presenter to implement [requestRecentActivity] and display data in view
+ * @constructor primary constructor with properties
+ *
+ * @property view view component for course detail
+ * @property provider api service for course detail
+ * ***/
+class RecentActivityPresenterImpl(
+        private val view: RecentActivityContract.View,
+        private val provider: RecentActivityContract.Provider
+) : RecentActivityContract.Presenter {
+
     override fun requestRecentActivity(url: String) {
         view.showProgressBar(true)
         provider.requestRecentActivity(url, object : PresenterCallback<Any> {
