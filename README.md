@@ -84,5 +84,5 @@ This software is open source, licensed under the [MIT License][1].
 
 [1]: https://opensource.org/licenses/MIT 
 ## Get it on Google Play 
-<a href="https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard.release"><img alt="Get it on Google Play" src="https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/google_play_badge.png"/></a>
+<a href="https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard.release"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/></a>
 
