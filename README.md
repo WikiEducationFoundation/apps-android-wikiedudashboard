@@ -83,6 +83,7 @@ We realize that MVP is opinionated and there is no strict boundary between the r
 This software is open source, licensed under the [MIT License][1].
 
 ## Get it on Google Play 
+
 <a href="https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard.release"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/></a>
 
 [1]: https://opensource.org/licenses/MIT 
