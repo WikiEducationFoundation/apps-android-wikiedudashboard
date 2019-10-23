@@ -14,17 +14,17 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> adp.filesClicked(obj)}"
-        android:orientation="vertical">
+        android:onClick="@{() -> adp.filesClicked(obj)}">
 
         <include
             android:id="@+id/include_layout_media_files"
+            app:layout_constraintTop_toTopOf="parent"
             layout="@layout/include_files_media"
             app:files="@{obj}"
             app:media="@{null}" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
