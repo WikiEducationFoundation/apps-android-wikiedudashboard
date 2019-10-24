@@ -31,14 +31,14 @@ public class ImageViewerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private String image_url;
-    private Unbinder unbinder;
+
     @BindView(R.id.photo_view)
     PhotoView photoView;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
+    private Unbinder unbinder;
     public ImageViewerFragment() {
         // Required empty public constructor
     }
