@@ -17,8 +17,6 @@ import java.util.*
  * Activities that contain this fragment must implement the
  * Use the [CourseHomeFragment.newInstance] factory method to
  * create an instance of this fragment.
- * Use the [readableDate] method to format date
- * to readable format
  */
 class CourseHomeFragment : Fragment() {
 
@@ -105,7 +103,7 @@ class CourseHomeFragment : Fragment() {
             return fragment
         }
 
-        fun readableDate(realDate: String?): CharSequence? {
+       private fun readableDate(realDate: String?): CharSequence? {
             val pattern = "yyyy-MM-dd"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
