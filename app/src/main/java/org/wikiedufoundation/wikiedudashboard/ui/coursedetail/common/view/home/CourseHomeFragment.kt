@@ -83,7 +83,7 @@ class CourseHomeFragment : Fragment() {
         tvCoursePasscode.text = courseDetail?.passCode
         tvCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
 
-        tvCourseStart.text= readableDate(courseDetail?.start)
+        tvCourseStart.text = readableDate(courseDetail?.start)
         tvCourseEnd.text = readableDate(courseDetail?.end)
 
 
@@ -103,8 +103,9 @@ class CourseHomeFragment : Fragment() {
             return fragment
         }
 
-       private fun readableDate(realDate: String?): CharSequence? {
-            val pattern = "yyyy-MM-dd"
+
+        private fun readableDate(realDate: String?): CharSequence? {
+            val pattern = "EEE d MMM  yyyy"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
             val date = inputFormat.parse(realDate)
@@ -112,7 +113,6 @@ class CourseHomeFragment : Fragment() {
             return finalDate
         }
     }
-
 
 
 }
