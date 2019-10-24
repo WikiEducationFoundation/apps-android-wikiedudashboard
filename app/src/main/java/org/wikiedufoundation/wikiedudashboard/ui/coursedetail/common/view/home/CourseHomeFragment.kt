@@ -17,6 +17,8 @@ import java.util.*
  * Activities that contain this fragment must implement the
  * Use the [CourseHomeFragment.newInstance] factory method to
  * create an instance of this fragment.
+ * Use the [readableDate] method to format date
+ * to readable format
  */
 class CourseHomeFragment : Fragment() {
 
