@@ -485,7 +485,7 @@
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_end"
+                    app:layout_constraintStart_toEndOf="@+id/tv_course_start"
                     app:layout_constraintTop_toBottomOf="@id/tv_course_start_detail" />
 
 
