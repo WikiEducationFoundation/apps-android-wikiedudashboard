@@ -102,7 +102,7 @@ class CourseHomeFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
-
+            //formatting date to human readable
         fun readableDate(realDate: String?): CharSequence? {
             val pattern = "yyyy-MM-dd"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
