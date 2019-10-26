@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign
 
-import org.wikiedufoundation.wikiedudashboard.data.network.ProviderUtils
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -11,8 +10,10 @@ import retrofit2.Response
 /**
  * Retrofit api service request call for campaign list
  ***/
-class RetrofitCampaignListProvider : CampaignListContract.Provider {
-    private val wikiEduDashboardApi: WikiEduDashboardApi = ProviderUtils.apiObject
+class RetrofitCampaignListProvider(
+        private val wikiEduDashboardApi: WikiEduDashboardApi
+) : CampaignListContract.Provider {
+//     = ProviderUtils.apiObject
 
     override fun requestCampaignList(cookies: String, presenterCallback: PresenterCallback<*>) {
         val campaignListResponseCall = wikiEduDashboardApi.getExploreCampaigns(cookies)

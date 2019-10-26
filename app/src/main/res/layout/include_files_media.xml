@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="files"
+            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage" />
+
+        <variable
+            name="media"
+            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_course_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{files.title ?? media.title}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/demo_course" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,8 +1,9 @@
 # Wiki Education Dashboard Android app
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/314da6eb3ef14d9e897a828464996791)](https://app.codacy.com/app/ujjwalagrawal17/apps-android-wikiedudashboard?utm_source=github.com&utm_medium=referral&utm_content=ujjwalagrawal17/apps-android-wikiedudashboard&utm_campaign=Badge_Grade_Dashboard)
-[![Build status](https://api.travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard.svg)](https://travis-ci.org/ujjwalagrawal17/apps-android-wikiedudashboard) 
+[![Build status](https://api.travis-ci.org/ragesoss/apps-android-wikiedudashboard.svg)](https://travis-ci.org/ragesoss/apps-android-wikiedudashboard) 
 [![Gitter](https://badges.gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android.svg)](https://gitter.im/Wiki-Education-Foundation/wikiedu-dashboard-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+<a href="https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard.release"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=60px /></a>
 
 The main feature of this app is to support Wikipedia education assignments, edit-a-thons, and other editing projects. It provides data and course management features for groups of editors — instructors, students, and others — who are working on Wikipedia, Wikidata, and other Wikimedia wikis. Users log in with their Wikipedia accounts (through OAuth) and allow the Dashboard to make edits on their behalf. The Dashboard automates many of the standard elements of organizing and participating in a Wikipedia classroom assignment, edit-a-thon, or other wiki contribution campaign. 
 
@@ -82,4 +83,5 @@ We realize that MVP is opinionated and there is no strict boundary between the r
 
 This software is open source, licensed under the [MIT License][1].
 
-[1]: https://opensource.org/licenses/MIT
+
+[1]: https://opensource.org/licenses/MIT 

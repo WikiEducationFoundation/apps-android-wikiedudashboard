@@ -14,16 +14,22 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import butterknife.ButterKnife
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.view.MyDashboardFragment
 import org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileFragment
 
+/**
+ * Wikimedia homepage activity
+ * ***/
 class HomeActivity : AppCompatActivity() {
 
-    private var sharedPrefs: SharedPrefs? = null
+    private val sharedPrefs: SharedPrefs by inject()
+
     private var context: Context? = null
     private var myDashboardFragment: MyDashboardFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_bar_main)
@@ -32,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
         toolbar.inflateMenu(R.menu.menu_explore)
         setSupportActionBar(toolbar)
         context = this
-        sharedPrefs = SharedPrefs(this)
         myDashboardFragment = MyDashboardFragment()
         val navView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         navView.setOnNavigationItemSelectedListener {
@@ -44,8 +49,9 @@ class HomeActivity : AppCompatActivity() {
                 R.id.navigation_dashboard -> {
                     replaceFragment(myDashboardFragment)
                     true
-                } R.id.navigation_training -> {
-                sharedPrefs?.userName?.let { sharedName -> replaceFragment(ProfileFragment.newInstance(sharedName, false)) }
+                }
+                R.id.navigation_training -> {
+                    sharedPrefs.userName?.let { sharedName -> replaceFragment(ProfileFragment.newInstance(sharedName, false)) }
                     true
                 }
                 else -> false
@@ -61,44 +67,46 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val searchView = item?.actionView as SearchView
-            searchView.queryHint = "Search"
-            searchView.isIconified = false
+        searchView.queryHint = "Search"
+        searchView.isIconified = false
 
         val txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
         txtSearch.setHintTextColor(Color.LTGRAY)
         txtSearch.setTextColor(Color.BLACK)
 
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    myDashboardFragment?.updateSearchQuery(query)
-                    if (!searchView.isIconified) {
-                        searchView.isIconified = true
-                    }
-                    item.collapseActionView()
-                    return false
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                myDashboardFragment?.updateSearchQuery(query)
+                if (!searchView.isIconified) {
+                    searchView.isIconified = true
                 }
+                item.collapseActionView()
+                return false
+            }
 
-                override fun onQueryTextChange(query: String): Boolean {
-                    myDashboardFragment?.updateSearchQuery(query)
-                    return false
-                }
-            })
-            return true
+            override fun onQueryTextChange(query: String): Boolean {
+                myDashboardFragment?.updateSearchQuery(query)
+                return false
+            }
+        })
+        return true
     }
-
-
 
     private fun addFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.home_container, it)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            fragmentTransaction.commit()
+            fragmentManager.beginTransaction().apply {
+                add(R.id.home_container, it)
+                addToBackStack(null)
+                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                commit()
+            }
         }
     }
 
+    /**
+     * Use [clearStack] to clear fragment back stack
+     * ***/
     fun clearStack() {
         val manager = supportFragmentManager
         if (manager.backStackEntryCount > 1) {
@@ -110,9 +118,10 @@ class HomeActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment?) {
         fragment?.let {
             val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.home_container, fragment)
-            fragmentTransaction.commit()
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.home_container, fragment)
+                commit()
+            }
         }
         if (fragment is MyDashboardFragment) {
             supportActionBar?.show()

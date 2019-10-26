@@ -8,21 +8,25 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
+import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeHostActivity
 
+/**
+ * Splash screen activity
+ * ***/
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        val context = this
-        val sharedPrefs = SharedPrefs(context)
+
+        val sharedPrefs = SharedPrefs(this)
         val handler = Handler()
         handler.postDelayed({
             if (sharedPrefs.isLoggedIn) {
-                startActivity(Intent(context, HomeActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             } else {
-                startActivity(Intent(context, WelcomeActivity::class.java))
+                startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
         }, 1000)
