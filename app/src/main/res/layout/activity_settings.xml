@@ -12,7 +12,7 @@
         android:id="@+id/appBarLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
-            app:title="Settings" />
+            app:title="@string/menu_settings" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -46,12 +46,12 @@
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginLeft="@dimen/dimen_16dp"
                 android:layout_marginTop="@dimen/padding_8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
                 tools:cardUseCompatPadding="true">
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="General"
+                    android:text="@string/general"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_20sp"
                     android:textStyle="bold" />
@@ -72,9 +72,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="@dimen/padding_40dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Send Feedback"
+                    android:text="@string/send_feedback"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16sp" />
 
@@ -83,9 +83,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="@dimen/dimens_80"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Share App"
+                    android:text="@string/share_app"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16sp" />
 
@@ -95,12 +95,12 @@
                 android:id="@+id/cardView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimens_150"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
                 tools:cardUseCompatPadding="true">
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Legal"
+                    android:text="@string/legal"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_20sp"
                     android:textStyle="bold" />
@@ -123,7 +123,7 @@
                     android:layout_marginStart="@dimen/padding_8dp"
                     android:layout_marginTop="40dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Licenses"
+                    android:text="@string/media_detail_license"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16sp" />
 
@@ -132,9 +132,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="@dimen/dimens_80"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Privacy Policy"
+                    android:text="@string/privacy_policy"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16sp" />
 
@@ -145,7 +145,7 @@
                     android:layout_marginStart="@dimen/padding_8dp"
                     android:layout_marginTop="120dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Terms and Conditions"
+                    android:text="@string/terms_and_conditions"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16sp" />
 
@@ -155,12 +155,12 @@
                 android:id="@+id/cardView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="330dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimens_330"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 app:cardCornerRadius="@dimen/padding_4dp"
                 app:cardElevation="@dimen/padding_2dp"
                 tools:cardUseCompatPadding="true">
@@ -173,7 +173,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/padding_8dp"
                     android:padding="@dimen/padding_8dp"
-                    android:text="Logout"
+                    android:text="@string/logout"
                     android:textColor="@color/colorGrayText"
                     android:textSize="@dimen/text_size_16sp"
                     android:textStyle="bold" />
@@ -183,25 +183,25 @@
 
             <ImageView
                 android:id="@+id/iv_app_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/margin_48dp"
+                android:layout_height="@dimen/margin_48dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="408dp"
+                android:layout_marginTop="@dimen/dimens_408"
                 android:src="@mipmap/wiki_edu_logo" />
 
             <TextView
                 android:id="@+id/tv_version_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="458dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="168dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimens_458"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimens_168"
                 android:gravity="center"
                 android:padding="@dimen/padding_8dp"
-                android:text="Version 0.01"
+                android:text="@string/version_0_01"
                 android:textColor="@color/colorGrayText"
                 android:textSize="@dimen/text_size_16sp" />
 

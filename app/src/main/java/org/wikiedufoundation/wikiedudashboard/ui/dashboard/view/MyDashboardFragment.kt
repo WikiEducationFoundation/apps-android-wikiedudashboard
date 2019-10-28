@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import butterknife.BindView
+import butterknife.ButterKnife
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -31,6 +33,9 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
+
+    @BindView (R.id.rv_course_list)
+   lateinit var recy : RecyclerView
 
     private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
     private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
@@ -66,6 +71,7 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
+        ButterKnife.bind(this,view)
         recyclerView = view.findViewById(R.id.rv_course_list)
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
