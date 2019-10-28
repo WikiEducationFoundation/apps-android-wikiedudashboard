@@ -72,4 +72,7 @@
     <string name="skip">Skip</string>
     <string name="chars_added">2500</string>
     <string name="date_edited">2019-03-31 5:29 PM</string>
+    <string name="participate">Participate in a Campaign</string>
+    <string name="find_a_program">Find a Program</string>
+    <string name="create_program">Create an Independent Program</string>
 </resources>
