@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import java.text.MessageFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -20,33 +22,33 @@ class CourseHomeFragment : Fragment() {
 
     private var courseDetail: CourseDetail? = null
 
-    private var tvCountArticlesCreated: TextView? = null
-    private var tvCountArticlesEdited: TextView? = null
-    private var tvCountTotalEdits: TextView? = null
-    private var tvCountStudentEditors: TextView? = null
-    private var tvCountWordsAdded: TextView? = null
-    private var tvCountArticleViews: TextView? = null
-    private var tvCountCommonsUploads: TextView? = null
-    private var tvCourseTitle: TextView? = null
-    private var tvCourseDescription: TextView? = null
-    private var tvCourseSchool: TextView? = null
-    private var tvCourseTerm: TextView? = null
-    private var tvCoursePasscode: TextView? = null
-    private var tvCourseExpectedStudents: TextView? = null
-    private var tvCourseStart: TextView? = null
-    private var tvCourseEnd: TextView? = null
+    private lateinit var tvCountArticlesCreated: TextView
+    private lateinit var tvCountArticlesEdited: TextView
+    private lateinit var tvCountTotalEdits: TextView
+    private lateinit var tvCountStudentEditors: TextView
+    private lateinit var tvCountWordsAdded: TextView
+    private lateinit var tvCountArticleViews: TextView
+    private lateinit var tvCountCommonsUploads: TextView
+    private lateinit var tvCourseTitle: TextView
+    private lateinit var tvCourseDescription: TextView
+    private lateinit var tvCourseSchool: TextView
+    private lateinit var tvCourseTerm: TextView
+    private lateinit var tvCoursePasscode: TextView
+    private lateinit var tvCourseExpectedStudents: TextView
+    private lateinit var tvCourseStart: TextView
+    private lateinit var tvCourseEnd: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            courseDetail = arguments!!.getSerializable(ARG_PARAM1) as CourseDetail
+        arguments?.let {
+            courseDetail = it.getSerializable(ARG_PARAM1) as CourseDetail
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_course_home, container, false)
         tvCountArticlesCreated = view.findViewById(R.id.tv_count_articles_created)
@@ -58,30 +60,33 @@ class CourseHomeFragment : Fragment() {
         tvCountCommonsUploads = view.findViewById(R.id.tv_count_commons_uploads)
         tvCourseTitle = view.findViewById(R.id.tv_course_title)
         tvCourseDescription = view.findViewById(R.id.tv_course_description)
-        tvCourseSchool = view.findViewById(R.id.tv_course_school)
-        tvCourseTerm = view.findViewById(R.id.tv_course_term)
-        tvCoursePasscode = view.findViewById(R.id.tv_course_passcode)
-        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students)
+        tvCourseSchool = view.findViewById(R.id.tv_course_school_detail)
+        tvCourseTerm = view.findViewById(R.id.tv_course_term_detail)
+        tvCoursePasscode = view.findViewById(R.id.tv_course_passcode_detail)
+        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students_detail)
         tvCountArticlesCreated = view.findViewById(R.id.tv_count_articles_created)
-        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students)
-        tvCourseStart = view.findViewById(R.id.tv_course_start)
-        tvCourseEnd = view.findViewById(R.id.tv_course_end)
+        tvCourseExpectedStudents = view.findViewById(R.id.tv_course_expected_students_detail)
+        tvCourseStart = view.findViewById(R.id.tv_course_start_detail)
+        tvCourseEnd = view.findViewById(R.id.tv_course_end_detail)
 
-        tvCountArticlesCreated!!.text = courseDetail!!.created_count
-        tvCountArticlesEdited!!.text = courseDetail!!.edited_count
-        tvCountTotalEdits!!.text = courseDetail!!.edit_count
-        tvCountStudentEditors!!.text = MessageFormat.format("{0}", courseDetail!!.student_count)
-        tvCountWordsAdded!!.text = courseDetail!!.word_count
-        tvCountArticleViews!!.text = courseDetail!!.view_count
-        tvCountCommonsUploads!!.text = MessageFormat.format("{0}", courseDetail!!.upload_count)
-        tvCourseTitle!!.text = courseDetail!!.title
-        tvCourseDescription!!.text = courseDetail!!.description
-        tvCourseSchool!!.text = courseDetail!!.school
-        tvCourseTerm!!.text = courseDetail!!.term
-        tvCoursePasscode!!.text = courseDetail!!.passcode
-        tvCourseExpectedStudents!!.text = MessageFormat.format("{0}", courseDetail!!.expected_students)
-        tvCourseStart!!.text = courseDetail!!.start
-        tvCourseEnd!!.text = courseDetail!!.end
+        tvCountArticlesCreated.text = courseDetail?.createdCount
+        tvCountArticlesEdited.text = courseDetail?.editedCount
+        tvCountTotalEdits.text = courseDetail?.editCount
+        tvCountStudentEditors.text = MessageFormat.format("{0}", courseDetail?.studentCount)
+        tvCountWordsAdded.text = courseDetail?.wordCount
+        tvCountArticleViews.text = courseDetail?.viewCount
+        tvCountCommonsUploads.text = MessageFormat.format("{0}", courseDetail?.uploadCount)
+        tvCourseTitle.text = courseDetail?.title
+        tvCourseDescription.text = courseDetail?.description
+        tvCourseSchool.text = courseDetail?.school
+        tvCourseTerm.text = courseDetail?.term
+        tvCoursePasscode.text = courseDetail?.passCode
+        tvCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
+
+        tvCourseStart.text = readableDate(courseDetail?.start)
+        tvCourseEnd.text = readableDate(courseDetail?.end)
+
+
         return view
     }
 
@@ -97,5 +102,17 @@ class CourseHomeFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+
+
+        private fun readableDate(realDate: String?): CharSequence? {
+            val pattern = "EEE d MMM  yyyy"
+            val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
+            val date = inputFormat.parse(realDate)
+            val finalDate = simpleDateFormat.format(date)
+            return finalDate
+        }
     }
+
+
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage" />
+
+        <variable
+            name="adp"
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> adp.filesClicked(obj)}">
+
+        <include
+            android:id="@+id/include_layout_media_files"
+            app:layout_constraintTop_toTopOf="parent"
+            layout="@layout/include_files_media"
+            app:files="@{obj}"
+            app:media="@{null}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

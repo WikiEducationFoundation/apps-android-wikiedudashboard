@@ -1,9 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import timber.log.Timber
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +10,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
+import org.wikiedufoundation.wikiedudashboard.util.showToast
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -31,25 +32,30 @@ import org.wikiedufoundation.wikiedudashboard.util.ViewUtils
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
+    private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
+    private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
+        parametersOf(this, retrofitMyDashboardProvider)
+    }
+    private val sharedPrefs: SharedPrefs by inject()
+
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private var tvNoCourses: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
     private var coursesList: List<CourseListData>? = ArrayList()
 
-    private var sharedPrefs: SharedPrefs? = null
-    private var myDashboardPresenter: MyDashboardContract.Presenter? = null
-    private var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter? = null
+    private lateinit var tvNoCourses: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
+        arguments?.let {
+            mParam1 = it.getString(ARG_PARAM1)
+            mParam2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -64,46 +70,54 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         progressBar = view.findViewById(R.id.progressBar)
         tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
-        val context: Context? = context
-        sharedPrefs = SharedPrefs(context)
-        myDashboardPresenter = MyDashboardPresenterImpl(this, RetrofitMyDashboardProvider())
-        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(context!!, this)
-        val linearLayoutManager = LinearLayoutManager(context)
-        recyclerView!!.layoutManager = linearLayoutManager
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.adapter = myDashboardRecyclerAdapter
+        myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
+            openCourseDetail(it)
+        }
 
-        myDashboardPresenter!!.requestDashboard(sharedPrefs!!.cookies!!)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = myDashboardRecyclerAdapter
+        }
+
+        sharedPrefs.cookies?.let { myDashboardPresenter.requestDashboard(it) }
         return view
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs!!.userName = data.user.username
+        sharedPrefs.userName = data.user.userName
         Timber.d(data.toString())
-        if (data.current_courses.isNotEmpty()) {
-            coursesList = data.current_courses
-            recyclerView!!.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter!!.setData(data.current_courses)
-            myDashboardRecyclerAdapter!!.notifyDataSetChanged()
-            tvNoCourses!!.visibility = View.GONE
+
+        if (data.currentCourses.isNotEmpty()) {
+            coursesList = data.currentCourses
+            recyclerView.visibility = View.VISIBLE
+            myDashboardRecyclerAdapter.setData(data.currentCourses)
+            myDashboardRecyclerAdapter.notifyDataSetChanged()
+            tvNoCourses.visibility = View.GONE
         } else {
-            recyclerView!!.visibility = View.GONE
-            tvNoCourses!!.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            tvNoCourses.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar!!.visibility = View.VISIBLE
+        progressBar.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar!!.visibility = View.GONE
+            View.GONE
         }
     }
 
     override fun showMessage(message: String) {
-        ViewUtils.showToast(context!!, message)
+        context?.showToast(message)
     }
 
+    /**
+     * Use [openCourseDetail] to put url slug and the boolean value of enrolled
+     * Send the data through Bundle then start the [CourseDetailActivity]
+     *
+     * @param slug url slug
+     * ***/
     fun openCourseDetail(slug: String) {
         val i = Intent(context, CourseDetailActivity::class.java)
         i.putExtra("url", slug)
@@ -111,16 +125,21 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         startActivity(i)
     }
 
+    /**
+     * Use [updateSearchQuery] to search course
+     *
+     * @param query query statement
+     * ***/
     fun updateSearchQuery(query: String) {
         Timber.d(query)
-        val filteredCourseList: ArrayList<CourseListData>? = ArrayList()
-        for (course in coursesList!!) {
-            if (course.title.toLowerCase().contains(query.toLowerCase())) {
-                filteredCourseList!!.add(course)
-            }
+
+        val courseFilterQuery = coursesList.filterOrEmptyList {
+            it.title.toLowerCase()
+                    .contains(query.toLowerCase())
         }
-        myDashboardRecyclerAdapter?.setData(filteredCourseList!!)
-        myDashboardRecyclerAdapter?.notifyDataSetChanged()
+
+        myDashboardRecyclerAdapter.setData(courseFilterQuery)
+        myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
 
 

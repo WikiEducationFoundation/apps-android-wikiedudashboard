@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData" />
+
+        <variable
+            name="adp"
+            type="org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyclerAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> adp.onCourseClicked(obj)}">
+
+        <include
+            android:id="@+id/include_layout_courses"
+            app:layout_constraintTop_toTopOf="parent"
+            layout="@layout/include_layout_explore_courses"
+            app:courseData="@{obj}"
+            app:courseListData="@{null}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include_layout_courses"
+            android:background="@color/colorGrayBackground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
