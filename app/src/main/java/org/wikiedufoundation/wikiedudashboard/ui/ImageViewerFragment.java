@@ -39,6 +39,7 @@ public class ImageViewerFragment extends Fragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private Unbinder unbinder;
+
     public ImageViewerFragment() {
         // Required empty public constructor
     }

@@ -35,8 +35,8 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
      * defining a [ViewDataBinding] for the layout
      ***/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
-        val infalter = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(infalter, viewType, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, viewType, parent, false)
         val vh = BaseViewHolder<T>(binding)
         vh.bindAdp(this)
 
