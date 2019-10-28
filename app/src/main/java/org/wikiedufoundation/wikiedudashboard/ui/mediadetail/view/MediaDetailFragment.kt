@@ -199,7 +199,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
                     val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (downloadID == id) {
                         Toast.makeText(context, "Download complete!\n Image "
-                                + courseUpload?.file_name + " saved to " + mDir, Toast.LENGTH_LONG).show()
+                                + courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
                         Timber.d("image saved to " + mDir)
                     }
                 }
