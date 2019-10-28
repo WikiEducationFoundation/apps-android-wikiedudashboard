@@ -1,14 +1,22 @@
 package org.wikiedufoundation.wikiedudashboard.ui.mediadetail.view
 
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -32,6 +40,8 @@ import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
+import java.io.File
+import java.io.IOException
 
 /**
  * A simple [Fragment] subclass.
@@ -71,6 +81,10 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     private lateinit var categoryListRecyclerAdapter: CategoryListRecyclerAdapter
     private lateinit var fileUsesRecyclerAdapter: FileUsesRecyclerAdapter
 
+    private var downloadID: Long? = null
+    private var onDownloadCompleteReceiver: BroadcastReceiver? = null
+    val WRITE_EXTERNAL_STORAGE_RC = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -80,9 +94,9 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_media_details, container, false)
         val context: Context? = context
@@ -135,7 +149,8 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.item_download) {
-            downloadImage()
+            downloadImageWithPermission()
+            //downloadImage()
             return true
         } else if (item?.itemId == R.id.item_customtabs) {
             val builder = CustomTabsIntent.Builder()
@@ -157,6 +172,83 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     private fun downloadImage() {
 //        TODO("not implemented")
+        val destinationPath = "/wikiedu/images"
+        val url = Uri.parse(courseUpload?.thumbUrl)
+        val mDir = File(Environment.getExternalStorageDirectory(), "/wikiedu/images/")
+        val downloadMgr: DownloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        try {
+            if (!mDir.exists()) {
+                mDir.mkdir()
+                Timber.d("Folder created at " + mDir)
+            }
+            val downloadRequest: DownloadManager.Request = DownloadManager.Request(url)
+
+            //downloaded image will be stored in Downloads directory of a device
+            //if no destination dir is set
+            downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or
+                    DownloadManager.Request.NETWORK_MOBILE).setAllowedOverMetered(true)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setAllowedOverMetered(true).setAllowedOverRoaming(false)
+                    .setTitle("Wikiedu Image Download").setDescription("Downloading Image")
+                    .setDestinationInExternalPublicDir(destinationPath, mDir.absolutePath)
+
+            downloadID = downloadMgr.enqueue(downloadRequest)
+
+            onDownloadCompleteReceiver = object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent) {
+                    val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+                    if (downloadID == id) {
+                        Toast.makeText(context, "Download complete!\n Image "
+                                + courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
+                        Timber.d("image saved to " + mDir)
+                    }
+                }
+
+            }
+            context?.registerReceiver(onDownloadCompleteReceiver,
+                    IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+
+
+        } catch (ie: IOException) {
+            ie.stackTrace
+        }
+    }
+
+    private fun downloadImageWithPermission() {
+        val permissionType = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val isGranted = context?.applicationContext?.let {
+            ContextCompat.checkSelfPermission(it,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (isGranted == PackageManager.PERMISSION_GRANTED) {
+            downloadImage()
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(permissionType), WRITE_EXTERNAL_STORAGE_RC)
+
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            WRITE_EXTERNAL_STORAGE_RC -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                        grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Timber.d("Permission denied by user")
+
+                } else {
+                    downloadImage()
+                    Timber.d("Permission granted by user")
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context?.unregisterReceiver(onDownloadCompleteReceiver)
     }
 
     override fun setData(data: MediaDetailsResponse) {
