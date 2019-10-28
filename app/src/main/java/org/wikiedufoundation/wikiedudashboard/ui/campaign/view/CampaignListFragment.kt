@@ -67,7 +67,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         campaignListPresenter = CampaignListPresenterImpl(this, RetrofitCampaignListProvider())
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
-//                        openCourseDetail(it)
+            //                        openCourseDetail(it)
         }
 
         recyclerView.apply {
@@ -83,9 +83,11 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     override fun setData(data: ExploreCampaignsResponse) {
         Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
-            campaignList = data.campaigns
             recyclerView.visibility = View.VISIBLE
-            campaignListRecyclerAdapter.setData(data.campaigns)
+            campaignListRecyclerAdapter.setData(data.campaigns
+                    //Sort by title to display the Active Campaigns list in alphabetical order.
+                    .sortedBy { campaigns -> campaigns.title}
+            )
             campaignListRecyclerAdapter.notifyDataSetChanged()
             tvNoCampaigns.visibility = View.GONE
         } else {
