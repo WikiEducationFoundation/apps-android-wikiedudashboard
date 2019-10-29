@@ -69,7 +69,7 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.transition:transition:1.0.1'
     compileOnly 'org.projectlombok:lombok:1.18.6'
-    kapt 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
