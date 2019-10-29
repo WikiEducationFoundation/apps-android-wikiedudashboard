@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import butterknife.BindView
+import butterknife.ButterKnife
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -31,6 +33,7 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
+
 
     private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
     private val myDashboardPresenter: MyDashboardContract.Presenter by inject {

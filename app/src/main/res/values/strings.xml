@@ -75,4 +75,12 @@
     <string name="participate">Participate in a Campaign</string>
     <string name="find_a_program">Find a Program</string>
     <string name="create_program">Create an Independent Program</string>
+    <string name="general">General</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="share_app">Share App</string>
+    <string name="legal">Legal</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="logout">Logout</string>
+    <string name="version_0_01">Version 0.01</string>
 </resources>
