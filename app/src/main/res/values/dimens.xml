@@ -34,4 +34,10 @@
     <dimen name="dimen_30dp">30dp</dimen>
     <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimens_80dp">80dp</dimen>
+    <dimen name="dimens_150dp">150dp</dimen>
+    <dimen name="dimens_330dp">330dp</dimen>
+    <dimen name="dimens_408dp">408dp</dimen>
+    <dimen name="dimens_458dp">458dp</dimen>
+    <dimen name="dimens_168dp">168dp</dimen>
 </resources>
