@@ -32,8 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<<<<<<< HEAD
-
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_media_detail"
                 android:layout_width="match_parent"
@@ -46,19 +44,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-=======
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_media_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:minHeight="@dimen/dimens_200dp"
-            android:layout_marginTop="@dimen/margin_48dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="centerCrop"/>
->>>>>>> changes made
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mediaDetailTitle"
@@ -178,7 +163,6 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_category_list" />
 
 
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_files"
                 android:layout_width="wrap_content"
@@ -230,7 +214,6 @@
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/rv_file_uses_list" />
-
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -295,10 +278,9 @@
                 android:paddingBottom="@dimen/margin_4dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_18sp"
-                tools:text="@string/license_link"
                 app:layout_constraintLeft_toLeftOf="@id/mediaDetailAuthor"
                 app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor"
-            />
+                tools:text="@string/license_link" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_date"
