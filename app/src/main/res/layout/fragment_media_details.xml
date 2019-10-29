@@ -283,12 +283,7 @@
                 android:textSize="@dimen/text_size_18sp"
                 tools:text="@string/license_link"
                 app:layout_constraintLeft_toLeftOf="@id/mediaDetailAuthor"
-                app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor"
-<<<<<<< HEAD
-                tools:text="@string/license_link" />
-=======
-            />
->>>>>>> d7ce017... media details hard coded changed
+                app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_date"
