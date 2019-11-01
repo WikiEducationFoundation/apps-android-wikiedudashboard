@@ -89,10 +89,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         tvEmail = view.findViewById(R.id.tv_profile_email)
         tvLocation = view.findViewById(R.id.tv_profile_location)
         tvInstitute = view.findViewById(R.id.tv_profile_institute)
-        llEmail = view.findViewById(R.id.ll_profile_email)
-        llLocation = view.findViewById(R.id.ll_profile_location)
-        llInstitute= view.findViewById(R.id.ll_profile_institute)
-        llProfileParent = view.findViewById(R.id.ll_profile_parent)
+        llEmail = view.findViewById(R.id.cl_profile_email)
+        llLocation = view.findViewById(R.id.cl_profile_location)
+        llInstitute= view.findViewById(R.id.cl_profile_institute)
+        llProfileParent = view.findViewById(R.id.cl_profile_parent)
         tabLayout.setupWithViewPager(viewPager)
 
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
