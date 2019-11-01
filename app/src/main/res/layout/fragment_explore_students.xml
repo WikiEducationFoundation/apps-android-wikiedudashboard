@@ -23,7 +23,7 @@
             android:layout_gravity="center" />
 
         <TextView
-            android:id="@+id/tv_no_students"
+            android:id="@+id/textViewNoStudents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -32,7 +32,7 @@
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_students_list"
+            android:id="@+id/recyclerStudentList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
