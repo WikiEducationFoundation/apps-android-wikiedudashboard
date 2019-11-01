@@ -248,7 +248,11 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     override fun onDestroy() {
         super.onDestroy()
-        context?.unregisterReceiver(onDownloadCompleteReceiver)
+        try {
+            context?.unregisterReceiver(onDownloadCompleteReceiver)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     override fun setData(data: MediaDetailsResponse) {
