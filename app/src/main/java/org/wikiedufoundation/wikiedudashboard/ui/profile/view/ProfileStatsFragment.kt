@@ -9,6 +9,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_profile_stats.view.*
 import org.wikiedufoundation.wikiedudashboard.R
@@ -67,9 +68,9 @@ class ProfileStatsFragment : Fragment() {
         val tvCountArticleViews: TextView = view.tv_count_article_views
         val tvCountCommonsUploads: TextView = view.tv_count_commons_uploads
 
-        val llAsStudent: LinearLayout = view.ll_as_student
-        val llByStudent: LinearLayout = view.ll_by_student
-        val llNotEnrolled: LinearLayout = view.ll_not_enrolled
+        val llAsStudent: ConstraintLayout = view.ll_as_student
+        val llByStudent: ConstraintLayout = view.ll_by_student
+        val llNotEnrolled: TextView = view.ll_not_enrolled
         val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
         val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
 
