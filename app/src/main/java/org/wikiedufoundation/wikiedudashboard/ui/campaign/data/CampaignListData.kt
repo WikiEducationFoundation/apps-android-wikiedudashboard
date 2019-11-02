@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.data
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 
@@ -12,6 +13,8 @@ import com.google.gson.annotations.SerializedName
  * @property slug String, campaign slug
  * @property description String, campaign description
  * ***/
+
+@Entity(tableName = "campaign_list_table")
 class CampaignListData(
         @SerializedName("id")
         val id: Int,
