@@ -34,6 +34,8 @@ buildscript {
         uiAutomatorVersion = '2.2.0'
         workVersion = '2.1.0-alpha02'
         safeArgs = '1.0.0-alpha04'
+        version_lifecycle = "2.2.0-alpha05"
+
     }
 
     repositories {
