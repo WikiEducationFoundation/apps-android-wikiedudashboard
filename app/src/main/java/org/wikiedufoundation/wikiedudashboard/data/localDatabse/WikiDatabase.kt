@@ -19,6 +19,10 @@ abstract class WikiDatabase : RoomDatabase() {
 
 private lateinit var INSTANCE : WikiDatabase
 
+/**
+ * This creates a single database instance
+ *
+ **/
 fun database(context: Context) : WikiDatabase{
     synchronized(WikiDatabase::class.java) {
         if (!::INSTANCE.isInitialized) {
