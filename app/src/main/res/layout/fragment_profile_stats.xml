@@ -11,13 +11,11 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ll_by_student"
+            android:id="@+id/cl_by_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/margin_16dp"
-
-            >
+            android:layout_margin="@dimen/margin_16dp">
 
             <TextView
                 android:id="@+id/tv_title_impact_by_student"
@@ -164,11 +162,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ll_as_student"
+            android:id="@+id/cl_as_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_16dp"
-            app:layout_constraintTop_toBottomOf="@id/ll_by_student">
+            app:layout_constraintTop_toBottomOf="@id/cl_by_student">
 
             <TextView
                 android:id="@+id/tv_title_impact_as_student"
@@ -335,7 +333,7 @@
                         android:text="@string/commons_upload" />
 
             <TextView
-                android:id="@+id/ll_not_enrolled"
+                android:id="@+id/tv_not_enrolled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

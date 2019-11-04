@@ -68,9 +68,9 @@ class ProfileStatsFragment : Fragment() {
         val tvCountArticleViews: TextView = view.tv_count_article_views
         val tvCountCommonsUploads: TextView = view.tv_count_commons_uploads
 
-        val llAsStudent: ConstraintLayout = view.ll_as_student
-        val llByStudent: ConstraintLayout = view.ll_by_student
-        val llNotEnrolled: TextView = view.ll_not_enrolled
+        val clAsStudent: ConstraintLayout = view.cl_as_student
+        val clByStudent: ConstraintLayout = view.cl_by_student
+        val tvNotEnrolled: TextView = view.tv_not_enrolled
         val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
         val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
 
@@ -90,8 +90,8 @@ class ProfileStatsFragment : Fragment() {
             tvCountArticleViews.text = asStudentDetails.individualArticleViews
             tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            llAsStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
+            clAsStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
 
         profileResponse?.byStudents?.let {
@@ -105,8 +105,8 @@ class ProfileStatsFragment : Fragment() {
             tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
             tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-            llByStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
+            clByStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
 
         return view
