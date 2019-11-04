@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import java.text.MessageFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -44,9 +46,9 @@ class CourseHomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_course_home, container, false)
         tvCountArticlesCreated = view.findViewById(R.id.tv_count_articles_created)
@@ -80,8 +82,10 @@ class CourseHomeFragment : Fragment() {
         tvCourseTerm.text = courseDetail?.term
         tvCoursePasscode.text = courseDetail?.passCode
         tvCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
-        tvCourseStart.text = courseDetail?.start
-        tvCourseEnd.text = courseDetail?.end
+
+        tvCourseStart.text = readableDate(courseDetail?.start)
+        tvCourseEnd.text = readableDate(courseDetail?.end)
+
 
         return view
     }
@@ -98,5 +102,17 @@ class CourseHomeFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+
+
+        private fun readableDate(realDate: String?): CharSequence? {
+            val pattern = "EEE d MMM  yyyy"
+            val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
+            val date = inputFormat.parse(realDate)
+            val finalDate = simpleDateFormat.format(date)
+            return finalDate
+        }
     }
+
+
 }

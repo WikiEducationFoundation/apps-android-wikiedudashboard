@@ -35,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_8dp"
-                android:text="@string/demo_course_name"
+                android:text="@{obj.title}"
+                tools:text="@string/demo_course_name"
                 android:textSize="@dimen/text_size_20sp" />
 
         </androidx.cardview.widget.CardView>

@@ -102,8 +102,8 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         val fragmentList = listOf(courseHomeFragment,
                 studentListFragment,
                 courseArticlesEditedFragment,
-                recentActivityFragment,
-                url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) })
+                url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) },
+                recentActivityFragment)
         val titleList = listOf("Home", "Students", "Article", "Uploads", "Activity")
 
         viewPager.apply {

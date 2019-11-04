@@ -51,9 +51,11 @@ dependencies {
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
     implementation 'androidx.browser:browser:1.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.0.0'
