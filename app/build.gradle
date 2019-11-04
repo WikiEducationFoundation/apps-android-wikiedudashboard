@@ -122,8 +122,4 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
-
-
-
-
 }
