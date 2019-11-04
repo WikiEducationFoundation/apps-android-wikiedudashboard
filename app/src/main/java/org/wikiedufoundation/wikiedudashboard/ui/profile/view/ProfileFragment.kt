@@ -7,10 +7,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
@@ -59,10 +59,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private lateinit var tvLocation: TextView
     private lateinit var tvInstitute: TextView
 
-    private lateinit var llEmail: LinearLayout
-    private lateinit var llLocation: LinearLayout
-    private lateinit var llInstitute: LinearLayout
-    private lateinit var llProfileParent: LinearLayout
+    private lateinit var clEmail: ConstraintLayout
+    private lateinit var clLocation: ConstraintLayout
+    private lateinit var clInstitute: ConstraintLayout
+    private lateinit var clProfileParent: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,10 +89,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         tvEmail = view.findViewById(R.id.tv_profile_email)
         tvLocation = view.findViewById(R.id.tv_profile_location)
         tvInstitute = view.findViewById(R.id.tv_profile_institute)
-        llEmail = view.findViewById(R.id.cl_profile_email)
-        llLocation = view.findViewById(R.id.cl_profile_location)
-        llInstitute= view.findViewById(R.id.cl_profile_institute)
-        llProfileParent = view.findViewById(R.id.cl_profile_parent)
+        clEmail = view.findViewById(R.id.cl_profile_email)
+        clLocation = view.findViewById(R.id.cl_profile_location)
+        clInstitute= view.findViewById(R.id.cl_profile_institute)
+        clProfileParent = view.findViewById(R.id.cl_profile_parent)
         tabLayout.setupWithViewPager(viewPager)
 
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
@@ -143,7 +143,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse) {
-        llProfileParent.visibility = View.VISIBLE
+        clProfileParent.visibility = View.VISIBLE
         val profilePicUrl = Urls.BASE_URL + data.userProfile?.profileImage
         Timber.d(profilePicUrl)
         if (data.userProfile?.profileImage.isNullOrEmpty()) {
@@ -153,13 +153,13 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         }
         tvUsername.text = mParam1
 
-        llEmail.visibility = View.INVISIBLE
+        clEmail.visibility = View.INVISIBLE
 
         data.userProfile?.bio.let { tvDescription.text = it }
         tvDescription.text = data.userProfile?.bio
         tvLocation.text = data.userProfile?.location
 
-        llInstitute.visibility = View.INVISIBLE
+        clInstitute.visibility = View.INVISIBLE
     }
 
     override fun setData(data: ProfileResponse) {
