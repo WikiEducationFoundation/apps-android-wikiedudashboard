@@ -103,14 +103,16 @@ class CourseHomeFragment : Fragment() {
             return fragment
         }
 
-
-        private fun readableDate(realDate: String?): CharSequence? {
+        /**
+         * This method converts date to readable format
+         * using the [SimpleDateFormat] class
+         */
+        fun readableDate(realDate: String?): CharSequence? {
             val pattern = "EEE d MMM  yyyy"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault())
             val date = inputFormat.parse(realDate)
-            val finalDate = simpleDateFormat.format(date)
-            return finalDate
+            return simpleDateFormat.format(date)
         }
     }
 
