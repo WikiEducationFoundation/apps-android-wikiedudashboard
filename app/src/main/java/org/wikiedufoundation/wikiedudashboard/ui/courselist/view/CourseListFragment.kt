@@ -54,10 +54,9 @@ class CourseListFragment : Fragment(), CourseListView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         textViewNoCourses?.text = sharedPrefs.cookies
 
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
@@ -71,7 +70,6 @@ class CourseListFragment : Fragment(), CourseListView {
         }
 
         sharedPrefs.cookies?.let { courseListPresenter.requestDashboard(it) }
-        return view
     }
 
     override fun setData(data: ExploreCoursesResponse) {

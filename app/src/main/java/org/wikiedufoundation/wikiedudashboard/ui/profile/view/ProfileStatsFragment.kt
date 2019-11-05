@@ -7,10 +7,8 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_profile_stats.view.*
+import kotlinx.android.synthetic.main.fragment_profile_stats.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
@@ -47,40 +45,20 @@ class ProfileStatsFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_profile_stats, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
-        val tvInstructorCountWordsAdded: TextView = view.tv_instructor_count_words_added
-        val tvInstructorCountReferencesAdded: TextView = view.tv_instructor_count_references_added
-        val tvInstructorCountArticleViews: TextView = view.tv_instructor_count_article_views
-        val tvInstructorCountArticlesCreated: TextView = view.tv_instructor_count_articles_created
-        val tvInstructorCountArticlesEdited: TextView = view.tv_instructor_count_articles_edited
-        val tvInstructorCountCommonsUpload: TextView = view.tv_instructor_count_commons_upload
-
-        val tvCountArticlesCreated: TextView = view.tv_count_articles_created
-        val tvCountArticlesEdited: TextView = view.tv_count_articles_edited
-        val tvCountTotalEdits: TextView = view.tv_count_total_edits
-        val tvCountStudentEditors: TextView = view.tv_count_student_editors
-        val tvCountWordsAdded: TextView = view.tv_count_words_added
-        val tvCountArticleViews: TextView = view.tv_count_article_views
-        val tvCountCommonsUploads: TextView = view.tv_count_commons_uploads
-
-        val llAsStudent: LinearLayout = view.ll_as_student
-        val llByStudent: LinearLayout = view.ll_by_student
-        val llNotEnrolled: LinearLayout = view.ll_not_enrolled
-        val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
-        val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         profileResponse?.asInstructor?.let {
             val asInstructorDetails: AsInstructorDetails = it
         }
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text: String = "Total impact made by $username's students"
-            tvTitleImpactByStudents.text = text
+            val text = "Total impact made by $username's students"
+            tvTitleImpactByStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
             tvCountTotalEdits.text = asStudentDetails.individualArticleCount
@@ -96,8 +74,8 @@ class ProfileStatsFragment : Fragment() {
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
             val text : String = "Total impact made by " + username +"as a student"
-            tvTitleImpactByStudents.text = text
-            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
+            tvTitleImpactByStudent.text = text
+            tvinstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
             tvInstructorCountArticleViews.text = byStudentDetails.viewSum
             tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
@@ -107,8 +85,6 @@ class ProfileStatsFragment : Fragment() {
             llByStudent.visibility = GONE
             llNotEnrolled.visibility = VISIBLE
         }
-
-        return view
     }
 
     companion object {

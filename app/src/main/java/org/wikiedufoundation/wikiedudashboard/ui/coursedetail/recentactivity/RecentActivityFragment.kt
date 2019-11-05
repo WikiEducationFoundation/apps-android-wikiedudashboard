@@ -30,9 +30,12 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
     private var url: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_recent_activity, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_recent_activity, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         url = arguments?.getString("url", null)
         val context: Context? = context
 
@@ -45,7 +48,6 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
         }
 
         url?.let { recentActivityPresenter.requestRecentActivity(it) }
-        return view
     }
 
     override fun setData(data: RecentActivityResponse) {

@@ -33,9 +33,9 @@ class CourseHomeFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_course_home, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_course_home, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         textViewCountArticlesCreated.text = courseDetail?.createdCount
         textViewArticlesEdited.text = courseDetail?.editedCount
         textViewCountTotalEdits.text = courseDetail?.editCount
@@ -50,11 +50,10 @@ class CourseHomeFragment : Fragment() {
         textViewCoursePassCode.text = courseDetail?.passCode
         textViewCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
 
+
+
         textViewCourseStart.text = readableDate(courseDetail?.start)
         textViewCourseEndDetail.text = readableDate(courseDetail?.end)
-
-
-        return view
     }
 
     companion object {

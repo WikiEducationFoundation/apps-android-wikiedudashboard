@@ -32,8 +32,12 @@ class StudentListFragment : Fragment(), StudentListView {
     private lateinit var url: String
     private lateinit var studentListRecyclerAdapter: StudentListRecyclerAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_explore_students, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_explore_students, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         url = arguments?.getString("url", null).toString()
 
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
@@ -45,8 +49,6 @@ class StudentListFragment : Fragment(), StudentListView {
         }
 
         url.let { studentListPresenter.requestStudentList(it) }
-
-        return view
     }
 
     override fun showProgressBar(show: Boolean) {

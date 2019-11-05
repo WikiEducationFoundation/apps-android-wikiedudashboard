@@ -10,13 +10,13 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_by_student"
+            android:id="@+id/llByStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_title_impact_by_student"
+                android:id="@+id/tvTitleImpactByStudent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16dp"
@@ -37,7 +37,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_words_added"
+                        android:id="@+id/tvinstructorCountWordsAdded"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -63,7 +63,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_references_added"
+                        android:id="@+id/tvInstructorCountReferencesAdded"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -95,7 +95,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_article_views"
+                        android:id="@+id/tvInstructorCountArticleViews"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -121,7 +121,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_articles_edited"
+                        android:id="@+id/tvInstructorCountArticlesEdited"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -153,7 +153,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_articles_created"
+                        android:id="@+id/tvInstructorCountArticlesCreated"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -179,7 +179,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_commons_upload"
+                        android:id="@+id/tvInstructorCountCommonsUpload"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -201,13 +201,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_as_student"
+            android:id="@+id/llAsStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_title_impact_as_student"
+                android:id="@+id/tvTitleImpactAsStudent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16dp"
@@ -228,7 +228,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_articles_created"
+                        android:id="@+id/tvCountArticlesCreated"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -254,7 +254,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_articles_edited"
+                        android:id="@+id/tvCountArticlesEdited"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -286,7 +286,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_total_edits"
+                        android:id="@+id/tvCountTotalEdits"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -312,7 +312,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_student_editors"
+                        android:id="@+id/tvCountStudentEditors"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -344,7 +344,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_words_added"
+                        android:id="@+id/tvCountWordsAdded"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -370,7 +370,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_article_views"
+                        android:id="@+id/tvCountArticleViews"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -402,7 +402,7 @@
                     android:padding="@dimen/padding_8dp">
 
                     <TextView
-                        android:id="@+id/tv_count_commons_uploads"
+                        android:id="@+id/tvCountCommonsUploads"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -424,7 +424,7 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_not_enrolled"
+            android:id="@+id/llNotEnrolled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -31,9 +31,12 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     private var url: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_articles_edited, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         url = arguments?.getString("url", null)
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(R.layout.item_rv_articles_edited)
@@ -45,7 +48,6 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
         }
 
         url?.let { articlesEditedPresenter.requestArticlesEdited(it) }
-        return view
     }
 
     override fun setData(data: ArticlesEdited) {

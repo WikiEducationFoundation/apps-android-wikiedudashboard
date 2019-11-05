@@ -36,14 +36,12 @@ class ProfileCourseListFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
 
         textViewNoCourses?.text = sharedPrefs?.cookies
@@ -59,7 +57,6 @@ class ProfileCourseListFragment : Fragment() {
 
         setData(coursesList)
         showProgressBar(false)
-        return view
     }
 
     /**
