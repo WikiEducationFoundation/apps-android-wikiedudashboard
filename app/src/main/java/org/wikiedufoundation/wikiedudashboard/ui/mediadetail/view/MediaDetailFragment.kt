@@ -30,6 +30,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
@@ -121,7 +122,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         tvTitle.text = fileName
         tvAuthor.text = courseUpload?.uploader
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
-        tvUploadDate.text = courseUpload?.uploadedAt
+        tvUploadDate.text = CourseHomeFragment.readableDate(courseUpload?.uploadedAt)
         mediaDetailImage.setOnClickListener {
             (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
         }
@@ -248,7 +249,11 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
 
     override fun onDestroy() {
         super.onDestroy()
-        context?.unregisterReceiver(onDownloadCompleteReceiver)
+        try {
+            context?.unregisterReceiver(onDownloadCompleteReceiver)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     override fun setData(data: MediaDetailsResponse) {
