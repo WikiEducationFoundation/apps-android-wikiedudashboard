@@ -76,13 +76,13 @@ class CourseListFragment : Fragment(), CourseListView {
         Timber.d(data.toString())
         if (data.courses.isNotEmpty()) {
             coursesList = data.courses
-            recyclerCourseList.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.VISIBLE
             courseListRecyclerAdapter.setData(data.courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses.visibility = View.GONE
+            textViewNoCourses?.visibility = View.GONE
         } else {
-            recyclerCourseList.visibility = View.GONE
-            textViewNoCourses.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.GONE
+            textViewNoCourses?.visibility = View.VISIBLE
         }
     }
 
