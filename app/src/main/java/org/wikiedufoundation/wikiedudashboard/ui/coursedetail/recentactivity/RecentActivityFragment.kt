@@ -64,7 +64,7 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
