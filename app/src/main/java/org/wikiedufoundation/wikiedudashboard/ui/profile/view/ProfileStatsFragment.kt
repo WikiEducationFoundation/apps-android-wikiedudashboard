@@ -67,8 +67,8 @@ class ProfileStatsFragment : Fragment() {
             tvCountArticleViews.text = asStudentDetails.individualArticleViews
             tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            llAsStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
+            llAsStudent?.visibility = GONE
+            llNotEnrolled?.visibility = VISIBLE
         }
 
         profileResponse?.byStudents?.let {
@@ -82,8 +82,8 @@ class ProfileStatsFragment : Fragment() {
             tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
             tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-            llByStudent.visibility = GONE
-            llNotEnrolled.visibility = VISIBLE
+            llByStudent?.visibility = GONE
+            llNotEnrolled?.visibility = VISIBLE
         }
     }
 
