@@ -78,15 +78,17 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     override fun setData(data: ExploreCampaignsResponse) {
         Timber.d(data.toString())
-        if (data.campaigns.isNotEmpty()) {
-            campaignList = data.campaigns
-            recyclerCampaignList.visibility = View.VISIBLE
-            campaignListRecyclerAdapter.setData(data.campaigns)
-            campaignListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCampaigns.visibility = View.GONE
-        } else {
-            recyclerCampaignList.visibility = View.GONE
-            textViewNoCampaigns.visibility = View.VISIBLE
+        if(isAdded) {
+            if (data.campaigns.isNotEmpty()) {
+                campaignList = data.campaigns
+                recyclerCampaignList.visibility = View.VISIBLE
+                campaignListRecyclerAdapter.setData(data.campaigns)
+                campaignListRecyclerAdapter.notifyDataSetChanged()
+                textViewNoCampaigns.visibility = View.GONE
+            } else {
+                recyclerCampaignList.visibility = View.GONE
+                textViewNoCampaigns.visibility = View.VISIBLE
+            }
         }
     }
 

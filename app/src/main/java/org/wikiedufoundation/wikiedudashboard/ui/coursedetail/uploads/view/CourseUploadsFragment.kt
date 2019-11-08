@@ -56,7 +56,8 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
         val context: Context? = context
 
-        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
+        courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) {
+            uploadList, position ->
             openCourseDetail(uploadList, position)
         }
 
