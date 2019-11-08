@@ -9,7 +9,7 @@
     android:background="@color/colorGrayBackground">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout2"
+        android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_16dp"
@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/padding_8dp"
         android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
@@ -68,7 +68,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_feedback"
+                    android:id="@+id/textViewFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -79,7 +79,7 @@
                     android:textSize="@dimen/text_size_16sp" />
 
                 <TextView
-                    android:id="@+id/tv_share_app"
+                    android:id="@+id/textViewShareApp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -117,7 +117,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_licenses"
+                    android:id="@+id/textViewLicenses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -128,7 +128,7 @@
                     android:textSize="@dimen/text_size_16sp" />
 
                 <TextView
-                    android:id="@+id/tv_privacy_policy"
+                    android:id="@+id/textViewPrivacyPolicy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -139,7 +139,7 @@
                     android:textSize="@dimen/text_size_16sp" />
 
                 <TextView
-                    android:id="@+id/tv_terms_and_conditions"
+                    android:id="@+id/textViewTermsAndConditions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -167,7 +167,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_logout"
+                    android:id="@+id/textViewLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -182,7 +182,7 @@
 
 
             <ImageView
-                android:id="@+id/iv_app_icon"
+                android:id="@+id/ivPppIcon"
                 android:layout_width="@dimen/margin_48dp"
                 android:layout_height="@dimen/margin_48dp"
                 android:layout_gravity="center_horizontal"
@@ -190,7 +190,7 @@
                 android:src="@mipmap/wiki_edu_logo" />
 
             <TextView
-                android:id="@+id/tv_version_code"
+                android:id="@+id/textViewVersionCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16dp"

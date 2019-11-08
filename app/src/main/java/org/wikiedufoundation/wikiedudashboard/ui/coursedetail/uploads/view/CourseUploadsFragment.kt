@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_upload_list.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -35,14 +33,9 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         parametersOf(this, retrofitCourseUploadsProvider)
     }
 
-
     private var type: Int = 0
     private var courseUrl: String? = null
     private var courseUploadList: CourseUploadList? = null
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var tvNoStudents: TextView
 
     private lateinit var courseUploadsRecyclerAdapter: CourseUploadsRecyclerAdapter
 
@@ -62,15 +55,12 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
         val context: Context? = context
-        recyclerView = view.findViewById(R.id.rv_upload_list)
-        progressBar = view.findViewById(R.id.progressBar)
-        tvNoStudents = view.findViewById(R.id.tv_no_uploads)
 
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
             openCourseDetail(uploadList, position)
         }
 
-        recyclerView.apply {
+        recyclerUploadList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseUploadsRecyclerAdapter
@@ -88,18 +78,18 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     override fun setData(courseUploadList: CourseUploadList) {
         Timber.d(courseUploadList.toString())
         if (courseUploadList.uploads.isNotEmpty()) {
-            recyclerView.visibility = View.VISIBLE
+            recyclerUploadList?.visibility = View.VISIBLE
             courseUploadsRecyclerAdapter.setData(courseUploadList.uploads)
             courseUploadsRecyclerAdapter.notifyDataSetChanged()
-            tvNoStudents.visibility = View.GONE
+            textViewNoUploads?.visibility = View.GONE
         } else {
-            recyclerView.visibility = View.GONE
-            tvNoStudents.visibility = View.VISIBLE
+            recyclerUploadList?.visibility = View.GONE
+            textViewNoUploads?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
