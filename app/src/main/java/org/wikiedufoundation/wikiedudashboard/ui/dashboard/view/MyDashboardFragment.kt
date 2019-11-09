@@ -55,12 +55,17 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
+        return inflater.inflate(R.layout.fragment_my_dashboard, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
@@ -73,7 +78,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         }
 
         sharedPrefs.cookies?.let { myDashboardPresenter.requestDashboard(it) }
-        return view
     }
 
     override fun setData(data: MyDashboardResponse) {
