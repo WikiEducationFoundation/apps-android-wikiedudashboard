@@ -55,8 +55,6 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     ): View? {
 
         return inflater.inflate(R.layout.fragment_upload_list, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
