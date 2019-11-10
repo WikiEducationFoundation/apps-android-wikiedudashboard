@@ -50,7 +50,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cv_login_wikipedia"
+        android:id="@+id/cvLoginWikipedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/wiki_textView"
@@ -65,10 +65,10 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cv_signup_wikipedia"
+        android:id="@+id/cvSignUpWikipedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cv_login_wikipedia"
+        app:layout_constraintTop_toBottomOf="@id/cvLoginWikipedia"
         android:layout_marginLeft="@dimen/margin_48dp"
         android:layout_marginRight="@dimen/margin_48dp"
         android:layout_marginTop="@dimen/margin_16dp"

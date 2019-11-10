@@ -60,9 +60,9 @@ class OutreachProgramsDashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
-        cvSignUpWikipedia = view.findViewById(R.id.cv_signup_wikipedia)
-        cvSignUpWikipedia = view.findViewById(R.id.cv_login_wikipedia)
-        cvLoginWikipedia = view.findViewById(R.id.cv_login_wikipedia)
+        cvSignUpWikipedia = view.findViewById(R.id.cvSignUpWikipedia)
+        cvSignUpWikipedia = view.findViewById(R.id.cvLoginWikipedia)
+        cvLoginWikipedia = view.findViewById(R.id.cvLoginWikipedia)
         webView = view.findViewById(R.id.webView)
 
         clOutreach = view.findViewById(R.id.cl_outreach)
