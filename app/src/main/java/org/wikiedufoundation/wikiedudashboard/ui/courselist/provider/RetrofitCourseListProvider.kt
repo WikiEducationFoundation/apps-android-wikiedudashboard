@@ -13,7 +13,6 @@ import retrofit2.Response
 class RetrofitCourseListProvider(
         private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : CourseListProvider {
-//     = ProviderUtils.apiObject
 
     override fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<*>) {
         val courseDetailResponseCall = wikiEduDashboardApi.getExploreCourses(cookies)

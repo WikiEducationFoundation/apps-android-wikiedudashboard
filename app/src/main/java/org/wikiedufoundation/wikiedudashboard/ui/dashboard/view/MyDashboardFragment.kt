@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
+import kotlinx.android.synthetic.main.fragment_my_dashboard.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -47,10 +43,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
     private var coursesList: List<CourseListData>? = ArrayList()
 
-    private lateinit var tvNoCourses: TextView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
-
     private lateinit var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,15 +61,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
-        recyclerView = view.findViewById(R.id.rv_course_list)
-        progressBar = view.findViewById(R.id.progressBar)
-        tvNoCourses = view.findViewById(R.id.tv_no_courses)
 
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
         }
 
-        recyclerView.apply {
+        recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = myDashboardRecyclerAdapter
@@ -93,18 +82,18 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
         if (data.currentCourses.isNotEmpty()) {
             coursesList = data.currentCourses
-            recyclerView.visibility = View.VISIBLE
+            recyclerCourseList.visibility = View.VISIBLE
             myDashboardRecyclerAdapter.setData(data.currentCourses)
             myDashboardRecyclerAdapter.notifyDataSetChanged()
-            tvNoCourses.visibility = View.GONE
+            textViewNoCourses.visibility = View.GONE
         } else {
-            recyclerView.visibility = View.GONE
-            tvNoCourses.visibility = View.VISIBLE
+            recyclerCourseList.visibility = View.GONE
+            textViewNoCourses.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE

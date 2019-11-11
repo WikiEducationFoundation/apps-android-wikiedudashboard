@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintTop_toTopOf="@+id/home_container"
+        app:layout_constraintTop_toTopOf="@+id/homeContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -27,10 +27,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
-        android:id="@+id/home_container"
+        android:id="@+id/homeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav_view"
+        android:layout_above="@+id/bottomNavView"
         android:layout_below="@+id/appBarLayout"
         android:background="@color/colorGrayBackground"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,14 +41,14 @@
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+        android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/bottom_nav_color"
-        app:layout_constraintBottom_toBottomOf="@+id/home_container"
+        app:layout_constraintBottom_toBottomOf="@+id/homeContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
