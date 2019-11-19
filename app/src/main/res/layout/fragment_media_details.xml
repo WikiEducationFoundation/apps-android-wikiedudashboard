@@ -32,17 +32,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivMediaDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_48dp"
                 android:adjustViewBounds="true"
-                android:minHeight="200dp"
+                android:minHeight="@dimen/dimens_200dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mediaDetailTitle"
@@ -60,11 +62,12 @@
             <View
                 android:id="@+id/titleDivider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/padding_2dp"
                 android:layout_marginLeft="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/mediaDetailTitle" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDescription"
@@ -103,7 +106,7 @@
             <View
                 android:id="@+id/descriptionDivider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/padding_2dp"
                 android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
@@ -154,11 +157,12 @@
             <View
                 android:id="@+id/categories_divider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/padding_2dp"
                 android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/recyclerCategoryList" />
+
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -207,11 +211,12 @@
             <View
                 android:id="@+id/filesDivider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/padding_2dp"
                 android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/recyclerFileUsesList" />
+
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -276,9 +281,9 @@
                 android:paddingBottom="@dimen/margin_4dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_18sp"
+                tools:text="@string/license_link"
                 app:layout_constraintLeft_toLeftOf="@id/mediaDetailAuthor"
-                app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor"
-                tools:text="License link" />
+                app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDate"

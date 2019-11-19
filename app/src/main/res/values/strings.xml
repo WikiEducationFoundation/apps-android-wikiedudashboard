@@ -83,4 +83,7 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="logout">Logout</string>
     <string name="version_0_01">Version 0.01</string>
+
+    <string name="license_link">License link</string>
+
 </resources>
