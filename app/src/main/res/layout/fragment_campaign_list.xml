@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_no_campaigns"
+        android:id="@+id/textViewNoCampaigns"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -28,27 +28,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_campaign_list"
+        android:id="@+id/recyclerCampaignList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu"
+        android:id="@+id/fabMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimens_10dp"
         android:layout_marginRight="@dimen/dimens_10dp"
         android:layout_marginBottom="@dimen/dimens_70dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu_colorNormal="@color/colorAccent"
         app:menu_colorPressed="@color/colorHeadingDark"
         app:menu_shadowColor="@color/colorAccent">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item1"
+            android:id="@+id/fabMenuItem1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
@@ -59,7 +60,7 @@
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item2"
+            android:id="@+id/fabMenuItem2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
@@ -70,7 +71,7 @@
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item3"
+            android:id="@+id/fabMenuItem3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"

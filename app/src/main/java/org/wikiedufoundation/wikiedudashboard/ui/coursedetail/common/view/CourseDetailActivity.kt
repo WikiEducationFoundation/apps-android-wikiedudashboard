@@ -3,12 +3,9 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_course_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -35,19 +32,11 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
     private var enrolled = false
 
     private lateinit var url: String
-    private lateinit var toolbar: Toolbar
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
-    private lateinit var progressBar: ProgressBar
     private lateinit var courseHomeFragment: CourseHomeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_detail)
-        toolbar = findViewById(R.id.toolbar)
-        tabLayout = findViewById(R.id.tabLayout)
-        viewPager = findViewById(R.id.viewPager)
-        progressBar = findViewById(R.id.progressBar)
 
         url = intent.getStringExtra("url")
         enrolled = intent.getBooleanExtra("enrolled", false)

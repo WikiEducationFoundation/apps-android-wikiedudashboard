@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/layout_toolbar"
+        android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/layout_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_media_detail"
+                android:id="@+id/ivMediaDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_48dp"
@@ -50,17 +50,17 @@
                 android:id="@+id/mediaDetailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:padding="@dimen/margin_8dp"
                 android:text="@string/media_detail_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/iv_media_detail" />
+                app:layout_constraintTop_toBottomOf="@id/ivMediaDetail" />
 
             <View
-                android:id="@+id/title_divider"
+                android:id="@+id/titleDivider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_2dp"
                 android:layout_marginLeft="@dimen/margin_8dp"
@@ -70,11 +70,11 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_description"
+                android:id="@+id/textViewDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
@@ -83,7 +83,7 @@
                 android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_divider" />
+                app:layout_constraintTop_toBottomOf="@id/titleDivider" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -98,28 +98,28 @@
                 android:paddingBottom="@dimen/margin_4dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_16sp"
-                app:layout_constraintLeft_toLeftOf="@id/tv_description"
-                app:layout_constraintRight_toRightOf="@id/tv_description"
-                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintLeft_toLeftOf="@id/textViewDescription"
+                app:layout_constraintRight_toRightOf="@id/textViewDescription"
+                app:layout_constraintTop_toBottomOf="@id/textViewDescription"
                 tools:text="@string/media_detail_desc" />
 
             <View
-                android:id="@+id/description_divider"
+                android:id="@+id/descriptionDivider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_2dp"
-                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/mediaDetailDesc" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/category_label"
+                android:id="@+id/categoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_8dp"
                 android:layout_marginRight="@dimen/margin_8dp"
-                android:paddingLeft="@dimen/margin_8dp"
+                android:paddingStart="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
                 android:text="@string/label_categories"
@@ -127,14 +127,14 @@
                 android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_divider" />
+                app:layout_constraintTop_toBottomOf="@id/descriptionDivider" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_no_categories"
+                android:id="@+id/textViewNoCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
@@ -143,30 +143,30 @@
                 android:visibility="visible"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_divider" />
+                app:layout_constraintTop_toBottomOf="@id/descriptionDivider" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_category_list"
+                android:id="@+id/recyclerCategoryList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/category_label"
+                app:layout_constraintTop_toBottomOf="@id/categoryLabel"
                 tools:listitem="@layout/item_rv_media_category" />
 
             <View
                 android:id="@+id/categories_divider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_2dp"
-                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
-                app:layout_constraintTop_toBottomOf="@id/rv_category_list" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerCategoryList" />
 
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_files"
+                android:id="@+id/textViewFiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_8dp"
@@ -184,11 +184,11 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_no_uses"
+                android:id="@+id/textViewNoUses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
@@ -200,22 +200,22 @@
                 app:layout_constraintTop_toBottomOf="@id/categories_divider" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_file_uses_list"
+                android:id="@+id/recyclerFileUsesList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_files"
+                app:layout_constraintTop_toBottomOf="@id/textViewFiles"
                 tools:listitem="@layout/item_rv_media_category" />
 
             <View
-                android:id="@+id/file_divider"
+                android:id="@+id/filesDivider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_2dp"
-                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
-                app:layout_constraintTop_toBottomOf="@id/rv_file_uses_list" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerFileUsesList" />
 
 
 
@@ -234,7 +234,7 @@
                 android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/file_divider" />
+                app:layout_constraintTop_toBottomOf="@+id/filesDivider" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/mediaDetailAuthor"
@@ -249,11 +249,11 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_16sp"
                 app:layout_constraintLeft_toRightOf="@id/tv_author"
-                app:layout_constraintTop_toBottomOf="@id/file_divider" />
+                app:layout_constraintTop_toBottomOf="@id/filesDivider" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_licence"
+                android:id="@+id/textViewLicence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_8dp"
@@ -275,7 +275,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
@@ -286,7 +286,7 @@
                 app:layout_constraintTop_toBottomOf="@id/mediaDetailAuthor" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_date"
+                android:id="@+id/textViewDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_8dp"
@@ -300,14 +300,14 @@
                 android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_licence" />
+                app:layout_constraintTop_toBottomOf="@id/textViewLicence" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/mediaDetailuploadeddate"
+                android:id="@+id/mediaDetailUploadedDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
+                android:layout_marginStart="@dimen/margin_8dp"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingTop="@dimen/margin_4dp"
                 android:paddingBottom="@dimen/margin_4dp"
