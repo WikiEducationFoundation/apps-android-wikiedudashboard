@@ -84,7 +84,12 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_media_details, container, false)
+       return inflater.inflate(R.layout.fragment_media_details, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val context: Context? = context
 
         toolbar.inflateMenu(R.menu.menu_media_details)
@@ -117,8 +122,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         }
 
         mediaDetailsPresenter.requestMediaDetails("")
-
-        return view
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
