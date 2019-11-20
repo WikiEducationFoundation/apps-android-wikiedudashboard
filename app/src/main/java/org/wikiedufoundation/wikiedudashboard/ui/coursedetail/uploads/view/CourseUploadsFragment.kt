@@ -79,23 +79,27 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     override fun setData(courseUploadList: CourseUploadList) {
-        Timber.d(courseUploadList.toString())
-        if (courseUploadList.uploads.isNotEmpty()) {
-            recyclerUploadList?.visibility = View.VISIBLE
-            courseUploadsRecyclerAdapter.setData(courseUploadList.uploads)
-            courseUploadsRecyclerAdapter.notifyDataSetChanged()
-            textViewNoUploads?.visibility = View.GONE
-        } else {
-            recyclerUploadList?.visibility = View.GONE
-            textViewNoUploads?.visibility = View.VISIBLE
+        if (isAdded) {
+            Timber.d(courseUploadList.toString())
+            if (courseUploadList.uploads.isNotEmpty()) {
+                recyclerUploadList?.visibility = View.VISIBLE
+                courseUploadsRecyclerAdapter.setData(courseUploadList.uploads)
+                courseUploadsRecyclerAdapter.notifyDataSetChanged()
+                textViewNoUploads?.visibility = View.GONE
+            } else {
+                recyclerUploadList?.visibility = View.GONE
+                textViewNoUploads?.visibility = View.VISIBLE
+            }
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
+        if (isAdded) {
+            progressBar?.visibility = if (show) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
     }
 

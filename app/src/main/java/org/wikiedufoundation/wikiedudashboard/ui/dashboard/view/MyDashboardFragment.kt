@@ -81,26 +81,30 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun setData(data: MyDashboardResponse) {
-        sharedPrefs.userName = data.user.userName
-        Timber.d(data.toString())
+        if (isAdded) {
+            sharedPrefs.userName = data.user.userName
+            Timber.d(data.toString())
 
-        if (data.currentCourses.isNotEmpty()) {
-            coursesList = data.currentCourses
-            recyclerCourseList.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter.setData(data.currentCourses)
-            myDashboardRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses.visibility = View.GONE
-        } else {
-            recyclerCourseList.visibility = View.GONE
-            textViewNoCourses.visibility = View.VISIBLE
+            if (data.currentCourses.isNotEmpty()) {
+                coursesList = data.currentCourses
+                recyclerCourseList.visibility = View.VISIBLE
+                myDashboardRecyclerAdapter.setData(data.currentCourses)
+                myDashboardRecyclerAdapter.notifyDataSetChanged()
+                textViewNoCourses.visibility = View.GONE
+            } else {
+                recyclerCourseList.visibility = View.GONE
+                textViewNoCourses.visibility = View.VISIBLE
+            }
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
+        if (isAdded) {
+            progressBar?.visibility = if (show) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
     }
 

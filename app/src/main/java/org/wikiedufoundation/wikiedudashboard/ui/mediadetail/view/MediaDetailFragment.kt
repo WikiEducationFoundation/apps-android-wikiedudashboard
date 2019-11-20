@@ -233,39 +233,42 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun setData(data: MediaDetailsResponse) {
-        Timber.d(data.toString())
+        if (isAdded) {
+            Timber.d(data.toString())
 
-        val imageInfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
+            val imageInfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
 
-        // Description
-        textViewDescription.text = imageInfo?.extMetaData?.description?.value
+            // Description
+            textViewDescription.text = imageInfo?.extMetaData?.description?.value
 
-        // License
-        textViewLicence.text = imageInfo?.extMetaData?.license?.value
-        textViewLicence.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
+            // License
+            textViewLicence.text = imageInfo?.extMetaData?.license?.value
+            textViewLicence.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
-        // Categories
-        val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
-        if (categories.isNotEmpty()) {
-            recyclerCategoryList.visibility = View.VISIBLE
-            categoryListRecyclerAdapter.setData(categories)
-            categoryListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCategories.visibility = View.GONE
-        } else {
-            recyclerCategoryList.visibility = View.GONE
-            textViewNoCategories.visibility = View.VISIBLE
-        }
+            // Categories
+            val categories = data.query.page[data.query.page.keys.first()]?.categories
+                    ?: emptyList()
+            if (categories.isNotEmpty()) {
+                recyclerCategoryList.visibility = View.VISIBLE
+                categoryListRecyclerAdapter.setData(categories)
+                categoryListRecyclerAdapter.notifyDataSetChanged()
+                textViewNoCategories.visibility = View.GONE
+            } else {
+                recyclerCategoryList.visibility = View.GONE
+                textViewNoCategories.visibility = View.VISIBLE
+            }
 
-        // File Uses
-        val fileUses = data.query.page[data.query.page.keys.first()]?.globalUsage
-        if (categories.isNotEmpty()) {
-            recyclerFileUsesList.visibility = View.VISIBLE
-            fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
-            fileUsesRecyclerAdapter.notifyDataSetChanged()
-            textViewNoUses.visibility = View.GONE
-        } else {
-            recyclerFileUsesList.visibility = View.GONE
-            textViewNoUses.visibility = View.VISIBLE
+            // File Uses
+            val fileUses = data.query.page[data.query.page.keys.first()]?.globalUsage
+            if (categories.isNotEmpty()) {
+                recyclerFileUsesList.visibility = View.VISIBLE
+                fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
+                fileUsesRecyclerAdapter.notifyDataSetChanged()
+                textViewNoUses.visibility = View.GONE
+            } else {
+                recyclerFileUsesList.visibility = View.GONE
+                textViewNoUses.visibility = View.VISIBLE
+            }
         }
     }
 

@@ -52,10 +52,12 @@ class StudentListFragment : Fragment(), StudentListView {
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
+        if (isAdded) {
+            progressBar.visibility = if (show) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
         }
     }
 
@@ -64,16 +66,17 @@ class StudentListFragment : Fragment(), StudentListView {
     }
 
     override fun setData(data: StudentListResponse) {
-        if (data.course.users.isNotEmpty()) {
-            Timber.d(data.toString())
-            studentListRecyclerAdapter.setData(data.course.users)
-            studentListRecyclerAdapter.notifyDataSetChanged()
-        } else {
-            recyclerStudentList.visibility = View.GONE
-            textViewNoStudents.visibility = View.VISIBLE
+        if (isAdded) {
+            if (data.course.users.isNotEmpty()) {
+                Timber.d(data.toString())
+                studentListRecyclerAdapter.setData(data.course.users)
+                studentListRecyclerAdapter.notifyDataSetChanged()
+            } else {
+                recyclerStudentList.visibility = View.GONE
+                textViewNoStudents.visibility = View.VISIBLE
+            }
         }
     }
-
     /**
      * Use [openStudentProfile] to send [username] to [ProfileActivity]
      *
