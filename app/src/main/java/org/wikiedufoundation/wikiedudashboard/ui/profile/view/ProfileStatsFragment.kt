@@ -7,11 +7,8 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_profile_stats.view.*
+import kotlinx.android.synthetic.main.fragment_profile_stats.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
@@ -48,68 +45,47 @@ class ProfileStatsFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
-        val tvInstructorCountWordsAdded: TextView = view.tv_instructor_count_words_added
-        val tvInstructorCountReferencesAdded: TextView = view.tv_instructor_count_references_added
-        val tvInstructorCountArticleViews: TextView = view.tv_instructor_count_article_views
-        val tvInstructorCountArticlesCreated: TextView = view.tv_instructor_count_articles_created
-        val tvInstructorCountArticlesEdited: TextView = view.tv_instructor_count_articles_edited
-        val tvInstructorCountCommonsUpload: TextView = view.tv_instructor_count_commons_upload
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
-        val tvCountArticlesCreated: TextView = view.tv_count_articles_created
-        val tvCountArticlesEdited: TextView = view.tv_count_articles_edited
-        val tvCountTotalEdits: TextView = view.tv_count_total_edits
-        val tvCountStudentEditors: TextView = view.tv_count_student_editors
-        val tvCountWordsAdded: TextView = view.tv_count_words_added
-        val tvCountArticleViews: TextView = view.tv_count_article_views
-        val tvCountCommonsUploads: TextView = view.tv_count_commons_uploads
-
-        val clAsStudent: ConstraintLayout = view.cl_as_student
-        val clByStudent: ConstraintLayout = view.cl_by_student
-        val tvNotEnrolled: TextView = view.tv_not_enrolled
-        val tvTitleImpactByStudents: TextView = view.tv_title_impact_by_student
-        val tvTitleImpactAsStudents: TextView = view.tv_title_impact_as_student
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         profileResponse?.asInstructor?.let {
             val asInstructorDetails: AsInstructorDetails = it
         }
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text: String = "Total impact made by $username's students"
-            tvTitleImpactByStudents.text = text
-            tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
-            tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
-            tvCountTotalEdits.text = asStudentDetails.individualArticleCount
-            tvCountStudentEditors.text = asStudentDetails.individualUploadCount
-            tvCountWordsAdded.text = asStudentDetails.individualWordCount
-            tvCountArticleViews.text = asStudentDetails.individualArticleViews
-            tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
+            val text = "Total impact made by $username's students"
+            tv_title_impact_by_student.text = text
+            tv_count_articles_created.text = asStudentDetails.individualArticlesCreated
+            tv_count_articles_edited.text = asStudentDetails.individualArticleViews
+            tv_count_total_edits.text = asStudentDetails.individualArticleCount
+            tv_count_student_editors.text = asStudentDetails.individualUploadCount
+            tv_count_words_added.text = asStudentDetails.individualWordCount
+            tv_count_article_views.text = asStudentDetails.individualArticleViews
+            tv_count_commons_uploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            clAsStudent.visibility = GONE
-            tvNotEnrolled.visibility = VISIBLE
+            cl_as_student.visibility = GONE
+            tv_not_enrolled.visibility = VISIBLE
         }
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
             val text : String = "Total impact made by " + username +"as a student"
-            tvTitleImpactByStudents.text = text
-            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
-            tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
-            tvInstructorCountArticleViews.text = byStudentDetails.viewSum
-            tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
-            tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
-            tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
+            tv_title_impact_by_student.text = text
+            tv_instructor_count_words_added.text = byStudentDetails.wordCount
+            tv_instructor_count_references_added.text = byStudentDetails.referencesCount
+            tv_instructor_count_article_views.text = byStudentDetails.viewSum
+            tv_instructor_count_articles_created.text = byStudentDetails.newArticleCount
+            tv_instructor_count_articles_edited.text = byStudentDetails.articleCount
+            tv_instructor_count_commons_upload.text = byStudentDetails.uploadCount
         } ?: run {
-            clByStudent.visibility = GONE
-            tvNotEnrolled.visibility = VISIBLE
+            cl_by_student.visibility = GONE
+            tv_not_enrolled.visibility = VISIBLE
         }
-
-        return view
     }
 
     companion object {

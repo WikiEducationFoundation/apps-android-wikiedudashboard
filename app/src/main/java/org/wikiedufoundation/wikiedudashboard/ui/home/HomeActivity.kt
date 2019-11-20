@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.home
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -8,12 +7,10 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import butterknife.ButterKnife
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.app_bar_main.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -27,20 +24,16 @@ class HomeActivity : AppCompatActivity() {
 
     private val sharedPrefs: SharedPrefs by inject()
 
-    private var context: Context? = null
     private var myDashboardFragment: MyDashboardFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_bar_main)
-        ButterKnife.bind(this)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+
         toolbar.inflateMenu(R.menu.menu_explore)
         setSupportActionBar(toolbar)
-        context = this
         myDashboardFragment = MyDashboardFragment()
-        val navView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-        navView.setOnNavigationItemSelectedListener {
+        bottomNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_explore -> {
                     replaceFragment(ExploreFragment())
@@ -96,7 +89,7 @@ class HomeActivity : AppCompatActivity() {
         fragment?.let {
             val fragmentManager = supportFragmentManager
             fragmentManager.beginTransaction().apply {
-                add(R.id.home_container, it)
+                add(R.id.homeContainer, it)
                 addToBackStack(null)
                 setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 commit()
@@ -119,7 +112,7 @@ class HomeActivity : AppCompatActivity() {
         fragment?.let {
             val fragmentManager = supportFragmentManager
             fragmentManager.beginTransaction().apply {
-                replace(R.id.home_container, fragment)
+                replace(R.id.homeContainer, fragment)
                 commit()
             }
         }

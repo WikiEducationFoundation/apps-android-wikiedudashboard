@@ -160,7 +160,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_as_student"
             android:layout_width="match_parent"
@@ -346,7 +345,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </ScrollView>

@@ -14,15 +14,15 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_enroll"
+            android:id="@+id/cvEnroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_8dp"
             android:visibility="gone"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/padding_4dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_count_articles_edited"
-            app:layout_constraintStart_toStartOf="@+id/tv_count_articles_created"
+            app:layout_constraintEnd_toEndOf="@+id/textViewCountArticlesEdited"
+            app:layout_constraintStart_toStartOf="@+id/textViewCountArticlesCreated"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_course_title_label"
+                    android:id="@+id/textViewCourseTitleLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_40dp"
@@ -40,31 +40,29 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/btn_join"
+                    app:layout_constraintStart_toStartOf="@+id/btnJoin"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
                 <Button
-                    android:id="@+id/btn_join"
+                    android:id="@+id/btnJoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_56dp"
-                    android:layout_marginLeft="@dimen/padding_56dp"
                     android:background="@drawable/button_color_accent"
                     android:text="@string/btn_join"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/btn_cancel" />
+                    app:layout_constraintTop_toTopOf="@+id/btnCancel" />
 
                 <Button
-                    android:id="@+id/btn_cancel"
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_16dp"
-                    android:layout_marginLeft="@dimen/padding_16dp"
                     android:layout_marginTop="@dimen/padding_16dp"
                     android:layout_marginBottom="@dimen/padding_16dp"
                     android:background="@drawable/button_border_accent_color"
@@ -73,8 +71,8 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/btn_join"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_course_title_label" />
+                    app:layout_constraintStart_toEndOf="@+id/btnJoin"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCourseTitleLabel" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,42 +80,38 @@
 
 
         <TextView
-            android:id="@+id/tv_count_articles_created"
+            android:id="@+id/textViewCountArticlesCreated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
-            android:layout_marginLeft="@dimen/padding_8dp"
             android:layout_marginTop="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_16dp"
-            android:layout_marginRight="@dimen/padding_16dp"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_count_articles_edited"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCountArticlesEdited"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tv_article_created"
+            android:id="@+id/textViewArticleCreated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
-            android:layout_marginLeft="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_16dp"
-            android:layout_marginRight="@dimen/padding_16dp"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/articles_created"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_articles_created"
-            app:layout_constraintStart_toStartOf="@id/tv_count_articles_created"
-            app:layout_constraintTop_toBottomOf="@+id/tv_count_articles_created" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticlesCreated"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticlesCreated"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountArticlesCreated" />
 
 
         <TextView
-            android:id="@+id/tv_count_articles_edited"
+            android:id="@+id/textViewCountArticlesEdited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_16dp"
@@ -128,24 +122,24 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_count_articles_created"
+            app:layout_constraintStart_toEndOf="@+id/textViewArticleCreated"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tv_articles_edited"
+            android:id="@+id/textViewArticlesEdited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/articles_edited"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_articles_edited"
-            app:layout_constraintStart_toStartOf="@id/tv_count_articles_edited"
-            app:layout_constraintTop_toBottomOf="@+id/tv_count_articles_edited" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticlesEdited"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticlesEdited"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountArticlesEdited" />
 
 
         <TextView
-            android:id="@+id/tv_count_total_edits"
+            android:id="@+id/textViewCountTotalEdits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
@@ -158,28 +152,26 @@
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toEndOf="@id/tv_article_created"
-            app:layout_constraintStart_toStartOf="@id/tv_article_created"
-            app:layout_constraintTop_toBottomOf="@+id/tv_article_created" />
+            app:layout_constraintEnd_toEndOf="@id/textViewArticleCreated"
+            app:layout_constraintStart_toStartOf="@id/textViewArticleCreated"
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticleCreated" />
 
         <TextView
-            android:id="@+id/tv_total_edits"
+            android:id="@+id/textViewTotalEdits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
-            android:layout_marginLeft="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_16dp"
-            android:layout_marginRight="@dimen/padding_16dp"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/total_edits"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_total_edits"
-            app:layout_constraintStart_toStartOf="@id/tv_count_total_edits"
-            app:layout_constraintTop_toBottomOf="@id/tv_count_total_edits" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountTotalEdits"
+            app:layout_constraintStart_toStartOf="@id/textViewCountTotalEdits"
+            app:layout_constraintTop_toBottomOf="@id/textViewCountTotalEdits" />
 
 
         <TextView
-            android:id="@+id/tv_count_student_editors"
+            android:id="@+id/textViewCountStudentEditors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16dp"
@@ -188,24 +180,24 @@
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toEndOf="@id/tv_articles_edited"
-            app:layout_constraintStart_toStartOf="@id/tv_articles_edited"
-            app:layout_constraintTop_toBottomOf="@+id/tv_articles_edited" />
+            app:layout_constraintEnd_toEndOf="@id/textViewArticlesEdited"
+            app:layout_constraintStart_toStartOf="@id/textViewArticlesEdited"
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticlesEdited" />
 
         <TextView
-            android:id="@+id/tv_students_editor"
+            android:id="@+id/textViewStudentsEditor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/student_editors"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_student_editors"
-            app:layout_constraintStart_toStartOf="@id/tv_count_student_editors"
-            app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountStudentEditors"
+            app:layout_constraintStart_toStartOf="@id/textViewCountStudentEditors"
+            app:layout_constraintTop_toBottomOf="@id/textViewCountStudentEditors" />
 
 
         <TextView
-            android:id="@+id/tv_count_words_added"
+            android:id="@+id/textViewCountWordsAdded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
@@ -218,28 +210,26 @@
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toEndOf="@id/tv_total_edits"
-            app:layout_constraintStart_toStartOf="@id/tv_total_edits"
-            app:layout_constraintTop_toBottomOf="@id/tv_total_edits" />
+            app:layout_constraintEnd_toEndOf="@id/textViewTotalEdits"
+            app:layout_constraintStart_toStartOf="@id/textViewTotalEdits"
+            app:layout_constraintTop_toBottomOf="@id/textViewTotalEdits" />
 
         <TextView
-            android:id="@+id/tv_words_added"
+            android:id="@+id/textViewWordsAdded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
-            android:layout_marginLeft="@dimen/padding_8dp"
             android:layout_marginEnd="@dimen/padding_16dp"
-            android:layout_marginRight="@dimen/padding_16dp"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/words_added"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_words_added"
-            app:layout_constraintStart_toStartOf="@id/tv_count_words_added"
-            app:layout_constraintTop_toBottomOf="@id/tv_count_words_added" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountWordsAdded"
+            app:layout_constraintStart_toStartOf="@id/textViewCountWordsAdded"
+            app:layout_constraintTop_toBottomOf="@id/textViewCountWordsAdded" />
 
 
         <TextView
-            android:id="@+id/tv_count_article_views"
+            android:id="@+id/textViewCountArticleViews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16dp"
@@ -248,24 +238,24 @@
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toEndOf="@id/tv_students_editor"
-            app:layout_constraintStart_toStartOf="@id/tv_students_editor"
-            app:layout_constraintTop_toBottomOf="@id/tv_students_editor" />
+            app:layout_constraintEnd_toEndOf="@id/textViewStudentsEditor"
+            app:layout_constraintStart_toStartOf="@id/textViewStudentsEditor"
+            app:layout_constraintTop_toBottomOf="@id/textViewStudentsEditor" />
 
         <TextView
-            android:id="@+id/tv_articleviews"
+            android:id="@+id/textViewArticleViews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/article_views"
-            app:layout_constraintEnd_toEndOf="@id/tv_count_article_views"
-            app:layout_constraintStart_toStartOf="@id/tv_count_article_views"
-            app:layout_constraintTop_toBottomOf="@id/tv_count_article_views" />
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticleViews"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticleViews"
+            app:layout_constraintTop_toBottomOf="@id/textViewCountArticleViews" />
 
 
         <TextView
-            android:id="@+id/tv_count_commons_uploads"
+            android:id="@+id/textViewCountCommonsUploads"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
@@ -277,12 +267,12 @@
             android:text="@string/_45"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_30sp"
-            app:layout_constraintEnd_toStartOf="@id/tv_articleviews"
-            app:layout_constraintStart_toEndOf="@id/tv_words_added"
-            app:layout_constraintTop_toBottomOf="@id/tv_articleviews" />
+            app:layout_constraintEnd_toStartOf="@id/textViewArticleViews"
+            app:layout_constraintStart_toEndOf="@id/textViewWordsAdded"
+            app:layout_constraintTop_toBottomOf="@id/textViewArticleViews" />
 
         <TextView
-            android:id="@+id/tv_common_uploads"
+            android:id="@+id/textViewCommonUploads"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_8dp"
@@ -295,19 +285,19 @@
             android:text="@string/commons_upload"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_count_commons_uploads" />
+            app:layout_constraintTop_toBottomOf="@id/textViewCountCommonsUploads" />
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_course_description"
+            android:id="@+id/cvCourseDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/tv_common_uploads"
-            app:layout_constraintStart_toStartOf="@+id/tv_common_uploads"
-            app:layout_constraintTop_toBottomOf="@id/tv_common_uploads">
+            app:layout_constraintEnd_toEndOf="@id/textViewCommonUploads"
+            app:layout_constraintStart_toStartOf="@+id/textViewCommonUploads"
+            app:layout_constraintTop_toBottomOf="@id/textViewCommonUploads">
 
             <TextView
-                android:id="@+id/tv_course_title"
+                android:id="@+id/textViewCourseTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_8dp"
@@ -318,7 +308,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_course_description"
+                android:id="@+id/textViewCourseDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_8dp"
@@ -334,8 +324,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16dp"
-            app:layout_constraintStart_toStartOf="@id/cv_course_description"
-            app:layout_constraintTop_toBottomOf="@+id/cv_course_description">
+            app:layout_constraintStart_toStartOf="@id/cvCourseDescription"
+            app:layout_constraintTop_toBottomOf="@+id/cvCourseDescription">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
@@ -344,7 +334,7 @@
                 android:background="@color/colorPrimary">
 
                 <TextView
-                    android:id="@+id/tv_detail"
+                    android:id="@+id/textViewDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/padding_8dp"
@@ -358,112 +348,112 @@
 
 
                 <TextView
-                    android:id="@+id/tv_course_school"
+                    android:id="@+id/textViewCourseSchool"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/school"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_school_detail"
-                    app:layout_constraintStart_toStartOf="@+id/tv_detail" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewCourseSchoolDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDetail" />
 
                 <TextView
-                    android:id="@+id/tv_course_school_detail"
+                    android:id="@+id/textViewCourseSchoolDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_school"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCourseSchool"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDetail" />
 
 
                 <TextView
-                    android:id="@+id/tv_course_term"
+                    android:id="@+id/textViewCourseTerm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/term"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_term_detail"
-                    app:layout_constraintStart_toStartOf="@+id/tv_course_school" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewCourseTermDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCourseSchool" />
 
                 <TextView
-                    android:id="@+id/tv_course_term_detail"
+                    android:id="@+id/textViewCourseTermDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_term"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_course_school" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCourseTerm"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCourseSchool" />
 
 
                 <TextView
-                    android:id="@+id/tv_course_passcode"
+                    android:id="@+id/textViewCoursePassCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/passcode"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_course_passcode_detail"
-                    app:layout_constraintStart_toStartOf="@+id/tv_course_term" />
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewCoursePassCodeDetail"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCourseTerm" />
 
                 <TextView
-                    android:id="@+id/tv_course_passcode_detail"
+                    android:id="@+id/textViewCoursePassCodeDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_passcode"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_course_term_detail" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCoursePassCode"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCourseTermDetail" />
 
 
                 <TextView
-                    android:id="@+id/tv_course_expected_students"
+                    android:id="@+id/textViewCourseExpectedStudents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/expected_students"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/tv_course_passcode"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_passcode" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewCoursePassCode"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoursePassCode" />
 
                 <TextView
-                    android:id="@+id/tv_course_expected_students_detail"
+                    android:id="@+id/textViewCourseExpectedStudentsDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_expected_students"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_passcode_detail" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCourseExpectedStudents"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoursePassCodeDetail" />
 
 
                 <TextView
-                    android:id="@+id/tv_course_start"
+                    android:id="@+id/textViewCourseStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/start"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/tv_course_expected_students"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_expected_students" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewCourseExpectedStudents"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCourseExpectedStudents" />
 
                 <TextView
-                    android:id="@+id/tv_course_start_detail"
+                    android:id="@+id/textViewCourseStartDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_start"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_expected_students_detail" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCourseStart"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCourseExpectedStudentsDetail" />
 
 
                 <TextView
@@ -474,19 +464,19 @@
                     android:text="@string/end"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/tv_course_start"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_start" />
+                    app:layout_constraintStart_toStartOf="@id/textViewCourseStart"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCourseStart" />
 
                 <TextView
-                    android:id="@+id/tv_course_end_detail"
+                    android:id="@+id/textViewCourseEndDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/padding_8dp"
                     android:padding="@dimen/padding_8dp"
                     android:text="@string/description"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toEndOf="@+id/tv_course_start"
-                    app:layout_constraintTop_toBottomOf="@id/tv_course_start_detail" />
+                    app:layout_constraintStart_toEndOf="@+id/textViewCourseStart"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCourseStartDetail" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
