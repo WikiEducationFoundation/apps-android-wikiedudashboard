@@ -53,9 +53,13 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_upload_list, container, false)
-        val context: Context? = context
 
+        return inflater.inflate(R.layout.fragment_upload_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val context: Context? = context
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
             openCourseDetail(uploadList, position)
         }
@@ -72,7 +76,6 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
             courseUploadList?.let { setData(it) }
             showProgressBar(false)
         }
-        return view
     }
 
     override fun setData(courseUploadList: CourseUploadList) {

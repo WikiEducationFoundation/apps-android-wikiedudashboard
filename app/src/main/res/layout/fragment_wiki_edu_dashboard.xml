@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_wiki"
+        android:id="@+id/clWiki"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_wiki_background">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cv_signup_wikipedia"
+            android:id="@+id/cvSignUpWikipedia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_48dp"
@@ -36,11 +36,11 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_16sp"
-            app:layout_constraintTop_toBottomOf="@id/cv_login_wikipedia" />
+            app:layout_constraintTop_toBottomOf="@id/cvLoginWikipedia" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cv_login_wikipedia"
+            android:id="@+id/cvLoginWikipedia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_48dp"

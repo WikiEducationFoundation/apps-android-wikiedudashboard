@@ -33,7 +33,11 @@ class CourseTimelineFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_course_home, container, false)
+        return inflater.inflate(R.layout.fragment_course_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         textViewCountArticlesCreated.text = courseDetail?.createdCount
         textViewCountArticlesEdited.text = courseDetail?.editedCount
@@ -50,8 +54,6 @@ class CourseTimelineFragment : Fragment() {
         textViewCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
         textViewCourseStart.text = courseDetail?.start
         textViewCourseEndDetail.text = courseDetail?.end
-
-        return view
     }
 
     companion object {
