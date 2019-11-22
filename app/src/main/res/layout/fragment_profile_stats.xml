@@ -11,14 +11,14 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_by_student"
+            android:id="@+id/clByStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="@dimen/margin_16dp">
 
             <TextView
-                android:id="@+id/tv_title_impact_by_student"
+                android:id="@+id/tvTitleImpactByStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16dp"
@@ -29,34 +29,34 @@
                 android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_words_added"
+                        android:id="@+id/tvInstructorCountWordsAdded"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         android:layout_marginLeft="@dimen/margin_48dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title_impact_by_student"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleImpactByStudent"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_words_added"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_words_added"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_words_added"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountWordsAdded"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountWordsAdded"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountWordsAdded"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/words_added" />
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_references_added"
+                        android:id="@+id/tvInstructorCountReferencesAdded"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
-                        app:layout_constraintTop_toTopOf="@id/tv_instructor_count_words_added"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_instructor_count_words_added"
+                        app:layout_constraintTop_toTopOf="@id/tvInstructorCountWordsAdded"
+                        app:layout_constraintBottom_toBottomOf="@id/tvInstructorCountWordsAdded"
                         app:layout_constraintRight_toRightOf="parent"
                         android:layout_marginRight="@dimen/margin_48dp"
                         android:textColor="@color/colorAccent"
@@ -65,20 +65,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_references_added"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_references_added"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountReferencesAdded"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountReferencesAdded"
                         android:padding="@dimen/padding_8dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_references_added"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountReferencesAdded"
                         android:text="@string/references_added" />
 
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_article_views"
+                        android:id="@+id/tvInstructorCountArticleViews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_words_added"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountWordsAdded"
                         android:layout_marginTop="@dimen/margin_48dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_words_added"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountWordsAdded"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         android:textColor="@color/colorAccent"
@@ -87,43 +87,43 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_article_views"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_article_views"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountArticleViews"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountArticleViews"
                         android:padding="@dimen/padding_8dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_article_views"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountArticleViews"
                         android:text="@string/article_views" />
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_articles_edited"
+                        android:id="@+id/tvInstructorCountArticlesEdited"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_references_added"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_references_added"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountReferencesAdded"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountReferencesAdded"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
-                        app:layout_constraintTop_toTopOf="@id/tv_instructor_count_article_views"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_instructor_count_article_views"
+                        app:layout_constraintTop_toTopOf="@id/tvInstructorCountArticleViews"
+                        app:layout_constraintBottom_toBottomOf="@id/tvInstructorCountArticleViews"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_articles_edited"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_edited"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountArticlesEdited"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountArticlesEdited"
                         android:padding="@dimen/padding_8dp"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_articles_edited"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountArticlesEdited"
                         android:text="@string/articles_edited" />
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_articles_created"
+                        android:id="@+id/tvInstructorCountArticlesCreated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         android:layout_marginTop="@dimen/margin_48dp"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_article_views"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_article_views"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountArticleViews"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountArticleViews"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
@@ -131,18 +131,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_articles_created"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_articles_created"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_created"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountArticlesCreated"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountArticlesCreated"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountArticlesCreated"
                         android:text="@string/articles_created" />
 
                     <TextView
-                        android:id="@+id/tv_instructor_count_commons_upload"
+                        android:id="@+id/tvInstructorCountCommonsUpload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_articles_edited"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_articles_edited"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_articles_edited"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountArticlesEdited"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountArticlesEdited"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountArticlesEdited"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         android:layout_marginTop="@dimen/margin_48dp"
@@ -153,22 +153,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_instructor_count_commons_upload"
-                        app:layout_constraintRight_toRightOf="@id/tv_instructor_count_commons_upload"
-                        app:layout_constraintTop_toBottomOf="@id/tv_instructor_count_commons_upload"
+                        app:layout_constraintLeft_toLeftOf="@id/tvInstructorCountCommonsUpload"
+                        app:layout_constraintRight_toRightOf="@id/tvInstructorCountCommonsUpload"
+                        app:layout_constraintTop_toBottomOf="@id/tvInstructorCountCommonsUpload"
                         android:text="@string/commons_upload" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_as_student"
+            android:id="@+id/clAsStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_16dp"
-            app:layout_constraintTop_toBottomOf="@id/cl_by_student">
+            app:layout_constraintTop_toBottomOf="@id/clByStudent">
 
             <TextView
-                android:id="@+id/tv_title_impact_as_student"
+                android:id="@+id/tvTitleImpactAsStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_16dp"
@@ -179,77 +179,77 @@
                 android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_count_articles_created"
+                        android:id="@+id/tvCountArticlesCreated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         app:layout_constraintLeft_toLeftOf="parent"
                         android:layout_marginStart="@dimen/margin_48dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title_impact_as_student"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleImpactAsStudent"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_articles_created"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_articles_created"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_articles_created"
+                        app:layout_constraintRight_toRightOf="@id/tvCountArticlesCreated"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountArticlesCreated"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountArticlesCreated"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/articles_created" />
 
                     <TextView
-                        android:id="@+id/tv_count_articles_edited"
+                        android:id="@+id/tvCountArticlesEdited"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         app:layout_constraintRight_toRightOf="parent"
                         android:layout_marginRight="@dimen/margin_48dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title_impact_as_student"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleImpactAsStudent"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_articles_edited"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_articles_edited"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited"
+                        app:layout_constraintRight_toRightOf="@id/tvCountArticlesEdited"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountArticlesEdited"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountArticlesEdited"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/articles_edited" />
 
                     <TextView
-                        android:id="@+id/tv_count_total_edits"
+                        android:id="@+id/tvCountTotalEdits"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_articles_created"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountArticlesCreated"
                         android:layout_marginTop="@dimen/margin_48dp"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_articles_created"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_articles_created"
+                        app:layout_constraintRight_toRightOf="@id/tvCountArticlesCreated"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountArticlesCreated"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_total_edits"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_total_edits"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_total_edits"
+                        app:layout_constraintRight_toRightOf="@id/tvCountTotalEdits"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountTotalEdits"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountTotalEdits"
                         android:padding="@dimen/padding_8dp"
                         android:text="Total Edits" />
 
                     <TextView
-                        android:id="@+id/tv_count_student_editors"
+                        android:id="@+id/tvCountStudentEditors"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_articles_edited"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_articles_edited"
+                        app:layout_constraintRight_toRightOf="@id/tvCountArticlesEdited"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountArticlesEdited"
                         android:layout_marginTop="@dimen/margin_48dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_articles_edited"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountArticlesEdited"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         android:textColor="@color/colorAccent"
@@ -258,41 +258,41 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_student_editors"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_student_editors"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors"
+                        app:layout_constraintRight_toRightOf="@id/tvCountStudentEditors"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountStudentEditors"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountStudentEditors"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/student_editors" />
 
                     <TextView
-                        android:id="@+id/tv_count_words_added"
+                        android:id="@+id/tvCountWordsAdded"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_total_edits"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_total_edits"
+                        app:layout_constraintRight_toRightOf="@id/tvCountTotalEdits"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountTotalEdits"
                         android:layout_marginTop="@dimen/margin_48dp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_total_edits"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountTotalEdits"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_words_added"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_words_added"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_words_added"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountWordsAdded"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountWordsAdded"
+                        app:layout_constraintRight_toRightOf="@id/tvCountWordsAdded"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/words_added" />
 
                     <TextView
-                        android:id="@+id/tv_count_article_views"
+                        android:id="@+id/tvCountArticleViews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_student_editors"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_student_editors"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_student_editors"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountStudentEditors"
+                        app:layout_constraintRight_toRightOf="@id/tvCountStudentEditors"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountStudentEditors"
                         android:layout_marginTop="@dimen/margin_48dp"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
@@ -302,21 +302,21 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="@id/tv_count_article_views"
-                        app:layout_constraintRight_toRightOf="@id/tv_count_article_views"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_article_views"
+                        app:layout_constraintLeft_toLeftOf="@id/tvCountArticleViews"
+                        app:layout_constraintRight_toRightOf="@id/tvCountArticleViews"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountArticleViews"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/article_views" />
 
                     <TextView
-                        android:id="@+id/tv_count_commons_uploads"
+                        android:id="@+id/tvCountCommonsUploads"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/_45"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_words_added"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountWordsAdded"
                         android:layout_marginTop="@dimen/margin_48dp"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_30sp" />
@@ -327,12 +327,12 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_count_commons_uploads"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountCommonsUploads"
                         android:padding="@dimen/padding_8dp"
                         android:text="@string/commons_upload" />
 
             <TextView
-                android:id="@+id/tv_not_enrolled"
+                android:id="@+id/tvNotEnrolled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

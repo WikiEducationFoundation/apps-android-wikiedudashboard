@@ -59,32 +59,32 @@ class ProfileStatsFragment : Fragment() {
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
             val text = "Total impact made by $username's students"
-            tv_title_impact_by_student.text = text
-            tv_count_articles_created.text = asStudentDetails.individualArticlesCreated
-            tv_count_articles_edited.text = asStudentDetails.individualArticleViews
-            tv_count_total_edits.text = asStudentDetails.individualArticleCount
-            tv_count_student_editors.text = asStudentDetails.individualUploadCount
-            tv_count_words_added.text = asStudentDetails.individualWordCount
-            tv_count_article_views.text = asStudentDetails.individualArticleViews
-            tv_count_commons_uploads.text = asStudentDetails.individualUploadCount
+            tvTitleImpactAsStudent.text = text
+            tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
+            tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
+            tvCountTotalEdits.text = asStudentDetails.individualArticleCount
+            tvCountStudentEditors.text = asStudentDetails.individualUploadCount
+            tvCountWordsAdded.text = asStudentDetails.individualWordCount
+            tvCountArticleViews.text = asStudentDetails.individualArticleViews
+            tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            cl_as_student.visibility = GONE
-            tv_not_enrolled.visibility = VISIBLE
+            clAsStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
             val text : String = "Total impact made by " + username +"as a student"
-            tv_title_impact_by_student.text = text
-            tv_instructor_count_words_added.text = byStudentDetails.wordCount
-            tv_instructor_count_references_added.text = byStudentDetails.referencesCount
-            tv_instructor_count_article_views.text = byStudentDetails.viewSum
-            tv_instructor_count_articles_created.text = byStudentDetails.newArticleCount
-            tv_instructor_count_articles_edited.text = byStudentDetails.articleCount
-            tv_instructor_count_commons_upload.text = byStudentDetails.uploadCount
+            tvTitleImpactByStudent.text = text
+            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
+            tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
+            tvInstructorCountArticleViews.text = byStudentDetails.viewSum
+            tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
+            tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
+            tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-            cl_by_student.visibility = GONE
-            tv_not_enrolled.visibility = VISIBLE
+            clByStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
     }
 
