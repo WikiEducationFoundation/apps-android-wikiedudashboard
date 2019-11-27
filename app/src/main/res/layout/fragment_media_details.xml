@@ -149,7 +149,9 @@
                 android:id="@+id/recyclerCategoryList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dimen_8dp"
                 android:visibility="gone"
+                android:layout_marginLeft="@dimen/dimen_8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categoryLabel"
                 tools:listitem="@layout/item_rv_media_category" />
@@ -204,6 +206,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
+                android:paddingLeft="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewFiles"
                 tools:listitem="@layout/item_rv_media_category" />
@@ -216,9 +220,7 @@
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:background="@color/colorGrayLine"
                 app:layout_constraintTop_toBottomOf="@id/recyclerFileUsesList" />
-
-
-
+            
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_author"
                 android:layout_width="wrap_content"
