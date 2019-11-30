@@ -22,9 +22,19 @@ class ProfilePresenterImpl(
         provider.requestProfileDetails(username, object : PresenterCallback<Any> {
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
+<<<<<<< HEAD
                 val response = o as? ProfileDetailsResponse
                 Timber.d(response.toString())
                 view.setProfileData(response)
+=======
+
+                o?.apply {
+                    val response = o as ProfileDetailsResponse
+                    Timber.d(response.toString())
+                    view.setProfileData(response)
+                }
+
+>>>>>>> profile fragment setup to use synthetic feature and temporal fix for crash
             }
 
             override fun onFailure() {
@@ -39,9 +49,19 @@ class ProfilePresenterImpl(
         provider.requestProfile(cookies, username, object : PresenterCallback<Any> {
             override fun onSuccess(o: Any?) {
                 view.showProgressBar(false)
+<<<<<<< HEAD
                 val response = o as? ProfileResponse
                 Timber.d(response.toString())
                 view.setData(response)
+=======
+
+                o?.apply {
+                    val response = o as ProfileResponse
+                    Timber.d(response.toString())
+                    view.setData(response)
+                }
+
+>>>>>>> profile fragment setup to use synthetic feature and temporal fix for crash
             }
 
             override fun onFailure() {
