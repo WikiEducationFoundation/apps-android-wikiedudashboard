@@ -57,8 +57,6 @@ class CourseListFragment : Fragment(), CourseListView {
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        textViewNoCourses?.text = sharedPrefs.cookies
-
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)
         }
