@@ -32,7 +32,7 @@ class ProfileCourseListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            coursesList = (it.getSerializable(ARG_PARAM1) as ProfileResponse).courses ?: emptyList()
+            coursesList = (it.getSerializable(ARG_PARAM1) as? ProfileResponse)?.courses ?: emptyList()
         }
     }
 
@@ -115,7 +115,7 @@ class ProfileCourseListFragment : Fragment() {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: ProfileResponse): ProfileCourseListFragment {
+        fun newInstance(param1: ProfileResponse?): ProfileCourseListFragment {
             val fragment = ProfileCourseListFragment()
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, param1)
