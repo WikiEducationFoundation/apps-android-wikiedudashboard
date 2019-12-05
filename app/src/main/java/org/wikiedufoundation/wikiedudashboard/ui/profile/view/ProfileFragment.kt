@@ -107,22 +107,14 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
     @Suppress("UselessCallOnNotNull")
-<<<<<<< HEAD
     override fun setProfileData(data: ProfileDetailsResponse?) {
-=======
-    override fun setProfileData(data: ProfileDetailsResponse) {
-
->>>>>>> profile fragment setup to use synthetic feature and temporal fix for crash
         llProfileParent.visibility = View.VISIBLE
         val profilePicUrl = Urls.BASE_URL + data?.userProfile?.profileImage
         Timber.d(profilePicUrl)
-<<<<<<< HEAD
+
         if (data?.userProfile?.profileImage.isNullOrEmpty()) {
-            ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
-=======
-        if (data.userProfile?.profileImage.isNullOrEmpty()) {
             tvProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
->>>>>>> profile fragment setup to use synthetic feature and temporal fix for crash
+
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(tvProfilePic)
         }
@@ -130,15 +122,9 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
         llProfileEmail.visibility = View.INVISIBLE
 
-<<<<<<< HEAD
-        data?.userProfile?.bio.let { tvDescription.text = it }
-        tvDescription.text = data?.userProfile?.bio
-        tvLocation.text = data?.userProfile?.location
-=======
-        data.userProfile?.bio.let { tvProfileDescription.text = it }
-        tvProfileDescription.text = data.userProfile?.bio
-        tvProfileLocation.text = data.userProfile?.location
->>>>>>> profile fragment setup to use synthetic feature and temporal fix for crash
+        data?.userProfile?.bio.let { tvProfileDescription.text = it }
+        tvProfileDescription.text = data?.userProfile?.bio
+        tvProfileLocation.text = data?.userProfile?.location
 
         llProfileInstitute.visibility = View.INVISIBLE
     }
