@@ -31,6 +31,9 @@ class CourseListPresenterImpl(
             override fun onFailure() {
                 courseListView.showProgressBar(false)
                 courseListView.showMessage("Unable to connect to server.")
+
+                val unknownExploreCoursesResponse = ExploreCoursesResponse(ArrayList())
+                courseListView.setData(unknownExploreCoursesResponse)
             }
         })
     }

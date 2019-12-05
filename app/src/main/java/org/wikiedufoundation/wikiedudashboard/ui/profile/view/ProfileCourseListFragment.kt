@@ -42,9 +42,6 @@ class ProfileCourseListFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-
-        textViewNoCourses?.text = sharedPrefs?.cookies
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
             openCourseDetail(it)
         }
