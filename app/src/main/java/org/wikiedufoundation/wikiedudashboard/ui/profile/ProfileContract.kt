@@ -20,14 +20,14 @@ interface ProfileContract {
          *
          * @param data Profile data
          * ***/
-        fun setData(data: ProfileResponse)
+        fun setData(data: ProfileResponse?)
 
         /**
          * Implement [setProfileData] to set returned profile detail data from response
          *
          * @param data Profile detail data
          * ***/
-        fun setProfileData(data: ProfileDetailsResponse)
+        fun setProfileData(data: ProfileDetailsResponse?)
     }
 
     /**
