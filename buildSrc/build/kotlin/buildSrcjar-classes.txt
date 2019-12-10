@@ -1,0 +1,1 @@
+/Users/glory/outreachy/apps-android-wikiedudashboard/buildSrc/build/classes/kotlin/main/Deps.class:/Users/glory/outreachy/apps-android-wikiedudashboard/buildSrc/build/classes/kotlin/main/Versions.class
