@@ -86,13 +86,13 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
         if (data.currentCourses.isNotEmpty()) {
             coursesList = data.currentCourses
-            recyclerCourseList.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.VISIBLE
             myDashboardRecyclerAdapter.setData(data.currentCourses)
             myDashboardRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses.visibility = View.GONE
+            textViewNoCourses?.visibility = View.GONE
         } else {
-            recyclerCourseList.visibility = View.GONE
-            textViewNoCourses.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.GONE
+            textViewNoCourses?.visibility = View.VISIBLE
         }
     }
 
