@@ -2,6 +2,7 @@ NOTE: Please review the pull request process before opening your first PR: https
 
 ## What this PR does
 Fixes #issueNumber
+
 < describe the purpose of this pull request and note the issue it addresses >
 
 ## Screenshots
