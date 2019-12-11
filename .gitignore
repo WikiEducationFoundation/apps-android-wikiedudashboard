@@ -12,4 +12,5 @@
 /.idea/
 /captures
 .externalNativeBuild
-
+/buildSrc/build
+/buildSrc/.gradle
