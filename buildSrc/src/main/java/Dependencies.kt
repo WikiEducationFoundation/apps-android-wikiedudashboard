@@ -1,3 +1,7 @@
+/**
+* Object for holding dependencies version
+ * numbers
+***/
 object Versions {
     // Sdk and tools
     val CompileSdkVersion = 29
@@ -20,8 +24,8 @@ object Versions {
     val cardViewVersion = "1.0.0"
     val butterknifeVersion = "10.1.0"
     val clansFabVersion = "1.6.4"
-    val legacySupportVersion = "1.0.0"
-    val browserVersion = "1.0.0"
+    val legacySupportVersion = cardViewVersion
+    val browserVersion = cardViewVersion
     val glideVersion = "4.0.0"
     val leakcanaryVersion = "2.0-alpha-2"
     val rxjavaVersion = "2.3.0"
@@ -40,21 +44,24 @@ object Versions {
     val viewPagerdotsIndicator = "4.1.2"
     val circleIndicatorVersion = "2.1.4"
     val expressoContribVersion = "3.1.1"
-    val expressoCoreVersion = "3.1.1"
-    val expressoIntents = "3.1.1"
-    val testExtJunit = "1.1.0"
+    val expressoCoreVersion = expressoContribVersion
+    val expressoIntents = expressoContribVersion
+    val testExtJunit = annotationVersion
     val uiAutomatorVersion = "2.2.0"
     val workVersion = "2.1.0-alpha02"
     val truth = "0.42"
     val junitVersion = "4.12"
-    val materialVersion = "1.0.0"
-    val fragmentVersion = "1.1.0"
+    val materialVersion = cardViewVersion
+    val fragmentVersion = annotationVersion
     val navigationVersion = "2.1.0"
     val koinVersion = "2.1.0-alpha-1"
 
 }
 
-//Dependencies
+/**
+ * Object for holding dependencies description
+ *
+ ***/
 object Deps {
 
     //class paths
