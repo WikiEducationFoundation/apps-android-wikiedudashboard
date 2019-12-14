@@ -21,7 +21,7 @@ This project is a part of [WikiEdu Dashboard]( https://github.com/WikiEducationF
 <td>
 
 
-![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/4.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/4.jpg)
 
 </td>
 <td>
