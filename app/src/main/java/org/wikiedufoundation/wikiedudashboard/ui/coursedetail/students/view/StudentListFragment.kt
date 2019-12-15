@@ -52,7 +52,7 @@ class StudentListFragment : Fragment(), StudentListView {
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
@@ -69,8 +69,8 @@ class StudentListFragment : Fragment(), StudentListView {
             studentListRecyclerAdapter.setData(data.course.users)
             studentListRecyclerAdapter.notifyDataSetChanged()
         } else {
-            recyclerStudentList.visibility = View.GONE
-            textViewNoStudents.visibility = View.VISIBLE
+            recyclerStudentList?.visibility = View.GONE
+            textViewNoStudents?.visibility = View.VISIBLE
         }
     }
 

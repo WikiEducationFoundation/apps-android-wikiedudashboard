@@ -126,8 +126,8 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
 
-    private fun setTabs(data: ProfileResponse) {
-        val courseUploadList = data.uploads?.let { CourseUploadList(it) }
+    private fun setTabs(data: ProfileResponse?) {
+        val courseUploadList = data?.uploads?.let { CourseUploadList(it) }
 
         val fragmentList = listOf(ProfileStatsFragment.newInstance(data, mParam1, mParam2),
                 ProfileCourseListFragment.newInstance(data),
@@ -142,11 +142,11 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
     @Suppress("UselessCallOnNotNull")
-    override fun setProfileData(data: ProfileDetailsResponse) {
+    override fun setProfileData(data: ProfileDetailsResponse?) {
         llProfileParent.visibility = View.VISIBLE
-        val profilePicUrl = Urls.BASE_URL + data.userProfile?.profileImage
+        val profilePicUrl = Urls.BASE_URL + data?.userProfile?.profileImage
         Timber.d(profilePicUrl)
-        if (data.userProfile?.profileImage.isNullOrEmpty()) {
+        if (data?.userProfile?.profileImage.isNullOrEmpty()) {
             ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
         } else {
             Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
@@ -155,14 +155,14 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
         llEmail.visibility = View.INVISIBLE
 
-        data.userProfile?.bio.let { tvDescription.text = it }
-        tvDescription.text = data.userProfile?.bio
-        tvLocation.text = data.userProfile?.location
+        data?.userProfile?.bio.let { tvDescription.text = it }
+        tvDescription.text = data?.userProfile?.bio
+        tvLocation.text = data?.userProfile?.location
 
         llInstitute.visibility = View.INVISIBLE
     }
 
-    override fun setData(data: ProfileResponse) {
+    override fun setData(data: ProfileResponse?) {
         setTabs(data)
     }
 

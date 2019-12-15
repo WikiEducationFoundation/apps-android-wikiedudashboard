@@ -48,6 +48,7 @@
     <string name="btn_join">Join</string>
     <string name="btn_cancel">Cancel</string>
     <string name="tv_no_campaigns">No Active Campaigns</string>
+    <string name="tv_no_courses">No Active Courses</string>
     <string name="tv_no_activity">No Activity</string>
     <string name="demo_course_name">Anti-rape movement</string>
     <string name="label_chars_added">Chars Added : </string>
