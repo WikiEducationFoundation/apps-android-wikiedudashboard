@@ -13,16 +13,16 @@ android {
             keyAlias = 'key0'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion Versions.CompileSdkVersion
     defaultConfig {
         applicationId "org.wikiedufoundation.wikiedudashboard"
-        minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.MinSdkVersion
+        targetSdkVersion Versions.TargetSdkVersion
+        versionCode Versions.VersionCode
+        versionName Versions.VersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationIdSuffix = 'release'
-        maxSdkVersion 28
+        maxSdkVersion Versions.MaxSdkVersion
         signingConfig signingConfigs.release
     }
     buildTypes {
@@ -35,8 +35,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility '1.8'
-        targetCompatibility '1.8'
+        sourceCompatibility Versions.SourceCompatibility
+        targetCompatibility Versions.TargetCompatibility
     }
     dataBinding {
         enabled = true
@@ -45,71 +45,63 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation Deps.constraintLayoutVersion
+    implementation Deps.vectorDrawableVersion
+    implementation Deps.cardViewVersion
+    implementation Deps.butterknifeVersion
+    kapt Deps.butterknifeVersion
+    implementation Deps.clansFabVersion
+    implementation Deps.legacySupportVersion
+    implementation Deps.browserVersion
+    implementation Deps.glideVersion
 
-    implementation 'com.github.clans:fab:1.6.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-    implementation 'androidx.browser:browser:1.0.0'
-
-    implementation 'com.github.bumptech.glide:glide:4.0.0'
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
-    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.10.0'
-
-    implementation 'androidx.browser:browser:1.0.0'
-    implementation 'androidx.transition:transition:1.0.1'
-    compileOnly 'org.projectlombok:lombok:1.18.6'
-    annotationProcessor 'org.projectlombok:lombok:1.18.6'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+    debugImplementation Deps.leakcanaryVersion
+    implementation Deps.rxjavaVersion
+    implementation Deps.retrofitConverterVersion
+    implementation Deps.okHttpLogginVersion
+    implementation Deps.okhttpUrlConnectionVersion
+    implementation Deps.transitionVersion
+    compileOnly Deps.projectlombokVersion
+    annotationProcessor Deps.projectlombokVersion
+    implementation Deps.appcompactVersion
+    implementation Deps.annotationVersion
+    implementation Deps.kotlinVersion
+    implementation Deps.kotlinxCoroutineVersion
 
     // Image Viewer library
-    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation Deps.photoViewVersion
 
     // Timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation Deps.timberVersion
 
     // Testing dependencies
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
-    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
-    androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
-    androidTestImplementation "com.google.truth:truth:$rootProject.truth"
-    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation Deps.coreTestingVersion
+    androidTestImplementation Deps.expressoContribVersion
+    androidTestImplementation Deps.expressoCoreVersion
+    androidTestImplementation Deps.expressoIntents
+    androidTestImplementation Deps.testExtJunit
+    androidTestImplementation Deps.uiAutomatorVersion
+    androidTestImplementation Deps.workVersion
+    androidTestImplementation Deps.truth
+    testImplementation Deps.junitVersion
 
-    //onboarding
     // Motionlayout onboarding
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
-    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    implementation Deps.viewPagerdotsIndicator
+
     //viewPager2 library
-    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
+    implementation Deps.viewPager2Version
 
     //Material design
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.fragment:fragment-ktx:1.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation Deps.materialVersion
+    implementation Deps.fragmentVersion
+    implementation Deps.fragmentNavigationVersion
+    implementation Deps.navigationVersion
     // circular dots
-    implementation 'me.relex:circleindicator:2.1.4'
+    implementation Deps.circleIndicatorVersion
 
     // Koin for Kotlin
-    implementation "org.koin:koin-core:$koin_version"
+    implementation Deps.koinCoreVersion
     // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation Deps.koinScopeVersion
 
 }

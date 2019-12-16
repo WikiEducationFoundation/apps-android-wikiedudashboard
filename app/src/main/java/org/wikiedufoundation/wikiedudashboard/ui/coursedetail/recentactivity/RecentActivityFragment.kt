@@ -53,18 +53,18 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
     override fun setData(data: RecentActivityResponse) {
         Timber.d(data.toString())
         if (data.course.revisions.isNotEmpty()) {
-            recyclerEditedArticlesList.visibility = View.VISIBLE
+            recyclerEditedArticlesList?.visibility = View.VISIBLE
             recentActivityRecyclerAdapter.setData(data.course.revisions)
             recentActivityRecyclerAdapter.notifyDataSetChanged()
-            textViewNoActivity.visibility = View.GONE
+            textViewNoActivity?.visibility = View.GONE
         } else {
-            recyclerEditedArticlesList.visibility = View.GONE
-            textViewNoActivity.visibility = View.VISIBLE
+            recyclerEditedArticlesList?.visibility = View.GONE
+            textViewNoActivity?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
