@@ -113,10 +113,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         Timber.d(profilePicUrl)
 
         if (data?.userProfile?.profileImage.isNullOrEmpty()) {
-            tvProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
+            ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
 
         } else {
-            Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(tvProfilePic)
+            Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
         }
         tvProfileUsername.text = mParam1
 

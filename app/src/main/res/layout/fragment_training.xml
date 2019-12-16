@@ -48,7 +48,7 @@
 
                 <ImageView
 
-                    android:id="@+id/tvProfilePic"
+                    android:id="@+id/ivProfilePic"
                     android:layout_width="120dp"
                     android:layout_height="120dp" />
                 <!--</androidx.cardview.widget.CardView>-->
