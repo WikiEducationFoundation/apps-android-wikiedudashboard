@@ -111,13 +111,10 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         llProfileParent.visibility = View.VISIBLE
         val profilePicUrl = Urls.BASE_URL + data?.userProfile?.profileImage
         Timber.d(profilePicUrl)
+            Glide.with(requireContext()).load(profilePicUrl)
+                    .apply(RequestOptions().placeholder(R.drawable.ic_account_circle_white_48dp)
+                            .circleCrop()).into(ivProfilePic)
 
-        if (data?.userProfile?.profileImage.isNullOrEmpty()) {
-            ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
-
-        } else {
-            Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
-        }
         tvProfileUsername.text = mParam1
 
         llProfileEmail.visibility = View.INVISIBLE
