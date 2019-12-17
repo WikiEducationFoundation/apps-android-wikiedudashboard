@@ -2,15 +2,16 @@ package org.wikiedufoundation.wikiedudashboard.ui.settings
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
-import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+
 
 /**
  * Activity for user settings of the profile part
@@ -21,7 +22,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(org.wikiedufoundation.wikiedudashboard.R.layout.activity_settings)
 
         toolbar.setNavigationOnClickListener { onBackPressed() }
         textViewFeedback.setOnClickListener { sendEmailFeedback() }
@@ -30,7 +31,16 @@ class SettingsActivity : AppCompatActivity() {
         textViewPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
         textViewTermsAndConditions.setOnClickListener { openTermsAndConditions() }
         textViewLogout.setOnClickListener { logOut() }
-        textViewVersionCode.text = "1.001"
+
+        try {
+            val pInfo = getPackageManager().getPackageInfo(packageName, 0)
+            val version = pInfo.versionName
+            textViewVersionCode.text = version
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+
+
 
     }
 
