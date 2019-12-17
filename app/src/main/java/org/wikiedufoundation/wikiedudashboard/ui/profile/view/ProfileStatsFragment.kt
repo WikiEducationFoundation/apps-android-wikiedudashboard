@@ -83,7 +83,6 @@ class ProfileStatsFragment : Fragment() {
             tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
             tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-
             clByStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
 
