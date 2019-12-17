@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +13,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetail
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ByStudentsDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-
-
-
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,7 +33,6 @@ class ProfileStatsFragment : Fragment() {
     private var profileResponse: ProfileResponse? = null
     private var username: String? = null
     private var otherUser: Boolean? = null
-    private val res : Resources = resources
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +47,7 @@ class ProfileStatsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
-    ): View? = inflater.inflate(org.wikiedufoundation.wikiedudashboard.R.layout.fragment_profile_stats, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         profileResponse?.asInstructor?.let {
@@ -61,8 +56,8 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text = String.format(res.getString(R.string.total_impact_made_by_student), username)
-            tvTitleImpactAsStudent.text = text
+            val text : String = context?.getString(R.string.total_impact_made_by_student) + username
+            tvTitleImpactByStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
             tvCountTotalEdits.text = asStudentDetails.individualArticleCount
@@ -77,8 +72,8 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text = String.format(res.getString(R.string.total_impact_made_as_student), username)
-            tvTitleImpactByStudent.text = text
+            val text : String = context?.getString(R.string.total_impact_made_as_student) + username
+            tvTitleImpactAsStudent.text = text
             tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
             tvInstructorCountArticleViews.text = byStudentDetails.viewSum
