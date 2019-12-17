@@ -53,18 +53,18 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
     override fun setData(data: ArticlesEdited) {
         Timber.d(data.toString())
         if (data.course.articles.isNotEmpty()) {
-            recyclerEditedArticlesList.visibility = View.VISIBLE
+            recyclerEditedArticlesList?.visibility = View.VISIBLE
             articlesEditedRecyclerAdapter.setData(data.course.articles)
             articlesEditedRecyclerAdapter.notifyDataSetChanged()
-            textViewNoEditedArticles.visibility = View.GONE
+            textViewNoEditedArticles?.visibility = View.GONE
         } else {
-            recyclerEditedArticlesList.visibility = View.GONE
-            textViewNoEditedArticles.visibility = View.VISIBLE
+            recyclerEditedArticlesList?.visibility = View.GONE
+            textViewNoEditedArticles?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE

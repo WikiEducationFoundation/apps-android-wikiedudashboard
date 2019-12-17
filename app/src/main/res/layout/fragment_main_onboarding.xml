@@ -6,4 +6,4 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/colorWhite"
-    tools:context=".ui.welcome.onboarding.OnboardingActivity"/>
+    tools:context=".ui.welcome.onboarding.WelcomeHostActivity"/>
