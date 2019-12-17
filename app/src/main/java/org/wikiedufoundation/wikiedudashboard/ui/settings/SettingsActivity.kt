@@ -11,6 +11,9 @@ import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import org.wikiedufoundation.wikiedudashboard.BuildConfig
 
 
 /**
@@ -32,15 +35,8 @@ class SettingsActivity : AppCompatActivity() {
         textViewTermsAndConditions.setOnClickListener { openTermsAndConditions() }
         textViewLogout.setOnClickListener { logOut() }
 
-        try {
-            val pInfo = getPackageManager().getPackageInfo(packageName, 0)
-            val version = pInfo.versionName
-            textViewVersionCode.text = version
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-        }
-
-
+        val versionName = BuildConfig.VERSION_NAME
+        textViewVersionCode.text = versionName
 
     }
 
