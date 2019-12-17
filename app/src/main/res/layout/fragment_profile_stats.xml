@@ -240,7 +240,7 @@
                         app:layout_constraintLeft_toLeftOf="@id/tvCountTotalEdits"
                         app:layout_constraintTop_toBottomOf="@id/tvCountTotalEdits"
                         android:padding="@dimen/padding_8dp"
-                        android:text="Total Edits" />
+                        android:text="@string/total_edits" />
 
                     <TextView
                         android:id="@+id/tvCountStudentEditors"
