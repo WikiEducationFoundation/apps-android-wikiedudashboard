@@ -15,36 +15,36 @@ This project is a part of [WikiEdu Dashboard]( https://github.com/WikiEducationF
 <tr>
 <td>
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/6.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/6.jpg)
 
 </td>
 <td>
 
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/4.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/4.jpg)
 
 </td>
 <td>
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/1.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/1.jpg)
 
 </td>
 </tr>
 <tr>
 <td>
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/3.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/3.jpg)
 
 </td>
 <td>
 
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/2.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/2.jpg)
 
 </td>
 <td>
 
-![login page](https://github.com/ujjwalagrawal17/apps-android-wikiedudashboard/blob/master/screenshots/5.jpeg)
+![login page](https://github.com/WikiEducationFoundation/apps-android-wikiedudashboard/blob/master/screenshots/5.jpg)
 
 </td>
 </tr>

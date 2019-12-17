@@ -44,7 +44,7 @@ class ProfileStatsFragment : Fragment() {
         arguments?.let {
             otherUser = it.getBoolean(ARG_PARAM3)
             username = it.getString(ARG_PARAM2)
-            profileResponse = it.getSerializable(ARG_PARAM1) as ProfileResponse
+            profileResponse = it.getSerializable(ARG_PARAM1) as? ProfileResponse
         }
     }
 
@@ -71,8 +71,10 @@ class ProfileStatsFragment : Fragment() {
             tvCountArticleViews.text = asStudentDetails.individualArticleViews
             tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
+
             clAsStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
+
         }
 
         profileResponse?.byStudents?.let {
@@ -88,6 +90,7 @@ class ProfileStatsFragment : Fragment() {
         } ?: run {
             clByStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
+
         }
     }
 
@@ -101,7 +104,7 @@ class ProfileStatsFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: ProfileResponse, param2: String?, param3: Boolean?) =
+        fun newInstance(param1: ProfileResponse?, param2: String?, param3: Boolean?) =
                 ProfileStatsFragment().apply {
                     arguments = Bundle().apply {
                         putSerializable(ARG_PARAM1, param1)
