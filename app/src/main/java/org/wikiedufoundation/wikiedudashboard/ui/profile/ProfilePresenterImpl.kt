@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile
 
+import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
@@ -20,7 +21,7 @@ class ProfilePresenterImpl(
     override fun requestProfileDetails(username: String) {
         view.showProgressBar(true)
         provider.requestProfileDetails(username, object : PresenterCallback<ProfileDetailsResponse> {
-            override fun onSuccess(profileDetailsResponse:Any?) {
+            override fun onSuccess(profileDetailsResponse: Any?) {
                 view.showProgressBar(false)
                 val response = profileDetailsResponse as? ProfileDetailsResponse
                 Timber.d(response.toString())
