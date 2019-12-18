@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider
 
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 /**
@@ -12,5 +13,5 @@ interface CourseUploadsProvider {
      * @param url api url
      * @param presenterCallback PresenterCallback variable
      * ***/
-    fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<*>)
+    fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<CourseUploadResponse>)
 }

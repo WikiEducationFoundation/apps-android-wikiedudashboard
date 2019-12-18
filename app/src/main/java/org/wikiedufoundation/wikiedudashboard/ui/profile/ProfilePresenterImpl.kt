@@ -21,11 +21,10 @@ class ProfilePresenterImpl(
     override fun requestProfileDetails(username: String) {
         view.showProgressBar(true)
         provider.requestProfileDetails(username, object : PresenterCallback<ProfileDetailsResponse> {
-            override fun onSuccess(profileDetailsResponse: Any?) {
+            override fun onSuccess(profileDetailsResponse: ProfileDetailsResponse?) {
                 view.showProgressBar(false)
-                val response = profileDetailsResponse as? ProfileDetailsResponse
-                Timber.d(response.toString())
-                view.setProfileData(response)
+                Timber.d(profileDetailsResponse.toString())
+                view.setProfileData(profileDetailsResponse)
 
             }
 
@@ -39,12 +38,10 @@ class ProfilePresenterImpl(
     override fun requestProfile(cookies: String, username: String) {
         view.showProgressBar(true)
         provider.requestProfile(cookies, username, object : PresenterCallback<ProfileResponse> {
-            override fun onSuccess(profileResponse: Any?) {
+            override fun onSuccess(profileResponse: ProfileResponse?) {
                 view.showProgressBar(false)
-
-                val response = profileResponse as? ProfileResponse
-                Timber.d(response.toString())
-                view.setData(response)
+                Timber.d(profileResponse.toString())
+                view.setData(profileResponse)
 
             }
 

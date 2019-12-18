@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider
 
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 /**
@@ -12,5 +13,5 @@ interface ArticlesEditedProvider {
      * @param url Request api url
      * @param presenterCallback
      * ***/
-    fun requestArticlesEdited(url: String, presenterCallback: PresenterCallback<*>)
+    fun requestArticlesEdited(url: String, presenterCallback: PresenterCallback<ArticlesEdited>)
 }

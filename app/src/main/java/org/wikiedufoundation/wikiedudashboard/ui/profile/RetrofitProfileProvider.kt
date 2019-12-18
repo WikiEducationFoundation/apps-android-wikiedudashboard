@@ -19,7 +19,7 @@ class RetrofitProfileProvider(
 ) : ProfileContract.Provider {
 //     = ProviderUtils.apiObject
 
-    override fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<ProfileResponse>) {
         val articlesEditedResponseCall = wikiEduDashboardApi.getProfileResponse(cookies, username)
         articlesEditedResponseCall.enqueue(object : Callback<ProfileResponse> {
             override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
@@ -35,7 +35,7 @@ class RetrofitProfileProvider(
         })
     }
 
-    override fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<ProfileDetailsResponse>) {
         val url = Urls.BASE_URL + "users/" + username + "?format=json"
         val profileDetailsResponseCall = wikiEduDashboardApi.getProfileDetailsResponse(url)
         profileDetailsResponseCall.enqueue(object : Callback<ProfileDetailsResponse> {

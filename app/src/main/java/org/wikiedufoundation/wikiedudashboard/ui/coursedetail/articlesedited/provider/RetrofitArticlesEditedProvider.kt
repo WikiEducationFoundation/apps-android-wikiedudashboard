@@ -16,7 +16,7 @@ class RetrofitArticlesEditedProvider(
 ) : ArticlesEditedProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestArticlesEdited(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestArticlesEdited(url: String, presenterCallback: PresenterCallback<ArticlesEdited>) {
         val subUrl = "courses/$url/articles.json"
         val articlesEditedResponseCall = wikiEduDashboardApi.getArticlesEdited(subUrl)
         articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
