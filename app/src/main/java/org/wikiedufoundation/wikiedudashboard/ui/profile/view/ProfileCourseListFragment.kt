@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_explore_course_list.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyclerAdapter
@@ -27,42 +25,28 @@ import timber.log.Timber
  */
 class ProfileCourseListFragment : Fragment() {
 
-    private var mParam1: String? = null
     private var coursesList: List<CourseData> = ArrayList()
 
-    private lateinit var tvNoCurse: TextView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
     private lateinit var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            coursesList = (it.getSerializable(ARG_PARAM1) as ProfileResponse).courses ?: emptyList()
+            coursesList = (it.getSerializable(ARG_PARAM1) as? ProfileResponse)?.courses ?: emptyList()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
-        progressBar = view.findViewById(R.id.progressBar)
-        tvNoCurse = view.findViewById(R.id.tv_no_courses)
-        recyclerView = view.findViewById(R.id.rv_course_list)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
-        val sharedPrefs: SharedPrefs? = context?.let { SharedPrefs(it) }
-
-        tvNoCurse.text = sharedPrefs?.cookies
-
-        tvNoCurse.text = sharedPrefs?.cookies
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
             openCourseDetail(it)
         }
 
-        recyclerView.apply {
+        recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseListRecyclerAdapter
@@ -70,7 +54,6 @@ class ProfileCourseListFragment : Fragment() {
 
         setData(coursesList)
         showProgressBar(false)
-        return view
     }
 
     /**
@@ -80,13 +63,13 @@ class ProfileCourseListFragment : Fragment() {
     fun setData(courses: List<CourseData>) {
         Timber.d(courses.toString())
         if (courses.isNotEmpty()) {
-            recyclerView.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.VISIBLE
             courseListRecyclerAdapter.setData(courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
-            tvNoCurse.visibility = View.GONE
+            textViewNoCourses?.visibility = View.GONE
         } else {
-            recyclerView.visibility = View.GONE
-            tvNoCurse.visibility = View.VISIBLE
+            recyclerCourseList?.visibility = View.GONE
+            textViewNoCourses?.visibility = View.VISIBLE
         }
     }
 
@@ -96,10 +79,10 @@ class ProfileCourseListFragment : Fragment() {
      * @param show boolean value to determine the visibility of the progress bar
      * ***/
     fun showProgressBar(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
+        progressBar?.visibility = if (show) {
+            View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            View.GONE
         }
     }
 
@@ -132,7 +115,7 @@ class ProfileCourseListFragment : Fragment() {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: ProfileResponse): ProfileCourseListFragment {
+        fun newInstance(param1: ProfileResponse?): ProfileCourseListFragment {
             val fragment = ProfileCourseListFragment()
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, param1)

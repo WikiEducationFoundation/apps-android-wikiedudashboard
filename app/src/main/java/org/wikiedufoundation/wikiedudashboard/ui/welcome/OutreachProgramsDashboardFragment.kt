@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.koin.android.ext.android.inject
@@ -35,11 +32,6 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private lateinit var clOutreach : ConstraintLayout
-    private lateinit var cvSignUpWikipedia: Button
-    private lateinit var cvLoginWikipedia: Button
-    private lateinit var webView: WebView
-    private lateinit var progressBar: ProgressBar
 
     private var cookies: String? = null
 
@@ -59,21 +51,14 @@ class OutreachProgramsDashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
-        cvSignUpWikipedia = view.findViewById(R.id.cv_signup_wikipedia)
-        cvSignUpWikipedia = view.findViewById(R.id.cv_login_wikipedia)
-        cvLoginWikipedia = view.findViewById(R.id.cv_login_wikipedia)
-        webView = view.findViewById(R.id.webView)
-
-        clOutreach = view.findViewById(R.id.cl_outreach)
-
-        progressBar = view.findViewById(R.id.progressBar)
-
-        setWebView()
-        setOnClickListeners()
-        return view
+    return inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setWebView()
+        setOnClickListeners()
+    }
     private fun setWebView() {
         /** Enable JavaScript execution to display all web page content.
          *  This enables users logging in for the first time to complete
@@ -84,7 +69,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 progressBar.visibility = View.VISIBLE
-                cl_outreach?.visibility = View.GONE
+                clOutreach?.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
                 progressBar.visibility = View.VISIBLE
             }
@@ -95,7 +80,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
                     proceedToLogin(url)
                 } else {
                     webView.visibility = View.VISIBLE
-                    cl_outreach?.visibility = View.GONE
+                    clOutreach?.visibility = View.GONE
                     super.onPageFinished(view, url)
                     webView.visibility = View.VISIBLE
                 }

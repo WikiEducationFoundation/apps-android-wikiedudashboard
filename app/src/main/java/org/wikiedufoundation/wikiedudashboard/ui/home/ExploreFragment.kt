@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.android.synthetic.main.fragment_explore.view.*
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.view.CampaignListFragment
@@ -25,7 +26,6 @@ import timber.log.Timber
  */
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
-    private lateinit var toolbar: Toolbar
     private lateinit var campaignListFragment: CampaignListFragment
     private lateinit var courseListFragment: CourseListFragment
 
@@ -50,9 +50,8 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         val viewPager = view.viewPager
         val tabLayout = view.tabLayout
-        toolbar = view.toolbar
-        toolbar.inflateMenu(R.menu.menu_explore)
-        toolbar.setOnMenuItemClickListener(this)
+        toolbar?.inflateMenu(R.menu.menu_explore)
+        toolbar?.setOnMenuItemClickListener(this)
 
         setTabs(tabLayout, viewPager)
         return view

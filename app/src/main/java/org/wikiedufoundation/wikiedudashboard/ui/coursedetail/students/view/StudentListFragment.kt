@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_explore_students.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -31,35 +29,30 @@ class StudentListFragment : Fragment(), StudentListView {
         parametersOf(this, retrofitStudentListProvider)
     }
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var tvNoStudents: TextView
-
     private lateinit var url: String
     private lateinit var studentListRecyclerAdapter: StudentListRecyclerAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_explore_students, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_explore_students, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         url = arguments?.getString("url", null).toString()
-        recyclerView = view.findViewById(R.id.rv_students_list)
-        progressBar = view.findViewById(R.id.progressBar)
-        tvNoStudents = view.findViewById(R.id.tv_no_students)
 
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
 
-        recyclerView.apply {
+        recyclerStudentList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = studentListRecyclerAdapter
         }
 
         url.let { studentListPresenter.requestStudentList(it) }
-
-        return view
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
@@ -76,8 +69,8 @@ class StudentListFragment : Fragment(), StudentListView {
             studentListRecyclerAdapter.setData(data.course.users)
             studentListRecyclerAdapter.notifyDataSetChanged()
         } else {
-            recyclerView.visibility = View.GONE
-            tvNoStudents.visibility = View.VISIBLE
+            recyclerStudentList?.visibility = View.GONE
+            textViewNoStudents?.visibility = View.VISIBLE
         }
     }
 

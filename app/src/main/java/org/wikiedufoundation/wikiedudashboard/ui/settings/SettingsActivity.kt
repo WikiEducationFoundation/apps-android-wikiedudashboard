@@ -4,14 +4,15 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
-import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+import org.wikiedufoundation.wikiedudashboard.BuildConfig
+import org.wikiedufoundation.wikiedudashboard.R
+
 
 /**
  * Activity for user settings of the profile part
@@ -20,35 +21,18 @@ class SettingsActivity : AppCompatActivity() {
 
     private val sharedPrefs: SharedPrefs by inject()
 
-    private lateinit var toolbar: Toolbar
-    private lateinit var tvFeedback: TextView
-    private lateinit var tvShareApp: TextView
-    private lateinit var tvLicenses: TextView
-    private lateinit var tvPrivacyPolicy: TextView
-    private lateinit var tvTermsAndConditions: TextView
-    private lateinit var tvLogout: TextView
-    private lateinit var tvVersionCode: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        toolbar = findViewById(R.id.toolbar)
-        tvFeedback = findViewById(R.id.tv_feedback)
-        tvShareApp = findViewById(R.id.tv_share_app)
-        tvLicenses = findViewById(R.id.tv_licenses)
-        tvPrivacyPolicy = findViewById(R.id.tv_privacy_policy)
-        tvTermsAndConditions = findViewById(R.id.tv_terms_and_conditions)
-        tvLogout = findViewById(R.id.tv_logout)
-        tvVersionCode = findViewById(R.id.tv_version_code)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        tvFeedback.setOnClickListener { sendEmailFeedback() }
-        tvShareApp.setOnClickListener { shareApp() }
-        tvLicenses.setOnClickListener { openLicenses() }
-        tvPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
-        tvTermsAndConditions.setOnClickListener { openTermsAndConditions() }
-        tvLogout.setOnClickListener { logOut() }
-        tvVersionCode.text = "1.001"
+        textViewFeedback.setOnClickListener { sendEmailFeedback() }
+        textViewShareApp.setOnClickListener { shareApp() }
+        textViewLicenses.setOnClickListener { openLicenses() }
+        textViewPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
+        textViewTermsAndConditions.setOnClickListener { openTermsAndConditions() }
+        textViewLogout.setOnClickListener { logOut() }
+        textViewVersionCode.text = BuildConfig.VERSION_NAME
 
     }
 

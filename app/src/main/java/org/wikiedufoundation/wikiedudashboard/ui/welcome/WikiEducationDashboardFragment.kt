@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintLayout
+import kotlinx.android.synthetic.main.fragment_wiki_edu_dashboard.*
 import androidx.fragment.app.Fragment
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
@@ -34,12 +32,8 @@ class WikiEducationDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private lateinit var cv_signup_wikipedia: AppCompatButton
-    private lateinit var cv_login_wikipedia: AppCompatButton
-    private lateinit var webView: WebView
-    private lateinit var progressBar: ProgressBar
     private lateinit var cookies: String
-    private lateinit var clWiki : ConstraintLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,19 +49,16 @@ class WikiEducationDashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_wiki_edu_dashboard, container, false)
-        cv_signup_wikipedia = view.findViewById(R.id.cv_signup_wikipedia)
-        cv_login_wikipedia = view.findViewById(R.id.cv_login_wikipedia)
-        webView = view.findViewById(R.id.webView)
-        clWiki = view.findViewById(R.id.cl_wiki)
-        progressBar = view.findViewById(R.id.progressBar)
 
-        setWebView()
-        setOnClickListeners()
-        return view
+        return inflater.inflate(R.layout.fragment_wiki_edu_dashboard, container, false)
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setWebView()
+        setOnClickListeners()
+    }
     private fun setWebView() { 
       /** Enable JavaScript execution to display all web page content.
      *  This enables users logging in for the first time to complete
@@ -111,12 +102,12 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        cv_login_wikipedia.setOnClickListener {
+        cvLoginWikipedia.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki"
             progressBar.visibility = View.VISIBLE
             webView.loadUrl(url)
         }
-        cv_signup_wikipedia.setOnClickListener {
+        cvSignUpWikipedia.setOnClickListener {
             val url = "https://dashboard.wikiedu.org/users/auth/mediawiki_signup"
             progressBar.visibility = View.VISIBLE
             webView.loadUrl(url)

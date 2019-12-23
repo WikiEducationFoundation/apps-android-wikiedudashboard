@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -40,11 +38,6 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     private var mParam1: String? = null
     private var mParam2: String? = null
-//    private var sharedPrefs: SharedPrefs? = null
-
-    private lateinit var tvNoCampaigns: TextView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
 
     private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
 
@@ -64,43 +57,41 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_campaign_list, container, false)
-        recyclerView = view.findViewById(R.id.rv_campaign_list)
-        progressBar = view.findViewById(R.id.progressBar)
-        tvNoCampaigns = view.findViewById(R.id.tv_no_campaigns)
+        return inflater.inflate(R.layout.fragment_campaign_list, container, false)
+    }
 
-//        sharedPrefs = context?.let { SharedPrefs(it) }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
-//                        openCourseDetail(it)
+            //                        openCourseDetail(it)
         }
 
-        recyclerView.apply {
+        recyclerCampaignList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = campaignListRecyclerAdapter
         }
 
         sharedPrefs.cookies?.let { campaignListPresenter.requestCampaignList(it) }
-        return view
     }
 
     override fun setData(data: ExploreCampaignsResponse) {
         Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
             campaignList = data.campaigns
-            recyclerView.visibility = View.VISIBLE
+            recyclerCampaignList?.visibility = View.VISIBLE
             campaignListRecyclerAdapter.setData(data.campaigns)
             campaignListRecyclerAdapter.notifyDataSetChanged()
-            tvNoCampaigns.visibility = View.GONE
+            textViewNoCampaigns?.visibility = View.GONE
         } else {
-            recyclerView.visibility = View.GONE
-            tvNoCampaigns.visibility = View.VISIBLE
+            recyclerCampaignList?.visibility = View.GONE
+            textViewNoCampaigns?.visibility = View.VISIBLE
         }
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) {
+        progressBar?.visibility = if (show) {
             View.VISIBLE
         } else {
             View.GONE
