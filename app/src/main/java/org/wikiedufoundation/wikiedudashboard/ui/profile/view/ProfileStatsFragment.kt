@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +43,7 @@ class ProfileStatsFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
@@ -57,7 +56,7 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text = "Total impact made by $username's students"
+            val text : String = context?.getString(R.string.total_impact_made_by_student) + username
             tvTitleImpactByStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
@@ -67,23 +66,26 @@ class ProfileStatsFragment : Fragment() {
             tvCountArticleViews.text = asStudentDetails.individualArticleViews
             tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            llAsStudent?.visibility = GONE
-            llNotEnrolled?.visibility = VISIBLE
+
+            clAsStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
+
         }
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text : String = "Total impact made by " + username +"as a student"
-            tvTitleImpactByStudent.text = text
-            tvinstructorCountWordsAdded.text = byStudentDetails.wordCount
+            val text : String = context?.getString(R.string.total_impact_made_as_student) + username
+            tvTitleImpactAsStudent.text = text
+            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
             tvInstructorCountArticleViews.text = byStudentDetails.viewSum
             tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
             tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
             tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-            llByStudent?.visibility = GONE
-            llNotEnrolled?.visibility = VISIBLE
+            clByStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
+
         }
     }
 
