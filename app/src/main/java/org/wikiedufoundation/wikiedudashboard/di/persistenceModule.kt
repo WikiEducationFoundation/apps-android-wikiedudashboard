@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
+import androidx.room.Room
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 

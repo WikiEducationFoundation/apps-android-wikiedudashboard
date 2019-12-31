@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
+import org.wikiedufoundation.wikiedudashboard.data.localDatabse.Repository.ActiveCampaignRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.RetrofitArticlesEditedProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
@@ -21,6 +22,11 @@ val provideModule = module {
      * Singleton for [RetrofitCampaignListProvider]
      **/
     single { RetrofitCampaignListProvider(get()) }
+
+    /**
+     * Singleton for [ActiveCampaignRepository]
+     **/
+    single { ActiveCampaignRepository(get()) }
 
     /**
      * Singleton for [RetrofitCourseListProvider]

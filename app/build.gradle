@@ -105,13 +105,15 @@ dependencies {
     implementation Deps.koinScopeVersion
 
     // Room Dependencies
-    api 'androidx.room:room-runtime:2.1.0'
-    kapt 'androidx.room:room-compiler:2.1.0'
+    api Deps.roomRuntime
+    kapt Deps.roomCompiler
+    implementation Deps.room
 
     // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle"
-    kapt "androidx.lifecycle:lifecycle-compiler:$version_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
+    implementation Deps.lifecycleExtension
+    kapt Deps.lifecycleCompiler
+    implementation Deps.lifecycleViewModel
+    implementation Deps.lifecycleLivedata
+    implementation Deps.lifecycleRuntime
+
 }

@@ -55,7 +55,8 @@ object Versions {
     val fragmentVersion = annotationVersion
     val navigationVersion = "2.1.0"
     val koinVersion = "2.1.0-alpha-1"
-
+    val lifecycleVersion = "2.2.0-alpha05"
+    val roomVersion = "2.1.0-rc01"
 }
 
 /**
@@ -124,4 +125,17 @@ object Deps {
     val koinCoreVersion = "org.koin:koin-core:${Versions.koinVersion}"
     // Koin AndroidX Scope features
     val koinScopeVersion = "org.koin:koin-androidx-scope:${Versions.koinVersion}"
+
+    // Room Dependencies
+    val roomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
+    val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
+    val room =  "androidx.room:room-ktx:${Versions.roomVersion}"
+
+
+    // Lifecycle components
+    val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycleVersion}"
+    val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
+    val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
 }
