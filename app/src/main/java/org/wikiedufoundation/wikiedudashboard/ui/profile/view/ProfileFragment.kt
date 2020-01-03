@@ -108,7 +108,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
     @Suppress("UselessCallOnNotNull")
     override fun setProfileData(data: ProfileDetailsResponse?) {
-        llProfileParent.visibility = View.VISIBLE
+
         val profilePicUrl = Urls.BASE_URL + data?.userProfile?.profileImage
         Timber.d(profilePicUrl)
             Glide.with(requireContext()).load(profilePicUrl)
@@ -117,13 +117,13 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
 
         tvProfileUsername.text = mParam1
 
-        llProfileEmail.visibility = View.INVISIBLE
+
 
         data?.userProfile?.bio.let { tvProfileDescription.text = it }
         tvProfileDescription.text = data?.userProfile?.bio
         tvProfileLocation.text = data?.userProfile?.location
 
-        llProfileInstitute.visibility = View.INVISIBLE
+
     }
 
     override fun setData(data: ProfileResponse?) {
