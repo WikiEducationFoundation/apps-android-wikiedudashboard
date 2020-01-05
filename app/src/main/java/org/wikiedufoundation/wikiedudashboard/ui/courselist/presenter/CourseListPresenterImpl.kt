@@ -20,10 +20,9 @@ class CourseListPresenterImpl(
 
     override fun requestDashboard(cookies: String) {
         courseListView.showProgressBar(true)
-        courseListProvider.requestCourseList(cookies, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        courseListProvider.requestCourseList(cookies, object : PresenterCallback<ExploreCoursesResponse> {
+            override fun onSuccess(exploreCoursesResponse : ExploreCoursesResponse) {
                 courseListView.showProgressBar(false)
-                val exploreCoursesResponse = o as ExploreCoursesResponse
                 Timber.d(exploreCoursesResponse.toString())
                 courseListView.setData(exploreCoursesResponse)
             }
@@ -31,6 +30,9 @@ class CourseListPresenterImpl(
             override fun onFailure() {
                 courseListView.showProgressBar(false)
                 courseListView.showMessage("Unable to connect to server.")
+
+                val unknownExploreCoursesResponse = ExploreCoursesResponse(ArrayList())
+                courseListView.setData(unknownExploreCoursesResponse)
             }
         })
     }

@@ -80,13 +80,13 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         Timber.d(data.toString())
         if (data.campaigns.isNotEmpty()) {
             campaignList = data.campaigns
-            recyclerCampaignList.visibility = View.VISIBLE
+            recyclerCampaignList?.visibility = View.VISIBLE
             campaignListRecyclerAdapter.setData(data.campaigns)
             campaignListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCampaigns.visibility = View.GONE
+            textViewNoCampaigns?.visibility = View.GONE
         } else {
-            recyclerCampaignList.visibility = View.GONE
-            textViewNoCampaigns.visibility = View.VISIBLE
+            recyclerCampaignList?.visibility = View.GONE
+            textViewNoCampaigns?.visibility = View.VISIBLE
         }
     }
 

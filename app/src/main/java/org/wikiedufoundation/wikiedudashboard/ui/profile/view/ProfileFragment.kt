@@ -6,17 +6,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_training.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
@@ -47,23 +42,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private var mParam1: String? = null
     private var mParam2: Boolean? = null
 
-    private lateinit var toolbar: Toolbar
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
-    private lateinit var progressBar: ProgressBar
-
-    private lateinit var ivProfilePic: ImageView
-    private lateinit var tvUsername: TextView
-    private lateinit var tvDescription: TextView
-    private lateinit var tvEmail: TextView
-    private lateinit var tvLocation: TextView
-    private lateinit var tvInstitute: TextView
-
-    private lateinit var llEmail: LinearLayout
-    private lateinit var llLocation: LinearLayout
-    private lateinit var llInstitute: LinearLayout
-    private lateinit var llProfileParent: LinearLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -74,25 +52,14 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_training, container, false)
-        toolbar = view.findViewById(R.id.toolbar)
-        tabLayout = view.findViewById(R.id.tabLayout)
-        viewPager = view.findViewById(R.id.viewPager)
-        progressBar = view.findViewById(R.id.progressBar)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fragment_training, container, false)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         toolbar.inflateMenu(R.menu.menu_profile)
         toolbar.setOnMenuItemClickListener(this)
-
-        ivProfilePic = view.findViewById(R.id.iv_profile_pic)
-        tvUsername = view.findViewById(R.id.tv_profile_username)
-        tvDescription = view.findViewById(R.id.tv_profile_description)
-        tvEmail = view.findViewById(R.id.tv_profile_email)
-        tvLocation = view.findViewById(R.id.tv_profile_location)
-        tvInstitute = view.findViewById(R.id.tv_profile_institute)
-        llEmail = view.findViewById(R.id.ll_profile_email)
-        llLocation = view.findViewById(R.id.ll_profile_location)
-        llInstitute= view.findViewById(R.id.ll_profile_institute)
-        llProfileParent = view.findViewById(R.id.ll_profile_parent)
         tabLayout.setupWithViewPager(viewPager)
 
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
@@ -115,8 +82,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
                 activity?.onBackPressed()
             }
         }
-
-        return view
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -126,8 +91,8 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
 
-    private fun setTabs(data: ProfileResponse) {
-        val courseUploadList = data.uploads?.let { CourseUploadList(it) }
+    private fun setTabs(data: ProfileResponse?) {
+        val courseUploadList = data?.uploads?.let { CourseUploadList(it) }
 
         val fragmentList = listOf(ProfileStatsFragment.newInstance(data, mParam1, mParam2),
                 ProfileCourseListFragment.newInstance(data),
@@ -142,32 +107,35 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     }
 
     @Suppress("UselessCallOnNotNull")
-    override fun setProfileData(data: ProfileDetailsResponse) {
+    override fun setProfileData(data: ProfileDetailsResponse?) {
         llProfileParent.visibility = View.VISIBLE
-        val profilePicUrl = Urls.BASE_URL + data.userProfile?.profileImage
+        val profilePicUrl = Urls.BASE_URL + data?.userProfile?.profileImage
         Timber.d(profilePicUrl)
-        if (data.userProfile?.profileImage.isNullOrEmpty()) {
-            ivProfilePic.setImageDrawable(context?.let { ContextCompat.getDrawable(it, R.drawable.ic_account_circle_white_48dp) })
-        } else {
-            Glide.with(context).load(profilePicUrl).apply(RequestOptions().circleCrop()).into(ivProfilePic)
-        }
-        tvUsername.text = mParam1
+            Glide.with(requireContext()).load(profilePicUrl)
+                    .apply(RequestOptions().placeholder(R.drawable.ic_account_circle_white_48dp)
+                            .circleCrop()).into(ivProfilePic)
 
-        llEmail.visibility = View.INVISIBLE
+        tvProfileUsername.text = mParam1
 
-        data.userProfile?.bio.let { tvDescription.text = it }
-        tvDescription.text = data.userProfile?.bio
-        tvLocation.text = data.userProfile?.location
+        llProfileEmail.visibility = View.INVISIBLE
 
-        llInstitute.visibility = View.INVISIBLE
+        data?.userProfile?.bio.let { tvProfileDescription.text = it }
+        tvProfileDescription.text = data?.userProfile?.bio
+        tvProfileLocation.text = data?.userProfile?.location
+
+        llProfileInstitute.visibility = View.INVISIBLE
     }
 
-    override fun setData(data: ProfileResponse) {
+    override fun setData(data: ProfileResponse?) {
         setTabs(data)
     }
 
     override fun showProgressBar(show: Boolean) {
-        progressBar.visibility = if (show) { View.VISIBLE } else { View.GONE }
+        progressBar.visibility = if (show) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     override fun showMessage(message: String) {

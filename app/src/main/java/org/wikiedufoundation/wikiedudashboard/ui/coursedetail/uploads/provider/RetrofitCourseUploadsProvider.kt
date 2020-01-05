@@ -16,7 +16,7 @@ class RetrofitCourseUploadsProvider(
 ) : CourseUploadsProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<CourseUploadResponse>) {
         val subUrl = "courses/$url/uploads.json"
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseUploads(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseUploadResponse> {

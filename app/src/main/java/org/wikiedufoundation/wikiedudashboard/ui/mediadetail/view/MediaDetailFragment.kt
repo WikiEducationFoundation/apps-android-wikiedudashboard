@@ -247,25 +247,25 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         // Categories
         val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
         if (categories.isNotEmpty()) {
-            recyclerCategoryList.visibility = View.VISIBLE
+            recyclerCategoryList?.visibility = View.VISIBLE
             categoryListRecyclerAdapter.setData(categories)
             categoryListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCategories.visibility = View.GONE
+            textViewNoCategories?.visibility = View.GONE
         } else {
-            recyclerCategoryList.visibility = View.GONE
-            textViewNoCategories.visibility = View.VISIBLE
+            recyclerCategoryList?.visibility = View.GONE
+            textViewNoCategories?.visibility = View.VISIBLE
         }
 
         // File Uses
         val fileUses = data.query.page[data.query.page.keys.first()]?.globalUsage
         if (categories.isNotEmpty()) {
-            recyclerFileUsesList.visibility = View.VISIBLE
+            recyclerFileUsesList?.visibility = View.VISIBLE
             fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
             fileUsesRecyclerAdapter.notifyDataSetChanged()
-            textViewNoUses.visibility = View.GONE
+            textViewNoUses?.visibility = View.GONE
         } else {
-            recyclerFileUsesList.visibility = View.GONE
-            textViewNoUses.visibility = View.VISIBLE
+            recyclerFileUsesList?.visibility = View.GONE
+            textViewNoUses?.visibility = View.VISIBLE
         }
     }
 

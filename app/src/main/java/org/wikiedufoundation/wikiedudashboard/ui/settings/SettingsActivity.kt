@@ -7,10 +7,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
-import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
+import org.wikiedufoundation.wikiedudashboard.BuildConfig
+import org.wikiedufoundation.wikiedudashboard.R
+
 
 /**
  * Activity for user settings of the profile part
@@ -30,7 +32,7 @@ class SettingsActivity : AppCompatActivity() {
         textViewPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
         textViewTermsAndConditions.setOnClickListener { openTermsAndConditions() }
         textViewLogout.setOnClickListener { logOut() }
-        textViewVersionCode.text = "1.001"
+        textViewVersionCode.text = BuildConfig.VERSION_NAME
 
     }
 

@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             } else {
-                startActivity(Intent(this, WelcomeActivity::class.java))
+                startActivity(Intent(this, WelcomeHostActivity::class.java))
                 finish()
             }
         }, 1000)

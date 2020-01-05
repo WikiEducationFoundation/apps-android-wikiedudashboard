@@ -19,10 +19,9 @@ class ArticlesEditedPresenterImpl(
 
     override fun requestArticlesEdited(url: String) {
         articlesEditedView.showProgressBar(true)
-        articlesEditedProvider.requestArticlesEdited(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        articlesEditedProvider.requestArticlesEdited(url, object : PresenterCallback<ArticlesEdited> {
+            override fun onSuccess(articlesEditedResponse: ArticlesEdited) {
                 articlesEditedView.showProgressBar(false)
-                val articlesEditedResponse = o as ArticlesEdited
                 Timber.d(articlesEditedResponse.toString())
                 articlesEditedView.setData(articlesEditedResponse)
             }

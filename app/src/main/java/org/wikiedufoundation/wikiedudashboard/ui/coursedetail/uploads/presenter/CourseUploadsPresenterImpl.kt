@@ -19,10 +19,10 @@ class CourseUploadsPresenterImpl(
 
     override fun requestCourseUploads(url: String) {
         courseUploadsView.showProgressBar(true)
-        courseUploadsProvider.requestCourseUploads(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        courseUploadsProvider.requestCourseUploads(url, object : PresenterCallback<CourseUploadResponse> {
+            override fun onSuccess(courseUploadResponse: CourseUploadResponse) {
                 courseUploadsView.showProgressBar(false)
-                courseUploadsView.setData((o as CourseUploadResponse).course)
+                courseUploadsView.setData((courseUploadResponse).course)
             }
 
             override fun onFailure() {
