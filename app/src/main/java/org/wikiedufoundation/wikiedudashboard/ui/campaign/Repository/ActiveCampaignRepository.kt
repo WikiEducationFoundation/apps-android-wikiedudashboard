@@ -46,9 +46,9 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                         activeCampaignDao.insertCampaign(campaignList)
 
                 } catch (e: Exception) {
-                    Timber.e(e)
+                    Timber.e(this.toString() + e)
                 } catch (e: Throwable) {
-                    Timber.e(e)
+                    Timber.e(this.toString() + e)
                 }
             }
         }
