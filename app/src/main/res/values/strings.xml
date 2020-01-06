@@ -87,7 +87,5 @@
     <string name="license_link">License link</string>
     <string name="total_impact_made_by_student">Total impact made by %1$!\'s students</string>
     <string name="total_impact_made_as_student">Total impact made by %1$!\ as a student</string>
-    <string name="search_campaign">Search Campaign</string>
-    <string name="search_course">Search Course</string>
 
 </resources>

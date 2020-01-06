@@ -43,8 +43,6 @@ class CourseListFragment : Fragment(), CourseListView {
 
     private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
-    private var searchCourse: SearchView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -57,11 +55,7 @@ class CourseListFragment : Fragment(), CourseListView {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
-        searchCourse = view.findViewById(R.id.searchCourse)
-        return view
-    }
+    ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
@@ -85,28 +79,10 @@ class CourseListFragment : Fragment(), CourseListView {
             courseListRecyclerAdapter.setData(data.courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
             textViewNoCourses?.visibility = View.GONE
-            searchCourse()
         } else {
             recyclerCourseList?.visibility = View.GONE
             textViewNoCourses?.visibility = View.VISIBLE
         }
-    }
-
-    private fun searchCourse(): Boolean {
-        searchCourse?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                Timber.d(query)
-                updateSearchQuery(query)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                Timber.d(newText)
-                updateSearchQuery(newText)
-                return false
-            }
-        })
-        return true
     }
 
     override fun showProgressBar(show: Boolean) {
