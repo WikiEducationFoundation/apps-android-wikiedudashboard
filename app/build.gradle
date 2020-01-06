@@ -94,6 +94,7 @@ dependencies {
     //Material design
     implementation Deps.materialVersion
     implementation Deps.fragmentVersion
+    implementation Deps.fragmentKTXVersion
     implementation Deps.fragmentNavigationVersion
     implementation Deps.navigationVersion
     // circular dots
@@ -115,5 +116,6 @@ dependencies {
     implementation Deps.lifecycleViewModel
     implementation Deps.lifecycleLivedata
     implementation Deps.lifecycleRuntime
+    implementation Deps.coroutineAdapter
 
 }
