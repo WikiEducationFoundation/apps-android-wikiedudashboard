@@ -10,10 +10,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository.ActiveCampa
 
 class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
 
-    /**
-     *   LiveData gives us updated campaign when they change.
-     */
-
     private  val _showMsg : MutableLiveData<String> = MutableLiveData()
     val showMsg : MutableLiveData<String> get() = _showMsg
 
@@ -45,7 +41,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
                 _progressbar.value = false
 
             }catch (e: Exception){
-                _showMsg.postValue("Unable to connect to server")
+                _showMsg.value = e.message
 
             }
         }

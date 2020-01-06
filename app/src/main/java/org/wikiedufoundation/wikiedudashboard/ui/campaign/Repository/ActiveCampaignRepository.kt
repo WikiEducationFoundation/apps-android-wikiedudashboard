@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
@@ -39,19 +40,14 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
 
                     val response = request
                     val mExploreCampaign = response.await()
-                    if (mExploreCampaign == null || mExploreCampaign.campaigns == null) {
-                    } else {
                         campaignList = mExploreCampaign.campaigns
                         campaignListLiveData.value=campaignList;
                         activeCampaignDao.insertCampaign(campaignList)
-                    }
 
                 } catch (e: Exception) {
-                    CampaignResponse(false, "An exception occured")
-
+                    e.printStackTrace()
                 } catch (e: Throwable) {
-                    CampaignResponse(false, "Something went wrong")
-//
+                    e.message
                 }
             }
         }
