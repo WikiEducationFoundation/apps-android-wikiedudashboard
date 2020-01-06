@@ -15,9 +15,10 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                                private val activeCampaignDao: ActiveCampaignDao){
 
     private var campaignList = mutableListOf<CampaignListData>()
-    private var mutableLiveData = MutableLiveData<List<CampaignListData>>()
+    private var campaignListLiveData = MutableLiveData<List<CampaignListData>>()
     val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
+
 
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
@@ -25,12 +26,12 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
     val allCampaignList : LiveData<List<CampaignListData>> = activeCampaignDao.getAllCampaign()
 
 
+
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
 
-
-   suspend fun getMutableLiveData(cookies: String): LiveData<List<CampaignListData>> {
+   suspend fun getCampaignListLiveData(cookies: String): LiveData<List<CampaignListData>> {
         coroutineScope.launch {
             val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
             withContext(Dispatchers.Main) {
@@ -41,7 +42,7 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                     if (mExploreCampaign == null || mExploreCampaign.campaigns == null) {
                     } else {
                         campaignList = mExploreCampaign.campaigns
-                        mutableLiveData.value=campaignList;
+                        campaignListLiveData.value=campaignList;
                         activeCampaignDao.insertCampaign(campaignList)
                     }
 
@@ -54,7 +55,7 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                 }
             }
         }
-        return mutableLiveData
+        return campaignListLiveData
     }
 }
 

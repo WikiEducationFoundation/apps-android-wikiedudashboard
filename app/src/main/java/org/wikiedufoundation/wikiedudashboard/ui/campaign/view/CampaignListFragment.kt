@@ -72,6 +72,9 @@ class CampaignListFragment : Fragment(){
     }
 
 
+    /**
+     *   This initializes the recyclerview
+     */
 
     fun initializeRecyclerView(){
         recyclerCampaignList?.apply {
@@ -81,6 +84,9 @@ class CampaignListFragment : Fragment(){
         }
     }
 
+    /**
+     *   This sets the data to be displayed on the recyclerview based on available data
+     */
     fun setData(){
         activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
             Timber.d( "hello",it.toString())
@@ -98,12 +104,18 @@ class CampaignListFragment : Fragment(){
         })
     }
 
+    /**
+     *   This shows the progressbar
+     */
     fun showProgressBar(){
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             if(it == true) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
         })
     }
 
+    /**
+     *   This shows the message
+     */
     fun showMessage(){
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             if (it != null) { context?.showToast(it)
@@ -111,6 +123,9 @@ class CampaignListFragment : Fragment(){
     }
 
 
+    /**
+     *   This performs search
+     */
     fun updateSearchQuery(query: String) {
         Timber.d(query)
 

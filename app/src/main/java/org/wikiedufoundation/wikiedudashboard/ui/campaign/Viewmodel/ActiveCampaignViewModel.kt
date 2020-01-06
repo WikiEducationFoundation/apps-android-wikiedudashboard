@@ -41,7 +41,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
         viewModelScope.launch {
             try{
                 _progressbar.value = true
-                activeCampaignRepository.getMutableLiveData(cookies)
+                activeCampaignRepository.getCampaignListLiveData(cookies)
                 _progressbar.value = false
 
             }catch (e: Exception){
@@ -52,6 +52,9 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
 
     }
 
+    /**
+     *   onCleared is called when the job is completed
+     */
     override fun onCleared() {
         activeCampaignRepository.completableJob.cancel()
         super.onCleared()
