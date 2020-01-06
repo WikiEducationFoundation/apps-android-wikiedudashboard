@@ -42,9 +42,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
                 _progressbar.value = false
 
             }catch (e: Exception){
-                _showMsg.value = e
-
-
+               Timber.e(e)
             }
         }
 
