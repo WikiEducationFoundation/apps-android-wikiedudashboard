@@ -118,8 +118,8 @@ class CampaignListFragment : Fragment(){
      */
     fun showMessage(){
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            if (it != null) { context?.showToast(it)
-            } })
+            it
+        })
     }
 
 

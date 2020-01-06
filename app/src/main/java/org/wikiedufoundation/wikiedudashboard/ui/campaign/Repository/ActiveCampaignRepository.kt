@@ -8,6 +8,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignResponse
+import timber.log.Timber
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
 *instead of the whole database, because you only need access to the DAO*
@@ -45,9 +46,9 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                         activeCampaignDao.insertCampaign(campaignList)
 
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    Timber.d(e)
                 } catch (e: Throwable) {
-                    e.message
+                    Timber.d(e)
                 }
             }
         }

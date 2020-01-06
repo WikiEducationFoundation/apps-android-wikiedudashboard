@@ -3,6 +3,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign.Viewmodel
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository.ActiveCampaignRepository
+import timber.log.Timber
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
@@ -10,8 +11,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository.ActiveCampa
 
 class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
 
-    private  val _showMsg : MutableLiveData<String> = MutableLiveData()
-    val showMsg : MutableLiveData<String> get() = _showMsg
+    private  val _showMsg : MutableLiveData<Throwable> = MutableLiveData()
+    val showMsg : MutableLiveData<Throwable> get() = _showMsg
 
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
@@ -41,7 +42,8 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
                 _progressbar.value = false
 
             }catch (e: Exception){
-                _showMsg.value = e.message
+                _showMsg.value = e
+
 
             }
         }
