@@ -1,13 +1,12 @@
-package org.wikiedufoundation.wikiedudashboard.data.localDatabse.Repository
+package org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.load.HttpException
 import kotlinx.coroutines.*
-import org.wikiedufoundation.wikiedudashboard.data.localDatabse.dao.ActiveCampaignDao
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.util.CampaignResponse
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignResponse
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
 *instead of the whole database, because you only need access to the DAO*
@@ -50,7 +49,7 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                     CampaignResponse(false, "An exception occured")
 
                 } catch (e: Throwable) {
-                     CampaignResponse(false, "Something went wrong")
+                    CampaignResponse(false, "Something went wrong")
 //
                 }
             }
