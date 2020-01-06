@@ -1,16 +1,8 @@
-package org.wikiedufoundation.wikiedudashboard.data.localDatabse.Viewmodel
+package org.wikiedufoundation.wikiedudashboard.ui.campaign.Viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import okhttp3.Cookie
-import org.wikiedufoundation.wikiedudashboard.data.localDatabse.Repository.ActiveCampaignRepository
-import org.wikiedufoundation.wikiedudashboard.data.localDatabse.WikiDatabase
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
-import org.wikiedufoundation.wikiedudashboard.util.CampaignResponse
-import timber.log.Timber
-import java.util.logging.Logger
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository.ActiveCampaignRepository
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
