@@ -1,8 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.ArticlesEditedProvider
@@ -37,12 +35,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfilePresenterImpl
  **/
 val presenterModule = module {
 
-    /**
-     * Factory for [CampaignListPresenterImpl] injecting the [CampaignListContract] and [CampaignListContract.Provider]
-     **/
-    factory<CampaignListContract.Presenter> { (view: CampaignListContract.View, provider: CampaignListContract.Provider) ->
-        CampaignListPresenterImpl(view, provider)
-    }
+
 
     /**
      * Factory for [CourseListPresenter] injecting the [CourseListView] and [CourseListProvider]
