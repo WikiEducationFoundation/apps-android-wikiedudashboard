@@ -8,14 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.Viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
@@ -28,12 +25,9 @@ import kotlin.collections.ArrayList
  * Use the [CampaignListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CampaignListFragment : Fragment(), CampaignListContract.View {
+class CampaignListFragment : Fragment(){
+    private val activeCampaignViewModel: ActiveCampaignViewModel by inject()
 
-    private val retrofitCampaignListProvider: RetrofitCampaignListProvider by inject()
-    private val campaignListPresenter: CampaignListContract.Presenter by inject {
-        parametersOf(this, retrofitCampaignListProvider)
-    }
     private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
@@ -49,6 +43,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             mParam1 = it.getString(ARG_PARAM1)
             mParam2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -67,40 +62,54 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             //                        openCourseDetail(it)
         }
 
+        initializeRecyclerView()
+
+        sharedPrefs.cookies?.let {(activeCampaignViewModel.fetchCampaignList(it)) }
+        setData()
+        showProgressBar()
+        showMessage()
+
+    }
+
+
+
+    fun initializeRecyclerView(){
         recyclerCampaignList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = campaignListRecyclerAdapter
         }
-
-        sharedPrefs.cookies?.let { campaignListPresenter.requestCampaignList(it) }
     }
 
-    override fun setData(data: ExploreCampaignsResponse) {
-        Timber.d(data.toString())
-        if (data.campaigns.isNotEmpty()) {
-            campaignList = data.campaigns
-            recyclerCampaignList?.visibility = View.VISIBLE
-            campaignListRecyclerAdapter.setData(data.campaigns)
-            campaignListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCampaigns?.visibility = View.GONE
-        } else {
-            recyclerCampaignList?.visibility = View.GONE
-            textViewNoCampaigns?.visibility = View.VISIBLE
-        }
+    fun setData(){
+        activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
+            Timber.d( "hello",it.toString())
+            if (it.isNotEmpty()) {
+                recyclerCampaignList?.visibility = View.VISIBLE
+                campaignListRecyclerAdapter.setData(it)
+                campaignListRecyclerAdapter.notifyDataSetChanged()
+                textViewNoCampaigns?.visibility = View.GONE
+
+            } else {
+                recyclerCampaignList?.visibility = View.GONE
+                textViewNoCampaigns?.visibility = View.VISIBLE
+            }
+
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    fun showProgressBar(){
+        activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            if(it == true) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    fun showMessage(){
+        activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            if (it != null) { context?.showToast(it)
+            } })
     }
+
 
     fun updateSearchQuery(query: String) {
         Timber.d(query)
@@ -112,6 +121,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
         campaignListRecyclerAdapter.setData(campaignQueryFilter)
     }
+
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
