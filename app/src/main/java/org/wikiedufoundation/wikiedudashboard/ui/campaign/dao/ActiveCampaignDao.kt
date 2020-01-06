@@ -1,14 +1,11 @@
-package org.wikiedufoundation.wikiedudashboard.data.localDatabse.dao
+package org.wikiedufoundation.wikiedudashboard.ui.campaign.dao
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
-import retrofit2.Call
 
 /**
  * This creates an interface for
