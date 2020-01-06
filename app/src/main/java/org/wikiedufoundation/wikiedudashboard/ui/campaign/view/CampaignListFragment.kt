@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
@@ -43,6 +44,8 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
 
     private var campaignList: List<CampaignListData> = ArrayList()
 
+    private var searchCampaign: SearchView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -57,7 +60,9 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_campaign_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_campaign_list, container, false)
+        searchCampaign = view.findViewById(R.id.searchCampaign)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,10 +89,28 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
             campaignListRecyclerAdapter.setData(data.campaigns)
             campaignListRecyclerAdapter.notifyDataSetChanged()
             textViewNoCampaigns?.visibility = View.GONE
+            searchCampaign()
         } else {
             recyclerCampaignList?.visibility = View.GONE
             textViewNoCampaigns?.visibility = View.VISIBLE
         }
+    }
+
+    fun searchCampaign(): Boolean {
+        searchCampaign?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Timber.d(query)
+                updateSearchQuery(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                Timber.d(newText)
+                updateSearchQuery(newText)
+                return false
+            }
+        })
+        return true
     }
 
     override fun showProgressBar(show: Boolean) {

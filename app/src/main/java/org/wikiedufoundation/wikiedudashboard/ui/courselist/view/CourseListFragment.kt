@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
@@ -42,6 +43,8 @@ class CourseListFragment : Fragment(), CourseListView {
 
     private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
+    private var searchCourse: SearchView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -51,10 +54,14 @@ class CourseListFragment : Fragment(), CourseListView {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
+        searchCourse = view.findViewById(R.id.searchCourse)
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
@@ -78,10 +85,28 @@ class CourseListFragment : Fragment(), CourseListView {
             courseListRecyclerAdapter.setData(data.courses)
             courseListRecyclerAdapter.notifyDataSetChanged()
             textViewNoCourses?.visibility = View.GONE
+            searchCourse()
         } else {
             recyclerCourseList?.visibility = View.GONE
             textViewNoCourses?.visibility = View.VISIBLE
         }
+    }
+
+    fun searchCourse(): Boolean {
+        searchCourse?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Timber.d(query)
+                updateSearchQuery(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                Timber.d(newText)
+                updateSearchQuery(newText)
+                return false
+            }
+        })
+        return true
     }
 
     override fun showProgressBar(show: Boolean) {
