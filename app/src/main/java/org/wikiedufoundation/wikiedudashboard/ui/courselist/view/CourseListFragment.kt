@@ -92,7 +92,7 @@ class CourseListFragment : Fragment(), CourseListView {
         }
     }
 
-    fun searchCourse(): Boolean {
+    private fun searchCourse(): Boolean {
         searchCourse?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Timber.d(query)

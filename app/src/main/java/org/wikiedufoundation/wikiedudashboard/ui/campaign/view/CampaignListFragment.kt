@@ -96,7 +96,7 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
         }
     }
 
-    fun searchCampaign(): Boolean {
+    private fun searchCampaign(): Boolean {
         searchCampaign?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Timber.d(query)
