@@ -90,5 +90,6 @@
     <string name="version">Version</string>
     <string name="wikieducationfoundation">Wiki Education Foundation</string>
     <string name="wiki_education_dashboard_singleLine">Wiki Education Dashboard</string>
+    <string name="total_impact_made_by_student">Total impact made by student</string>
 
 </resources>
