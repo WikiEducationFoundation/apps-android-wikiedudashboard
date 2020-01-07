@@ -22,8 +22,6 @@ val apiModule = module {
 
     single { provideBaseRetrofit().create(WikiEduDashboardApi::class.java) }
     single { provideCommonsRetrofit().create(WikiEduDashboardMediaApi::class.java) }
-
-
 }
 
 /**
@@ -63,15 +61,6 @@ fun provideBaseRetrofit(): Retrofit =
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
-
-//fun provideBaseRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
-//    return Retrofit.Builder()
-//            .baseUrl(Urls.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create(factory))
-//            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-//            .client(provideClient())
-//            .build()
-//}
 
 /**
  * Use the [provideCommonsRetrofit] to provide a Retrofit with WIKI_MEDIA_COMMONS instance

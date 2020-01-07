@@ -12,20 +12,20 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
  * querying the database
  **/
 @Dao
-interface ActiveCampaignDao{
+interface ActiveCampaignDao {
 
     /**
      * This get all the campaigns
      *
      **/
-    @Query("SELECT * from campaign_list_table ORDER BY id ASC")
-    fun getAllCampaign() : LiveData<List<CampaignListData>>
+    @Query("SELECT * from campaign_list ORDER BY id ASC")
+    fun getAllCampaign(): LiveData<List<CampaignListData>>
 
     /**
      * This insert the data into the database
      *
      **/
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertCampaign(campaignList: List<CampaignListData>)
+    suspend fun insertCampaign(campaignList: List<CampaignListData>)
 
 }

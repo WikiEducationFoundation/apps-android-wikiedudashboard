@@ -1,13 +1,11 @@
-package org.wikiedufoundation.wikiedudashboard.ui.campaign.Repository
+package org.wikiedufoundation.wikiedudashboard.ui.campaign.repository
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignResponse
 import timber.log.Timber
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
@@ -33,26 +31,22 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
      *  coroutine or another suspend function.
      **/
 
-   suspend fun getCampaignListLiveData(cookies: String): LiveData<List<CampaignListData>> {
+    suspend fun getCampaignListLiveData(cookies: String){
         coroutineScope.launch {
             val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
             withContext(Dispatchers.Main) {
                 try {
-
-                    val response = request
-                    val mExploreCampaign = response.await()
-                        campaignList = mExploreCampaign.campaigns
-                        campaignListLiveData.value=campaignList;
-                        activeCampaignDao.insertCampaign(campaignList)
-
+                    val mExploreCampaign = request.await()
+                    campaignList = mExploreCampaign.campaigns
+                    campaignListLiveData.value=campaignList;
+                    activeCampaignDao.insertCampaign(campaignList)
                 } catch (e: Exception) {
-                    Timber.e(this.toString() + e)
+                    Timber.e(e.message.toString())
                 } catch (e: Throwable) {
-                    Timber.e(this.toString() + e)
+                    Timber.e(e.message.toString())
                 }
             }
         }
-        return campaignListLiveData
     }
 }
 

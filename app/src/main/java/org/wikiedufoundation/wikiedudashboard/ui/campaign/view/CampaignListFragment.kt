@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.Viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
-import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
@@ -43,7 +42,6 @@ class CampaignListFragment : Fragment(){
             mParam1 = it.getString(ARG_PARAM1)
             mParam2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -63,14 +61,11 @@ class CampaignListFragment : Fragment(){
         }
 
         initializeRecyclerView()
-
         sharedPrefs.cookies?.let {(activeCampaignViewModel.fetchCampaignList(it)) }
         setData()
         showProgressBar()
         showMessage()
-
     }
-
 
     /**
      *   This initializes the recyclerview
@@ -100,7 +95,6 @@ class CampaignListFragment : Fragment(){
                 recyclerCampaignList?.visibility = View.GONE
                 textViewNoCampaigns?.visibility = View.VISIBLE
             }
-
         })
     }
 
@@ -109,7 +103,9 @@ class CampaignListFragment : Fragment(){
      */
     fun showProgressBar(){
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            if(it == true) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+            it?.let {
+                if(it) progressBar.visibility = View.VISIBLE else View.GONE
+            }
         })
     }
 
@@ -118,10 +114,9 @@ class CampaignListFragment : Fragment(){
      */
     fun showMessage(){
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            it
+            it?.message.toString()
         })
     }
-
 
     /**
      *   This performs search
@@ -136,7 +131,6 @@ class CampaignListFragment : Fragment(){
 
         campaignListRecyclerAdapter.setData(campaignQueryFilter)
     }
-
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

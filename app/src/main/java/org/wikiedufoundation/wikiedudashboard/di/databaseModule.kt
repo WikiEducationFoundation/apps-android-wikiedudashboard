@@ -8,8 +8,6 @@ import org.wikiedufoundation.wikiedudashboard.data.localDatabse.WikiDatabase
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 
 val databaseModule = module {
-
-
     fun provideDatabase(application: Application) : WikiDatabase{
         return Room.databaseBuilder(application, WikiDatabase::class.java, "WikiDatabase")
                 .fallbackToDestructiveMigration()
