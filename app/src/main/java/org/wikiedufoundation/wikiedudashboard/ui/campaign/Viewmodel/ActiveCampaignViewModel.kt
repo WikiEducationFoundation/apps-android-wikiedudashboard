@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel
 
+import android.widget.Toast
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
@@ -40,7 +41,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
                 activeCampaignRepository.getCampaignListLiveData(cookies)
                 _progressbar.value = false
 
-            } catch (e: Exception) {
+            } catch (e: RuntimeException) {
                 Timber.e(e.message.toString())
             }
         }
