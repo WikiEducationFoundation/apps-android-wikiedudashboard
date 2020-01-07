@@ -2,6 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
 import timber.log.Timber
 

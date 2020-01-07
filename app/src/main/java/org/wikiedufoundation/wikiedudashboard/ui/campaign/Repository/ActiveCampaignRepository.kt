@@ -26,11 +26,9 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
     val allCampaignList : LiveData<List<CampaignListData>> = activeCampaignDao.getAllCampaign()
 
 
-
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-
     suspend fun getCampaignListLiveData(cookies: String){
         coroutineScope.launch {
             val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
