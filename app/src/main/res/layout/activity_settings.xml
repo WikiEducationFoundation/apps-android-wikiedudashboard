@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_middle">
+            android:padding="@dimen/dimens_10dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewWiki"
@@ -46,31 +46,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="@dimen/spacing_middle"
-                    android:paddingBottom="@dimen/spacing_middle">
+                    android:paddingTop="@dimen/dimens_10dp"
+                    android:paddingBottom="@dimen/dimens_10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_middle"
-                        android:layout_marginBottom="@dimen/spacing_middle"
+                        android:layout_marginTop="@dimen/dimens_10dp"
+                        android:layout_marginBottom="@dimen/dimens_10dp"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium">
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp">
 
                         <View
-                            android:layout_width="@dimen/spacing_large"
+                            android:layout_width="@dimen/dimens_16dp"
                             android:layout_height="wrap_content" />
 
                         <ImageView
-                            android:layout_width="@dimen/spacing_xxlarge"
-                            android:layout_height="@dimen/spacing_xxlarge"
+                            android:layout_width="@dimen/dimens_52dp"
+                            android:layout_height="@dimen/dimens_52dp"
                             android:src="@mipmap/wiki_edu_logo" />
 
                         <View
-                            android:layout_width="@dimen/spacing_large"
+                            android:layout_width="@dimen/dimens_16dp"
                             android:layout_height="wrap_content" />
 
                         <LinearLayout
@@ -102,24 +102,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_info_outline" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <LinearLayout
@@ -156,7 +156,7 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
+                android:layout_height="@dimen/dimens_10dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -171,16 +171,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="@dimen/spacing_middle"
-                    android:paddingBottom="@dimen/spacing_middle">
+                    android:paddingTop="@dimen/dimens_10dp"
+                    android:paddingBottom="@dimen/dimens_10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_mlarge"
-                        android:layout_marginTop="@dimen/spacing_middle"
-                        android:layout_marginRight="@dimen/spacing_mlarge"
-                        android:layout_marginBottom="@dimen/spacing_middle"
+                        android:layout_marginLeft="@dimen/dimens_20dp"
+                        android:layout_marginTop="@dimen/dimens_10dp"
+                        android:layout_marginRight="@dimen/dimens_20dp"
+                        android:layout_marginBottom="@dimen/dimens_10dp"
                         android:text="@string/legal"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_20sp"
@@ -192,31 +192,31 @@
                         android:clickable="true"
                         style="@style/SelectableItemBackground"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_licence" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/textViewLicenses"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/licence"
+                            android:text="@string/license"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                             android:textColor="@color/davys_gray"
                             app:fontFamily="sans-serif-medium" />
@@ -229,24 +229,24 @@
                         android:clickable="true"
                         style="@style/SelectableItemBackground"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             app:srcCompat="@drawable/icon_policy_document" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <LinearLayout
@@ -275,24 +275,24 @@
                         android:clickable="true"
                         style="@style/SelectableItemBackground"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/icon_terms_and_conditions" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <TextView
@@ -312,7 +312,7 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
+                android:layout_height="@dimen/dimens_10dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -327,16 +327,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="@dimen/spacing_middle"
-                    android:paddingBottom="@dimen/spacing_middle">
+                    android:paddingTop="@dimen/dimens_10dp"
+                    android:paddingBottom="@dimen/dimens_10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_mlarge"
-                        android:layout_marginTop="@dimen/spacing_middle"
-                        android:layout_marginRight="@dimen/spacing_mlarge"
-                        android:layout_marginBottom="@dimen/spacing_middle"
+                        android:layout_marginLeft="@dimen/dimens_20dp"
+                        android:layout_marginTop="@dimen/dimens_10dp"
+                        android:layout_marginRight="@dimen/dimens_20dp"
+                        android:layout_marginBottom="@dimen/dimens_10dp"
                         android:text="@string/general"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_20sp"
@@ -348,24 +348,24 @@
                         android:clickable="true"
                         android:gravity="center_vertical"
                         style="@style/SelectableItemBackground"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/icon_feedback" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <LinearLayout
@@ -394,24 +394,24 @@
                         android:clickable="true"
                         style="@style/SelectableItemBackground"
                         android:gravity="center_vertical"
-                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:minHeight="@dimen/dimens_52dp"
                         android:orientation="horizontal"
-                        android:paddingLeft="@dimen/spacing_medium"
-                        android:paddingRight="@dimen/spacing_medium"
+                        android:paddingLeft="@dimen/dimens_4dp"
+                        android:paddingRight="@dimen/dimens_4dp"
                         android:focusable="true">
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <ImageButton
-                            android:layout_width="@dimen/spacing_xmlarge"
-                            android:layout_height="@dimen/spacing_xmlarge"
+                            android:layout_width="@dimen/dimens_40dp"
+                            android:layout_height="@dimen/dimens_40dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/icon_share" />
 
                         <View
-                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_width="@dimen/dimens_20dp"
                             android:layout_height="wrap_content" />
 
                         <TextView
@@ -432,7 +432,7 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_large" />
+                android:layout_height="@dimen/dimens_16dp" />
 
             <LinearLayout
                 android:id="@+id/textViewLogout"
@@ -465,7 +465,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </androidx.core.widget.NestedScrollView>
 
