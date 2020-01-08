@@ -19,9 +19,9 @@ import static org.junit.Assert.assertEquals;
 import static org.robolectric.Shadows.shadowOf;
 @RunWith(RobolectricTestRunner.class)
 public class SplashScreenTest {
-    Intent expectedIntent;
+   private Intent expectedIntent;
     @Test
-    public void SplashScreenTesting() throws Exception
+    public void splashscreen() throws Exception
     {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).create().start();
         ShadowLooper.runUiThreadTasksIncludingDelayedTasks();
