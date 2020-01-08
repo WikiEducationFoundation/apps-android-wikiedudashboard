@@ -1,12 +1,16 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
  * [CourseListData] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
+@Entity(tableName = "course_list")
 class CourseListData(
+        @PrimaryKey
         @SerializedName("id")
         val id: Int,
         @SerializedName("title")
