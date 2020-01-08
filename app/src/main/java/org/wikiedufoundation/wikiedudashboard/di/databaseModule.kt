@@ -16,13 +16,13 @@ val databaseModule = module {
                 .build()
     }
 
-    fun provideCampaignListDao(database: WikiDatabase) : ActiveCampaignDao{
-        return database.activeCampaignDao
-    }
+    fun provideCampaignListDao(database: WikiDatabase) : ActiveCampaignDao
+            = database.activeCampaignDao
 
-    fun provideCourseListDao(database: WikiDatabase) : CourseListDao{
-        return database.courseListDao
-    }
+
+    fun provideCourseListDao(database: WikiDatabase) : CourseListDao
+       = database.courseListDao
+
 
     single { provideDatabase(androidApplication()) }
     single { provideCampaignListDao(get()) }
