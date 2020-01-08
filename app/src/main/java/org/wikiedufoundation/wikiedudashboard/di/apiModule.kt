@@ -2,6 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -20,9 +21,7 @@ import java.util.concurrent.TimeUnit
 val apiModule = module {
 
     single { provideBaseRetrofit().create(WikiEduDashboardApi::class.java) }
-
     single { provideCommonsRetrofit().create(WikiEduDashboardMediaApi::class.java) }
-
 }
 
 /**
@@ -60,6 +59,7 @@ fun provideBaseRetrofit(): Retrofit =
                 .baseUrl(Urls.BASE_URL)
                 .client(provideClient())
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
 
 /**

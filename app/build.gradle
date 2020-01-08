@@ -94,6 +94,7 @@ dependencies {
     //Material design
     implementation Deps.materialVersion
     implementation Deps.fragmentVersion
+    implementation Deps.fragmentKTXVersion
     implementation Deps.fragmentNavigationVersion
     implementation Deps.navigationVersion
     // circular dots
@@ -103,5 +104,18 @@ dependencies {
     implementation Deps.koinCoreVersion
     // Koin AndroidX Scope features
     implementation Deps.koinScopeVersion
+
+    // Room Dependencies
+    api Deps.roomRuntime
+    kapt Deps.roomCompiler
+    implementation Deps.room
+
+    // Lifecycle components
+    implementation Deps.lifecycleExtension
+    kapt Deps.lifecycleCompiler
+    implementation Deps.lifecycleViewModel
+    implementation Deps.lifecycleLivedata
+    implementation Deps.lifecycleRuntime
+    implementation Deps.coroutineAdapter
 
 }
