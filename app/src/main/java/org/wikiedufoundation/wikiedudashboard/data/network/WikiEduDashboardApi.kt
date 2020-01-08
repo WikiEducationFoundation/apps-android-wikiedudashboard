@@ -62,7 +62,7 @@ interface WikiEduDashboardApi {
      * This API is used to fetch list of active courses.
      ***/
     @GET("explore.json")
-    fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCoursesResponse>
+    fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Deferred<ExploreCoursesResponse>
 
     /**
      * This API is used to fetch list of active campaigns.
