@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.adapters
 
 import org.wikiedufoundation.wikiedudashboard.common.SingleLayoutAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListFragment
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 
 /**
  * RecyclerView adapter for courses list data

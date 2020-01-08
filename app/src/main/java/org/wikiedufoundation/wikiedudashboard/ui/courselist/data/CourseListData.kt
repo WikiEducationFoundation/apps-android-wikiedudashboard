@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
+package org.wikiedufoundation.wikiedudashboard.ui.courselist.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

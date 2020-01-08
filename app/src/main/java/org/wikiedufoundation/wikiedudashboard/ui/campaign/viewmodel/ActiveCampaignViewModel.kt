@@ -1,10 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel
 
-import android.widget.Toast
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.CourseListRepository
 import timber.log.Timber
 
 /**

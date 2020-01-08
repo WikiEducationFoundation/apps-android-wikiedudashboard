@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
@@ -11,8 +12,9 @@ import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
 import java.util.*
@@ -24,7 +26,7 @@ import kotlin.collections.ArrayList
  * Use the [CampaignListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CampaignListFragment : Fragment(){
+class CampaignListFragment : Fragment() {
     private val activeCampaignViewModel: ActiveCampaignViewModel by inject()
 
     private val sharedPrefs: SharedPrefs by inject()
@@ -61,7 +63,7 @@ class CampaignListFragment : Fragment(){
         }
 
         initializeRecyclerView()
-        sharedPrefs.cookies?.let {(activeCampaignViewModel.fetchCampaignList(it)) }
+        sharedPrefs.cookies?.let { (activeCampaignViewModel.fetchCampaignList(it)) }
         setData()
         showProgressBar()
         showMessage()
@@ -71,7 +73,7 @@ class CampaignListFragment : Fragment(){
      *   This initializes the recyclerview
      */
 
-    fun initializeRecyclerView(){
+    fun initializeRecyclerView() {
         recyclerCampaignList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -82,9 +84,9 @@ class CampaignListFragment : Fragment(){
     /**
      *   This sets the data to be displayed on the recyclerview based on available data
      */
-    fun setData(){
+    fun setData() {
         activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
-            Timber.d( "hello",it.toString())
+            Timber.d("hello", it.toString())
             if (it.isNotEmpty()) {
                 recyclerCampaignList?.visibility = View.VISIBLE
                 campaignListRecyclerAdapter.setData(it)
@@ -101,10 +103,10 @@ class CampaignListFragment : Fragment(){
     /**
      *   This shows the progressbar
      */
-    fun showProgressBar(){
+    fun showProgressBar() {
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             it?.let {
-                if(it) progressBar.visibility = View.VISIBLE else View.GONE
+                if (it) progressBar.visibility = View.VISIBLE else View.GONE
             }
         })
     }
@@ -112,9 +114,9 @@ class CampaignListFragment : Fragment(){
     /**
      *   This shows the message
      */
-    fun showMessage(){
+    fun showMessage() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            it?.message.toString()
+            Toast.makeText(context,  it?.message.toString(), Toast.LENGTH_LONG).show()
         })
     }
 
