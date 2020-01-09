@@ -1,12 +1,11 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.Response
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowProgress
 import timber.log.Timber
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
@@ -21,7 +20,7 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      * */
-    val allCampaignList : LiveData<List<CampaignListData>> = activeCampaignDao.getAllCampaign()
+       val allCampaignList = activeCampaignDao.getAllCampaign()
 
 
     /** The suspend modifier tells the compiler that this must be called from a
@@ -31,12 +30,13 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
             withContext(Dispatchers.Main) {
                 try {
                     val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
-                        Response.showProgress(false)
+                        ShowProgress(false)
                         val mExploreCampaign = request.await()
                         campaignList = mExploreCampaign.campaigns
                         activeCampaignDao.insertCampaign(campaignList)
                 } catch (e: Exception) {
                     Timber.e(e.message.toString())
+                    ShowMessge("Something went wrong")
                 } catch (e: Throwable) {
                     Timber.e(e.message.toString())
                 }

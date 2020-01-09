@@ -1,7 +1,9 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel
 
 import androidx.lifecycle.*
+import com.bumptech.glide.Glide.init
 import kotlinx.coroutines.launch
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.CourseListRepository
 import timber.log.Timber
@@ -11,7 +13,7 @@ import java.io.IOException
  * Class extends AndroidViewModel and requires application as a parameter.
  */
 
-class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
+class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository, cookies: String) : ViewModel() {
 
     private val _showMsg: MutableLiveData<String> = MutableLiveData()
     val showMsg: MutableLiveData<String> get() = _showMsg
@@ -34,7 +36,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
      **/
 
 
-    fun fetchCampaignList(cookies: String) {
+     fun fetchCampaignList(cookies: String){
         viewModelScope.launch {
             try {
                 _progressbar.postValue(false)
