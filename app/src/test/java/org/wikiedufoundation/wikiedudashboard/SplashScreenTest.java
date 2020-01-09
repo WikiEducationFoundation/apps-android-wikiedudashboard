@@ -21,7 +21,7 @@ import static org.robolectric.Shadows.shadowOf;
 public class SplashScreenTest {
    private Intent expectedIntent;
     @Test
-    public void splashscreen() throws Exception
+    public void splashScreenUITest() throws Exception
     {
         ActivityController<SplashActivity> controller = Robolectric.buildActivity(SplashActivity.class).create().start();
         ShadowLooper.runUiThreadTasksIncludingDelayedTasks();
