@@ -16,7 +16,7 @@ class RetrofitCourseDetailProvider(
 ) : CourseDetailProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<CourseDetailResponse>) {
         val subUrl = "courses/$url/course.json"
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseDetail(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {

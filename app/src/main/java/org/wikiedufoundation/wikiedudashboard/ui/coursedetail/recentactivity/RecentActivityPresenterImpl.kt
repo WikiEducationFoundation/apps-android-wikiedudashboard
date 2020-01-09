@@ -18,12 +18,11 @@ class RecentActivityPresenterImpl(
 
     override fun requestRecentActivity(url: String) {
         view.showProgressBar(true)
-        provider.requestRecentActivity(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any?) {
+        provider.requestRecentActivity(url, object : PresenterCallback<RecentActivityResponse> {
+            override fun onSuccess(recentActivityResponse: RecentActivityResponse) {
                 view.showProgressBar(false)
-                val response = o as RecentActivityResponse
-                Timber.d(response.toString())
-                view.setData(response)
+                Timber.d(recentActivityResponse.toString())
+                view.setData(recentActivityResponse)
             }
 
             override fun onFailure() {

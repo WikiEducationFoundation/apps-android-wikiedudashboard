@@ -14,7 +14,7 @@ class RetrofitMediaDetailsProvider(
         private val wikiEduDashboardApi: WikiEduDashboardMediaApi
 ) : MediaDetailsContract.Provider {
 
-    override fun requestMediaDetails(cookies: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestMediaDetails(cookies: String, presenterCallback: PresenterCallback<MediaDetailsResponse>) {
         val courseDetailResponseCall = wikiEduDashboardApi.getMediaDetailsFromCommons(cookies)
         courseDetailResponseCall.enqueue(object : Callback<MediaDetailsResponse> {
             override fun onResponse(call: Call<MediaDetailsResponse>, response: Response<MediaDetailsResponse>) {

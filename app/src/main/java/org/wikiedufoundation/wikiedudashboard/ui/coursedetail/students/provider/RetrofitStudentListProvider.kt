@@ -16,7 +16,7 @@ class RetrofitStudentListProvider(
 ) : StudentListProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestStudentList(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestStudentList(url: String, presenterCallback: PresenterCallback<StudentListResponse>) {
         val subUrl = "courses/$url/users.json"
         val studentListCall = wikiEduDashboardApi.getStudentList(subUrl)
         studentListCall.enqueue(object : Callback<StudentListResponse> {
