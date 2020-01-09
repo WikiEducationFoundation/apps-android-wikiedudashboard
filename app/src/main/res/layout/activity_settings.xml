@@ -51,14 +51,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <RelativeLayout
+                    android:padding="@dimen/dimen_4dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/dimens_10dp"
-                    android:paddingBottom="@dimen/dimens_10dp">
+                    android:layout_height="match_parent">
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutWikiFirst"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimens_10dp"
@@ -69,45 +68,44 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_16dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageView
+                            android:id="@+id/logoImageView"
+                            android:layout_marginStart="@dimen/dimens_10dp"
+                            android:layout_alignParentStart="true"
                             android:layout_width="@dimen/dimens_52dp"
                             android:layout_height="@dimen/dimens_52dp"
                             android:src="@mipmap/wiki_edu_logo" />
 
-                        <View
-                            android:layout_width="@dimen/dimens_16dp"
-                            android:layout_height="wrap_content" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/wikiHeading"
+                            android:layout_toEndOf="@+id/logoImageView"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:text="@string/wiki_education_dashboard_singleLine"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@color/davysGray"
+                            app:fontFamily="sans-serif-medium" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/wiki_education_dashboard_singleLine"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                android:textColor="@color/davys_gray"
-                                app:fontFamily="sans-serif-medium" />
+                        <TextView
+                            android:id="@+id/wikiSubHeading"
+                            android:layout_below="@+id/wikiHeading"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
+                            android:layout_toEndOf="@+id/logoImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wikieducationfoundation"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/dimGray" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/wikieducationfoundation"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/dim_gray" />
+                    </RelativeLayout>
 
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutWikiSecond"
+                        android:layout_below="@+id/relativeLayoutWikiFirst"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"
@@ -117,49 +115,43 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
-                            android:layout_width="@dimen/dimens_40dp"
-                            android:layout_height="@dimen/dimens_40dp"
+                            android:id="@+id/versionImage"
+                            android:layout_width="@dimen/dimens_52dp"
+                            android:layout_height="@dimen/dimens_52dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
+                            android:layout_alignParentStart="true"
                             android:background="@android:color/transparent"
+                            android:tint="@color/outerSpace"
                             android:src="@drawable/ic_info_outline" />
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/versionText"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_toEndOf="@+id/versionImage"
+                            android:text="@string/version"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                            android:textColor="@color/davysGray"
+                            app:fontFamily="sans-serif-medium" />
 
-                            <TextView
+                        <TextView
+                            android:id="@+id/textViewVersionCode"
+                            android:layout_toEndOf="@+id/versionImage"
+                            android:layout_below="@+id/versionText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/version_0_01"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/dimGray" />
 
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/version"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/davys_gray"
-                                app:fontFamily="sans-serif-medium" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/textViewVersionCode"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/version_0_01"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/dim_gray" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
+                </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -179,7 +171,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewWiki">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -187,8 +179,11 @@
                     android:paddingBottom="@dimen/dimens_10dp">
 
                     <TextView
+                        android:id="@+id/textViewLegal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
                         android:layout_marginLeft="@dimen/dimens_20dp"
                         android:layout_marginTop="@dimen/dimens_10dp"
                         android:layout_marginRight="@dimen/dimens_20dp"
@@ -198,7 +193,9 @@
                         android:textSize="@dimen/text_size_20sp"
                         app:fontFamily="sans-serif-medium" />
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutLicenseLegalFirst"
+                        android:layout_below="@+id/textViewLegal"
                         style="@style/SelectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -210,32 +207,33 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
+                            android:id="@+id/licenseImage"
+                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/dimens_40dp"
                             android:layout_height="@dimen/dimens_40dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/ic_licence" />
-
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/textViewLicenses"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/licenseImage"
+                            android:layout_centerVertical="true"
                             android:text="@string/license"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/davys_gray"
+                            android:textColor="@color/davysGray"
                             app:fontFamily="sans-serif-medium" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutPolicyLegalSecond"
+                        android:layout_below="@+id/relativeLayoutLicenseLegalFirst"
                         style="@style/SelectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -247,41 +245,34 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
+                            android:id="@+id/policyImage"
+                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/dimens_40dp"
                             android:layout_height="@dimen/dimens_40dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
                             android:background="@android:color/transparent"
+                            android:tint="@color/outerSpace"
                             app:srcCompat="@drawable/icon_policy_document" />
-
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/textViewPrivacyPolicy"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/privacy_policy"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/policyImage"
+                                android:paddingStart="@dimen/dimens_10dp"
+                                android:paddingEnd="@dimen/dimens_10dp"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/davys_gray"
+                                android:textColor="@color/davysGray"
                                 app:fontFamily="sans-serif-medium" />
 
+                    </RelativeLayout>
 
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutTermsLegalThird"
+                        android:layout_below="@+id/relativeLayoutPolicyLegalSecond"
                         style="@style/SelectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -293,32 +284,32 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
+                            android:id="@+id/termsImage"
                             android:layout_width="@dimen/dimens_40dp"
                             android:layout_height="@dimen/dimens_40dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
+                            android:layout_centerVertical="true"
                             android:background="@android:color/transparent"
+                            android:tint="@color/outerSpace"
                             android:src="@drawable/icon_terms_and_conditions" />
-
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/textViewTermsAndConditions"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/termsImage"
+                            android:layout_centerVertical="true"
                             android:text="@string/terms_and_conditions"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/davys_gray"
+                            android:textColor="@color/davysGray"
                             app:fontFamily="sans-serif-medium" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -338,8 +329,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewLegal">
 
-                <LinearLayout
-                    android:id="@+id/cardViewGeneral"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -347,6 +337,9 @@
                     android:paddingBottom="@dimen/dimens_10dp">
 
                     <TextView
+                        android:id="@+id/textViewGeneral"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dimens_20dp"
@@ -358,7 +351,9 @@
                         android:textSize="@dimen/text_size_20sp"
                         app:fontFamily="sans-serif-medium" />
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutFeedbackGeneralFirst"
+                        android:layout_below="@+id/textViewGeneral"
                         style="@style/SelectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -370,41 +365,33 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
+                            android:id="@+id/feedbackImage"
                             android:layout_width="@dimen/dimens_40dp"
                             android:layout_height="@dimen/dimens_40dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
+                            android:layout_centerVertical="true"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/icon_feedback" />
-
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:src="@drawable/ic_feedback" />
 
                             <TextView
                                 android:id="@+id/textViewFeedback"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/feedbackImage"
+                                android:layout_centerVertical="true"
                                 android:text="@string/send_feedback"
+                                android:paddingStart="@dimen/dimens_10dp"
+                                android:paddingEnd="@dimen/dimens_10dp"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                android:textColor="@color/davys_gray"
+                                android:textColor="@color/davysGray"
                                 app:fontFamily="sans-serif-medium" />
 
+                    </RelativeLayout>
 
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutShareGeneralSecond"
+                        android:layout_below="@+id/relativeLayoutFeedbackGeneralFirst"
                         style="@style/SelectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -416,45 +403,43 @@
                         android:paddingLeft="@dimen/dimens_4dp"
                         android:paddingRight="@dimen/dimens_4dp">
 
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
-
                         <ImageButton
+                            android:id="@+id/shareImage"
                             android:layout_width="@dimen/dimens_40dp"
                             android:layout_height="@dimen/dimens_40dp"
+                            android:layout_marginStart="@dimen/dimens_10dp"
+                            android:layout_centerVertical="true"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/icon_share" />
-
-                        <View
-                            android:layout_width="@dimen/dimens_20dp"
-                            android:layout_height="wrap_content" />
+                            android:src="@drawable/ic_share" />
 
                         <TextView
                             android:id="@+id/textViewShareApp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/shareImage"
                             android:text="@string/share_app"
+                            android:paddingStart="@dimen/dimens_10dp"
+                            android:paddingEnd="@dimen/dimens_10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/davys_gray"
+                            android:textColor="@color/davysGray"
                             app:fontFamily="sans-serif-medium" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-
-                </LinearLayout>
+                </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/textViewLogout"
                 android:layout_margin="4dp"
                 style="@style/SelectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
-                android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -466,21 +451,25 @@
                     android:id="@+id/logoutTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
                     android:text="@string/logout"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimens_10dp"
+                    android:layout_marginEnd="@dimen/dimens_10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/logoutRed" />
 
                 <ImageView
                     android:id="@+id/logoutImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="5dp"
-                    android:src="@drawable/icon_logout" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/dimens_10dp"
+                    android:layout_toEndOf="@id/logoutTextView"
+                    android:src="@drawable/ic_logout" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

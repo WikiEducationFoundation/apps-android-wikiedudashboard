@@ -13,8 +13,10 @@
     <color name="purple">#5F4295</color>
     <color name="blue">#006699</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="davys_gray">#555555 </color>
-    <color name="dim_gray">#696969</color>
+    <color name="davysGray">#555555 </color>
+    <color name="dimGray">#696969</color>
+    <color name="outerSpace">#414A4C</color>
+    <color name="logoutRed">#FFFF3939</color>
 
 
 </resources>
