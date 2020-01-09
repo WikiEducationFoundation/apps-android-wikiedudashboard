@@ -12,5 +12,5 @@ import com.google.gson.annotations.SerializedName
  * @property campaigns A list of campaign data
  * ***/
 class ExploreCampaignsResponse(
-    val campaigns: MutableList<CampaignListData>
+    val campaigns: List<CampaignListData>
 )

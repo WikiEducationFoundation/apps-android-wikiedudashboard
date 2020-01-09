@@ -104,6 +104,7 @@ dependencies {
     implementation Deps.koinCoreVersion
     // Koin AndroidX Scope features
     implementation Deps.koinScopeVersion
+    implementation Deps.koinViewModelVersion
 
     // Room Dependencies
     api Deps.roomRuntime

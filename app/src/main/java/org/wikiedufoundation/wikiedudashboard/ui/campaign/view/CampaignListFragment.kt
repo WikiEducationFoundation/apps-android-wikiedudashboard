@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,7 +28,7 @@ import kotlin.collections.ArrayList
  * create an instance of this fragment.
  */
 class CampaignListFragment : Fragment() {
-    private val activeCampaignViewModel: ActiveCampaignViewModel by inject()
+    private val activeCampaignViewModel by viewModel<ActiveCampaignViewModel>()
 
     private val sharedPrefs: SharedPrefs by inject()
 
@@ -86,11 +87,10 @@ class CampaignListFragment : Fragment() {
      */
     fun setData() {
         activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
-            Timber.d("hello", it.toString())
+            Timber.d(it.toString())
             if (it.isNotEmpty()) {
                 recyclerCampaignList?.visibility = View.VISIBLE
                 campaignListRecyclerAdapter.setData(it)
-                campaignListRecyclerAdapter.notifyDataSetChanged()
                 textViewNoCampaigns?.visibility = View.GONE
 
             } else {
@@ -105,9 +105,8 @@ class CampaignListFragment : Fragment() {
      */
     fun showProgressBar() {
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            it?.let {
-                if (it) progressBar.visibility = View.VISIBLE else View.GONE
-            }
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+
         })
     }
 
@@ -116,7 +115,7 @@ class CampaignListFragment : Fragment() {
      */
     fun showMessage() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            Toast.makeText(context,  it?.message.toString(), Toast.LENGTH_LONG).show()
+            it
         })
     }
 

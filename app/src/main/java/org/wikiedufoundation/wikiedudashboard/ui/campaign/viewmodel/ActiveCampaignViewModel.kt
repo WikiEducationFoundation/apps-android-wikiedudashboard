@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.CourseListRepository
 import timber.log.Timber
+import java.io.IOException
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
@@ -12,17 +13,17 @@ import timber.log.Timber
 
 class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
 
-    private val _showMsg: MutableLiveData<Throwable?> = MutableLiveData()
-    val showMsg: MutableLiveData<Throwable?> get() = _showMsg
+    private val _showMsg: MutableLiveData<String> = MutableLiveData()
+    val showMsg: MutableLiveData<String> get() = _showMsg
 
-    private val _progressbar = MutableLiveData<Boolean?>()
-    val progressbar: LiveData<Boolean?> get() = _progressbar
+    private val _progressbar = MutableLiveData<Boolean>()
+    val progressbar: LiveData<Boolean> get() = _progressbar
 
     val data = activeCampaignRepository.allCampaignList
 
     init {
-        _showMsg.value = null
-        _progressbar.value = true
+        _showMsg.value = "Unable to connect to server"
+        _progressbar.postValue(false)
 
     }
 
@@ -36,11 +37,9 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
     fun fetchCampaignList(cookies: String) {
         viewModelScope.launch {
             try {
-                _progressbar.value = true
-                activeCampaignRepository.getCampaignListLiveData(cookies)
-                _progressbar.value = false
-
-            } catch (e: RuntimeException) {
+                _progressbar.postValue(false)
+                activeCampaignRepository.getCampaignList(cookies)
+            } catch (e: Throwable) {
                 Timber.e(e.message.toString())
             }
         }
