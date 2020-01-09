@@ -469,7 +469,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="@dimen/dimens_10dp"
                     android:layout_toEndOf="@id/logoutTextView"
-                    android:src="@drawable/ic_logout" />
+                    android:tint="@color/logoutRed"
+                    android:src="@drawable/icon_logout" />
 
             </RelativeLayout>
 
