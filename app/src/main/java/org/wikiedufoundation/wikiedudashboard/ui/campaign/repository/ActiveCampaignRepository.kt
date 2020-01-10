@@ -38,8 +38,7 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
             } catch (e: HttpException) {
                 Timber.d("Unable to connect to server")
                 ShowMessge("Unable to connect to server")
-            } catch (error: Throwable) {
-                error.message.toString()
+            } catch (error: HttpException) {
                 Timber.d("Something went wrong")
                 ShowMessge("Something went wrong")
             }
