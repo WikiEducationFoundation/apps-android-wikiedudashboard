@@ -14,6 +14,7 @@
     <color name="blue">#006699</color>
     <color name="colorWhite">#ffffff</color>
     <color name="davysGray">#555555 </color>
+    <color name="lightGrayIcon">#BFBFBF </color>
     <color name="dimGray">#696969</color>
     <color name="outerSpace">#414A4C</color>
     <color name="logoutRed">#FB6E77</color>

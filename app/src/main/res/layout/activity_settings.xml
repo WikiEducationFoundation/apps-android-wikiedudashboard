@@ -122,7 +122,7 @@
                             android:layout_marginStart="@dimen/dimens_10dp"
                             android:layout_alignParentStart="true"
                             android:background="@android:color/transparent"
-                            android:tint="@color/outerSpace"
+                            android:tint="@color/lightGrayIcon"
                             android:src="@drawable/ic_info_outline" />
 
                         <TextView
@@ -254,7 +254,7 @@
                             android:layout_height="@dimen/dimens_40dp"
                             android:layout_margin="@dimen/dimen_4dp"
                             android:background="@android:color/transparent"
-                            android:tint="@color/outerSpace"
+                            android:tint="@color/lightGrayIcon"
                             app:srcCompat="@drawable/icon_policy_document" />
 
                             <TextView
@@ -293,7 +293,7 @@
                             android:layout_margin="@dimen/dimen_4dp"
                             android:layout_centerVertical="true"
                             android:background="@android:color/transparent"
-                            android:tint="@color/outerSpace"
+                            android:tint="@color/lightGrayIcon"
                             android:src="@drawable/icon_terms_and_conditions" />
 
                         <TextView
