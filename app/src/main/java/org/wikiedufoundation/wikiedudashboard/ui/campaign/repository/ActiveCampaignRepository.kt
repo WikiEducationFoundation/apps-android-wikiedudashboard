@@ -12,6 +12,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import timber.log.Timber
 import java.lang.Error
+import javax.net.ssl.HttpsURLConnection
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
  *instead of the whole database, because you only need access to the DAO*
@@ -37,7 +38,8 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
             } catch (e: HttpException) {
                 Timber.d("Unable to connect to server")
                 ShowMessge("Unable to connect to server")
-            } catch (e: Error) {
+            } catch (error: Throwable) {
+                error.message.toString()
                 Timber.d("Something went wrong")
                 ShowMessge("Something went wrong")
             }
