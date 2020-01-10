@@ -74,7 +74,7 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text : String = context?.getString(R.string.total_impact_made_as_student) + username
+            val text : String = context?.getString(R.string.total_impact_made_by_student) + username
             tvTitleImpactAsStudent.text = text
             tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
