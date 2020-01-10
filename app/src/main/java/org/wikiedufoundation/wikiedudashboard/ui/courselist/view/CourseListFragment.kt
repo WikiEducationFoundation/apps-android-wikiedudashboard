@@ -84,7 +84,6 @@ class CourseListFragment : Fragment() {
             if (it.isNotEmpty()) {
                 recyclerCourseList?.visibility = View.VISIBLE
                 courseListRecyclerAdapter.setData(it)
-                courseListRecyclerAdapter.notifyDataSetChanged()
                 textViewNoCourses?.visibility = View.GONE
             } else {
                 recyclerCourseList?.visibility = View.GONE
