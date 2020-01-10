@@ -7,5 +7,5 @@ package org.wikiedufoundation.wikiedudashboard.ui.courselist.data
  * @property courses list of courses data
  * ***/
 class ExploreCoursesResponse(
-    val courses: MutableList<CourseListData>
+    val courses: List<CourseListData>
 )

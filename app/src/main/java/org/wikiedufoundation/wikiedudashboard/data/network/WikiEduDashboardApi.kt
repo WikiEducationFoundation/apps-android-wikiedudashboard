@@ -1,7 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
 import kotlinx.coroutines.Deferred
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse

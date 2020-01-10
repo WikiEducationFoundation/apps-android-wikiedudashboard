@@ -1,49 +1,43 @@
-package org.wikiedufoundation.wikiedudashboard.ui.campaign.repository
+package org.wikiedufoundation.wikiedudashboard.ui.courselist.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.CourseListDao
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
+import retrofit2.HttpException
 import timber.log.Timber
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
-*instead of the whole database, because you only need access to the DAO*
+ *instead of the whole database, because you only need access to the DAO*
  * */
 class CourseListRepository(private val wikiEduDashboardApi: WikiEduDashboardApi,
-                           private val courseListDao: CourseListDao){
-
-    private var courseList = mutableListOf<CourseListData>()
-    private var courseListLiveData = MutableLiveData<List<CourseListData>>()
-    val completableJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + completableJob)
-
+                           private val courseListDao: CourseListDao) {
 
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      * */
-    val allCourseList : LiveData<List<CourseListData>> = courseListDao.getAllCourses()
+    val allCourseList: LiveData<List<CourseListData>> = courseListDao.getAllCourses()
 
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    suspend fun getCourseListLiveData(cookies: String){
-        coroutineScope.launch {
-            val request = wikiEduDashboardApi.getExploreCourses(cookies)
-            withContext(Dispatchers.Main) {
-                try {
-                    val mExploreCourse = request.await()
-                    courseList = mExploreCourse.courses
-                    courseListLiveData.value=courseList;
-                    courseListDao.insertCourse(courseList)
-                } catch (e: Exception) {
-                    Timber.e(e.message.toString())
-                } catch (e: Throwable) {
-                    Timber.e(e.message.toString())
-                }
+    suspend fun getCourseList(cookies: String) {
+        withContext(Dispatchers.Main) {
+            try {
+                val request = wikiEduDashboardApi.getExploreCourses(cookies).await()
+                val courseList = request.courses
+                courseListDao.insertCourse(courseList)
+            } catch (e: HttpException) {
+                Timber.d("Unable to connect to server")
+                ShowMessge("Unable to connect to server")
+            } catch (e: Throwable) {
+                Timber.d("Something went wrong")
+                ShowMessge("Something went wrong")
             }
         }
+
     }
 }

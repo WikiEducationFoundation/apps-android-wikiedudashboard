@@ -1,4 +1,4 @@
-package org.wikiedufoundation.wikiedudashboard.ui.campaign.dao
+package org.wikiedufoundation.wikiedudashboard.ui.courselist.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -18,7 +18,7 @@ interface CourseListDao {
      * This get all the campaigns
      *
      **/
-    @Query("SELECT * from course_list ORDER BY id ASC")
+    @Query("SELECT * from course_list")
     fun getAllCourses(): LiveData<List<CourseListData>>
 
     /**

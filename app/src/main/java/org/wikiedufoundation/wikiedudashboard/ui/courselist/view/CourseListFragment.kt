@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.CourseListViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
@@ -98,9 +98,8 @@ class CourseListFragment : Fragment() {
      */
     fun showProgressBar() {
         courselistViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            it?.let {
-                if (it) progressBar.visibility = View.VISIBLE else View.GONE
-            }
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+
         })
     }
 
@@ -109,8 +108,8 @@ class CourseListFragment : Fragment() {
      */
     fun showMessage() {
         courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            Toast.makeText(context,  it?.message.toString(), Toast.LENGTH_LONG).show()
-        })
+            val message = it?.showMsg
+            it?.let { Toast.makeText(context, message, Toast.LENGTH_LONG).show() }        })
     }
 
     private fun openCourseDetail(slug: String) {

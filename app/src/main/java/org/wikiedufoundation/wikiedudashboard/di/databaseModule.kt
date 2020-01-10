@@ -6,7 +6,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.data.localDatabse.WikiDatabase
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.CourseListDao
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 
 val databaseModule = module {
     fun provideDatabase(application: Application) : WikiDatabase{

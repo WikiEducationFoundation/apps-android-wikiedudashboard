@@ -3,7 +3,7 @@ package org.wikiedufoundation.wikiedudashboard.data.localDatabse
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.CourseListDao
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 

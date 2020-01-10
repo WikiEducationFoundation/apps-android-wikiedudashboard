@@ -14,6 +14,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -53,6 +54,7 @@ class CampaignListFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_campaign_list, container, false)
     }
 
@@ -115,9 +117,12 @@ class CampaignListFragment : Fragment() {
      */
     fun showMessage() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            it
+            val message = it?.showMsg
+            it?.let { Toast.makeText(context, message, Toast.LENGTH_LONG).show() }
+
         })
     }
+
 
     /**
      *   This performs search
