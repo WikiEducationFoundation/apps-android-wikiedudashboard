@@ -16,6 +16,6 @@ interface CampaignListContract {
     }
 
     interface Provider {
-        fun requestCampaignList(cookies: String, presenterCallback: PresenterCallback<*>)
+        fun requestCampaignList(cookies: String, presenterCallback: PresenterCallback<ExploreCampaignsResponse>)
     }
 }

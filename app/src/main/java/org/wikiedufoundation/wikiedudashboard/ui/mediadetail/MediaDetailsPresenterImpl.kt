@@ -18,12 +18,11 @@ class MediaDetailsPresenterImpl(
 
     override fun requestMediaDetails(cookies: String) {
         mediaDetailsView.showProgressBar(true)
-        mediaDetailsProvider.requestMediaDetails(cookies, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        mediaDetailsProvider.requestMediaDetails(cookies, object : PresenterCallback<MediaDetailsResponse> {
+            override fun onSuccess(mediaDetailsResponse: MediaDetailsResponse) {
                 mediaDetailsView.showProgressBar(false)
-                val mediaDetailResponse = o as MediaDetailsResponse
-                Timber.d(mediaDetailResponse.toString())
-                mediaDetailsView.setData(mediaDetailResponse)
+                Timber.d(mediaDetailsResponse.toString())
+                mediaDetailsView.setData(mediaDetailsResponse)
             }
 
             override fun onFailure() {

@@ -15,7 +15,7 @@ class RetrofitCampaignListProvider(
 ) : CampaignListContract.Provider {
 //     = ProviderUtils.apiObject
 
-    override fun requestCampaignList(cookies: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestCampaignList(cookies: String, presenterCallback: PresenterCallback<ExploreCampaignsResponse>) {
         val campaignListResponseCall = wikiEduDashboardApi.getExploreCampaigns(cookies)
         campaignListResponseCall.enqueue(object : Callback<ExploreCampaignsResponse> {
             override fun onResponse(call: Call<ExploreCampaignsResponse>, response: Response<ExploreCampaignsResponse>) {

@@ -16,7 +16,7 @@ class RetrofitRecentActivityProvider(
 ) : RecentActivityContract.Provider {
 //     = ProviderUtils.apiObject
 
-    override fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<RecentActivityResponse>) {
         val subUrl = "courses/$url/revisions.json"
         val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(subUrl)
         articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {

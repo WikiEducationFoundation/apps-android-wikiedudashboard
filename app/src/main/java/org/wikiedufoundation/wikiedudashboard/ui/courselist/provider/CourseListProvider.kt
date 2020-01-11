@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.provider
 
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 /**
@@ -13,5 +14,5 @@ interface CourseListProvider {
      * @param cookies course list cookies
      * @param presenterCallback Retrofit2 http request call result [PresenterCallback] variable
     * ***/
-    fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<*>)
+    fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<ExploreCoursesResponse>)
 }

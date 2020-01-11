@@ -26,8 +26,8 @@ import timber.log.Timber
  */
 class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
-    private lateinit var campaignListFragment: CampaignListFragment
-    private lateinit var courseListFragment: CourseListFragment
+    private var campaignListFragment = CampaignListFragment()
+    private var courseListFragment = CourseListFragment()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -50,15 +50,20 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
         val viewPager = view.viewPager
         val tabLayout = view.tabLayout
-        toolbar?.inflateMenu(R.menu.menu_explore)
-        toolbar?.setOnMenuItemClickListener(this)
 
         setTabs(tabLayout, viewPager)
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        toolbar.inflateMenu(R.menu.menu_explore)
+        toolbar.setOnMenuItemClickListener(this)
+    }
+
     private fun setTabs(tabLayout: TabLayout, viewPager: ViewPager) {
-        val fragmentList = listOf<Fragment>(CampaignListFragment(), CourseListFragment())
+        val fragmentList = listOf<Fragment>(campaignListFragment, courseListFragment)
         val titleList = listOf("Active Campaigns", "Active Courses")
 
         viewPager.apply {

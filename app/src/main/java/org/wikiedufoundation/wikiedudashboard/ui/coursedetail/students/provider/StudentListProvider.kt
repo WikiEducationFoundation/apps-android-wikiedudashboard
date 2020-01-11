@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider
 
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 /**
@@ -12,5 +13,5 @@ interface StudentListProvider {
      * @param url api url
      * @param presenterCallback PresenterCallback variable
      * ***/
-    fun requestStudentList(url: String, presenterCallback: PresenterCallback<*>)
+    fun requestStudentList(url: String, presenterCallback: PresenterCallback<StudentListResponse>)
 }

@@ -19,10 +19,9 @@ class MyDashboardPresenterImpl(
 
     override fun requestDashboard(cookies: String) {
         myDashboardView.showProgressBar(true)
-        myDashboardProvider.requestCourseList(cookies, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        myDashboardProvider.requestCourseList(cookies, object : PresenterCallback<MyDashboardResponse> {
+            override fun onSuccess(myDashboardResponse: MyDashboardResponse) {
                 myDashboardView.showProgressBar(false)
-                val myDashboardResponse = o as MyDashboardResponse
                 Timber.d(myDashboardResponse.toString())
                 myDashboardView.setData(myDashboardResponse)
             }

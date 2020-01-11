@@ -60,7 +60,7 @@ interface ProfileContract {
          * @param username username in String
          * @param presenterCallback http request result callback
          * ***/
-        fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<*>)
+        fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<ProfileDetailsResponse>)
 
         /**
          * Implement [requestProfile] to perform http request for profile data
@@ -69,6 +69,6 @@ interface ProfileContract {
          * @param username username in String
          * @param presenterCallback http request result callback
          * ***/
-        fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<*>)
+        fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<ProfileResponse>)
     }
 }
