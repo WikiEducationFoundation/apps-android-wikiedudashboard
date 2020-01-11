@@ -73,9 +73,8 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         if (type == 1) {
             courseUrl?.let { courseUploadsPresenter.requestCourseUploads(it) }
         } else if (type == 2) {
-            courseUploadList?.let { setData(it) }
-            if(courseUploadList==null){
-
+            courseUploadList?.let { setData(it)
+            } ?:run {
                 recyclerUploadList?.visibility = View.GONE
                 textViewNoUploads?.visibility = View.VISIBLE
             }
