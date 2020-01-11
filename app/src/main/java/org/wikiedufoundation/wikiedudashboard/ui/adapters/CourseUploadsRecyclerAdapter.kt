@@ -10,8 +10,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
  * @param onClickListener using a high order function to implement on clicked itm through a lambda
  * ***/
 class CourseUploadsRecyclerAdapter(
-        layoutId: Int,
-        private val onClickListener: (CourseUploadList, Int) -> Unit
+    layoutId: Int,
+    private val onClickListener: (CourseUploadList, Int) -> Unit
 ) : SingleLayoutAdapter<CourseUpload>(layoutId) {
 
     /**

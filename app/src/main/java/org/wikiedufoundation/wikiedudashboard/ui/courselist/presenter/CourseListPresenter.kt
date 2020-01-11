@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter
 
-
 interface CourseListPresenter {
 
     /**

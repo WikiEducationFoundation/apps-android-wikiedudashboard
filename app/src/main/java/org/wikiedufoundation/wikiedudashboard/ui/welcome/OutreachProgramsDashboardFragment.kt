@@ -32,7 +32,6 @@ class OutreachProgramsDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-
     private var cookies: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

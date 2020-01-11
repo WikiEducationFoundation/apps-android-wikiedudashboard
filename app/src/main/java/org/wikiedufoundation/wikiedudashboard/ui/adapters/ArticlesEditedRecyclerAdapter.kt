@@ -8,5 +8,5 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.dat
  * @property layoutId id
  ***/
 class ArticlesEditedRecyclerAdapter(
-        layoutId: Int
+    layoutId: Int
 ) : SingleLayoutAdapter<Article>(layoutId)

@@ -32,9 +32,10 @@ class StudentListFragment : Fragment(), StudentListView {
     private lateinit var url: String
     private lateinit var studentListRecyclerAdapter: StudentListRecyclerAdapter
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_students, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

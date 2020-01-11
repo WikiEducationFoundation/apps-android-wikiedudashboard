@@ -53,7 +53,7 @@ interface WikiEduDashboardApi {
      ***/
     @GET("dashboard.json")
     fun getDashboardDetail(
-            @Header("Cookie") sessionIdAndToken: String
+        @Header("Cookie") sessionIdAndToken: String
     ): Call<MyDashboardResponse>
 
     /**
@@ -73,8 +73,8 @@ interface WikiEduDashboardApi {
      ***/
     @GET("user_stats.json")
     fun getProfileResponse(
-            @Header("Cookie") sessionIdAndToken: String,
-            @Query("username") username: String
+        @Header("Cookie") sessionIdAndToken: String,
+        @Query("username") username: String
     ): Call<ProfileResponse>
 
     /**
@@ -82,7 +82,6 @@ interface WikiEduDashboardApi {
      ***/
     @GET
     fun getProfileDetailsResponse(
-            @Url url: String
+        @Url url: String
     ): Call<ProfileDetailsResponse>
-
 }

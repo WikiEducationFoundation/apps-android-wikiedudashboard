@@ -6,9 +6,8 @@ package org.wikiedufoundation.wikiedudashboard.common
  * [getLayoutIdForPosition] send it up above in the hierarchy
  */
 abstract class SingleLayoutAdapter<T>(
-        private val layoutId: Int
+    private val layoutId: Int
 ) : BaseAdapter<T>() {
 
     override fun getLayoutIdForPosition(position: Int): Int = layoutId
-
 }

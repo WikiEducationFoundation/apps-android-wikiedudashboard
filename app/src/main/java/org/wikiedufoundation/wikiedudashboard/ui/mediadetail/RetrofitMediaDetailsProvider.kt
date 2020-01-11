@@ -11,7 +11,7 @@ import retrofit2.Response
  * Class that implements [requestMediaDetails]
  * ***/
 class RetrofitMediaDetailsProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardMediaApi
+    private val wikiEduDashboardApi: WikiEduDashboardMediaApi
 ) : MediaDetailsContract.Provider {
 
     override fun requestMediaDetails(cookies: String, presenterCallback: PresenterCallback<MediaDetailsResponse>) {

@@ -14,14 +14,14 @@ import timber.log.Timber
  * @property courseListProvider retrofit HTTP request call for course list
  * ***/
 class CourseListPresenterImpl(
-        private val courseListView: CourseListView,
-        private val courseListProvider: CourseListProvider
+    private val courseListView: CourseListView,
+    private val courseListProvider: CourseListProvider
 ) : CourseListPresenter {
 
     override fun requestDashboard(cookies: String) {
         courseListView.showProgressBar(true)
         courseListProvider.requestCourseList(cookies, object : PresenterCallback<ExploreCoursesResponse> {
-            override fun onSuccess(exploreCoursesResponse : ExploreCoursesResponse) {
+            override fun onSuccess(exploreCoursesResponse: ExploreCoursesResponse) {
                 courseListView.showProgressBar(false)
                 Timber.d(exploreCoursesResponse.toString())
                 courseListView.setData(exploreCoursesResponse)

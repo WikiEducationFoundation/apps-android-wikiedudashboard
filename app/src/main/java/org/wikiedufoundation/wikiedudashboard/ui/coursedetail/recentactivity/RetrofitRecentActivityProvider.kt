@@ -12,7 +12,7 @@ import timber.log.Timber
  * Retrofit http request for recent activities
  * ***/
 class RetrofitRecentActivityProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : RecentActivityContract.Provider {
 //     = ProviderUtils.apiObject
 
@@ -21,7 +21,7 @@ class RetrofitRecentActivityProvider(
         val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(subUrl)
         articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {
             override fun onResponse(call: Call<RecentActivityResponse>, response: Response<RecentActivityResponse>) {
-                Timber.d("${response.body()?.course.toString()} ")
+                Timber.d("${response.body()?.course} ")
                 presenterCallback.onSuccess(response.body())
             }
 

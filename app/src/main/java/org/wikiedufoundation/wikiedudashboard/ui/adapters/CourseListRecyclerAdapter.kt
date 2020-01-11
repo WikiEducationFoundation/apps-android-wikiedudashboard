@@ -9,8 +9,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
  * @constructor secondary constructor to initialize [CourseListFragment] variable
  * ***/
 class CourseListRecyclerAdapter internal constructor(
-        layoutId: Int,
-        private val onItemClickListener: (String) -> Unit
+    layoutId: Int,
+    private val onItemClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CourseListData>(layoutId) {
 
     /**
@@ -20,5 +20,4 @@ class CourseListRecyclerAdapter internal constructor(
     fun onCourseClicked(course: CourseListData) {
         onItemClickListener(course.slug)
     }
-
 }
