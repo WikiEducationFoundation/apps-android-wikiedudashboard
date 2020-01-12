@@ -13,8 +13,8 @@ import timber.log.Timber
  * @property myDashboardProvider retrofit HTTP request call for course list
  * ***/
 class MyDashboardPresenterImpl(
-        private val myDashboardView: MyDashboardContract.View,
-        private val myDashboardProvider: MyDashboardContract.Provider
+    private val myDashboardView: MyDashboardContract.View,
+    private val myDashboardProvider: MyDashboardContract.Provider
 ) : MyDashboardContract.Presenter {
 
     override fun requestDashboard(cookies: String) {

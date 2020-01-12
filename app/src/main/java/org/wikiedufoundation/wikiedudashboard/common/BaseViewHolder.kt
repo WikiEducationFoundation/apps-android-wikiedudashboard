@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
  * A [RecyclerView] View Holder.
  */
 class BaseViewHolder<T>(
-        private val binding: ViewDataBinding
+    private val binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     /**
@@ -30,5 +30,4 @@ class BaseViewHolder<T>(
         binding.setVariable(BR.adp, adp)
         binding.executePendingBindings()
     }
-
 }

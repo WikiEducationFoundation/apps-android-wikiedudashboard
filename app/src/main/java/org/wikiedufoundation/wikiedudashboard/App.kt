@@ -24,5 +24,4 @@ class App : Application() {
             modules(listOf(apiModule, provideModule, presenterModule, persistenceModule))
         }
     }
-
 }

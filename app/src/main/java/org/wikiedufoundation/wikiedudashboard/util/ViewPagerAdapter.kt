@@ -9,9 +9,9 @@ import androidx.viewpager.widget.PagerAdapter
  * Adapter class for ViewPager
  * ***/
 class ViewPagerAdapter(
-        manager: FragmentManager,
-        private val fragmentList: List<Fragment>,
-        private val fragmentTitleList: List<String>
+    manager: FragmentManager,
+    private val fragmentList: List<Fragment>,
+    private val fragmentTitleList: List<String>
 ) : FragmentPagerAdapter(manager) {
 
     /**

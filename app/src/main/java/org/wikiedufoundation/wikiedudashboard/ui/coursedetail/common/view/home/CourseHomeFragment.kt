@@ -10,7 +10,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import java.text.MessageFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 /**
  * A simple [Fragment] subclass.
@@ -30,9 +30,9 @@ class CourseHomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_course_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,8 +49,6 @@ class CourseHomeFragment : Fragment() {
         textViewCourseTerm.text = courseDetail?.term
         textViewCoursePassCode.text = courseDetail?.passCode
         textViewCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
-
-
 
         textViewCourseStart.text = readableDate(courseDetail?.start)
         textViewCourseEndDetail.text = readableDate(courseDetail?.end)
@@ -81,6 +79,4 @@ class CourseHomeFragment : Fragment() {
             return simpleDateFormat.format(date)
         }
     }
-
-
 }
