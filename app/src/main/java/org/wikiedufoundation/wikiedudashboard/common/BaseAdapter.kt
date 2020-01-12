@@ -58,5 +58,4 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
      * @param position layout position
      ***/
     protected abstract fun getLayoutIdForPosition(position: Int): Int
-
 }

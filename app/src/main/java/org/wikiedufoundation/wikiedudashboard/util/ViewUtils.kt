@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.wikiedufoundation.wikiedudashboard.R
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 /**
  * Use Kotlin [ExtensionFunctionType] to use [showSnackbar] as a view extension function.
@@ -36,7 +36,7 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
- /**
+/**
  * Use Kotlin [ExtensionFunctionType] to use [hideKeyboard] as a view extension function.
  ***/
 fun View.hideKeyboard() {

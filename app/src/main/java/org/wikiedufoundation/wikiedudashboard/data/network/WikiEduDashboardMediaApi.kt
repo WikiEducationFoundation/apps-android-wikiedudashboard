@@ -18,7 +18,6 @@ interface WikiEduDashboardMediaApi {
      ***/
     @GET("w/api.php?action=query&format=json&pageids=79744855&prop=globalusage|categories|imageinfo&iiprop=size|extmetadata|url&clshow=!hidden")
     fun getMediaDetailsFromCommons(
-            @Header("Cookie") sessionIdAndToken: String
+        @Header("Cookie") sessionIdAndToken: String
     ): Call<MediaDetailsResponse>
-
 }

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
-import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.WelcomeHostActivity
 
 /**

@@ -13,8 +13,8 @@ import timber.log.Timber
  * @property articlesEditedView edited article view to display data
  * ***/
 class ArticlesEditedPresenterImpl(
-        private val articlesEditedView: ArticlesEditedView,
-        private val articlesEditedProvider: ArticlesEditedProvider
+    private val articlesEditedView: ArticlesEditedView,
+    private val articlesEditedProvider: ArticlesEditedProvider
 ) : ArticlesEditedPresenter {
 
     override fun requestArticlesEdited(url: String) {
