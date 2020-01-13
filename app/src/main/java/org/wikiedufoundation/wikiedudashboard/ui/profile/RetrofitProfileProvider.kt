@@ -24,7 +24,7 @@ class RetrofitProfileProvider(
         articlesEditedResponseCall.enqueue(object : Callback<ProfileResponse> {
             override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
                 Timber.d("${response.body()?.toString()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
@@ -41,7 +41,7 @@ class RetrofitProfileProvider(
         profileDetailsResponseCall.enqueue(object : Callback<ProfileDetailsResponse> {
             override fun onResponse(call: Call<ProfileDetailsResponse>, response: Response<ProfileDetailsResponse>) {
                 Timber.d("${response.body()?.toString()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ProfileDetailsResponse>, t: Throwable) {

@@ -22,7 +22,7 @@ class RetrofitCourseDetailProvider(
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {
             override fun onResponse(call: Call<CourseDetailResponse>, response: Response<CourseDetailResponse>) {
                 Timber.d("${response.body().toString()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<CourseDetailResponse>, t: Throwable) {

@@ -18,7 +18,7 @@ class RetrofitCourseListProvider(
         val courseDetailResponseCall = wikiEduDashboardApi.getExploreCourses(cookies)
         courseDetailResponseCall.enqueue(object : Callback<ExploreCoursesResponse> {
             override fun onResponse(call: Call<ExploreCoursesResponse>, response: Response<ExploreCoursesResponse>) {
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ExploreCoursesResponse>, t: Throwable) {

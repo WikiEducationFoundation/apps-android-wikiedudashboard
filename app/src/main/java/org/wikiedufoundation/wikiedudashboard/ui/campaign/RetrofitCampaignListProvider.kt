@@ -19,7 +19,7 @@ class RetrofitCampaignListProvider(
         val campaignListResponseCall = wikiEduDashboardApi.getExploreCampaigns(cookies)
         campaignListResponseCall.enqueue(object : Callback<ExploreCampaignsResponse> {
             override fun onResponse(call: Call<ExploreCampaignsResponse>, response: Response<ExploreCampaignsResponse>) {
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ExploreCampaignsResponse>, t: Throwable) {

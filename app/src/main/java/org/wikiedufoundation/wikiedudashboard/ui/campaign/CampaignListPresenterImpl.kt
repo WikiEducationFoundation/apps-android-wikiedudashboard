@@ -17,10 +17,10 @@ class CampaignListPresenterImpl(
     override fun requestCampaignList(cookies: String) {
         myDashboardView.showProgressBar(true)
         myDashboardProvider.requestCampaignList(cookies, object : PresenterCallback< ExploreCampaignsResponse> {
-            override fun onSuccess(exploreCampaignsResponse:  ExploreCampaignsResponse) {
+            override fun onSuccess(t:  ExploreCampaignsResponse) {
                 myDashboardView.showProgressBar(false)
-                Timber.d(exploreCampaignsResponse.toString())
-                myDashboardView.setData(exploreCampaignsResponse)
+                Timber.d(t.toString())
+                myDashboardView.setData(t)
             }
 
             override fun onFailure() {

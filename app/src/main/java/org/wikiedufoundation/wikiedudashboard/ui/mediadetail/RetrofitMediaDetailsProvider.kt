@@ -18,7 +18,7 @@ class RetrofitMediaDetailsProvider(
         val courseDetailResponseCall = wikiEduDashboardApi.getMediaDetailsFromCommons(cookies)
         courseDetailResponseCall.enqueue(object : Callback<MediaDetailsResponse> {
             override fun onResponse(call: Call<MediaDetailsResponse>, response: Response<MediaDetailsResponse>) {
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<MediaDetailsResponse>, t: Throwable) {
