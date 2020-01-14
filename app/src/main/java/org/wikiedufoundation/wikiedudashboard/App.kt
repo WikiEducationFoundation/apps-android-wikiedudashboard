@@ -28,5 +28,4 @@ class App : Application() {
                     databaseModule, repositoryModule, viewModelModule))
         }
     }
-
 }

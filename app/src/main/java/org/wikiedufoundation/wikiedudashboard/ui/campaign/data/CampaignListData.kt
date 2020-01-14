@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-
 /**
  * [CampaignListData] model class
  * @constructor primary constructor
@@ -18,14 +17,14 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "campaign_list")
 class CampaignListData(
         @PrimaryKey
-        @SerializedName("id")
-        val id: Int,
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("slug")
-        val slug: String,
-        @SerializedName("description")
-        val description: String
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("slug")
+    val slug: String,
+    @SerializedName("description")
+    val description: String
 ) {
     override fun toString(): String {
         return "CampaignListData(" +

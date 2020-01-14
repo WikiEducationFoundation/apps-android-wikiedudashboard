@@ -11,7 +11,7 @@ import retrofit2.Response
  * Class that implements [requestCourseList] to get CourseList data
  * ***/
 class RetrofitMyDashboardProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : MyDashboardContract.Provider {
 
     override fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<MyDashboardResponse>) {

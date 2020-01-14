@@ -13,8 +13,8 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * @property courseUploadsProvider
  * ***/
 class CourseUploadsPresenterImpl(
-        private val courseUploadsView: CourseUploadsView,
-        private val courseUploadsProvider: CourseUploadsProvider
+    private val courseUploadsView: CourseUploadsView,
+    private val courseUploadsProvider: CourseUploadsProvider
 ) : CourseUploadsPresenter {
 
     override fun requestCourseUploads(url: String) {

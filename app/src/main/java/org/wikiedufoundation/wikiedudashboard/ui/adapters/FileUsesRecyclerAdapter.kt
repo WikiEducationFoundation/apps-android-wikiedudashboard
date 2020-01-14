@@ -9,7 +9,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.FileUsage
  * @param onClickListener using a high order function to implement o item click through a lambda
  * ***/
 class FileUsesRecyclerAdapter internal constructor(
-        layoutId: Int
+    layoutId: Int
 //        private val onClickListener: () -> Unit
 ) : SingleLayoutAdapter<FileUsage>(layoutId) {
 
@@ -20,5 +20,4 @@ class FileUsesRecyclerAdapter internal constructor(
     fun filesClicked(file: FileUsage) {
 //        onClickListener(file)
     }
-
 }

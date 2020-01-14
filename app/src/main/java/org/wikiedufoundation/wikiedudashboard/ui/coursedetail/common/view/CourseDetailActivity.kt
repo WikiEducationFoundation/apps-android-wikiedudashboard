@@ -98,7 +98,6 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         viewPager.apply {
             adapter = ViewPagerAdapter(supportFragmentManager, fragmentList, titleList)
         }
-
     }
 
     override fun showProgressBar(show: Boolean) {

@@ -28,7 +28,6 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CategoryListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
@@ -80,11 +79,11 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-       return inflater.inflate(R.layout.fragment_media_details, container, false)
+        return inflater.inflate(R.layout.fragment_media_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -127,7 +126,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.item_download) {
             downloadImageWithPermission()
-            //downloadImage()
+            // downloadImage()
             return true
         } else if (item?.itemId == R.id.item_customtabs) {
             val builder = CustomTabsIntent.Builder()
@@ -160,8 +159,8 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             }
             val downloadRequest: DownloadManager.Request = DownloadManager.Request(url)
 
-            //downloaded image will be stored in Downloads directory of a device
-            //if no destination dir is set
+            // downloaded image will be stored in Downloads directory of a device
+            // if no destination dir is set
             downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or
                     DownloadManager.Request.NETWORK_MOBILE).setAllowedOverMetered(true)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
@@ -175,17 +174,14 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
                 override fun onReceive(context: Context, intent: Intent) {
                     val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (downloadID == id) {
-                        Toast.makeText(context, "Download complete!\n Image "
-                                + courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Download complete!\n Image " +
+                                courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
                         Timber.d("image saved to $mDir")
                     }
                 }
-
             }
             context?.registerReceiver(onDownloadCompleteReceiver,
                     IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-
-
         } catch (ie: IOException) {
             ie.stackTrace
         }
@@ -202,7 +198,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(arrayOf(permissionType), WRITE_EXTERNAL_STORAGE_RC)
-
             }
         }
     }
@@ -214,7 +209,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
                         grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Timber.d("Permission denied by user")
-
                 } else {
                     downloadImage()
                     Timber.d("Permission granted by user")
@@ -301,5 +295,4 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             return fragment
         }
     }
-
 }

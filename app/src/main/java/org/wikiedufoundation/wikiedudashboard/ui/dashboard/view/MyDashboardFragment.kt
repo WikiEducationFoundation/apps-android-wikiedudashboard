@@ -30,7 +30,6 @@ import timber.log.Timber
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
 
-
     private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
     private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
         parametersOf(this, retrofitMyDashboardProvider)
@@ -55,13 +54,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_dashboard, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -137,7 +135,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         myDashboardRecyclerAdapter.setData(courseFilterQuery)
         myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
-
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match

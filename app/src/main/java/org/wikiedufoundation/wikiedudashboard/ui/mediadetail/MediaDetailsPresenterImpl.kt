@@ -12,8 +12,8 @@ import timber.log.Timber
  * @property mediaDetailsProvider variable of [MediaDetailsContract.Provider]
  * ***/
 class MediaDetailsPresenterImpl(
-        private val mediaDetailsView: MediaDetailsContract.View,
-        private val mediaDetailsProvider: MediaDetailsContract.Provider
+    private val mediaDetailsView: MediaDetailsContract.View,
+    private val mediaDetailsProvider: MediaDetailsContract.Provider
 ) : MediaDetailsContract.Presenter {
 
     override fun requestMediaDetails(cookies: String) {

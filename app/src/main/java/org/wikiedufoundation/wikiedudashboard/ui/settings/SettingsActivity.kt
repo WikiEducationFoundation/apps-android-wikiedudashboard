@@ -13,7 +13,6 @@ import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 import org.wikiedufoundation.wikiedudashboard.BuildConfig
 import org.wikiedufoundation.wikiedudashboard.R
 
-
 /**
  * Activity for user settings of the profile part
  * ***/
@@ -33,11 +32,10 @@ class SettingsActivity : AppCompatActivity() {
         textViewTermsAndConditions.setOnClickListener { openTermsAndConditions() }
         textViewLogout.setOnClickListener { logOut() }
         textViewVersionCode.text = BuildConfig.VERSION_NAME
-
     }
 
     private fun sendEmailFeedback() {
-        val emailArray:Array<String> = arrayOf("android-app@wikiedu.org")
+        val emailArray: Array<String> = arrayOf("android-app@wikiedu.org")
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, emailArray)
