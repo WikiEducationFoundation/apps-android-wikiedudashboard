@@ -9,8 +9,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
  * @param onClickListener using a high order function to implement o item click through a lambda
  * ***/
 class CampaignListRecyclerAdapter internal constructor(
-        layoutId: Int,
-        private val onClickListener: (String) -> Unit
+    layoutId: Int,
+    private val onClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CampaignListData>(layoutId) {
 
     /**
@@ -20,5 +20,4 @@ class CampaignListRecyclerAdapter internal constructor(
     fun onCampaignClicked(campaign: CampaignListData) {
         onClickListener(campaign.slug)
     }
-
 }

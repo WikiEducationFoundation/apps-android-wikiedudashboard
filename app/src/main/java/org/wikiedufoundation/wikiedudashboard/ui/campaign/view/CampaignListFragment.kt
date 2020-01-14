@@ -19,7 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsR
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 /**
@@ -52,9 +52,9 @@ class CampaignListFragment : Fragment(), CampaignListContract.View {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_campaign_list, container, false)

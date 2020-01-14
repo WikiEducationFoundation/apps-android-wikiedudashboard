@@ -14,7 +14,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ByStudentsDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -43,10 +42,10 @@ class ProfileStatsFragment : Fragment() {
         }
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text : String = context?.getString(R.string.total_impact_made_by_student) + username
+            val text: String = context?.getString(R.string.total_impact_made_by_student) + username
             tvTitleImpactByStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
@@ -69,12 +68,11 @@ class ProfileStatsFragment : Fragment() {
 
             clAsStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
-
         }
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text : String = context?.getString(R.string.total_impact_made_by_student) + username
+            val text: String = context?.getString(R.string.total_impact_made_by_student) + username
             tvTitleImpactAsStudent.text = text
             tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
@@ -85,7 +83,6 @@ class ProfileStatsFragment : Fragment() {
         } ?: run {
             clByStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
-
         }
     }
 

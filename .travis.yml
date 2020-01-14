@@ -12,5 +12,6 @@ before_script:
   - chmod +x gradlew
 script:
   - ./gradlew assembleDebug --stacktrace
+  - ./gradlew ktlintCheck
 after_success:
 - bash scripts/update-apk.sh

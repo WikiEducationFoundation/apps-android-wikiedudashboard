@@ -7,6 +7,6 @@ import com.google.gson.annotations.SerializedName
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class UserData(
-        @SerializedName("username")
-        val userName: String
+    @SerializedName("username")
+    val userName: String
 )

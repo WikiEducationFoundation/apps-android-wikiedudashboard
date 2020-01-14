@@ -13,8 +13,8 @@ import timber.log.Timber
  * @property provider Retrofit http request provider
  * ***/
 class ProfilePresenterImpl(
-        private val view: ProfileContract.View,
-        private val provider: ProfileContract.Provider
+    private val view: ProfileContract.View,
+    private val provider: ProfileContract.Provider
 ) : ProfileContract.Presenter {
 
     override fun requestProfileDetails(username: String) {
@@ -38,8 +38,10 @@ class ProfilePresenterImpl(
         provider.requestProfile(cookies, username, object : PresenterCallback<ProfileResponse> {
             override fun onSuccess(t: ProfileResponse) {
                 view.showProgressBar(false)
+
                 Timber.d(t.toString())
                 view.setData(t)
+
             }
 
             override fun onFailure() {

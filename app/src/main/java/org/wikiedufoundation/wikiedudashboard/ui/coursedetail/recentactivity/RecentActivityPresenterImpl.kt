@@ -12,8 +12,8 @@ import timber.log.Timber
  * @property provider api service for course detail
  * ***/
 class RecentActivityPresenterImpl(
-        private val view: RecentActivityContract.View,
-        private val provider: RecentActivityContract.Provider
+    private val view: RecentActivityContract.View,
+    private val provider: RecentActivityContract.Provider
 ) : RecentActivityContract.Presenter {
 
     override fun requestRecentActivity(url: String) {
@@ -30,6 +30,5 @@ class RecentActivityPresenterImpl(
                 view.showMessage("unable to connect to server.")
             }
         })
-
     }
 }

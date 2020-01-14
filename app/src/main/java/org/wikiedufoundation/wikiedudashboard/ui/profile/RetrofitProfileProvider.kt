@@ -15,7 +15,7 @@ import timber.log.Timber
  * to get profile data
  * ***/
 class RetrofitProfileProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : ProfileContract.Provider {
 //     = ProviderUtils.apiObject
 
@@ -51,5 +51,4 @@ class RetrofitProfileProvider(
             }
         })
     }
-
 }

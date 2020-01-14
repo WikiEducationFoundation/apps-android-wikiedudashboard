@@ -12,7 +12,7 @@ import timber.log.Timber
  * Retrofit http request for edited articles
  * ***/
 class RetrofitArticlesEditedProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : ArticlesEditedProvider {
 //     = ProviderUtils.apiObject
 

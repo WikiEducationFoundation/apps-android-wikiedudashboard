@@ -42,9 +42,9 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
@@ -70,7 +70,6 @@ class ExploreFragment : Fragment(), Toolbar.OnMenuItemClickListener {
             adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
         }
         tabLayout.setupWithViewPager(viewPager)
-
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
