@@ -31,9 +31,10 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
     private var url: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

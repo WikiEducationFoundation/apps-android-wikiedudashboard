@@ -12,7 +12,7 @@ import timber.log.Timber
  * [RetrofitStudentListProvider] to make retrofit http request for getting list of student data
  * ***/
 class RetrofitStudentListProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : StudentListProvider {
 //     = ProviderUtils.apiObject
 

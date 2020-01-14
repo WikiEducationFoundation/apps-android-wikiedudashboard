@@ -12,7 +12,7 @@ import timber.log.Timber
  * Retrofit http request to get course detail data
  * ***/
 class RetrofitCourseDetailProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : CourseDetailProvider {
 //     = ProviderUtils.apiObject
 
@@ -21,8 +21,10 @@ class RetrofitCourseDetailProvider(
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseDetail(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {
             override fun onResponse(call: Call<CourseDetailResponse>, response: Response<CourseDetailResponse>) {
+
                 Timber.d("${response.body().toString()} ")
                 response.body()?.let { presenterCallback.onSuccess(it) }
+
             }
 
             override fun onFailure(call: Call<CourseDetailResponse>, t: Throwable) {

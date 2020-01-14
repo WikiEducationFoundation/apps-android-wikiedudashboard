@@ -63,12 +63,11 @@ val apiModule = module {
     single { provideBaseRetrofit().create(WikiEduDashboardApi::class.java) }
 
     single { provideCommonsRetrofit().create(WikiEduDashboardMediaApi::class.java) }
-
 }
 
 /**
  * Use the [providerGson] to provide Gson
- * @return  GsonBuilder*/
+ * @return GsonBuilder*/
 fun providerGson(): Gson =
         GsonBuilder()
                 .setLenient()
@@ -76,7 +75,7 @@ fun providerGson(): Gson =
 
 /**
  * Use the [provideInterceptor] to provide a HttpLoggingInterceptor
- * @return  HttpLoggingInterceptor*/
+ * @return HttpLoggingInterceptor*/
 fun provideInterceptor(): HttpLoggingInterceptor {
     val interceptor = HttpLoggingInterceptor()
     interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -85,7 +84,7 @@ fun provideInterceptor(): HttpLoggingInterceptor {
 
 /**
  * Use the [provideClient] to provide a OkHttpClient
- * @return  OkHttpClient*/
+ * @return OkHttpClient*/
 fun provideClient(): OkHttpClient =
         OkHttpClient.Builder()
                 .addInterceptor(provideInterceptor())
@@ -95,7 +94,7 @@ fun provideClient(): OkHttpClient =
 
 /**
  * Use the [provideBaseRetrofit] to provide a Retrofit with WITH_BASE_URL instance
- * @return  Retrofit*/
+ * @return Retrofit*/
 fun provideBaseRetrofit(): Retrofit =
         Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
@@ -105,7 +104,7 @@ fun provideBaseRetrofit(): Retrofit =
 
 /**
  * Use the [provideCommonsRetrofit] to provide a Retrofit with WIKI_MEDIA_COMMONS instance
- * @return  Retrofit*/
+ * @return Retrofit*/
 fun provideCommonsRetrofit(): Retrofit =
         Retrofit.Builder()
                 .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
@@ -125,7 +124,6 @@ val persistenceModule = module {
      * Singleton for shared preference
      **/
     single { SharedPrefs(get()) }
-
 }
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
@@ -240,7 +238,6 @@ val presenterModule = module {
     factory<CourseUploadsPresenter> { (view: CourseUploadsView, provider: CourseUploadsProvider) ->
         CourseUploadsPresenterImpl(view, provider)
     }
-
 }
 /**
  * Use the [provideModule] to creating the Providers
@@ -335,5 +332,4 @@ val provideModule = module {
      * Singleton for [RetrofitCourseUploadsProvider]
      **/
     single { RetrofitCourseUploadsProvider(get()) }
-
 }
