@@ -10,6 +10,9 @@ interface PresenterCallback<T> {
      * @param t
      */
     fun onSuccess(t: T)
-    
+
+    /**
+     *
+     */
     fun onFailure()
 }
