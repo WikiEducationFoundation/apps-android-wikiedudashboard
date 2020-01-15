@@ -14,12 +14,10 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
-import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
-import java.util.Locale
+import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -66,10 +64,11 @@ class CampaignListFragment : Fragment() {
         }
 
         initializeRecyclerView()
-        sharedPrefs.cookies?.let { (activeCampaignViewModel.fetchCampaignList(it)) }
         setData()
         showProgressBar()
         showMessage()
+        sharedPrefs.cookies?.let { (activeCampaignViewModel.fetchCampaignList(it)) }
+
     }
 
     /**
