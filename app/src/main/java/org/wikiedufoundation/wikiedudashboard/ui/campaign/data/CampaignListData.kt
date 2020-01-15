@@ -18,13 +18,13 @@ import com.google.gson.annotations.SerializedName
 class CampaignListData(
         @PrimaryKey
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("title")
     val title: String,
     @SerializedName("slug")
     val slug: String,
     @SerializedName("description")
-    val description: String
+    val description: String?
 ) {
     override fun toString(): String {
         return "CampaignListData(" +
