@@ -1,4 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,7 +36,6 @@ class CourseListFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
     private var coursesList: List<CourseListData> = ArrayList()
-
     private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +47,9 @@ class CourseListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -108,7 +108,8 @@ class CourseListFragment : Fragment() {
     fun showMessage() {
         courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            it?.let { Toast.makeText(context, message, Toast.LENGTH_LONG).show() }        })
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun openCourseDetail(slug: String) {
@@ -131,8 +132,8 @@ class CourseListFragment : Fragment() {
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+        private const val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM2 = "param2"
 
         /**
          * Use this factory method to create a new instance of
@@ -143,13 +144,11 @@ class CourseListFragment : Fragment() {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): CourseListFragment {
-            val fragment = CourseListFragment()
+        fun newInstance(param1: String, param2: String) = CourseListFragment().apply {
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import timber.log.Timber
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
