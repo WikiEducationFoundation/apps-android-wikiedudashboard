@@ -18,6 +18,7 @@ class RetrofitMyDashboardProvider(
         val courseDetailResponseCall = wikiEduDashboardApi.getDashboardDetail(cookies)
         courseDetailResponseCall.enqueue(object : Callback<MyDashboardResponse> {
             override fun onResponse(call: Call<MyDashboardResponse>, response: Response<MyDashboardResponse>) {
+
                 presenterCallback.onSuccess(response.body())
             }
 

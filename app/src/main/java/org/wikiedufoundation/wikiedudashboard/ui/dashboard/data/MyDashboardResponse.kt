@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
 
 import com.google.gson.annotations.SerializedName
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 
 /**
  * [MyDashboardResponse] model class

@@ -1,64 +1,68 @@
-package org.wikiedufoundation.wikiedudashboard.ui.dashboard.data
+package org.wikiedufoundation.wikiedudashboard.ui.courselist.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
  * [CourseListData] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
+@Entity(tableName = "course_list")
 class CourseListData(
+    @PrimaryKey
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("title")
     val title: String,
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String?,
     @SerializedName("updated_at")
-    val updatedAt: String,
+    val updatedAt: String?,
     @SerializedName("start")
-    val start: String,
+    val start: String?,
     @SerializedName("end")
-    val end: String,
+    val end: String?,
     @SerializedName("school")
-    val school: String,
+    val school: String?,
     @SerializedName("term")
-    val term: String,
+    val term: String?,
     @SerializedName("character_sum")
-    val characterSum: String,
+    val characterSum: String?,
     @SerializedName("view_sum")
-    val viewSum: String,
+    val viewSum: String?,
     @SerializedName("user_count")
-    val userCount: String,
+    val userCount: String?,
     @SerializedName("article_count")
-    val articleCount: String,
+    val articleCount: String?,
     @SerializedName("revision_count")
-    val revisionCount: String,
+    val revisionCount: String?,
     @SerializedName("slug")
     val slug: String,
     @SerializedName("subject")
-    val subject: String,
+    val subject: String?,
     @SerializedName("expected_students")
-    val expectedStudents: Int,
+    val expectedStudents: Int?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("isSubmitted")
-    val isSubmitted: Boolean,
+    val isSubmitted: Boolean?,
     @SerializedName("passcode")
-    val passcode: String,
+    val passcode: String?,
     @SerializedName("timeline_start")
-    val timelineStart: String,
+    val timelineStart: String?,
     @SerializedName("timeline_end")
-    val timelineEnd: String,
+    val timelineEnd: String?,
     @SerializedName("day_exceptions")
-    val dayExceptions: String,
+    val dayExceptions: String?,
     @SerializedName("weekdays")
-    val weekdays: String,
+    val weekdays: String?,
     @SerializedName("new_article_count")
-    val newArticleCount: Int,
+    val newArticleCount: Int?,
     @SerializedName("isNo_day_exceptions")
-    val isNoDayExceptions: Boolean,
+    val isNoDayExceptions: Boolean?,
     @SerializedName("trained_count")
-    val trainedCount: Int
+    val trainedCount: Int?
 ) {
     override fun toString(): String {
         return "CourseListData(id=$id, " +
