@@ -40,7 +40,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
                 activeCampaignRepository.getCampaignList(cookies)
 
             } catch (e: Exception) {
-                _showMsg.postValue(ShowMessage("Unable to connect to the server"))
+                _showMsg.postValue(ShowMessage("Unable to connect to server."))
             }
         }
     }

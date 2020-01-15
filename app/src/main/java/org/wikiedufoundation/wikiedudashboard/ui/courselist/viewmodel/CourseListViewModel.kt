@@ -38,7 +38,7 @@ class CourseListViewModel(private val repository: CourseListRepository) : ViewMo
                 repository.getCourseList(cookies)
 
             }catch (e: Exception){
-                _showMsg.postValue(ShowMessage("Unable to connect to the server"))
+                _showMsg.postValue(ShowMessage("Unable to connect to server."))
             }
         }
     }
