@@ -15,6 +15,4 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 abstract class WikiDatabase : RoomDatabase() {
     abstract val activeCampaignDao: ActiveCampaignDao
     abstract val courseListDao: CourseListDao
-
 }
-

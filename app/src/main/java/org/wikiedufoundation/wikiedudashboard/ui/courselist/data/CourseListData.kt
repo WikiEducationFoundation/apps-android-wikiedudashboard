@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  * ***/
 @Entity(tableName = "course_list")
 class CourseListData(
-        @PrimaryKey
+    @PrimaryKey
     @SerializedName("id")
     val id: Int?,
     @SerializedName("title")
@@ -62,7 +62,8 @@ class CourseListData(
     @SerializedName("isNo_day_exceptions")
     val isNoDayExceptions: Boolean?,
     @SerializedName("trained_count")
-    val trainedCount: Int?) {
+    val trainedCount: Int?
+    ) {
     override fun toString(): String {
         return "CourseListData(id=$id, " +
                 "title='$title', " +

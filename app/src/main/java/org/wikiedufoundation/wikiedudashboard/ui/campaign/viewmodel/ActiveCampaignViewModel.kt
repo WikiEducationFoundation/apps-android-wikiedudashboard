@@ -1,10 +1,12 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
-
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
@@ -32,12 +34,13 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
 
     fun fetchCampaignList(cookies: String) {
         viewModelScope.launch {
-            try{
+            try {
+
                 activeCampaignRepository.getCampaignList(cookies)
-            }catch (e: Exception){
+
+            } catch (e: Exception) {
                 _showMsg.postValue(ShowMessage("Unable to connect to the server"))
             }
         }
-
     }
 }

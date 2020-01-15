@@ -1,5 +1,4 @@
 package org.wikiedufoundation.wikiedudashboard.ui.courselist.view
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater

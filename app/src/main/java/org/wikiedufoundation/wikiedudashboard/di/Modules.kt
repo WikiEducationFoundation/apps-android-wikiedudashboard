@@ -137,7 +137,7 @@ val databaseModule = module {
     /**
      * Use the [provideDatabase] to provide a database instance
      * */
-    fun provideDatabase(application: Application) : WikiDatabase {
+    fun provideDatabase(application: Application): WikiDatabase {
         return Room.databaseBuilder(application, WikiDatabase::class.java, "WikiDatabase")
                 .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
@@ -147,19 +147,16 @@ val databaseModule = module {
     /**
      * Use the [provideCampaignListDao] to provide a provideCampaignListDao instance
      * */
-    fun provideCampaignListDao(database: WikiDatabase) : ActiveCampaignDao
-            = database.activeCampaignDao
+    fun provideCampaignListDao(database: WikiDatabase) : ActiveCampaignDao = database.activeCampaignDao
 
     /**
      * Use the [provideCourseListDao] to provide a provideCourseListDao instance
      * */
-    fun provideCourseListDao(database: WikiDatabase) : CourseListDao
-            = database.courseListDao
+    fun provideCourseListDao(database: WikiDatabase) : CourseListDao = database.courseListDao
 
     single { provideDatabase(androidApplication()) }
     single { provideCampaignListDao(get()) }
     single { provideCourseListDao(get()) }
-
 }
 
 /**
@@ -171,13 +168,13 @@ val repositoryModule = module {
      * Use the [provideCampaignListRepository] to provide a CampaignListRepository instance
      * */
     fun provideCampaignListRepository(api:WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao)
-            : ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
+            :  ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
 
     /**
      * Use the [provideCourseListRepository] to provide a CourseListRepository instance
      * */
-    fun provideCourseListRepository(api:WikiEduDashboardApi, courseListDao: CourseListDao)
-            : CourseListRepository = CourseListRepository(api, courseListDao)
+    fun provideCourseListRepository(api:WikiEduDashboardApi, courseListDao: CourseListDao):
+            CourseListRepository = CourseListRepository(api, courseListDao)
 
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
@@ -190,8 +187,6 @@ val viewModelModule = module {
     viewModel { ActiveCampaignViewModel(get()) }
     viewModel { CourseListViewModel(get()) }
 }
-
-
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
  **/
