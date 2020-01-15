@@ -25,7 +25,7 @@ interface ActiveCampaignDao {
      * This insert the data into the database
      *
      **/
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
      suspend fun insertCampaign(campaignList: List<CampaignListData>)
 
 }
