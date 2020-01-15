@@ -39,7 +39,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
-    private var mParam2: Boolean = false;
+    private var mParam2: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,8 +114,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         tvProfileInstitute.text = data?.userProfile?.institution
 
         llProfileEmail.visibility = View.GONE
-
-
     }
 
     override fun setData(data: ProfileResponse?) {

@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.fragment_image_viewer.toolbar
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 
-
 /**
  * A simple [Fragment] subclass.
  * Use the [ImageViewerFragment.newInstance] factory method to
