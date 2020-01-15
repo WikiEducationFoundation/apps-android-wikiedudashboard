@@ -63,10 +63,6 @@ class CourseListFragment : Fragment() {
         sharedPrefs.cookies?.let { courselistViewModel.fetchCourseList(it) }
     }
 
-    /**
-     *   This initializes the recyclerview
-     */
-
     private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
