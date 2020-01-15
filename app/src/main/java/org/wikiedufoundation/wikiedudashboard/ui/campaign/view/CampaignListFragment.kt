@@ -17,7 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 /**
