@@ -35,11 +35,11 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
                 val request = wikiEduDashboardApi.getExploreCampaigns(cookies).await()
                 val campaignList = request.campaigns
                 activeCampaignDao.insertCampaign(campaignList)
-            } catch (e: HttpException) {
+            } catch (e: Exception) {
                 Timber.d("Unable to connect to server")
                 ShowMessge("Unable to connect to server")
-            } catch (error: HttpException) {
-                Timber.d("Something went wrong")
+            } catch (error: Throwable) {
+                Timber.e(" hello error ${error.message}")
                 ShowMessge("Something went wrong")
             }
         }
