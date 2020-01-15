@@ -32,7 +32,11 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
 
     fun fetchCampaignList(cookies: String) {
         viewModelScope.launch {
-            activeCampaignRepository.getCampaignList(cookies)
+            try{
+                activeCampaignRepository.getCampaignList(cookies)
+            }catch (e: Exception){
+                _showMsg.postValue(ShowMessage("Unable to connect to the server"))
+            }
         }
 
     }

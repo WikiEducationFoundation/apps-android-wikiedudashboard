@@ -6,8 +6,6 @@ import kotlinx.coroutines.withContext
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
-import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
-import timber.log.Timber
 
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
  *instead of the whole database, because you only need access to the DAO*
@@ -24,19 +22,11 @@ class ActiveCampaignRepository(private val wikiEduDashboardApi: WikiEduDashboard
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    suspend fun getCampaignList(cookies: String){
+    suspend fun getCampaignList(cookies: String) {
         withContext(Dispatchers.Main) {
-            try {
-                val request = wikiEduDashboardApi.getExploreCampaigns(cookies).await()
-                val campaignList = request.campaigns
-                activeCampaignDao.insertCampaign(campaignList)
-            } catch (e: Exception) {
-                Timber.d("Unable to connect to server")
-                ShowMessage("Unable to connect to server")
-            } catch (error: Throwable) {
-                Timber.e(" Something went wrong")
-                ShowMessage("Something went wrong")
-            }
+            val request = wikiEduDashboardApi.getExploreCampaigns(cookies).await()
+            val campaignList = request.campaigns
+            activeCampaignDao.insertCampaign(campaignList)
         }
     }
 

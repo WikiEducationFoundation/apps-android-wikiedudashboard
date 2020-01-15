@@ -26,17 +26,9 @@ class CourseListRepository(private val wikiEduDashboardApi: WikiEduDashboardApi,
      **/
     suspend fun getCourseList(cookies: String) {
         withContext(Dispatchers.Main) {
-            try {
-                val request = wikiEduDashboardApi.getExploreCourses(cookies).await()
-                val courseList = request.courses
-                courseListDao.insertCourse(courseList)
-            } catch (e: Exception) {
-                Timber.d("Unable to connect to server")
-                ShowMessage("Unable to connect to server")
-            } catch (e: Throwable) {
-                Timber.d("Something went wrong")
-                ShowMessage("Something went wrong")
-            }
+            val request = wikiEduDashboardApi.getExploreCourses(cookies).await()
+            val courseList = request.courses
+            courseListDao.insertCourse(courseList)
         }
 
     }
