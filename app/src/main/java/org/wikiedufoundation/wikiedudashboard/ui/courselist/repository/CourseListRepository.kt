@@ -10,8 +10,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
  *instead of the whole database, because you only need access to the DAO*
  * */
-class CourseListRepository(private val wikiEduDashboardApi: WikiEduDashboardApi,
-                           private val courseListDao: CourseListDao) {
+class CourseListRepository(
+    private val wikiEduDashboardApi: WikiEduDashboardApi,
+    private val courseListDao: CourseListDao
+) {
 
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
@@ -27,6 +29,5 @@ class CourseListRepository(private val wikiEduDashboardApi: WikiEduDashboardApi,
             val courseList = request.courses
             courseListDao.insertCourse(courseList)
         }
-
     }
 }

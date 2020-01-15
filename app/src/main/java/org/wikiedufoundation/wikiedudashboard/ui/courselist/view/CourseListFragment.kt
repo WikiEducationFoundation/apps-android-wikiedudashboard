@@ -47,9 +47,9 @@ class CourseListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +67,7 @@ class CourseListFragment : Fragment() {
      *   This initializes the recyclerview
      */
 
-    fun initializeRecyclerView() {
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -98,7 +98,6 @@ class CourseListFragment : Fragment() {
     fun showProgressBar() {
         courselistViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
-
         })
     }
 

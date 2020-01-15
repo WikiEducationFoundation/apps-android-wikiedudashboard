@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
-import timber.log.Timber
+import java.io.IOException
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
@@ -38,8 +38,7 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
             try {
 
                 activeCampaignRepository.getCampaignList(cookies)
-
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
             }
         }

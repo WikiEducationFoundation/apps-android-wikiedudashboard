@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
-import timber.log.Timber
+import java.io.IOException
 
 /**
  * Class extends AndroidViewModel and requires application as a parameter.
@@ -22,7 +22,6 @@ class CourseListViewModel(private val repository: CourseListRepository) : ViewMo
     val data = repository.allCourseList
     init {
         _progressbar.postValue(false)
-
     }
 
     /**  The implementation of insert() is completely hidden from the UI.
@@ -36,8 +35,7 @@ class CourseListViewModel(private val repository: CourseListRepository) : ViewMo
             try {
 
                 repository.getCourseList(cookies)
-
-            }catch (e: Exception){
+            } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
             }
         }

@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.data
 
-
 /**
  * [ExploreCampaignsResponse] response model
  * @constructor primary constructor to initialize campaigns list

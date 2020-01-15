@@ -5,5 +5,3 @@ package org.wikiedufoundation.wikiedudashboard.util
  *
  **/
 class ShowMessage(val showMsg: String?)
-
-

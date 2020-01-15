@@ -47,11 +47,10 @@ class CampaignListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_campaign_list, container, false)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,12 +64,7 @@ class CampaignListFragment : Fragment() {
         showProgressBar()
         showMessage()
         sharedPrefs.cookies?.let { (activeCampaignViewModel.fetchCampaignList(it)) }
-
     }
-
-    /**
-     *   This initializes the recyclerview
-     */
 
     private fun initializeRecyclerView() {
         recyclerCampaignList?.apply {
@@ -90,7 +84,6 @@ class CampaignListFragment : Fragment() {
                 recyclerCampaignList?.visibility = View.VISIBLE
                 campaignListRecyclerAdapter.setData(it)
                 textViewNoCampaigns?.visibility = View.GONE
-
             } else {
                 recyclerCampaignList?.visibility = View.GONE
                 textViewNoCampaigns?.visibility = View.VISIBLE
@@ -104,7 +97,6 @@ class CampaignListFragment : Fragment() {
     fun showProgressBar() {
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
-
         })
     }
 
@@ -115,10 +107,8 @@ class CampaignListFragment : Fragment() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-
         })
     }
-
 
     /**
      *   This performs search
