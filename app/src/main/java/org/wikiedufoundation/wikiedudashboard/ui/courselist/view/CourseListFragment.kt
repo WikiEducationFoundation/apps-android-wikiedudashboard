@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
 import kotlinx.android.synthetic.main.fragment_explore_course_list.progressBar
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
@@ -29,7 +30,7 @@ import timber.log.Timber
  */
 class CourseListFragment : Fragment() {
 
-    private val courselistViewModel: CourseListViewModel by inject()
+    private val courselistViewModel by viewModel<CourseListViewModel>()
     private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
