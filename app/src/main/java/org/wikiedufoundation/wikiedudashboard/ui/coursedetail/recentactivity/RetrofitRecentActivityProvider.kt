@@ -21,8 +21,9 @@ class RetrofitRecentActivityProvider(
         val articlesEditedResponseCall = wikiEduDashboardApi.getRecentActivity(subUrl)
         articlesEditedResponseCall.enqueue(object : Callback<RecentActivityResponse> {
             override fun onResponse(call: Call<RecentActivityResponse>, response: Response<RecentActivityResponse>) {
+
                 Timber.d("${response.body()?.course} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<RecentActivityResponse>, t: Throwable) {

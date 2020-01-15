@@ -20,9 +20,9 @@ class CourseDetailPresenterImpl(
     override fun requestCourseDetail(url: String) {
         courseDetailView.showProgressBar(true)
         courseDetailProvider.requestCourseDetail(url, object : PresenterCallback<CourseDetailResponse> {
-            override fun onSuccess(courseDetailResponse: CourseDetailResponse) {
+            override fun onSuccess(response: CourseDetailResponse) {
                 courseDetailView.showProgressBar(false)
-                courseDetailView.setData((courseDetailResponse).course)
+                courseDetailView.setData((response).course)
             }
 
             override fun onFailure() {
