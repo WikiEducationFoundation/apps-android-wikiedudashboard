@@ -1,9 +1,9 @@
-package org.wikiedufoundation.wikiedudashboard.ui.campaign.data
+package org.wikiedufoundation.wikiedudashboard.util
 
 /**
  * This class is called to display messages
  *
  **/
-class ShowMessge(val showMsg: String?)
+class ShowMessage(val showMsg: String?)
 
 

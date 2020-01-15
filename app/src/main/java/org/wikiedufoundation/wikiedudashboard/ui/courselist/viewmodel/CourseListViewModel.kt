@@ -2,7 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
+import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
 
 /**
@@ -11,8 +11,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseLis
 
 class CourseListViewModel(private val repository: CourseListRepository) : ViewModel() {
 
-    private val _showMsg: MutableLiveData<ShowMessge?> = MutableLiveData()
-    val showMsg: MutableLiveData<ShowMessge?> get() = _showMsg
+    private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
+    val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
 
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar

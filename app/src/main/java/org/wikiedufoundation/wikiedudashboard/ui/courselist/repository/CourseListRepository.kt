@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.*
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ShowMessge
+import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
-import retrofit2.HttpException
 import timber.log.Timber
 import java.lang.Exception
 
@@ -33,10 +32,10 @@ class CourseListRepository(private val wikiEduDashboardApi: WikiEduDashboardApi,
                 courseListDao.insertCourse(courseList)
             } catch (e: Exception) {
                 Timber.d("Unable to connect to server")
-                ShowMessge("Unable to connect to server")
+                ShowMessage("Unable to connect to server")
             } catch (e: Throwable) {
                 Timber.d("Something went wrong")
-                ShowMessge("Something went wrong")
+                ShowMessage("Something went wrong")
             }
         }
 
