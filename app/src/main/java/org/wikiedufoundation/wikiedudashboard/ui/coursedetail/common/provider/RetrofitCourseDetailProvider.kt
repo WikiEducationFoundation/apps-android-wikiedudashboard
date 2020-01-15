@@ -21,8 +21,9 @@ class RetrofitCourseDetailProvider(
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseDetail(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {
             override fun onResponse(call: Call<CourseDetailResponse>, response: Response<CourseDetailResponse>) {
+
                 Timber.d("${response.body()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<CourseDetailResponse>, t: Throwable) {
