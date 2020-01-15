@@ -18,7 +18,7 @@ class CampaignListPresenterImpl(
         myDashboardView.showProgressBar(true)
         myDashboardProvider.requestCampaignList(cookies, object : PresenterCallback< ExploreCampaignsResponse> {
 
-            override fun onSuccess(t:  ExploreCampaignsResponse) {
+            override fun onSuccess(t: ExploreCampaignsResponse) {
                 myDashboardView.showProgressBar(false)
                 Timber.d(t.toString())
                 myDashboardView.setData(t)

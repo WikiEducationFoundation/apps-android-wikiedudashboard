@@ -41,7 +41,6 @@ class ProfilePresenterImpl(
 
                 Timber.d(t.toString())
                 view.setData(t)
-
             }
 
             override fun onFailure() {
@@ -50,5 +49,4 @@ class ProfilePresenterImpl(
             }
         })
     }
-
 }
