@@ -25,7 +25,7 @@ interface CourseListDao {
      * This insert the data into the database
      *
      **/
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCourse(courseList: List<CourseListData>)
 
 }
