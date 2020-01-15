@@ -6,7 +6,7 @@ object Versions {
     // Sdk and tools
     val CompileSdkVersion = 28
     val MinSdkVersion = 19
-    val TargetSdkVersion = 28
+    val TargetSdkVersion = 29
     val MaxSdkVersion = 28
     val VersionCode = 1
     val VersionName = "1.0"
