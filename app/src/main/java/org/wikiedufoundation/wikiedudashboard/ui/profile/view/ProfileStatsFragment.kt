@@ -55,8 +55,8 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text: String = context?.getString(R.string.total_impact_made_by_student) + username
-            tvTitleImpactByStudent.text = text
+            val text: String = context?.getString(R.string.total_impact_made_as_student)!!.format(username)
+            tvTitleImpactAsStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
             tvCountTotalEdits.text = asStudentDetails.individualArticleCount
@@ -72,8 +72,8 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text: String = context?.getString(R.string.total_impact_made_by_student) + username
-            tvTitleImpactAsStudent.text = text
+            val text: String = context?.getString(R.string.total_impact_made_by_students)!!.format(username)
+            tvTitleImpactByStudent.text = text
             tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
             tvInstructorCountArticleViews.text = byStudentDetails.viewSum
