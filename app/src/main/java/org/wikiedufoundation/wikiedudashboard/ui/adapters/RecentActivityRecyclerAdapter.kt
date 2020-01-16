@@ -7,5 +7,5 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
  * RecyclerView adapter for recent activities
  * ***/
 class RecentActivityRecyclerAdapter(
-        layoutId: Int
+    layoutId: Int
 ) : SingleLayoutAdapter<RecentActivity>(layoutId)

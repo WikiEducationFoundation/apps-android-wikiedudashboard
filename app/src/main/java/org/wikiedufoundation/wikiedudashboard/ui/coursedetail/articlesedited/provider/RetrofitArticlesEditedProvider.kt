@@ -12,7 +12,7 @@ import timber.log.Timber
  * Retrofit http request for edited articles
  * ***/
 class RetrofitArticlesEditedProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : ArticlesEditedProvider {
 //     = ProviderUtils.apiObject
 
@@ -22,7 +22,7 @@ class RetrofitArticlesEditedProvider(
         articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
             override fun onResponse(call: Call<ArticlesEdited>, response: Response<ArticlesEdited>) {
                 Timber.d(response.body()?.course.toString() + "")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ArticlesEdited>, t: Throwable) {

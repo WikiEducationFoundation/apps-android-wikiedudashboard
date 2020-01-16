@@ -12,17 +12,17 @@ import timber.log.Timber
  * @property provider api service for course detail
  * ***/
 class RecentActivityPresenterImpl(
-        private val view: RecentActivityContract.View,
-        private val provider: RecentActivityContract.Provider
+    private val view: RecentActivityContract.View,
+    private val provider: RecentActivityContract.Provider
 ) : RecentActivityContract.Presenter {
 
     override fun requestRecentActivity(url: String) {
         view.showProgressBar(true)
         provider.requestRecentActivity(url, object : PresenterCallback<RecentActivityResponse> {
-            override fun onSuccess(recentActivityResponse: RecentActivityResponse) {
+            override fun onSuccess(response: RecentActivityResponse) {
                 view.showProgressBar(false)
-                Timber.d(recentActivityResponse.toString())
-                view.setData(recentActivityResponse)
+                Timber.d(response.toString())
+                view.setData(response)
             }
 
             override fun onFailure() {
@@ -30,6 +30,5 @@ class RecentActivityPresenterImpl(
                 view.showMessage("unable to connect to server.")
             }
         })
-
     }
 }

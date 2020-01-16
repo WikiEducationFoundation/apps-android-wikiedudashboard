@@ -9,7 +9,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaCategory
  * @param onClickListener using a high order function to implement o item click through a lambda
  * ***/
 class CategoryListRecyclerAdapter internal constructor(
-        layoutId: Int
+    layoutId: Int
 //        private val onClickListener: () -> Unit
 ) : SingleLayoutAdapter<MediaCategory>(layoutId) {
 
@@ -20,5 +20,4 @@ class CategoryListRecyclerAdapter internal constructor(
     fun mediaClicked(mediaCategory: MediaCategory) {
 //        onClickListener(mediaCategory)
     }
-
 }

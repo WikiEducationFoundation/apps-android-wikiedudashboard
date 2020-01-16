@@ -7,7 +7,7 @@
 
         <variable
             name="obj"
-            type="org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData" />
+            type="org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData" />
 
         <variable
             name="adp"

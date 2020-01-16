@@ -12,7 +12,7 @@ import timber.log.Timber
  * [RetrofitStudentListProvider] to make retrofit http request for getting list of student data
  * ***/
 class RetrofitStudentListProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : StudentListProvider {
 //     = ProviderUtils.apiObject
 
@@ -21,7 +21,7 @@ class RetrofitStudentListProvider(
         val studentListCall = wikiEduDashboardApi.getStudentList(subUrl)
         studentListCall.enqueue(object : Callback<StudentListResponse> {
             override fun onResponse(call: Call<StudentListResponse>, response: Response<StudentListResponse>) {
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<StudentListResponse>, t: Throwable) {

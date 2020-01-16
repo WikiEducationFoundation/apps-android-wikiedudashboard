@@ -10,7 +10,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import java.text.MessageFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 /**
  * A simple [Fragment] subclass.
@@ -30,29 +30,27 @@ class CourseHomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_course_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         textViewCountArticlesCreated.text = courseDetail?.createdCount
-        textViewArticlesEdited.text = courseDetail?.editedCount
+        textViewCountArticlesEdited.text = courseDetail?.editedCount
         textViewCountTotalEdits.text = courseDetail?.editCount
         textViewCountStudentEditors.text = MessageFormat.format("{0}", courseDetail?.studentCount)
         textViewCountWordsAdded.text = courseDetail?.wordCount
-        textViewArticleViews.text = courseDetail?.viewCount
+        textViewCountArticleViews.text = courseDetail?.viewCount
         textViewCountCommonsUploads.text = MessageFormat.format("{0}", courseDetail?.uploadCount)
-        textViewCourseTitleLabel.text = courseDetail?.title
+        textViewCourseTitle.text = courseDetail?.title
         textViewCourseDescription.text = courseDetail?.description
-        textViewCourseSchool.text = courseDetail?.school
-        textViewCourseTerm.text = courseDetail?.term
-        textViewCoursePassCode.text = courseDetail?.passCode
-        textViewCourseExpectedStudents.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
+        textViewCourseSchoolDetail.text = courseDetail?.school
+        textViewCourseTermDetail.text = courseDetail?.term
+        textViewCoursePassCodeDetail.text = courseDetail?.passCode
+        textViewCourseExpectedStudentsDetail.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
 
-
-
-        textViewCourseStart.text = readableDate(courseDetail?.start)
+        textViewCourseStartDetail.text = readableDate(courseDetail?.start)
         textViewCourseEndDetail.text = readableDate(courseDetail?.end)
     }
 
@@ -81,6 +79,4 @@ class CourseHomeFragment : Fragment() {
             return simpleDateFormat.format(date)
         }
     }
-
-
 }

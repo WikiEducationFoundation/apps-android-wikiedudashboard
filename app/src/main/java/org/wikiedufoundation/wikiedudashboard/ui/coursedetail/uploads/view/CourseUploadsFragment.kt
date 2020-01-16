@@ -49,9 +49,9 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.fragment_upload_list, container, false)
@@ -124,7 +124,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
 
         /**
          * [CourseUploadsFragment.newInstance] factory that creates an instance of this fragment
-         * and put [type],[courseDetail],and [courseUploads] variables into Bundle
+         * and put [type], [courseDetail],and [courseUploads] variables into Bundle
          *
          * @param type course type
          * @param courseDetail course detail data

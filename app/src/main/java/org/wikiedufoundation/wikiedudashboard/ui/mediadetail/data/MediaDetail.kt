@@ -7,18 +7,18 @@ import com.google.gson.annotations.SerializedName
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class MediaDetail(
-        @SerializedName("pageid")
-        val pageId: Int,
-        @SerializedName("ns")
-        val ns: Int,
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("globalusage")
-        val globalUsage: List<FileUsage>,
-        @SerializedName("categories")
-        val categories: List<MediaCategory>,
-        @SerializedName("imageinfo")
-        val imageInfo: List<ImageDetails>
+    @SerializedName("pageid")
+    val pageId: Int,
+    @SerializedName("ns")
+    val ns: Int,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("globalusage")
+    val globalUsage: List<FileUsage>,
+    @SerializedName("categories")
+    val categories: List<MediaCategory>,
+    @SerializedName("imageinfo")
+    val imageInfo: List<ImageDetails>
 )
 
 /**
@@ -26,8 +26,8 @@ class MediaDetail(
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class ImageDetails(
-        @SerializedName("extmetadata")
-        val extMetaData: ExtMetaData
+    @SerializedName("extmetadata")
+    val extMetaData: ExtMetaData
 )
 
 /**
@@ -35,14 +35,14 @@ class ImageDetails(
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class ExtMetaData(
-        @SerializedName("ImageDescription")
-        val description: ImageDescription,
+    @SerializedName("ImageDescription")
+    val description: ImageDescription,
 
-        @SerializedName("License")
-        val license: MediaLicense,
+    @SerializedName("License")
+    val license: MediaLicense,
 
-        @SerializedName("LicenseUrl")
-        val licenseUrl: MediaLicenseUrl
+    @SerializedName("LicenseUrl")
+    val licenseUrl: MediaLicenseUrl
 
 )
 
@@ -51,7 +51,7 @@ class ExtMetaData(
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class MediaLicense(
-        val value: String
+    val value: String
 )
 
 /**
@@ -59,7 +59,7 @@ class MediaLicense(
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class MediaLicenseUrl(
-        val value: String
+    val value: String
 )
 
 /**
@@ -67,5 +67,5 @@ class MediaLicenseUrl(
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class ImageDescription(
-        val value: String
+    val value: String
 )

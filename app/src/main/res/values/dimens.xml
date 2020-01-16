@@ -44,4 +44,11 @@
     <dimen name="dimens_168dp">168dp</dimen>
     <dimen name="dimens_200dp">200dp</dimen>
 
+    <dimen name="dimens_2dp">2dp</dimen>
+    <dimen name="dimens_4dp">4dp</dimen>
+    <dimen name="dimens_16dp">16dp</dimen>
+    <dimen name="dimens_20dp">20dp</dimen>
+    <dimen name="dimens_40dp">40dp</dimen>
+    <dimen name="dimens_52dp">52dp</dimen>
+
 </resources>
