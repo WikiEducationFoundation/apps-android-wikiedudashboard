@@ -13,16 +13,16 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * @property courseUploadsProvider
  * ***/
 class CourseUploadsPresenterImpl(
-        private val courseUploadsView: CourseUploadsView,
-        private val courseUploadsProvider: CourseUploadsProvider
+    private val courseUploadsView: CourseUploadsView,
+    private val courseUploadsProvider: CourseUploadsProvider
 ) : CourseUploadsPresenter {
 
     override fun requestCourseUploads(url: String) {
         courseUploadsView.showProgressBar(true)
-        courseUploadsProvider.requestCourseUploads(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        courseUploadsProvider.requestCourseUploads(url, object : PresenterCallback<CourseUploadResponse> {
+            override fun onSuccess(response: CourseUploadResponse) {
                 courseUploadsView.showProgressBar(false)
-                courseUploadsView.setData((o as CourseUploadResponse).course)
+                courseUploadsView.setData((response).course)
             }
 
             override fun onFailure() {

@@ -13,16 +13,15 @@ import timber.log.Timber
  * @property provider Retrofit http request provider
  * ***/
 class ProfilePresenterImpl(
-        private val view: ProfileContract.View,
-        private val provider: ProfileContract.Provider
+    private val view: ProfileContract.View,
+    private val provider: ProfileContract.Provider
 ) : ProfileContract.Presenter {
 
     override fun requestProfileDetails(username: String) {
         view.showProgressBar(true)
-        provider.requestProfileDetails(username, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any?) {
+        provider.requestProfileDetails(username, object : PresenterCallback<ProfileDetailsResponse> {
+            override fun onSuccess(response: ProfileDetailsResponse) {
                 view.showProgressBar(false)
-                val response = o as? ProfileDetailsResponse
                 Timber.d(response.toString())
                 view.setProfileData(response)
             }
@@ -36,10 +35,10 @@ class ProfilePresenterImpl(
 
     override fun requestProfile(cookies: String, username: String) {
         view.showProgressBar(true)
-        provider.requestProfile(cookies, username, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any?) {
+        provider.requestProfile(cookies, username, object : PresenterCallback<ProfileResponse> {
+            override fun onSuccess(response: ProfileResponse) {
                 view.showProgressBar(false)
-                val response = o as? ProfileResponse
+
                 Timber.d(response.toString())
                 view.setData(response)
             }
@@ -49,6 +48,5 @@ class ProfilePresenterImpl(
                 view.showMessage("unable to connect to server.")
             }
         })
-
     }
 }

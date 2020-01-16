@@ -12,17 +12,18 @@ import timber.log.Timber
  * Retrofit http request to get course detail data
  * ***/
 class RetrofitCourseDetailProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : CourseDetailProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<CourseDetailResponse>) {
         val subUrl = "courses/$url/course.json"
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseDetail(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseDetailResponse> {
             override fun onResponse(call: Call<CourseDetailResponse>, response: Response<CourseDetailResponse>) {
-                Timber.d("${response.body().toString()} ")
-                presenterCallback.onSuccess(response.body())
+
+                Timber.d("${response.body()} ")
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<CourseDetailResponse>, t: Throwable) {

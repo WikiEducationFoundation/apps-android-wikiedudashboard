@@ -9,8 +9,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
  * @param onClickListener using a high order function to implement o item click through a lambda
  * ***/
 class ProfileCourseListRecyclerAdapter internal constructor(
-        layoutId: Int,
-        private val onClickListener: (String) -> Unit
+    layoutId: Int,
+    private val onClickListener: (String) -> Unit
 ) : SingleLayoutAdapter<CourseData>(layoutId) {
 
     /**
@@ -20,5 +20,4 @@ class ProfileCourseListRecyclerAdapter internal constructor(
     fun onCourseClicked(course: CourseData) {
         onClickListener(course.courseSlug)
     }
-
 }

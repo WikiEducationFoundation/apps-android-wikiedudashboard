@@ -16,7 +16,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAda
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -29,7 +29,6 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class MyDashboardFragment : Fragment(), MyDashboardContract.View {
-
 
     private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
     private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
@@ -55,13 +54,12 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_dashboard, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -137,7 +135,6 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         myDashboardRecyclerAdapter.setData(courseFilterQuery)
         myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
-
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match

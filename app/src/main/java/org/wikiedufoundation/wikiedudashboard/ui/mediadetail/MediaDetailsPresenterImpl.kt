@@ -12,18 +12,17 @@ import timber.log.Timber
  * @property mediaDetailsProvider variable of [MediaDetailsContract.Provider]
  * ***/
 class MediaDetailsPresenterImpl(
-        private val mediaDetailsView: MediaDetailsContract.View,
-        private val mediaDetailsProvider: MediaDetailsContract.Provider
+    private val mediaDetailsView: MediaDetailsContract.View,
+    private val mediaDetailsProvider: MediaDetailsContract.Provider
 ) : MediaDetailsContract.Presenter {
 
     override fun requestMediaDetails(cookies: String) {
         mediaDetailsView.showProgressBar(true)
-        mediaDetailsProvider.requestMediaDetails(cookies, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        mediaDetailsProvider.requestMediaDetails(cookies, object : PresenterCallback<MediaDetailsResponse> {
+            override fun onSuccess(response: MediaDetailsResponse) {
                 mediaDetailsView.showProgressBar(false)
-                val mediaDetailResponse = o as MediaDetailsResponse
-                Timber.d(mediaDetailResponse.toString())
-                mediaDetailsView.setData(mediaDetailResponse)
+                Timber.d(response.toString())
+                mediaDetailsView.setData(response)
             }
 
             override fun onFailure() {

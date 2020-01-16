@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider
 
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
 import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
 
 /**
@@ -11,5 +12,5 @@ interface CourseDetailProvider {
      * @param url course detail API url
      * @param presenterCallback course detail presenter callback
     ***/
-    fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<*>)
+    fun requestCourseDetail(url: String, presenterCallback: PresenterCallback<CourseDetailResponse>)
 }

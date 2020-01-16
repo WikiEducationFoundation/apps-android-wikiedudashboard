@@ -6,7 +6,7 @@ import org.wikiedufoundation.wikiedudashboard.util.Progressive
 import org.wikiedufoundation.wikiedudashboard.util.Toaster
 
 /**
- * Interface defining [View],[Presenter], & [Provider] interfaces
+ * Interface defining [View], [Presenter], & [Provider] interfaces
  * ***/
 interface RecentActivityContract {
 
@@ -32,6 +32,6 @@ interface RecentActivityContract {
          * @param url recent activity data api url
          * @param presenterCallback presenter callback
          * ***/
-        fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<*>)
+        fun requestRecentActivity(url: String, presenterCallback: PresenterCallback<RecentActivityResponse>)
     }
 }

@@ -13,18 +13,17 @@ import timber.log.Timber
  * @property articlesEditedView edited article view to display data
  * ***/
 class ArticlesEditedPresenterImpl(
-        private val articlesEditedView: ArticlesEditedView,
-        private val articlesEditedProvider: ArticlesEditedProvider
+    private val articlesEditedView: ArticlesEditedView,
+    private val articlesEditedProvider: ArticlesEditedProvider
 ) : ArticlesEditedPresenter {
 
     override fun requestArticlesEdited(url: String) {
         articlesEditedView.showProgressBar(true)
-        articlesEditedProvider.requestArticlesEdited(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        articlesEditedProvider.requestArticlesEdited(url, object : PresenterCallback<ArticlesEdited> {
+            override fun onSuccess(response: ArticlesEdited) {
                 articlesEditedView.showProgressBar(false)
-                val articlesEditedResponse = o as ArticlesEdited
-                Timber.d(articlesEditedResponse.toString())
-                articlesEditedView.setData(articlesEditedResponse)
+                Timber.d(response.toString())
+                articlesEditedView.setData(response)
             }
 
             override fun onFailure() {

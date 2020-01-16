@@ -15,16 +15,16 @@ import timber.log.Timber
  * to get profile data
  * ***/
 class RetrofitProfileProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : ProfileContract.Provider {
 //     = ProviderUtils.apiObject
 
-    override fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestProfile(cookies: String, username: String, presenterCallback: PresenterCallback<ProfileResponse>) {
         val articlesEditedResponseCall = wikiEduDashboardApi.getProfileResponse(cookies, username)
         articlesEditedResponseCall.enqueue(object : Callback<ProfileResponse> {
             override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
                 Timber.d("${response.body()?.toString()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
@@ -35,13 +35,13 @@ class RetrofitProfileProvider(
         })
     }
 
-    override fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestProfileDetails(username: String, presenterCallback: PresenterCallback<ProfileDetailsResponse>) {
         val url = Urls.BASE_URL + "users/" + username + "?format=json"
         val profileDetailsResponseCall = wikiEduDashboardApi.getProfileDetailsResponse(url)
         profileDetailsResponseCall.enqueue(object : Callback<ProfileDetailsResponse> {
             override fun onResponse(call: Call<ProfileDetailsResponse>, response: Response<ProfileDetailsResponse>) {
                 Timber.d("${response.body()?.toString()} ")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ProfileDetailsResponse>, t: Throwable) {
@@ -51,5 +51,4 @@ class RetrofitProfileProvider(
             }
         })
     }
-
 }

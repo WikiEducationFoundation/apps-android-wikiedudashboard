@@ -18,14 +18,13 @@ interface ActiveCampaignDao {
      * This get all the campaigns
      *
      **/
-    @Query("SELECT * from campaign_list ORDER BY id ASC")
+    @Query("SELECT * from campaign_list")
     fun getAllCampaign(): LiveData<List<CampaignListData>>
 
     /**
      * This insert the data into the database
      *
      **/
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCampaign(campaignList: List<CampaignListData>)
-
 }

@@ -12,17 +12,18 @@ import timber.log.Timber
  * Class that implementing [requestCourseUploads] method to get course uploads data
  * ***/
 class RetrofitCourseUploadsProvider(
-        private val wikiEduDashboardApi: WikiEduDashboardApi
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : CourseUploadsProvider {
 //     = ProviderUtils.apiObject
 
-    override fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<*>) {
+    override fun requestCourseUploads(url: String, presenterCallback: PresenterCallback<CourseUploadResponse>) {
         val subUrl = "courses/$url/uploads.json"
         val courseDetailResponseCall = wikiEduDashboardApi.getCourseUploads(subUrl)
         courseDetailResponseCall.enqueue(object : Callback<CourseUploadResponse> {
             override fun onResponse(call: Call<CourseUploadResponse>, response: Response<CourseUploadResponse>) {
-                Timber.d("${response.body()?.course.toString()} ")
-                presenterCallback.onSuccess(response.body())
+
+                Timber.d("${response.body()?.course} ")
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<CourseUploadResponse>, t: Throwable) {

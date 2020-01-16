@@ -1,7 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
 import kotlinx.coroutines.Deferred
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
@@ -55,14 +54,14 @@ interface WikiEduDashboardApi {
      ***/
     @GET("dashboard.json")
     fun getDashboardDetail(
-            @Header("Cookie") sessionIdAndToken: String
+        @Header("Cookie") sessionIdAndToken: String
     ): Call<MyDashboardResponse>
 
     /**
      * This API is used to fetch list of active courses.
      ***/
     @GET("explore.json")
-    fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Call<ExploreCoursesResponse>
+    fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Deferred<ExploreCoursesResponse>
 
     /**
      * This API is used to fetch list of active campaigns.
@@ -75,8 +74,8 @@ interface WikiEduDashboardApi {
      ***/
     @GET("user_stats.json")
     fun getProfileResponse(
-            @Header("Cookie") sessionIdAndToken: String,
-            @Query("username") username: String
+        @Header("Cookie") sessionIdAndToken: String,
+        @Query("username") username: String
     ): Call<ProfileResponse>
 
     /**
@@ -84,7 +83,6 @@ interface WikiEduDashboardApi {
      ***/
     @GET
     fun getProfileDetailsResponse(
-            @Url url: String
+        @Url url: String
     ): Call<ProfileDetailsResponse>
-
 }

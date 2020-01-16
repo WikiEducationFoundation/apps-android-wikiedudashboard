@@ -16,7 +16,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.page.Onboard
 class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnboardingPage> = OnboardingPage.values())
     : RecyclerView.Adapter<PagerViewHolder>() {
 
-
     /**
      * Here the item_on_boarding page is inflated
      */

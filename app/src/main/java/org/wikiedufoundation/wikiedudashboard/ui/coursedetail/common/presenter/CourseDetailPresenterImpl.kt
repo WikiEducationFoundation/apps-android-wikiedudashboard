@@ -13,16 +13,16 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * @property courseDetailProvider api service for course detail
  * ***/
 class CourseDetailPresenterImpl(
-        private val courseDetailView: CourseDetailView,
-        private val courseDetailProvider: CourseDetailProvider
+    private val courseDetailView: CourseDetailView,
+    private val courseDetailProvider: CourseDetailProvider
 ) : CourseDetailPresenter {
 
     override fun requestCourseDetail(url: String) {
         courseDetailView.showProgressBar(true)
-        courseDetailProvider.requestCourseDetail(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        courseDetailProvider.requestCourseDetail(url, object : PresenterCallback<CourseDetailResponse> {
+            override fun onSuccess(response: CourseDetailResponse) {
                 courseDetailView.showProgressBar(false)
-                courseDetailView.setData((o as CourseDetailResponse).course)
+                courseDetailView.setData((response).course)
             }
 
             override fun onFailure() {

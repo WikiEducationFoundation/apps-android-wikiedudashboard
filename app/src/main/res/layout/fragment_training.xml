@@ -26,11 +26,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/ll_profile_parent"
+            android:id="@+id/llProfileParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
 
                 <ImageView
 
-                    android:id="@+id/iv_profile_pic"
+                    android:id="@+id/ivProfilePic"
                     android:layout_width="120dp"
                     android:layout_height="120dp" />
                 <!--</androidx.cardview.widget.CardView>-->
@@ -59,7 +59,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_profile_username"
+                        android:id="@+id/tvProfileUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_4dp"
@@ -68,14 +68,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_profile_description"
+                        android:id="@+id/tvProfileDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_4dp"
                         android:textColor="@color/white" />
 
                     <LinearLayout
-                        android:id="@+id/ll_profile_email"
+                        android:id="@+id/llProfileEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -86,7 +86,7 @@
                             android:src="@drawable/ic_email_white_24dp" />
 
                         <TextView
-                            android:id="@+id/tv_profile_email"
+                            android:id="@+id/tvProfileEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"
@@ -95,7 +95,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_profile_location"
+                        android:id="@+id/llProfileLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -106,7 +106,7 @@
                             android:src="@drawable/ic_location_on_white_24dp" />
 
                         <TextView
-                            android:id="@+id/tv_profile_location"
+                            android:id="@+id/tvProfileLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"
@@ -115,7 +115,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_profile_institute"
+                        android:id="@+id/llProfileInstitute"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -126,7 +126,7 @@
                             android:src="@drawable/ic_institute_white_24dp" />
 
                         <TextView
-                            android:id="@+id/tv_profile_institute"
+                            android:id="@+id/tvProfileInstitute"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_4dp"

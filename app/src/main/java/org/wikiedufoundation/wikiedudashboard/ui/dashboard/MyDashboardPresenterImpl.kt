@@ -13,18 +13,17 @@ import timber.log.Timber
  * @property myDashboardProvider retrofit HTTP request call for course list
  * ***/
 class MyDashboardPresenterImpl(
-        private val myDashboardView: MyDashboardContract.View,
-        private val myDashboardProvider: MyDashboardContract.Provider
+    private val myDashboardView: MyDashboardContract.View,
+    private val myDashboardProvider: MyDashboardContract.Provider
 ) : MyDashboardContract.Presenter {
 
     override fun requestDashboard(cookies: String) {
         myDashboardView.showProgressBar(true)
-        myDashboardProvider.requestCourseList(cookies, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        myDashboardProvider.requestCourseList(cookies, object : PresenterCallback<MyDashboardResponse> {
+            override fun onSuccess(response: MyDashboardResponse) {
                 myDashboardView.showProgressBar(false)
-                val myDashboardResponse = o as MyDashboardResponse
-                Timber.d(myDashboardResponse.toString())
-                myDashboardView.setData(myDashboardResponse)
+                Timber.d(response.toString())
+                myDashboardView.setData(response)
             }
 
             override fun onFailure() {

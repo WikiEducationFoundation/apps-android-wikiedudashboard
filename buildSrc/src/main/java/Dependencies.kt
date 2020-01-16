@@ -6,7 +6,7 @@ object Versions {
     // Sdk and tools
     val CompileSdkVersion = 28
     val MinSdkVersion = 19
-    val TargetSdkVersion = 28
+    val TargetSdkVersion = 29
     val MaxSdkVersion = 28
     val VersionCode = 1
     val VersionName = "1.0"
@@ -58,6 +58,7 @@ object Versions {
     val lifecycleVersion = "2.2.0-alpha05"
     val roomVersion = "2.1.0-rc01"
     val retrofit_coroutines_adapter = "0.9.2"
+    val viewmodelVersion = "2.0.1"
 }
 
 /**
@@ -127,12 +128,12 @@ object Deps {
     val koinCoreVersion = "org.koin:koin-core:${Versions.koinVersion}"
     // Koin AndroidX Scope features
     val koinScopeVersion = "org.koin:koin-androidx-scope:${Versions.koinVersion}"
+    val koinViewModelVersion = "org.koin:koin-androidx-viewmodel:${Versions.viewmodelVersion}"
 
     // Room Dependencies
     val roomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
     val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
     val room =  "androidx.room:room-ktx:${Versions.roomVersion}"
-
 
     // Lifecycle components
     val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"

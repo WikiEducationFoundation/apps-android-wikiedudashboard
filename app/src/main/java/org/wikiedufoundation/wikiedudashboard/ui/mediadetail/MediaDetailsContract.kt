@@ -43,6 +43,6 @@ interface MediaDetailsContract {
          * @param cookies media details cookies
          * @param presenterCallback request call result callbacks
          * ***/
-        fun requestMediaDetails(cookies: String, presenterCallback: PresenterCallback<*>)
+        fun requestMediaDetails(cookies: String, presenterCallback: PresenterCallback<MediaDetailsResponse>)
     }
 }

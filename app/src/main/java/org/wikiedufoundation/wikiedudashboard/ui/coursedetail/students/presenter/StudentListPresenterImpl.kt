@@ -10,17 +10,16 @@ import org.wikiedufoundation.wikiedudashboard.util.PresenterCallback
  * Retrofit http request to get student list data and display it in view
  * ***/
 class StudentListPresenterImpl(
-        private val studentListView: StudentListView,
-        private val studentListProvider: StudentListProvider
+    private val studentListView: StudentListView,
+    private val studentListProvider: StudentListProvider
 ) : StudentListPresenter {
 
     override fun requestStudentList(url: String) {
         studentListView.showProgressBar(true)
-        studentListProvider.requestStudentList(url, object : PresenterCallback<Any> {
-            override fun onSuccess(o: Any) {
+        studentListProvider.requestStudentList(url, object : PresenterCallback<StudentListResponse> {
+            override fun onSuccess(studentListResponse: StudentListResponse) {
                 studentListView.showProgressBar(false)
-                val studentListsResponse = o as StudentListResponse
-                studentListView.setData(studentListsResponse)
+                studentListView.setData(studentListResponse)
             }
 
             override fun onFailure() {

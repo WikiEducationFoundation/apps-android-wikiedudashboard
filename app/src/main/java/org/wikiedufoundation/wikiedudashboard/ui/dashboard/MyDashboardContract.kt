@@ -16,6 +16,6 @@ interface MyDashboardContract {
     }
 
     interface Provider {
-        fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<*>)
+        fun requestCourseList(cookies: String, presenterCallback: PresenterCallback<MyDashboardResponse>)
     }
 }

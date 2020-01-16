@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.profile.view
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetail
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ByStudentsDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,10 +42,10 @@ class ProfileStatsFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,8 +55,8 @@ class ProfileStatsFragment : Fragment() {
 
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
-            val text = "Total impact made by $username's students"
-            tvTitleImpactByStudent.text = text
+            val text: String = context?.getString(R.string.total_impact_made_as_student)!!.format(username)
+            tvTitleImpactAsStudent.text = text
             tvCountArticlesCreated.text = asStudentDetails.individualArticlesCreated
             tvCountArticlesEdited.text = asStudentDetails.individualArticleViews
             tvCountTotalEdits.text = asStudentDetails.individualArticleCount
@@ -67,23 +65,24 @@ class ProfileStatsFragment : Fragment() {
             tvCountArticleViews.text = asStudentDetails.individualArticleViews
             tvCountCommonsUploads.text = asStudentDetails.individualUploadCount
         } ?: run {
-            llAsStudent?.visibility = GONE
-            llNotEnrolled?.visibility = VISIBLE
+
+            clAsStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
 
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
-            val text : String = "Total impact made by " + username +"as a student"
+            val text: String = context?.getString(R.string.total_impact_made_by_students)!!.format(username)
             tvTitleImpactByStudent.text = text
-            tvinstructorCountWordsAdded.text = byStudentDetails.wordCount
+            tvInstructorCountWordsAdded.text = byStudentDetails.wordCount
             tvInstructorCountReferencesAdded.text = byStudentDetails.referencesCount
             tvInstructorCountArticleViews.text = byStudentDetails.viewSum
             tvInstructorCountArticlesCreated.text = byStudentDetails.newArticleCount
             tvInstructorCountArticlesEdited.text = byStudentDetails.articleCount
             tvInstructorCountCommonsUpload.text = byStudentDetails.uploadCount
         } ?: run {
-            llByStudent?.visibility = GONE
-            llNotEnrolled?.visibility = VISIBLE
+            clByStudent.visibility = GONE
+            tvNotEnrolled.visibility = VISIBLE
         }
     }
 

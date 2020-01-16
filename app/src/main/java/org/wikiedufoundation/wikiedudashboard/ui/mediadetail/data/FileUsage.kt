@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName
  * @constructor primary constructor to initialize properties and variables
  * ***/
 class FileUsage(
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("wiki")
-        val wiki: String,
-        @SerializedName("url")
-        val url: String
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("wiki")
+    val wiki: String,
+    @SerializedName("url")
+    val url: String
 )

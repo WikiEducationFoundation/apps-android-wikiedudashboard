@@ -1,4 +1,3 @@
-
 package org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.view
 
 import android.content.Context
@@ -26,77 +25,72 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.setParallaxT
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 
 /**
-* The OnBoardingView holds and inflate the views
-* It setup the behaviour of the views on scroll, swipe and on button clicks
-* It also displays the the selected views using the WormsDotIndicator
+ * The OnBoardingView holds and inflate the views
+ * It setup the behaviour of the views on scroll, swipe and on button clicks
+ * It also displays the the selected views using the WormsDotIndicator
  */
 class OnBoardingView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-  FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
+        FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-  private val numberOfPages by lazy { OnboardingPage.values().size }
-  private  val prefManager: SharedPrefs
+    private val numberOfPages by lazy { OnboardingPage.values().size }
+    private val prefManager: SharedPrefs
 
-  init {
-    val view = LayoutInflater.from(context).inflate(R.layout.onboarding_view, this, true)
-    setUpSlider(view)
-    addingButtonsClickListeners()
-    prefManager = SharedPrefs(view.context)
-  }
-
-  private fun setUpSlider(view: View) {
-    with(slider) {
-      adapter = OnBoardingPagerAdapter()
-      setPageTransformer { page, position ->
-        setParallaxTransformation(page, position)
-      }
-
-      addSlideChangeListener()
-
-      val wormDotsIndicator = view.findViewById<WormDotsIndicator>(R.id.page_indicator)
-      wormDotsIndicator.setViewPager2(this)
-
+    init {
+        val view = LayoutInflater.from(context).inflate(R.layout.onboarding_view, this, true)
+        setUpSlider(view)
+        addingButtonsClickListeners()
+        prefManager = SharedPrefs(view.context)
     }
-  }
 
+    private fun setUpSlider(view: View) {
+        with(slider) {
+            adapter = OnBoardingPagerAdapter()
+            setPageTransformer { page, position ->
+                setParallaxTransformation(page, position)
+            }
 
-  private fun addSlideChangeListener() {
+            addSlideChangeListener()
 
-    slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-        if (numberOfPages > 1) {
-          val newProgress = (position + positionOffset) / (numberOfPages - 1)
-          onboardingRoot.progress = newProgress
+            val wormDotsIndicator = view.findViewById<WormDotsIndicator>(R.id.page_indicator)
+            wormDotsIndicator.setViewPager2(this)
         }
-      }
-    })
-  }
-
-  private fun addingButtonsClickListeners() {
-    nextBtn.setOnClickListener { navigateToNextSlide() }
-    skipBtn.setOnClickListener {
-      setFirstTimeLaunchToFalse()
-      val intent = Intent(context, WelcomeActivity::class.java)
-      context.startActivity(intent)
     }
 
-    startBtn.setOnClickListener {
-      setFirstTimeLaunchToFalse()
-      val intent = Intent(context, WelcomeActivity::class.java)
-      context.startActivity(intent)
+    private fun addSlideChangeListener() {
 
+        slider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                if (numberOfPages > 1) {
+                    val newProgress = (position + positionOffset) / (numberOfPages - 1)
+                    onboardingRoot.progress = newProgress
+                }
+            }
+        })
     }
-  }
 
-  private fun setFirstTimeLaunchToFalse() {
-    !prefManager.isFirstTimeLaunch
-  }
+    private fun addingButtonsClickListeners() {
+        nextBtn.setOnClickListener { navigateToNextSlide() }
+        skipBtn.setOnClickListener {
+            setFirstTimeLaunchToFalse()
+            val intent = Intent(context, WelcomeActivity::class.java)
+            context.startActivity(intent)
+        }
 
-  private fun navigateToNextSlide() {
-    val nextSlidePos: Int = slider?.currentItem?.plus(1) ?: 0
-    slider?.setCurrentItem(nextSlidePos, true)
-  }
+        startBtn.setOnClickListener {
+            setFirstTimeLaunchToFalse()
+            val intent = Intent(context, WelcomeActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
+    private fun setFirstTimeLaunchToFalse() {
+        !prefManager.isFirstTimeLaunch
+    }
 
+    private fun navigateToNextSlide() {
+        val nextSlidePos: Int = slider?.currentItem?.plus(1) ?: 0
+        slider?.setCurrentItem(nextSlidePos, true)
+    }
 }

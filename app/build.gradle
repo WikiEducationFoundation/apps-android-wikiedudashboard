@@ -5,6 +5,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
     signingConfigs {
         release {
             storeFile file('/Users/ujjwalagrawal/AndroidKeys/Wikimedia/wiki_edu_dashboard')
@@ -45,6 +48,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation "org.robolectric:robolectric:4.3.1"
     implementation Deps.constraintLayoutVersion
     implementation Deps.vectorDrawableVersion
     implementation Deps.cardViewVersion
@@ -104,6 +109,20 @@ dependencies {
     implementation Deps.koinCoreVersion
     // Koin AndroidX Scope features
     implementation Deps.koinScopeVersion
+    implementation Deps.koinViewModelVersion
+
+    // Room Dependencies
+    api Deps.roomRuntime
+    kapt Deps.roomCompiler
+    implementation Deps.room
+
+    // Lifecycle components
+    implementation Deps.lifecycleExtension
+    kapt Deps.lifecycleCompiler
+    implementation Deps.lifecycleViewModel
+    implementation Deps.lifecycleLivedata
+    implementation Deps.lifecycleRuntime
+    implementation Deps.coroutineAdapter
 
     // Room Dependencies
     api Deps.roomRuntime
