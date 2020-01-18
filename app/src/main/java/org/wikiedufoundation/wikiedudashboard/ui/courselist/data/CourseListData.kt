@@ -63,6 +63,7 @@ class CourseListData(
     val isNoDayExceptions: Boolean?,
     @SerializedName("trained_count")
     val trainedCount: Int?
+
 ) {
     override fun toString(): String {
         return "CourseListData(id=$id, " +

@@ -21,6 +21,7 @@ interface CourseListDao {
     @Query("SELECT * from course_list")
     fun getAllCourses(): LiveData<List<CourseListData>>
 
+
     /**
      * This insert the data into the database
      *

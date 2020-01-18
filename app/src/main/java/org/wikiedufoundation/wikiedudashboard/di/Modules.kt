@@ -43,9 +43,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.DashboardViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepository
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
@@ -174,8 +177,15 @@ val repositoryModule = module {
     fun provideCourseListRepository(api: WikiEduDashboardApi, courseListDao: CourseListDao):
             CourseListRepository = CourseListRepository(api, courseListDao)
 
+    /**
+     * Use the [provideDashboardRepository] to provide a CourseListRepository instance
+     * */
+//    fun provideDashboardRepository(api: WikiEduDashboardApi, courseListDao: CourseListDao, sharedPrefs: SharedPrefs):
+//            DashboardRepository = DashboardRepository(api, courseListDao, sharedPrefs)
+
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
+    single <DashboardRepository>{ DashboardRepositoryImpl(get(), get(), get()) }
 }
 
 /**
@@ -184,6 +194,7 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel { ActiveCampaignViewModel(get()) }
     viewModel { CourseListViewModel(get()) }
+    viewModel { (cookies:String) -> DashboardViewModel(get(), cookies) }
 }
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
