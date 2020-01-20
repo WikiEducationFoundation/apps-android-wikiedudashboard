@@ -8,7 +8,7 @@ import java.io.Serializable
  * [ProfileResponse] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-data class ProfileResponse (
+data class ProfileResponse(
     @SerializedName("user_recent_uploads")
     val uploads: List<CourseUpload>? = null,
     @SerializedName("courses_details")
@@ -19,7 +19,7 @@ data class ProfileResponse (
     val byStudents: ByStudentsDetails? = null,
     @SerializedName("as_student")
     val asStudent: AsStudentDetails? = null
-): Serializable
+) : Serializable
 
 /**
  * [CourseData] model class

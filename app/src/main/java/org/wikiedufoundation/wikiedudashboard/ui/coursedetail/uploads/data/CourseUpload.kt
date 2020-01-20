@@ -7,7 +7,7 @@ import java.io.Serializable
  * [CourseUpload] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-data class CourseUpload  (
+data class CourseUpload(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("uploaded_at")
@@ -28,4 +28,4 @@ data class CourseUpload  (
     val fileName: String? = null,
     @SerializedName("uploader")
     val uploader: String? = null
-    ): Serializable
+) : Serializable
