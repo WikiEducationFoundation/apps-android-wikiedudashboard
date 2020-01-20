@@ -8,6 +8,6 @@ import java.io.Serializable
  *
  * @property uploads list of course uploads
  * ***/
-class CourseUploadList(
+data class CourseUploadList(
     val uploads: List<CourseUpload>
 ) : Serializable

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * [User] model class
  * @constructor primary constructor to initialize properties and variables related to an user
  * ***/
-class User(
+data class User(
     @SerializedName("id")
     val id: Long,
     @SerializedName("admin")

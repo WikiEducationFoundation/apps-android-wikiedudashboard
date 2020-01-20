@@ -7,7 +7,7 @@ import java.util.Date
  * [RecentActivity] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class RecentActivity(
+data class RecentActivity(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * [ProfileDetailsResponse] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ProfileDetailsResponse(
+data class ProfileDetailsResponse(
     @SerializedName("user_profile")
     val userProfile: ProfileDetails?
 )
@@ -15,7 +15,7 @@ class ProfileDetailsResponse(
  * [ProfileDetails] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ProfileDetails(
+data class ProfileDetails(
     @SerializedName("username")
     val username: String,
     @SerializedName("profile_image")

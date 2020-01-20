@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.da
  *
  * @property articles A list of articles
  * ***/
-class Course(
+data class Course(
     val articles: List<Article>
 )

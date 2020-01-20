@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * [MediaDetail] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class MediaDetail(
+data class MediaDetail(
     @SerializedName("pageid")
     val pageId: Int,
     @SerializedName("ns")
@@ -25,7 +25,7 @@ class MediaDetail(
  * [ImageDetails] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ImageDetails(
+data class ImageDetails(
     @SerializedName("extmetadata")
     val extMetaData: ExtMetaData
 )
@@ -34,7 +34,7 @@ class ImageDetails(
  * [ExtMetaData] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ExtMetaData(
+data class ExtMetaData(
     @SerializedName("ImageDescription")
     val description: ImageDescription,
 
@@ -50,7 +50,7 @@ class ExtMetaData(
  * [MediaLicense] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class MediaLicense(
+data class MediaLicense(
     val value: String
 )
 
@@ -58,7 +58,7 @@ class MediaLicense(
  * [MediaLicenseUrl] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class MediaLicenseUrl(
+data class MediaLicenseUrl(
     val value: String
 )
 
@@ -66,6 +66,6 @@ class MediaLicenseUrl(
  * [ImageDescription] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ImageDescription(
+data class ImageDescription(
     val value: String
 )

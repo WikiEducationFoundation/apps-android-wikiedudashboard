@@ -7,7 +7,7 @@ import java.io.Serializable
  * [CourseDetail] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class CourseDetail(
+data class CourseDetail(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

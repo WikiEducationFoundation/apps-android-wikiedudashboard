@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaign.data
  *
  * @property campaigns A list of campaign data
  * ***/
-class ExploreCampaignsResponse(
+data class ExploreCampaignsResponse(
     val campaigns: List<CampaignListData>
 )

@@ -8,4 +8,4 @@ import java.io.Serializable
  *
  * @property course return of the response
  * ***/
-class RecentActivityResponse(val course: Course) : Serializable
+data class RecentActivityResponse(val course: Course) : Serializable

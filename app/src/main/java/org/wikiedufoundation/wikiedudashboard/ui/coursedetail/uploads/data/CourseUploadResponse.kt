@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data
  *
  * @property course list of course uploads data from API response
  * ***/
-class CourseUploadResponse(
+data class CourseUploadResponse(
     val course: CourseUploadList
 )

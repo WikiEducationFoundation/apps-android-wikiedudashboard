@@ -8,24 +8,24 @@ import java.io.Serializable
  * [ProfileResponse] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ProfileResponse : Serializable {
+data class ProfileResponse(
     @SerializedName("user_recent_uploads")
-    val uploads: List<CourseUpload>? = null
+    val uploads: List<CourseUpload>? = null,
     @SerializedName("courses_details")
-    val courses: List<CourseData>? = null
+    val courses: List<CourseData>? = null,
     @SerializedName("as_instructor")
-    val asInstructor: AsInstructorDetails? = null
+    val asInstructor: AsInstructorDetails? = null,
     @SerializedName("by_students")
-    val byStudents: ByStudentsDetails? = null
+    val byStudents: ByStudentsDetails? = null,
     @SerializedName("as_student")
     val asStudent: AsStudentDetails? = null
-}
+) : Serializable
 
 /**
  * [CourseData] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class CourseData(
+data class CourseData(
     @SerializedName("course_id")
     val courseId: Int,
     @SerializedName("course_title")
@@ -46,7 +46,7 @@ class CourseData(
  * [AsInstructorDetails] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class AsInstructorDetails(
+data class AsInstructorDetails(
     @SerializedName("course_string_prefix")
     val courseStringPrefix: String,
     @SerializedName("courses_count")
@@ -61,7 +61,7 @@ class AsInstructorDetails(
  * [ByStudentsDetails] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class ByStudentsDetails(
+data class ByStudentsDetails(
     @SerializedName("word_count")
     val wordCount: String,
     @SerializedName("references_count")
@@ -84,7 +84,7 @@ class ByStudentsDetails(
  * [AsStudentDetails] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class AsStudentDetails(
+data class AsStudentDetails(
     @SerializedName("course_string_prefix")
     val courseStringPrefix: String,
     @SerializedName("individual_courses_count")

@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data
  *
  * @property users list of [User]
  * ***/
-class StudentList(
+data class StudentList(
     val users: List<User>
 )

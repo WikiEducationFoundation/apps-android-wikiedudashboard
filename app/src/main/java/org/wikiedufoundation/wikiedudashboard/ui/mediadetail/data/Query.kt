@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  *
  * @property page Map variable with String and MediaDetail type keys
  * ***/
-class Query(
+data class Query(
     @SerializedName("pages")
     @Expose
     val page: Map<String, MediaDetail>

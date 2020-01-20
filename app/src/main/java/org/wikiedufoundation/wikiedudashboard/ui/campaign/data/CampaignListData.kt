@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
  * ***/
 
 @Entity(tableName = "campaign_list")
-class CampaignListData(
+data class CampaignListData(
     @PrimaryKey
 @SerializedName("id")
 val id: Int?,
@@ -25,12 +25,4 @@ val id: Int?,
     val slug: String,
     @SerializedName("description")
     val description: String?
-) {
-    override fun toString(): String {
-        return "CampaignListData(" +
-                "id=$id, " +
-                "title='$title', " +
-                "slug='$slug', " +
-                "description='$description')"
-    }
-}
+)
