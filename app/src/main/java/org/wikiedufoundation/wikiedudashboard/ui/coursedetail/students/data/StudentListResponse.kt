@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data
  *
  * @property course Return student courses
  * ***/
-class StudentListResponse(
+data class StudentListResponse(
     val course: StudentList
 )

@@ -6,6 +6,6 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.da
  *
  * @property revisions list of revisions of recent activity
  * ***/
-class Course(
+data class Course(
     val revisions: List<RecentActivity>
 )

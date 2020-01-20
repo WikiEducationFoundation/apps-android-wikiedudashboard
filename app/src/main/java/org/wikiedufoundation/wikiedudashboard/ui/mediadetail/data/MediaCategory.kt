@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * [MediaCategory] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class MediaCategory(
+data class MediaCategory(
     @SerializedName("ns")
     val ns: Int,
     @SerializedName("title")

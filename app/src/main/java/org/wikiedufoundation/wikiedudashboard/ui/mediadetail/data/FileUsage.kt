@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * [FileUsage] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-class FileUsage(
+data class FileUsage(
     @SerializedName("title")
     val title: String,
     @SerializedName("wiki")

@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @property id Int, article id
  * @property title String, article title
  * ***/
-class Article(
+data class Article(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

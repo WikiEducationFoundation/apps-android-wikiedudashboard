@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @constructor primary constructor to initialize properties and variables
  * ***/
 @Entity(tableName = "course_list")
-class CourseListData(
+data class CourseListData(
     @PrimaryKey
     @SerializedName("id")
     val id: Int?,
@@ -63,33 +63,4 @@ class CourseListData(
     val isNoDayExceptions: Boolean?,
     @SerializedName("trained_count")
     val trainedCount: Int?
-) {
-    override fun toString(): String {
-        return "CourseListData(id=$id, " +
-                "title='$title', " +
-                "created_at='$createdAt', " +
-                "updated_at='$updatedAt', " +
-                "start='$start', " +
-                "end='$end', " +
-                "school='$school', " +
-                "term='$term', " +
-                "character_sum='$characterSum', " +
-                "view_sum='$viewSum', " +
-                "user_count='$userCount', " +
-                "article_count='$articleCount', " +
-                "revision_count='$revisionCount', " +
-                "slug='$slug', " +
-                "subject='$subject', " +
-                "expected_students=$expectedStudents, " +
-                "description='$description', " +
-                "isSubmitted=$isSubmitted, " +
-                "passcode='$passcode', " +
-                "timeline_start='$timelineStart', " +
-                "timeline_end='$timelineEnd', " +
-                "day_exceptions='$dayExceptions', " +
-                "weekdays='$weekdays', " +
-                "new_article_count=$newArticleCount, " +
-                "isNo_day_exceptions=$isNoDayExceptions, " +
-                "trained_count=$trainedCount)"
-    }
-}
+)

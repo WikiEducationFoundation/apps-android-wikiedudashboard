@@ -8,4 +8,4 @@ import java.io.Serializable
  *
  * @property course Course
  * ***/
-class ArticlesEdited(val course: Course) : Serializable
+data class ArticlesEdited(val course: Course) : Serializable
