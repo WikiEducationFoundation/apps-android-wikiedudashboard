@@ -20,11 +20,12 @@
             <TextView
                 android:id="@+id/tvTitleImpactByStudent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_16dp"
+                android:layout_height="16dp"
                 android:layout_marginTop="@dimen/padding_16dp"
+                android:layout_marginBottom="@dimen/padding_16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/total_impact_made_by_students"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
@@ -171,10 +172,11 @@
                 android:id="@+id/tvTitleImpactAsStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_16dp"
                 android:layout_marginTop="@dimen/padding_16dp"
+                android:layout_marginBottom="@dimen/padding_16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:textColor="@color/colorAccent"
+                android:text="@string/total_impact_made_as_student"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textStyle="bold" />
 

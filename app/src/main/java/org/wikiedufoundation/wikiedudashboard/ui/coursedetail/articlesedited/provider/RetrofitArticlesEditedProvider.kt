@@ -22,7 +22,7 @@ class RetrofitArticlesEditedProvider(
         articlesEditedResponseCall.enqueue(object : Callback<ArticlesEdited> {
             override fun onResponse(call: Call<ArticlesEdited>, response: Response<ArticlesEdited>) {
                 Timber.d(response.body()?.course.toString() + "")
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<ArticlesEdited>, t: Throwable) {

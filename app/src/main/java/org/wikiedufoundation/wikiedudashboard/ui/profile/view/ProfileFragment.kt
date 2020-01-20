@@ -39,7 +39,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
     private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
-    private var mParam2: Boolean? = null
+    private var mParam2: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +59,6 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
         toolbar.setOnMenuItemClickListener(this)
         tabLayout.setupWithViewPager(viewPager)
 
-        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
-
         val sharedUserName = sharedPrefs.userName?.let { it }
         val param1Exists = mParam1?.let { it } ?: ""
 
@@ -73,7 +71,7 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
                 profilePresenter.requestProfileDetails(param1)
             }
         }
-        mParam2.let {
+        if (mParam2) {
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
             toolbar.setNavigationOnClickListener {
                 activity?.onBackPressed()
@@ -111,14 +109,11 @@ class ProfileFragment : Fragment(), ProfileContract.View, Toolbar.OnMenuItemClic
                             .circleCrop()).into(ivProfilePic)
 
         tvProfileUsername.text = mParam1
-
-        llProfileEmail.visibility = View.INVISIBLE
-
-        data?.userProfile?.bio.let { tvProfileDescription.text = it }
         tvProfileDescription.text = data?.userProfile?.bio
         tvProfileLocation.text = data?.userProfile?.location
+        tvProfileInstitute.text = data?.userProfile?.institution
 
-        llProfileInstitute.visibility = View.INVISIBLE
+        llProfileEmail.visibility = View.GONE
     }
 
     override fun setData(data: ProfileResponse?) {

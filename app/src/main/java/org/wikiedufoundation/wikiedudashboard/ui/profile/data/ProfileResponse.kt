@@ -13,8 +13,11 @@ class ProfileResponse : Serializable {
     val uploads: List<CourseUpload>? = null
     @SerializedName("courses_details")
     val courses: List<CourseData>? = null
+    @SerializedName("as_instructor")
     val asInstructor: AsInstructorDetails? = null
+    @SerializedName("by_students")
     val byStudents: ByStudentsDetails? = null
+    @SerializedName("as_student")
     val asStudent: AsStudentDetails? = null
 }
 

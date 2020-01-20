@@ -5,21 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
+import kotlinx.android.synthetic.main.fragment_explore_course_list.progressBar
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesResponse
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
-import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -28,18 +28,14 @@ import timber.log.Timber
  * Use the [CourseListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CourseListFragment : Fragment(), CourseListView {
+class CourseListFragment : Fragment() {
 
-    private val retrofitCourseListProvider: RetrofitCourseListProvider by inject()
-    private val courseListPresenter: CourseListPresenter by inject {
-        parametersOf(this, retrofitCourseListProvider)
-    }
+    private val courselistViewModel by viewModel<CourseListViewModel>()
     private val sharedPrefs: SharedPrefs by inject()
 
     private var mParam1: String? = null
     private var mParam2: String? = null
     private var coursesList: List<CourseListData> = ArrayList()
-
     private lateinit var courseListRecyclerAdapter: CourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,40 +56,55 @@ class CourseListFragment : Fragment(), CourseListView {
         courseListRecyclerAdapter = CourseListRecyclerAdapter(R.layout.item_rv_explore_courses) {
             openCourseDetail(it)
         }
+        initializeRecyclerView()
+        setData()
+        showProgressBar()
+        showMessage()
+        sharedPrefs.cookies?.let { courselistViewModel.fetchCourseList(it) }
+    }
 
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseListRecyclerAdapter
         }
-
-        sharedPrefs.cookies?.let { courseListPresenter.requestDashboard(it) }
     }
 
-    override fun setData(data: ExploreCoursesResponse) {
-        Timber.d(data.toString())
-        if (data.courses.isNotEmpty()) {
-            coursesList = data.courses
-            recyclerCourseList?.visibility = View.VISIBLE
-            courseListRecyclerAdapter.setData(data.courses)
-            courseListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses?.visibility = View.GONE
-        } else {
-            recyclerCourseList?.visibility = View.GONE
-            textViewNoCourses?.visibility = View.VISIBLE
-        }
+    /**
+     *   This sets the data to be displayed on the recyclerview based on available data
+     */
+    fun setData() {
+        courselistViewModel.data.observe(this, Observer {
+            Timber.d(it.toString())
+            if (it.isNotEmpty()) {
+                recyclerCourseList?.visibility = View.VISIBLE
+                courseListRecyclerAdapter.setData(it)
+                textViewNoCourses?.visibility = View.GONE
+            } else {
+                recyclerCourseList?.visibility = View.GONE
+                textViewNoCourses?.visibility = View.VISIBLE
+            }
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    /**
+     *   This shows the progressbar
+     */
+    fun showProgressBar() {
+        courselistViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    /**
+     *   This shows the message
+     */
+    fun showMessage() {
+        courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it?.showMsg
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun openCourseDetail(slug: String) {
@@ -116,8 +127,8 @@ class CourseListFragment : Fragment(), CourseListView {
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+        private const val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM2 = "param2"
 
         /**
          * Use this factory method to create a new instance of
@@ -128,13 +139,11 @@ class CourseListFragment : Fragment(), CourseListView {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): CourseListFragment {
-            val fragment = CourseListFragment()
+        fun newInstance(param1: String, param2: String) = CourseListFragment().apply {
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
     }
 }

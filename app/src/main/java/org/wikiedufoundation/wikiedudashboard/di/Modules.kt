@@ -1,16 +1,22 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
+import android.app.Application
+import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import org.wikiedufoundation.wikiedudashboard.data.localDatabse.WikiDatabase
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardMediaApi
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListContract
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.CampaignListPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.RetrofitCampaignListProvider
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.ArticlesEditedProvider
@@ -34,11 +40,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.CourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsView
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.presenter.CourseListPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.CourseListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.provider.RetrofitCourseListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.view.CourseListView
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
@@ -100,6 +104,7 @@ fun provideBaseRetrofit(): Retrofit =
                 .baseUrl(Urls.BASE_URL)
                 .client(provideClient())
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
 
 /**
@@ -120,36 +125,70 @@ val persistenceModule = module {
     /**
      * Singleton for shared preference
      **/
-    /**
-     * Singleton for shared preference
-     **/
     single { SharedPrefs(get()) }
+}
+
+/**
+ * Use the [databaseModule] to creating database and dao instance
+ **/
+val databaseModule = module {
+
+    /**
+     * Use the [provideDatabase] to provide a database instance
+     * */
+    fun provideDatabase(application: Application): WikiDatabase {
+        return Room.databaseBuilder(application, WikiDatabase::class.java, "WikiDatabase")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build()
+    }
+
+    /**
+     * Use the [provideCampaignListDao] to provide a provideCampaignListDao instance
+     * */
+    fun provideCampaignListDao(database: WikiDatabase): ActiveCampaignDao = database.activeCampaignDao
+
+    /**
+     * Use the [provideCourseListDao] to provide a provideCourseListDao instance
+     * */
+    fun provideCourseListDao(database: WikiDatabase): CourseListDao = database.courseListDao
+
+    single { provideDatabase(androidApplication()) }
+    single { provideCampaignListDao(get()) }
+    single { provideCourseListDao(get()) }
+}
+
+/**
+ * Use the [repositoryModule] to creating repository instance
+ **/
+val repositoryModule = module {
+
+    /**
+     * Use the [provideCampaignListRepository] to provide a CampaignListRepository instance
+     * */
+    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao): ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
+
+    /**
+     * Use the [provideCourseListRepository] to provide a CourseListRepository instance
+     * */
+    fun provideCourseListRepository(api: WikiEduDashboardApi, courseListDao: CourseListDao):
+            CourseListRepository = CourseListRepository(api, courseListDao)
+
+    single { provideCampaignListRepository(get(), get()) }
+    single { provideCourseListRepository(get(), get()) }
+}
+
+/**
+ * Use the [viewModelModule] to creating viewModel instance
+ **/
+val viewModelModule = module {
+    viewModel { ActiveCampaignViewModel(get()) }
+    viewModel { CourseListViewModel(get()) }
 }
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
  **/
 val presenterModule = module {
-
-    /**
-     * Factory for [CampaignListPresenterImpl] injecting the [CampaignListContract] and [CampaignListContract.Provider]
-     **/
-    /**
-     * Factory for [CampaignListPresenterImpl] injecting the [CampaignListContract] and [CampaignListContract.Provider]
-     **/
-    factory<CampaignListContract.Presenter> { (view: CampaignListContract.View, provider: CampaignListContract.Provider) ->
-        CampaignListPresenterImpl(view, provider)
-    }
-
-    /**
-     * Factory for [CourseListPresenter] injecting the [CourseListView] and [CourseListProvider]
-     **/
-
-    /**
-     * Factory for [CourseListPresenter] injecting the [CourseListView] and [CourseListProvider]
-     **/
-    factory<CourseListPresenter> { (view: CourseListView, provider: CourseListProvider) ->
-        CourseListPresenterImpl(view, provider)
-    }
 
     /**
      * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
@@ -243,23 +282,6 @@ val presenterModule = module {
  * Use the [provideModule] to creating the Providers
  **/
 val provideModule = module {
-
-    /**
-     * Singleton for [RetrofitCampaignListProvider]
-     **/
-    /**
-     * Singleton for [RetrofitCampaignListProvider]
-     **/
-    single { RetrofitCampaignListProvider(get()) }
-
-    /**
-     * Singleton for [RetrofitCourseListProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitCourseListProvider]
-     **/
-    single { RetrofitCourseListProvider(get()) }
 
     /**
      * Singleton for [RetrofitMyDashboardProvider]

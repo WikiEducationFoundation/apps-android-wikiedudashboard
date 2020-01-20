@@ -21,7 +21,7 @@ class RetrofitStudentListProvider(
         val studentListCall = wikiEduDashboardApi.getStudentList(subUrl)
         studentListCall.enqueue(object : Callback<StudentListResponse> {
             override fun onResponse(call: Call<StudentListResponse>, response: Response<StudentListResponse>) {
-                presenterCallback.onSuccess(response.body())
+                response.body()?.let { presenterCallback.onSuccess(it) }
             }
 
             override fun onFailure(call: Call<StudentListResponse>, t: Throwable) {

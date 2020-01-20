@@ -20,10 +20,10 @@ class MyDashboardPresenterImpl(
     override fun requestDashboard(cookies: String) {
         myDashboardView.showProgressBar(true)
         myDashboardProvider.requestCourseList(cookies, object : PresenterCallback<MyDashboardResponse> {
-            override fun onSuccess(myDashboardResponse: MyDashboardResponse) {
+            override fun onSuccess(response: MyDashboardResponse) {
                 myDashboardView.showProgressBar(false)
-                Timber.d(myDashboardResponse.toString())
-                myDashboardView.setData(myDashboardResponse)
+                Timber.d(response.toString())
+                myDashboardView.setData(response)
             }
 
             override fun onFailure() {

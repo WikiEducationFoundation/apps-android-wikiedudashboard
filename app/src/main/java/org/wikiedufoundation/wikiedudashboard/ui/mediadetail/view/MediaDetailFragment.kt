@@ -101,7 +101,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         mediaDetailUploadedDate.text = courseUpload?.uploadedAt
         ivMediaDetail.setOnClickListener {
-            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl))
+            (context as MediaDetailsActivity).addFragment(ImageViewerFragment.newInstance(courseUpload?.thumbUrl!!))
         }
         toolbar.setOnMenuItemClickListener(this)
 
@@ -235,8 +235,8 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         textViewDescription.text = imageInfo?.extMetaData?.description?.value
 
         // License
-        textViewLicence.text = imageInfo?.extMetaData?.license?.value
-        textViewLicence.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
+        mediaDetailLicense.text = imageInfo?.extMetaData?.license?.value
+        mediaDetailLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
         // Categories
         val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
