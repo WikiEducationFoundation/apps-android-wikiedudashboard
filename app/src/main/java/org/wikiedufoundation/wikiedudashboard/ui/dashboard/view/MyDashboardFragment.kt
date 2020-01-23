@@ -98,8 +98,7 @@ class MyDashboardFragment : Fragment() {
      */
     fun setData() {
         dashboardViewModel.data.observe(this, Observer {
-            sharedPrefs.userName
-            Timber.d(it.toString())
+            Timber.d( "size" +it.size.toString())
             if (it.isNotEmpty()) {
                 recyclerCourseList?.visibility = View.VISIBLE
                 myDashboardRecyclerAdapter.setData(it)

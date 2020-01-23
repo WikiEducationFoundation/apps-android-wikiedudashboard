@@ -54,11 +54,14 @@ object Versions {
     val materialVersion = cardViewVersion
     val fragmentVersion = annotationVersion
     val navigationVersion = "2.1.0"
-    val koinVersion = "2.1.0-alpha-1"
     val lifecycleVersion = "2.2.0-alpha05"
-    val roomVersion = "2.1.0-rc01"
+    val roomVersion = "2.2.3"
     val retrofit_coroutines_adapter = "0.9.2"
     val viewmodelVersion = "2.0.1"
+    val retrofitVersion = "2.6.0"
+    val koinVersion = "2.0.1"
+
+
 }
 
 /**
@@ -72,7 +75,6 @@ object Deps {
     val gradleKotlinVersion = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     val gradleNavigationVersion = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
     val safeArgs = "android.arch.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgs}"
-
     val constraintLayoutVersion = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
     val vectorDrawableVersion = "androidx.vectordrawable:vectordrawable:${Versions.vectorDrawableVersion}"
     val cardViewVersion = "androidx.cardview:cardview:${Versions.cardViewVersion}"
@@ -85,6 +87,7 @@ object Deps {
     val leakcanaryVersion = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanaryVersion}"
     val rxjavaVersion = "com.squareup.retrofit2:adapter-rxjava:${Versions.rxjavaVersion}"
     val retrofitConverterVersion = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverterVersion}"
+    val retrofitVersion = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     val okHttpLogginVersion = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogginVersion}"
     val okhttpUrlConnectionVersion = "com.squareup.okhttp3:okhttp-urlconnection:${Versions.okhttpUrlConnectionVersion}"
     val transitionVersion = "androidx.transition:transition:${Versions.transitionVersion}"
@@ -134,6 +137,7 @@ object Deps {
     val roomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
     val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
     val room =  "androidx.room:room-ktx:${Versions.roomVersion}"
+
 
     // Lifecycle components
     val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"

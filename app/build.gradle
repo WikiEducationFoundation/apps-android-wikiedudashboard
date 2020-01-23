@@ -63,6 +63,8 @@ dependencies {
     debugImplementation Deps.leakcanaryVersion
     implementation Deps.rxjavaVersion
     implementation Deps.retrofitConverterVersion
+    implementation Deps.retrofitVersion
+
     implementation Deps.okHttpLogginVersion
     implementation Deps.okhttpUrlConnectionVersion
     implementation Deps.transitionVersion
@@ -111,6 +113,7 @@ dependencies {
     implementation Deps.koinScopeVersion
     implementation Deps.koinViewModelVersion
 
+
     // Room Dependencies
     api Deps.roomRuntime
     kapt Deps.roomCompiler
@@ -126,7 +129,7 @@ dependencies {
 
     // Room Dependencies
     api Deps.roomRuntime
-    kapt Deps.roomCompiler
+    annotationProcessor Deps.roomCompiler
     implementation Deps.room
 
     // Lifecycle components
