@@ -52,9 +52,9 @@ class MyDashboardFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,7 +73,6 @@ class MyDashboardFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = myDashboardRecyclerAdapter
-
         }
     }
 
