@@ -56,7 +56,7 @@ object Versions {
     val navigationVersion = "2.1.0"
     val koinVersion = "2.1.0-alpha-1"
     val lifecycleVersion = "2.2.0-alpha05"
-    val roomVersion = "2.1.0-rc01"
+    val roomVersion = "2.2.3"
     val retrofit_coroutines_adapter = "0.9.2"
     val viewmodelVersion = "2.0.1"
 }
