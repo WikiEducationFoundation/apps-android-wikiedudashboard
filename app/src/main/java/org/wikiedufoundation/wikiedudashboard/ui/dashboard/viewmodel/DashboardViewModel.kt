@@ -19,9 +19,7 @@ class DashboardViewModel(dashboardRepository: DashboardRepository, cookies: Stri
     val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
-    var _courselist: MutableLiveData<List<CourseListData>> = MutableLiveData()
-    val courselist: LiveData<List<CourseListData>> get() = _courselist
-    val _courseList: MutableLiveData<List<CourseListData>> = MutableLiveData()
+    private val _courseList: MutableLiveData<List<CourseListData>> = MutableLiveData()
     val courseList: MutableLiveData<List<CourseListData>> get() = _courseList
 
     /**  The implementation of fetch() is completely hidden from the UI.
