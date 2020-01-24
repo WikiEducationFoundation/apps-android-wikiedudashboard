@@ -176,7 +176,7 @@ val repositoryModule = module {
 
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
-    single <DashboardRepository>{ DashboardRepositoryImpl(get(), get()) }
+    single <DashboardRepository>  { DashboardRepositoryImpl(get(), get()) }
 
 }
 
@@ -186,20 +186,16 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel { ActiveCampaignViewModel(get()) }
     viewModel { CourseListViewModel(get()) }
-    viewModel { (cookies:String) -> DashboardViewModel(get(), cookies) }
-
-
+    viewModel { (cookies : String) -> DashboardViewModel(get(), cookies) }
 }
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
  **/
 val presenterModule = module {
 
-
     /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/
-
     /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/

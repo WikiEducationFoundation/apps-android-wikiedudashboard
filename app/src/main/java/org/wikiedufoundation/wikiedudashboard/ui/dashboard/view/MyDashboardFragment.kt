@@ -22,7 +22,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 /**
@@ -34,8 +34,6 @@ import kotlin.collections.ArrayList
 class MyDashboardFragment : Fragment() {
     private val sharedPrefs: SharedPrefs by inject()
     private val dashboardViewModel by viewModel<DashboardViewModel> { parametersOf(sharedPrefs.cookies) }
-
-
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -59,10 +57,8 @@ class MyDashboardFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
         }
@@ -72,11 +68,12 @@ class MyDashboardFragment : Fragment() {
         showMessage()
     }
 
-    private fun initializeRecyclerView(){
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = myDashboardRecyclerAdapter
+
         }
     }
 
@@ -97,6 +94,7 @@ class MyDashboardFragment : Fragment() {
             }
         })
     }
+
     /**
      *   This shows the progressbar
      */
