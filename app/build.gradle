@@ -112,8 +112,8 @@ dependencies {
     implementation Deps.koinViewModelVersion
 
     // Room Dependencies
-    api Deps.roomRuntime
-    kapt Deps.roomCompiler
+    implementation Deps.roomRuntime
+    annotationProcessor Deps.roomCompiler
     implementation Deps.room
 
     // Lifecycle components
@@ -123,5 +123,4 @@ dependencies {
     implementation Deps.lifecycleLivedata
     implementation Deps.lifecycleRuntime
     implementation Deps.coroutineAdapter
-
 }
