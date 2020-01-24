@@ -21,7 +21,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.Course
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 import kotlin.collections.ArrayList
 
 /**
