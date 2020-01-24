@@ -116,7 +116,7 @@ class CampaignListFragment : Fragment() {
     fun updateSearchQuery(query: String) {
         Timber.d(query)
 
-        val campaignQueryFilter = campaignList.filterOrEmptyList {
+        val campaignQueryFilter = activeCampaignViewModel.data.value.filterOrEmptyList {
             it.title.toLowerCase(Locale.getDefault())
                     .contains(query.toLowerCase(Locale.getDefault()))
         }

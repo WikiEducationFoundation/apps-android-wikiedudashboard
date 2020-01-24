@@ -21,6 +21,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.Course
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -117,9 +119,9 @@ class CourseListFragment : Fragment() {
     fun updateSearchQuery(query: String) {
         Timber.d(query)
 
-        val filterCourseQuery = coursesList.filterOrEmptyList {
-            it.title.toLowerCase()
-                    .contains(query.toLowerCase())
+        val filterCourseQuery = courselistViewModel.data.value.filterOrEmptyList {
+            it.title.toLowerCase(Locale.getDefault())
+                    .contains(query.toLowerCase(Locale.getDefault()))
         }
 
         courseListRecyclerAdapter.setData(filterCourseQuery)
