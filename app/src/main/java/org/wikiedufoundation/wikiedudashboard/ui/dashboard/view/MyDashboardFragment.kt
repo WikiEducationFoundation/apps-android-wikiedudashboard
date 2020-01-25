@@ -5,22 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_my_dashboard.*
+import kotlinx.android.synthetic.main.fragment_my_dashboard.progressBar
+import kotlinx.android.synthetic.main.fragment_my_dashboard.recyclerCourseList
+import kotlinx.android.synthetic.main.fragment_my_dashboard.textViewNoCourses
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
-import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
+import java.util.Locale
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -28,14 +31,9 @@ import timber.log.Timber
  * Use the [RecentActivityFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyDashboardFragment : Fragment(), MyDashboardContract.View {
-
-    private val retrofitMyDashboardProvider: RetrofitMyDashboardProvider by inject()
-    private val myDashboardPresenter: MyDashboardContract.Presenter by inject {
-        parametersOf(this, retrofitMyDashboardProvider)
-    }
+class MyDashboardFragment : Fragment() {
     private val sharedPrefs: SharedPrefs by inject()
-
+    private val dashboardViewModel by viewModel<DashboardViewModel> { parametersOf(sharedPrefs.cookies) }
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -57,53 +55,62 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_dashboard, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         myDashboardRecyclerAdapter = MyDashboardRecyclerAdapter(R.layout.item_rv_my_dashboard) {
             openCourseDetail(it)
         }
+        initializeRecyclerView()
+        setData()
+        showProgressBar()
+        showMessage()
+    }
 
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = myDashboardRecyclerAdapter
         }
-
-        sharedPrefs.cookies?.let { myDashboardPresenter.requestDashboard(it) }
     }
 
-    override fun setData(data: MyDashboardResponse) {
-        sharedPrefs.userName = data.user.userName
-        Timber.d(data.toString())
+    /**
+     *   This sets the data to be displayed on the recyclerview based on available data
+     */
+    fun setData() {
+        dashboardViewModel.courseList.observe(this, androidx.lifecycle.Observer {
+            Timber.d(it.toString())
 
-        if (data.currentCourses.isNotEmpty()) {
-            coursesList = data.currentCourses
-            recyclerCourseList?.visibility = View.VISIBLE
-            myDashboardRecyclerAdapter.setData(data.currentCourses)
-            myDashboardRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses?.visibility = View.GONE
-        } else {
-            recyclerCourseList?.visibility = View.GONE
-            textViewNoCourses?.visibility = View.VISIBLE
-        }
+            if (it.isNotEmpty()) {
+                recyclerCourseList?.visibility = View.VISIBLE
+                myDashboardRecyclerAdapter.setData(it)
+                textViewNoCourses?.visibility = View.GONE
+            } else {
+                recyclerCourseList?.visibility = View.GONE
+                textViewNoCourses?.visibility = View.VISIBLE
+            }
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    /**
+     *   This shows the progressbar
+     */
+    fun showProgressBar() {
+        dashboardViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    /**
+     *   This shows the message
+     */
+    fun showMessage() {
+        dashboardViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it?.showMsg
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        })
     }
 
     /**
@@ -127,13 +134,10 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
     fun updateSearchQuery(query: String) {
         Timber.d(query)
 
-        val courseFilterQuery = coursesList.filterOrEmptyList {
-            it.title.toLowerCase()
-                    .contains(query.toLowerCase())
+        val courseFilterQuery = dashboardViewModel.courseList.value.filterOrEmptyList {
+            it.title.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
         }
-
         myDashboardRecyclerAdapter.setData(courseFilterQuery)
-        myDashboardRecyclerAdapter.notifyDataSetChanged()
     }
 
     companion object {
@@ -151,13 +155,11 @@ class MyDashboardFragment : Fragment(), MyDashboardContract.View {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): MyDashboardFragment {
-            val fragment = MyDashboardFragment()
+        fun newInstance(param1: String, param2: String) = MyDashboardFragment().apply {
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
     }
 }

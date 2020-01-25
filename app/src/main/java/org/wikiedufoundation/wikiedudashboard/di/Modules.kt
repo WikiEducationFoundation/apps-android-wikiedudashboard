@@ -43,9 +43,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepository
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepositoryImpl
+import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
@@ -166,7 +166,8 @@ val repositoryModule = module {
     /**
      * Use the [provideCampaignListRepository] to provide a CampaignListRepository instance
      * */
-    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao): ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
+    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao):
+            ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
 
     /**
      * Use the [provideCourseListRepository] to provide a CourseListRepository instance
@@ -176,6 +177,7 @@ val repositoryModule = module {
 
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
+    single <DashboardRepository> { DashboardRepositoryImpl(get(), get()) }
 }
 
 /**
@@ -184,6 +186,7 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel { ActiveCampaignViewModel(get()) }
     viewModel { CourseListViewModel(get()) }
+    viewModel { (cookies: String) -> DashboardViewModel(get(), cookies) }
 }
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
@@ -191,20 +194,8 @@ val viewModelModule = module {
 val presenterModule = module {
 
     /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-
-    /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-    factory<MyDashboardContract.Presenter> { (view: MyDashboardContract.View, provider: MyDashboardContract.Provider) ->
-        MyDashboardPresenterImpl(view, provider)
-    }
-
-    /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/
-
     /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/
@@ -282,15 +273,6 @@ val presenterModule = module {
  * Use the [provideModule] to creating the Providers
  **/
 val provideModule = module {
-
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-    single { RetrofitMyDashboardProvider(get()) }
 
     /**
      * Singleton for [RetrofitMediaDetailsProvider]
