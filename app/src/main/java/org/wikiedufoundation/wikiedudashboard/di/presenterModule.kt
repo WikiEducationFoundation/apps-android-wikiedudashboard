@@ -33,6 +33,23 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfilePresenterImpl
 val presenterModule = module {
 
     /**
+     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
+     **/
+
+    /**
+     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
+     **/
+    /**
+     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
+     **/
+    /**
+     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
+     **/
+    factory<MyDashboardContract.Presenter> { (view: MyDashboardContract.View, provider: MyDashboardContract.Provider) ->
+        MyDashboardPresenterImpl(view, provider)
+    }
+
+    /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/
 

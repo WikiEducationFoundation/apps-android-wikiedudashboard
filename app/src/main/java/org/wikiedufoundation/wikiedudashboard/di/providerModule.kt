@@ -15,6 +15,23 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
  * Use the [provideModule] to creating the Providers
  **/
 val provideModule = module {
+
+    /**
+     * Singleton for [RetrofitMyDashboardProvider]
+     **/
+
+    /**
+     * Singleton for [RetrofitMyDashboardProvider]
+     **/
+    /**
+     * Singleton for [RetrofitMyDashboardProvider]
+     **/
+
+    /**
+     * Singleton for [RetrofitMyDashboardProvider]
+     **/
+    single { RetrofitMyDashboardProvider(get()) }
+
     /**
      * Singleton for [RetrofitMediaDetailsProvider]
      **/
