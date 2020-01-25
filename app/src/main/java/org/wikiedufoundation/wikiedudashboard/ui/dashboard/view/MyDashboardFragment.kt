@@ -135,8 +135,7 @@ class MyDashboardFragment : Fragment() {
         Timber.d(query)
 
         val courseFilterQuery = dashboardViewModel.courseList.value.filterOrEmptyList {
-            it.title.toLowerCase(Locale.getDefault())
-                    .contains(query.toLowerCase(Locale.getDefault()))
+            it.title.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
         }
         myDashboardRecyclerAdapter.setData(courseFilterQuery)
     }

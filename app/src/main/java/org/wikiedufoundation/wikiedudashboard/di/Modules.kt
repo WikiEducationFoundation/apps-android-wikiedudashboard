@@ -166,7 +166,8 @@ val repositoryModule = module {
     /**
      * Use the [provideCampaignListRepository] to provide a CampaignListRepository instance
      * */
-    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao): ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
+    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao):
+            ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
 
     /**
      * Use the [provideCourseListRepository] to provide a CourseListRepository instance
