@@ -28,7 +28,6 @@ val databaseModule = module {
      * */
     fun provideCampaignListDao(database: WikiDatabase): ActiveCampaignDao = database.activeCampaignDao
 
-
     /**
      * Use the [provideCourseListDao] to provide a provideCourseListDao instance
      * */

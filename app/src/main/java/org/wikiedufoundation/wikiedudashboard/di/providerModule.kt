@@ -10,7 +10,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardPr
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 
-
 /**
  * Use the [provideModule] to creating the Providers
  **/

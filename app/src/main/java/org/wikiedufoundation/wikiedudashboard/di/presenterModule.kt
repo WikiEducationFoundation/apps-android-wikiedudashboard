@@ -26,7 +26,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresent
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfilePresenterImpl
 
-
 /**
  * Use the [presenterModule] to creating the mvp presenter for each view
  **/

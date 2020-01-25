@@ -13,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 /**
  * Use the [apiModule] to creating Retrofit2 api service
  * for WikiEduDashboardApi
