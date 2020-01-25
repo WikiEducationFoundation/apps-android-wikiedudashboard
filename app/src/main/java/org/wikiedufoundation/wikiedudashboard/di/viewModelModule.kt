@@ -12,5 +12,5 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardVi
 val viewModelModule = module {
     viewModel { ActiveCampaignViewModel(get()) }
     viewModel { CourseListViewModel(get()) }
-    viewModel  { (cookies :String) -> DashboardViewModel(get(), cookies) }
+    viewModel { (cookies: String) -> DashboardViewModel(get(), cookies) }
 }
