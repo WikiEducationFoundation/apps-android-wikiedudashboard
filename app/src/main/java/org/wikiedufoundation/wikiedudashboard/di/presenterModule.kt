@@ -19,8 +19,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.CourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsView
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardContract
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.MyDashboardPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
@@ -30,24 +28,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfilePresenterImpl
  * Use the [presenterModule] to creating the mvp presenter for each view
  **/
 val presenterModule = module {
-
-    /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-
-    /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-    /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-    /**
-     * Factory for [MyDashboardContract.Presenter] injecting the [MyDashboardContract.View] and [MyDashboardContract.Provider]
-     **/
-    factory<MyDashboardContract.Presenter> { (view: MyDashboardContract.View, provider: MyDashboardContract.Provider) ->
-        MyDashboardPresenterImpl(view, provider)
-    }
-
     /**
      * Factory for [MediaDetailsContract.Presenter] injecting the [MediaDetailsContract.View] and [MediaDetailsContract.Provider]
      **/

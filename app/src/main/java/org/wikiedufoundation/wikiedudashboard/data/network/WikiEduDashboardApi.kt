@@ -55,7 +55,7 @@ interface WikiEduDashboardApi {
     @GET("dashboard.json")
     fun getDashboardDetail(
         @Header("Cookie") sessionIdAndToken: String
-    ): Call<MyDashboardResponse>
+    ): Deferred<MyDashboardResponse>
 
     /**
      * This API is used to fetch list of active courses.

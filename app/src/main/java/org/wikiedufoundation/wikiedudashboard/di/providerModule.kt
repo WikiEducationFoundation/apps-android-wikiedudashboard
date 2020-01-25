@@ -6,7 +6,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.Re
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RetrofitRecentActivityProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.dashboard.RetrofitMyDashboardProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
 
@@ -14,22 +13,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
  * Use the [provideModule] to creating the Providers
  **/
 val provideModule = module {
-
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitMyDashboardProvider]
-     **/
-    single { RetrofitMyDashboardProvider(get()) }
 
     /**
      * Singleton for [RetrofitMediaDetailsProvider]
