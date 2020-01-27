@@ -6,6 +6,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.data.localDatabse.WikiDatabase
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dao.RecentActivityDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 
 /**
@@ -33,7 +34,10 @@ val databaseModule = module {
      * */
     fun provideCourseListDao(database: WikiDatabase): CourseListDao = database.courseListDao
 
+    fun provideRecentActivityDao(database: WikiDatabase): RecentActivityDao = database.recentActivityDao
+
     single { provideDatabase(androidApplication()) }
     single { provideCampaignListDao(get()) }
     single { provideCourseListDao(get()) }
+    single { provideRecentActivityDao(get()) }
 }
