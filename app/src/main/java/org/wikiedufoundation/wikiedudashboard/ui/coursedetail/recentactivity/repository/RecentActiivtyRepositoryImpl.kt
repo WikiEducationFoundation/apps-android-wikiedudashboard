@@ -16,7 +16,6 @@ class RecentActiivtyRepositoryImpl(
     private val recentActivityDao: RecentActivityDao
 ) : RecentActivityRepository {
 
-
     /**
      * Room executes all queries on a separate thread.he suspend modifier tells the compiler that
      * this must be called from a coroutine or another suspend function.

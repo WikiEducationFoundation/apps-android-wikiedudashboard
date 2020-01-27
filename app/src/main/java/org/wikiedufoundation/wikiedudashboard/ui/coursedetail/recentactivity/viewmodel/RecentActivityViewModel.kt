@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActivityRepository
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
@@ -20,7 +19,6 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
 
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
-
 
     val data = recentActivityRepository.getAllActivity()
 
