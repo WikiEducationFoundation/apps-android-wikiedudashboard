@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository
 
+import androidx.lifecycle.LiveData
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
 
 /**
@@ -10,7 +11,7 @@ interface RecentActivityRepository {
     /**
      *Creates a suspend function [getAllRecentActivities]
      * */
-    suspend fun getAllRecentActivities(): List<RecentActivity>
+    fun getAllActivity(): LiveData<List<RecentActivity>>
 
     /**
      *Creates a suspend function [insertRecentActivity]

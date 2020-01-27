@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository
 
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
@@ -15,13 +16,12 @@ class RecentActiivtyRepositoryImpl(
     private val recentActivityDao: RecentActivityDao
 ) : RecentActivityRepository {
 
+
     /**
      * Room executes all queries on a separate thread.he suspend modifier tells the compiler that
      * this must be called from a coroutine or another suspend function.
      * */
-    override suspend fun getAllRecentActivities(): List<RecentActivity> = withContext(Dispatchers.IO) {
-        recentActivityDao.getAllRecentActiivty()
-    }
+    override fun getAllActivity(): LiveData<List<RecentActivity>> = recentActivityDao.getRecentActivity()
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.

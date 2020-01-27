@@ -60,7 +60,7 @@ class RecentActivityFragment : Fragment() {
      *   This set the data on the view from the viewmodel
      */
     fun setData() {
-        recentActivityViewModel.recentList.observe(this, Observer {
+        recentActivityViewModel.data.observe(this, Observer {
             Timber.d("recent $it.size")
             if (it.isNotEmpty()) {
                 recyclerEditedArticlesList?.visibility = View.VISIBLE

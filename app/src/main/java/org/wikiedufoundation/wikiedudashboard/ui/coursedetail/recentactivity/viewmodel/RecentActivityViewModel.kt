@@ -21,8 +21,8 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
 
-    private val _recentList = MutableLiveData<List<RecentActivity>>()
-    val recentList: LiveData<List<RecentActivity>>get() = _recentList
+
+    val data = recentActivityRepository.getAllActivity()
 
     /**  The implementation of insert() is completely hidden from the UI.
      *  We don't want insert to block the main thread, so we're launching a new
@@ -30,20 +30,14 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
      *  viewModelScope which we can use here.
      **/
     init {
-        _progressbar.postValue(false)
 
         viewModelScope.launch {
             try {
-                _recentList.postValue(recentActivityRepository.getAllRecentActivities())
-            } catch (io: IOException) {
-                _showMsg.postValue(ShowMessage("Unable to connect to server"))
-            }
-        }
-
-        viewModelScope.launch {
-            try {
+                _progressbar.postValue(true)
                 recentActivityRepository.insertRecentActivity(url)
+                _progressbar.postValue(false)
             } catch (e: IOException) {
+                _progressbar.postValue(false)
                 _showMsg.postValue(ShowMessage("Unable to connect to server"))
             }
         }
