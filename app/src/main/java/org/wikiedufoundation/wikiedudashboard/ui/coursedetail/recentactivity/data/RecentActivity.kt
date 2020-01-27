@@ -12,16 +12,16 @@ import java.util.Date
  * ***/
 @Entity(tableName = "recent_activity")
 data class RecentActivity(
-        @PrimaryKey
-        @SerializedName("id")
-        val id: Int,
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("revisor")
-        val revisor: String?,
-        @SerializedName("characters")
-        val characters: Int?,
-        @Embedded
-        @SerializedName("date")
-        val date: Date?
+    @PrimaryKey
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("revisor")
+    val revisor: String?,
+    @SerializedName("characters")
+    val characters: Int?,
+    @Embedded
+    @SerializedName("date")
+    val date: Date?
 )

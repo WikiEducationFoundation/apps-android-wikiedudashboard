@@ -17,7 +17,7 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 import retrofit2.http.Url
 
-interface  WikiEduDashboardApi {
+interface WikiEduDashboardApi {
 
     /**
      * This API is used to fetch course details and statistics.

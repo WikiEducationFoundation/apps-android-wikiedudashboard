@@ -13,7 +13,7 @@ import java.io.IOException
 /**
  * Class extends ViewModel and requires RecentActivityRepository as a parameter.
  */
-class RecentActivityViewModel(private val recentActivityRepository: RecentActivityRepository, private val url: String) : ViewModel(){
+class RecentActivityViewModel(private val recentActivityRepository: RecentActivityRepository, private val url: String) : ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
     val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
@@ -22,7 +22,7 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
     val progressbar: LiveData<Boolean> get() = _progressbar
 
     private val _recentList = MutableLiveData<List<RecentActivity>>()
-    val recentList : LiveData<List<RecentActivity>>get() = _recentList
+    val recentList: LiveData<List<RecentActivity>>get() = _recentList
 
     /**  The implementation of insert() is completely hidden from the UI.
      *  We don't want insert to block the main thread, so we're launching a new
@@ -35,7 +35,7 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
         viewModelScope.launch {
             try {
                 _recentList.postValue(recentActivityRepository.getAllRecentActivities())
-            }catch (io : IOException){
+            } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server"))
             }
         }
@@ -43,11 +43,9 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
         viewModelScope.launch {
             try {
                 recentActivityRepository.insertRecentActivity(url)
-            }catch (e : IOException){
+            } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server"))
             }
         }
     }
-
-
 }

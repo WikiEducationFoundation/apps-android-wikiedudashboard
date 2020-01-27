@@ -1,12 +1,10 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
-
 
 /**
  * This creates an interface for

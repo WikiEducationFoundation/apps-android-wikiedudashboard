@@ -10,10 +10,10 @@ interface RecentActivityRepository {
     /**
      *Creates a suspend function [getAllRecentActivities]
      * */
-    suspend fun getAllRecentActivities() : List<RecentActivity>
+    suspend fun getAllRecentActivities(): List<RecentActivity>
 
     /**
      *Creates a suspend function [insertRecentActivity]
      * */
-    suspend fun insertRecentActivity(url:String)
+    suspend fun insertRecentActivity(url: String)
 }

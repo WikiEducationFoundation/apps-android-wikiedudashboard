@@ -8,31 +8,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import kotlinx.android.synthetic.main.fragment_recent_activity.*
 import kotlinx.android.synthetic.main.fragment_recent_activity.progressBar
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.viewmodel.RecentActivityViewModel
-import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
  * A simple [Fragment] for recent activities
  * ***/
-class RecentActivityFragment : Fragment(){
+class RecentActivityFragment : Fragment() {
 
     private lateinit var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter
 
     private var url: String? = null
 
-    private val recentActivityViewModel by viewModel<RecentActivityViewModel>{ parametersOf(url)}
+    private val recentActivityViewModel by viewModel<RecentActivityViewModel> { parametersOf(url) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,13 +48,12 @@ class RecentActivityFragment : Fragment(){
         showMessage()
     }
 
-    private fun initializeRecyclerView(){
+    private fun initializeRecyclerView() {
         recyclerEditedArticlesList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = recentActivityRecyclerAdapter
         }
-
     }
 
     /**
@@ -76,7 +71,6 @@ class RecentActivityFragment : Fragment(){
                 textViewNoActivity?.visibility = View.VISIBLE
             }
         })
-
     }
 
     /**
@@ -97,5 +91,4 @@ class RecentActivityFragment : Fragment(){
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         })
     }
-
 }
