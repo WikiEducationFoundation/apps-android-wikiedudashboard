@@ -72,3 +72,21 @@ fun provideCommonsRetrofit(): Retrofit =
                 .client(provideClient())
                 .addConverterFactory(GsonConverterFactory.create(providerGson()))
                 .build()
+/**
+ * Use the [provideDashBoardRetrofit] to provide a Retrofit with WIKIEDU_DASHBOARD instance
+ * @return Retrofit*/
+fun provideDashBoardRetrofit(): Retrofit =
+        Retrofit.Builder()
+                .baseUrl(Urls.WIKIEDU_DASHBOARD_BASE_URL)
+                .client(provideClient())
+                .addConverterFactory(GsonConverterFactory.create(providerGson()))
+                .build()
+/**
+ * Use the [provideOutreachRetrofit] to provide a Retrofit with OUTREACH_DASHBOARD instance
+ * @return Retrofit*/
+fun provideOutreachRetrofit(): Retrofit =
+        Retrofit.Builder()
+                .baseUrl(Urls.OUTREACH_DASHBOARD_BASE_URL)
+                .client(provideClient())
+                .addConverterFactory(GsonConverterFactory.create(providerGson()))
+                .build()
