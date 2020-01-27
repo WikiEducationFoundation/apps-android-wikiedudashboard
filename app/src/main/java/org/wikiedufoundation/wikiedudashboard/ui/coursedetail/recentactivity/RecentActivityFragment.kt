@@ -5,30 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import kotlinx.android.synthetic.main.fragment_recent_activity.*
+import kotlinx.android.synthetic.main.fragment_recent_activity.progressBar
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.viewmodel.RecentActivityViewModel
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
  * A simple [Fragment] for recent activities
  * ***/
-class RecentActivityFragment : Fragment(), RecentActivityContract.View {
-
-    private val retrofitRecentActivityProvider: RetrofitRecentActivityProvider by inject()
-    private val recentActivityPresenter: RecentActivityContract.Presenter by inject {
-        parametersOf(this, retrofitRecentActivityProvider)
-    }
+class RecentActivityFragment : Fragment(){
 
     private lateinit var recentActivityRecyclerAdapter: RecentActivityRecyclerAdapter
 
     private var url: String? = null
+
+    private val recentActivityViewModel by viewModel<RecentActivityViewModel>{ parametersOf(url)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,37 +46,56 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
 
         recentActivityRecyclerAdapter = RecentActivityRecyclerAdapter(R.layout.item_rv_recent_activity)
 
+        initializeRecyclerView()
+        setData()
+        showProgressBar()
+        showMessage()
+    }
+
+    private fun initializeRecyclerView(){
         recyclerEditedArticlesList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = recentActivityRecyclerAdapter
         }
 
-        url?.let { recentActivityPresenter.requestRecentActivity(it) }
     }
 
-    override fun setData(data: RecentActivityResponse) {
-        Timber.d(data.toString())
-        if (data.course.revisions.isNotEmpty()) {
-            recyclerEditedArticlesList?.visibility = View.VISIBLE
-            recentActivityRecyclerAdapter.setData(data.course.revisions)
-            recentActivityRecyclerAdapter.notifyDataSetChanged()
-            textViewNoActivity?.visibility = View.GONE
-        } else {
-            recyclerEditedArticlesList?.visibility = View.GONE
-            textViewNoActivity?.visibility = View.VISIBLE
-        }
+    /**
+     *   This set the data on the view from the viewmodel
+     */
+    fun setData() {
+        recentActivityViewModel.recentList.observe(this, Observer {
+            Timber.d("recent $it.size")
+            if (it.isNotEmpty()) {
+                recyclerEditedArticlesList?.visibility = View.VISIBLE
+                recentActivityRecyclerAdapter.setData(it)
+                textViewNoActivity?.visibility = View.GONE
+            } else {
+                recyclerEditedArticlesList?.visibility = View.GONE
+                textViewNoActivity?.visibility = View.VISIBLE
+            }
+        })
+
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    /**
+     *   This shows the progressbar
+     */
+    fun showProgressBar() {
+        recentActivityViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    /**
+     *   This shows the message
+     */
+    fun showMessage() {
+        recentActivityViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it?.showMsg
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        })
     }
+
 }

@@ -9,8 +9,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.CourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailView
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityContract
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.StudentListProvider
@@ -102,25 +100,6 @@ val presenterModule = module {
      **/
     factory<CourseDetailPresenter> { (view: CourseDetailView, provider: CourseDetailProvider) ->
         CourseDetailPresenterImpl(view, provider)
-    }
-
-    /**
-     * Factory for [RecentActivityContract.Presenter] injecting the [RecentActivityContract.View] and [RecentActivityContract.Provider]
-     **/
-
-    /**
-     * Factory for [RecentActivityContract.Presenter] injecting the [RecentActivityContract.View] and [RecentActivityContract.Provider]
-     **/
-
-    /**
-     * Factory for [RecentActivityContract.Presenter] injecting the [RecentActivityContract.View] and [RecentActivityContract.Provider]
-     **/
-
-    /**
-     * Factory for [RecentActivityContract.Presenter] injecting the [RecentActivityContract.View] and [RecentActivityContract.Provider]
-     **/
-    factory<RecentActivityContract.Presenter> { (view: RecentActivityContract.View, provider: RecentActivityContract.Provider) ->
-        RecentActivityPresenterImpl(view, provider)
     }
 
     /**
