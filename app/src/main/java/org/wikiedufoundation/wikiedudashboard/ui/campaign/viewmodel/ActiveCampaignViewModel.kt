@@ -16,7 +16,7 @@ import java.io.IOException
 class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
-    val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
+    val showMsg: LiveData<ShowMessage?> get() = _showMsg
 
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
