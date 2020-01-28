@@ -10,7 +10,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repositor
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
-
 /**
  * Class extends ViewModel and requires RecentActivityRepository as a parameter.
  */
