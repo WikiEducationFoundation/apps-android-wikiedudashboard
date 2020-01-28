@@ -10,6 +10,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repositor
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
+
+/**
+ * Class extends ViewModel and requires RecentActivityRepository as a parameter.
+ */
 class StudentsViewModel(private val studentsRepository: StudentsRepository, url: String) : ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
@@ -20,6 +24,10 @@ class StudentsViewModel(private val studentsRepository: StudentsRepository, url:
     private val _studentList: MutableLiveData<List<User>> = MutableLiveData()
     val studentList: LiveData<List<User>> get() = _studentList
 
+    /**
+     * ViewModels have a coroutine scope based on their lifecycle called
+     *  viewModelScope which we can use here.
+     **/
     init {
         _progressbar.postValue(false)
 
