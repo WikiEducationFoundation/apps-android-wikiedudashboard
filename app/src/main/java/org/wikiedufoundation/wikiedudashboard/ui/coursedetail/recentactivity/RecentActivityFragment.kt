@@ -17,6 +17,7 @@ import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.viewmodel.RecentActivityViewModel
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
 /**
@@ -44,8 +45,8 @@ class RecentActivityFragment : Fragment() {
 
         initializeRecyclerView()
         setData()
-        showProgressBar()
-        showMessage()
+        initialzeProgressBar()
+        initialzeToaster()
     }
 
     private fun initializeRecyclerView() {
@@ -60,7 +61,7 @@ class RecentActivityFragment : Fragment() {
      *   This set the data on the view from the viewmodel
      */
     fun setData() {
-        recentActivityViewModel.data.observe(this, Observer {
+        recentActivityViewModel.recentList.observe(this, Observer {
             Timber.d("recent $it.size")
             if (it.isNotEmpty()) {
                 recyclerEditedArticlesList?.visibility = View.VISIBLE
@@ -76,7 +77,7 @@ class RecentActivityFragment : Fragment() {
     /**
      *   This shows the progressbar
      */
-    fun showProgressBar() {
+    fun initialzeProgressBar() {
         recentActivityViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         })
@@ -85,10 +86,10 @@ class RecentActivityFragment : Fragment() {
     /**
      *   This shows the message
      */
-    fun showMessage() {
+    fun initialzeToaster() {
         recentActivityViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it?.showMsg
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            val message = it.showMsg
+            context?.showToast(message)
         })
     }
 }

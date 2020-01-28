@@ -30,5 +30,5 @@ val repositoryModule = module {
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
     single <DashboardRepository> { DashboardRepositoryImpl(get(), get()) }
-    single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get(), get()) }
+    single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get()) }
 }

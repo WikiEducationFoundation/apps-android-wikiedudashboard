@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActivityRepository
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
@@ -14,13 +15,14 @@ import java.io.IOException
  */
 class RecentActivityViewModel(private val recentActivityRepository: RecentActivityRepository, private val url: String) : ViewModel() {
 
-    private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
-    val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
+    private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
+    val showMsg: MutableLiveData<ShowMessage> get() = _showMsg
 
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
 
-    val data = recentActivityRepository.getAllActivity()
+    private val _recentList: MutableLiveData<List<RecentActivity>> = MutableLiveData()
+    val recentList: LiveData<List<RecentActivity>> get() = _recentList
 
     /**  The implementation of insert() is completely hidden from the UI.
      *  We don't want insert to block the main thread, so we're launching a new
@@ -32,7 +34,7 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
         viewModelScope.launch {
             try {
                 _progressbar.postValue(true)
-                recentActivityRepository.insertRecentActivity(url)
+                _recentList.postValue(recentActivityRepository.insertRecentActivity(url))
                 _progressbar.postValue(false)
             } catch (e: IOException) {
                 _progressbar.postValue(false)

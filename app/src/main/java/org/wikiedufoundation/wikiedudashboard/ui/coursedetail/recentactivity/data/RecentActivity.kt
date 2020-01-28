@@ -1,8 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -10,7 +8,6 @@ import java.util.Date
  * [RecentActivity] model class
  * @constructor primary constructor to initialize properties and variables
  * ***/
-@Entity(tableName = "recent_activity")
 data class RecentActivity(
     @PrimaryKey
     @SerializedName("id")

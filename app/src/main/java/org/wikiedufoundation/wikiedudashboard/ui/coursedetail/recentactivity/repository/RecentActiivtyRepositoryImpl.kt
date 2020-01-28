@@ -1,10 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dao.RecentActivityDao
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls.SUB_URL_COURSE_RECENT
 
@@ -12,22 +10,17 @@ import org.wikiedufoundation.wikiedudashboard.util.Urls.SUB_URL_COURSE_RECENT
  *instead of the whole database, because you only need access to the DAO*
  * */
 class RecentActiivtyRepositoryImpl(
-    private val wikiEduDashboardApi: WikiEduDashboardApi,
-    private val recentActivityDao: RecentActivityDao
+    private val wikiEduDashboardApi: WikiEduDashboardApi
 ) : RecentActivityRepository {
-
-    /**
-     * Room executes all queries on a separate thread.he suspend modifier tells the compiler that
-     * this must be called from a coroutine or another suspend function.
-     * */
-    override fun getAllActivity(): LiveData<List<RecentActivity>> = recentActivityDao.getRecentActivity()
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    override suspend fun insertRecentActivity(url: String) = withContext(Dispatchers.IO) {
-        val request = wikiEduDashboardApi.getRecentActivity(SUB_URL_COURSE_RECENT.format(url))
+    override suspend fun insertRecentActivity(url: String) : List<RecentActivity>
+            = withContext(Dispatchers.IO) {
+        val request = wikiEduDashboardApi
+                .getRecentActivity(SUB_URL_COURSE_RECENT.format(url))
         val recentList = request.course.revisions
-        recentActivityDao.insertRecentActivity(recentList)
+        recentList
     }
 }

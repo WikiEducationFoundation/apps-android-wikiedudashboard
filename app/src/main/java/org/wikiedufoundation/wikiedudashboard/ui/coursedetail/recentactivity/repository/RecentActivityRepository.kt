@@ -9,12 +9,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.dat
 interface RecentActivityRepository {
 
     /**
-     *Creates a suspend function [getAllRecentActivities]
-     * */
-    fun getAllActivity(): LiveData<List<RecentActivity>>
-
-    /**
      *Creates a suspend function [insertRecentActivity]
      * */
-    suspend fun insertRecentActivity(url: String)
+    suspend fun insertRecentActivity(url: String) : List<RecentActivity>
 }
