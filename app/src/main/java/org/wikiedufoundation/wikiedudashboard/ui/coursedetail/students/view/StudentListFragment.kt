@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +16,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.viewmodel.StudentsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -32,9 +30,9 @@ class StudentListFragment : Fragment() {
     private val studentsViewModel by viewModel<StudentsViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_students, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,7 +76,6 @@ class StudentListFragment : Fragment() {
                 textViewNoStudents?.visibility = View.VISIBLE
             }
         })
-
     }
 
     /**
