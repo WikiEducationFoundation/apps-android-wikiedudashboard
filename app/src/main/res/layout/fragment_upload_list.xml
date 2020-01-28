@@ -24,6 +24,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="@string/tv_no_uploads"
+        android:textSize="@dimen/text_size_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
