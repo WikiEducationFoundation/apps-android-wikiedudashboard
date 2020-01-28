@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data
 
-import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -9,7 +8,6 @@ import java.util.Date
  * @constructor primary constructor to initialize properties and variables
  * ***/
 data class RecentActivity(
-    @PrimaryKey
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")
@@ -18,7 +16,6 @@ data class RecentActivity(
     val revisor: String?,
     @SerializedName("characters")
     val characters: Int?,
-    @Embedded
     @SerializedName("date")
     val date: Date?
 )

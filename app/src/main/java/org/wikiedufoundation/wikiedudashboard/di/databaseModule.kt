@@ -33,7 +33,6 @@ val databaseModule = module {
      * */
     fun provideCourseListDao(database: WikiDatabase): CourseListDao = database.courseListDao
 
-
     single { provideDatabase(androidApplication()) }
     single { provideCampaignListDao(get()) }
     single { provideCourseListDao(get()) }
