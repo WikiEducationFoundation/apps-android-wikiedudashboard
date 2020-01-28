@@ -3,7 +3,6 @@ package org.wikiedufoundation.wikiedudashboard.di
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.RetrofitArticlesEditedProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RetrofitRecentActivityProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.RetrofitProfileProvider
@@ -80,23 +79,6 @@ val provideModule = module {
      * Singleton for [RetrofitCourseDetailProvider]
      **/
     single { RetrofitCourseDetailProvider(get()) }
-
-    /**
-     * Singleton for [RetrofitRecentActivityProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitRecentActivityProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitRecentActivityProvider]
-     **/
-
-    /**
-     * Singleton for [RetrofitRecentActivityProvider]
-     **/
-    single { RetrofitRecentActivityProvider(get()) }
 
     /**
      * Singleton for [RetrofitCourseUploadsProvider]

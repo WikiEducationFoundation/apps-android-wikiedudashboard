@@ -54,11 +54,13 @@ object Versions {
     val materialVersion = cardViewVersion
     val fragmentVersion = annotationVersion
     val navigationVersion = "2.1.0"
-    val koinVersion = "2.1.0-alpha-1"
+    val koinVersion = "2.0.1"
     val lifecycleVersion = "2.2.0-alpha05"
     val roomVersion = "2.2.3"
     val retrofit_coroutines_adapter = "0.9.2"
     val viewmodelVersion = "2.0.1"
+    val retrofitVersion = "2.6.0"
+
 }
 
 /**
@@ -83,6 +85,7 @@ object Deps {
     val glideVersion = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
 
     val leakcanaryVersion = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanaryVersion}"
+    val retrofitVersion = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     val rxjavaVersion = "com.squareup.retrofit2:adapter-rxjava:${Versions.rxjavaVersion}"
     val retrofitConverterVersion = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverterVersion}"
     val okHttpLogginVersion = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogginVersion}"

@@ -20,7 +20,7 @@ class DashboardViewModel(dashboardRepository: DashboardRepository, cookies: Stri
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
     private val _courseList: MutableLiveData<List<CourseListData>> = MutableLiveData()
-    val courseList: MutableLiveData<List<CourseListData>> get() = _courseList
+    val courseList: LiveData<List<CourseListData>> get() = _courseList
 
     /**  The implementation of fetch() is completely hidden from the UI.
      *  We don't want insert to block the main thread, so we're launching a new
