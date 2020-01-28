@@ -10,4 +10,5 @@ object Urls {
     val SUB_URL_COURSE_DETAIL = "courses/"
     val SUB_URL_COURSE_ARTICLE = "welcome/"
     val SUB_URL_COURSE_USERS = "welcome/"
+    val SUB_URL_COURSE_STUDENTLIST = "courses/%s/users.json"
 }
