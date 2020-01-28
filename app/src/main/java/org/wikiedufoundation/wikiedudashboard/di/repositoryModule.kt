@@ -4,6 +4,8 @@ import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repository.StudentsRepository
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repository.StudentsRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActiivtyRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActivityRepository
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
@@ -30,5 +32,6 @@ val repositoryModule = module {
     single { provideCampaignListRepository(get(), get()) }
     single { provideCourseListRepository(get(), get()) }
     single <DashboardRepository> { DashboardRepositoryImpl(get(), get()) }
+    single <StudentsRepository> { StudentsRepositoryImpl(get()) }
     single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get()) }
 }

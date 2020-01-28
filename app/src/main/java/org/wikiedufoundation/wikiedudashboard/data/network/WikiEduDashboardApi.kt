@@ -41,7 +41,7 @@ interface WikiEduDashboardApi {
      * This API is used to fetch list of students in a course.
      ***/
     @GET
-    fun getStudentList(@Url url: String): Call<StudentListResponse>
+    suspend fun getStudentList(@Url url: String): StudentListResponse
 
     /**
      * This API is used to fetch list of uploads by the users in a course.

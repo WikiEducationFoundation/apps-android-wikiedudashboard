@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_students.*
-import org.koin.android.ext.android.inject
+import kotlinx.android.synthetic.main.fragment_explore_students.progressBar
+import kotlinx.android.synthetic.main.fragment_my_dashboard.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.StudentListResponse
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.viewmodel.StudentsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
@@ -22,15 +24,10 @@ import timber.log.Timber
 /**
  * A [Fragment] that displays list of students
  * ***/
-class StudentListFragment : Fragment(), StudentListView {
-
-    private val retrofitStudentListProvider: RetrofitStudentListProvider by inject()
-    private val studentListPresenter: StudentListPresenter by inject {
-        parametersOf(this, retrofitStudentListProvider)
-    }
-
+class StudentListFragment : Fragment() {
     private lateinit var url: String
     private lateinit var studentListRecyclerAdapter: StudentListRecyclerAdapter
+    private val studentsViewModel by viewModel<StudentsViewModel> { parametersOf(url) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,37 +39,43 @@ class StudentListFragment : Fragment(), StudentListView {
         url = arguments?.getString("url", null).toString()
 
         studentListRecyclerAdapter = StudentListRecyclerAdapter(R.layout.item_rv_students) { openStudentProfile(it) }
+        initializeRecyclerView()
+        setData()
+        initializeProgressBar()
+        initializeToaster()
+    }
 
+    private fun initializeRecyclerView() {
         recyclerStudentList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = studentListRecyclerAdapter
         }
-
-        url.let { studentListPresenter.requestStudentList(it) }
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    private fun initializeProgressBar() {
+        studentsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    private fun initializeToaster() {
+        studentsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it.showMsg
+            context?.showToast(message)
+        })
     }
 
-    override fun setData(data: StudentListResponse) {
-        if (data.course.users.isNotEmpty()) {
-            Timber.d(data.toString())
-            studentListRecyclerAdapter.setData(data.course.users)
-            studentListRecyclerAdapter.notifyDataSetChanged()
-        } else {
-            recyclerStudentList?.visibility = View.GONE
-            textViewNoStudents?.visibility = View.VISIBLE
-        }
+    private fun setData() {
+        studentsViewModel.studentList.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                Timber.d(it.toString())
+                studentListRecyclerAdapter.setData(it)
+            } else {
+                recyclerStudentList?.visibility = View.GONE
+                textViewNoStudents?.visibility = View.VISIBLE
+            }
+        })
     }
 
     /**
