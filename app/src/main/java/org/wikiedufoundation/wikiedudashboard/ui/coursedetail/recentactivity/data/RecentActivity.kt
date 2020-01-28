@@ -13,9 +13,9 @@ data class RecentActivity(
     @SerializedName("title")
     val title: String,
     @SerializedName("revisor")
-    val revisor: String,
+    val revisor: String?,
     @SerializedName("characters")
-    val characters: Int,
+    val characters: Int?,
     @SerializedName("date")
-    val date: Date
+    val date: Date?
 )
