@@ -23,7 +23,7 @@ interface WikiEduDashboardApi {
      * This API is used to fetch course details and statistics.
      ***/
     @GET
-    fun getCourseDetail(@Url url: String): Call<CourseDetailResponse>
+    suspend fun getCourseDetail(@Url url: String): CourseDetailResponse
 
     /**
      * This API is used to fetch list of articles of a course.
