@@ -47,7 +47,7 @@ interface WikiEduDashboardApi {
      * This API is used to fetch list of uploads by the users in a course.
      ***/
     @GET
-    fun getCourseUploads(@Url url: String): Call<CourseUploadResponse>
+    suspend fun getCourseUploads(@Url url: String): CourseUploadResponse
 
     /**
      * This API is used to fetch Dashboard details. Ex - My Courses - Active, Archived.

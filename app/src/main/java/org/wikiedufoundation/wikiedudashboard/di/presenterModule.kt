@@ -1,10 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.CourseUploadsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsView
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
@@ -52,23 +48,4 @@ val presenterModule = module {
         ProfilePresenterImpl(view, provider)
     }
 
-
-    /**
-     * Factory for [CourseUploadsPresenter] injecting the [CourseUploadsView] and [CourseUploadsProvider]
-     **/
-
-    /**
-     * Factory for [CourseUploadsPresenter] injecting the [CourseUploadsView] and [CourseUploadsProvider]
-     **/
-
-    /**
-     * Factory for [CourseUploadsPresenter] injecting the [CourseUploadsView] and [CourseUploadsProvider]
-     **/
-
-    /**
-     * Factory for [CourseUploadsPresenter] injecting the [CourseUploadsView] and [CourseUploadsProvider]
-     **/
-    factory<CourseUploadsPresenter> { (view: CourseUploadsView, provider: CourseUploadsProvider) ->
-        CourseUploadsPresenterImpl(view, provider)
-    }
 }
