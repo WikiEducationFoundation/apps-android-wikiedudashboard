@@ -1,21 +1,20 @@
 package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_upload_list.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseUploadsRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.viewmodel.CourseUploadsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
@@ -26,18 +25,13 @@ import timber.log.Timber
  * Use the [CourseUploadsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CourseUploadsFragment : Fragment(), CourseUploadsView {
-
-    private val retrofitCourseUploadsProvider: RetrofitCourseUploadsProvider by inject()
-    private val courseUploadsPresenter: CourseUploadsPresenter by inject {
-        parametersOf(this, retrofitCourseUploadsProvider)
-    }
+class CourseUploadsFragment : Fragment() {
 
     private var type: Int = 0
     private var courseUrl: String? = null
     private var courseUploadList: CourseUploadList? = null
-
     private lateinit var courseUploadsRecyclerAdapter: CourseUploadsRecyclerAdapter
+    private val courseUploadsViewModel by viewModel<CourseUploadsViewModel> { parametersOf(courseUrl) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,61 +46,52 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_upload_list, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_upload_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val context: Context? = context
         courseUploadsRecyclerAdapter = CourseUploadsRecyclerAdapter(R.layout.item_rv_course_upload) { uploadList, position ->
             openCourseDetail(uploadList, position)
         }
+        initializeRecyclerView()
+        setData()
+        initializeProgressBar()
+        initializeToaster()
+    }
 
+    private fun initializeRecyclerView() {
         recyclerUploadList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseUploadsRecyclerAdapter
         }
-
-        if (type == 1) {
-            courseUrl?.let { courseUploadsPresenter.requestCourseUploads(it) }
-        } else if (type == 2) {
-            courseUploadList?.let { setData(it)
-            } ?: run {
+    }
+    private fun setData() {
+        courseUploadsViewModel.uploadList.observe(this, Observer {
+            Timber.d(it.toString())
+            if (it.isNotEmpty()) {
+                recyclerUploadList?.visibility = View.VISIBLE
+                courseUploadsRecyclerAdapter.setData(it)
+                textViewNoUploads?.visibility = View.GONE
+            } else {
                 recyclerUploadList?.visibility = View.GONE
                 textViewNoUploads?.visibility = View.VISIBLE
             }
-            showProgressBar(false)
-        }
+        })
     }
 
-    override fun setData(courseUploadList: CourseUploadList) {
-        Timber.d(courseUploadList.toString())
-        if (courseUploadList.uploads.isNotEmpty()) {
-            recyclerUploadList?.visibility = View.VISIBLE
-            courseUploadsRecyclerAdapter.setData(courseUploadList.uploads)
-            courseUploadsRecyclerAdapter.notifyDataSetChanged()
-            textViewNoUploads?.visibility = View.GONE
-        } else {
-            recyclerUploadList?.visibility = View.GONE
-            textViewNoUploads?.visibility = View.VISIBLE
-        }
+    private fun initializeProgressBar() {
+        courseUploadsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    private fun initializeToaster() {
+        courseUploadsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it.showMsg
+            context?.showToast(message)
+        })
     }
-
-    override fun showMessage(message: String) {
-        context?.showToast(message)
-    }
-
     /**
      * Use [openCourseDetail] to send course uploads data and each uploads' position
      * and then start MediaDetailsActivity
@@ -122,9 +107,9 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     companion object {
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
-        private val ARG_PARAM3 = "param3"
+        private const val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM2 = "param2"
+        private const val ARG_PARAM3 = "param3"
 
         /**
          * [CourseUploadsFragment.newInstance] factory that creates an instance of this fragment
@@ -134,14 +119,12 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
          * @param courseDetail course detail data
          * @param courseUploads course uploads
          * ***/
-        fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?): CourseUploadsFragment {
-            val fragment = CourseUploadsFragment()
+        fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?) = CourseUploadsFragment().apply {
             val args = Bundle()
             args.putInt(ARG_PARAM1, type)
             args.putString(ARG_PARAM2, courseDetail)
             args.putSerializable(ARG_PARAM3, courseUploads)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
     }
 }
