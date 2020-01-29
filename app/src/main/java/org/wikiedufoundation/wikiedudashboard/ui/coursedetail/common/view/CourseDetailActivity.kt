@@ -3,36 +3,29 @@ package org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_course_detail.*
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.CourseArticlesEditedFragment
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.RetrofitCourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.viewmodel.CourseDetailViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.RecentActivityFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListFragment
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.view.CourseUploadsFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
+import org.wikiedufoundation.wikiedudashboard.util.showToast
 
 /**
  * Activity view for course detail
  * ***/
-class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
-
-    private val retrofitCourseDetailProvider: RetrofitCourseDetailProvider by inject()
-    private val courseDetailPresenter: CourseDetailPresenter by inject {
-        parametersOf(this, retrofitCourseDetailProvider)
-    }
+class CourseDetailActivity : AppCompatActivity() {
 
     private var enrolled = false
-
     private lateinit var url: String
     private lateinit var courseHomeFragment: CourseHomeFragment
+    private val courseDetailViewModel by viewModel<CourseDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,25 +41,15 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
             url = data.substring(data.lastIndexOf("courses/") + 8)
             val urlExists = url.contains("?enroll")
             if (urlExists) {
-//                val enrollParam = url.lastIndexOf("?enroll").plus(7).let { url.substring(it) }
                 url = url.lastIndexOf("?enroll").let { url.substring(0, it) }
             }
         }
-
+        url?.let { courseDetailViewModel.requestCourseDetail(it) }
         tabLayout.setupWithViewPager(viewPager)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-
-        url.let { courseDetailPresenter.requestCourseDetail(it) }
-    }
-
-    override fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun setData(data: CourseDetail) {
-        toolbar.title = data.title
-        courseHomeFragment = CourseHomeFragment.newInstance(data)
-        setTabs()
+        setData()
+        initializeProgressBar()
+        initializeToaster()
     }
 
     /**
@@ -100,11 +83,24 @@ class CourseDetailActivity : AppCompatActivity(), CourseDetailView {
         }
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    private fun setData() {
+        courseDetailViewModel.coursedetail.observe(this, Observer {
+            toolbar.title = it.title
+            courseHomeFragment = CourseHomeFragment.newInstance(it)
+            setTabs()
+        })
+    }
+
+    private fun initializeProgressBar() {
+        courseDetailViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
+    }
+
+    private fun initializeToaster() {
+        courseDetailViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it.showMsg
+            showToast(message)
+        })
     }
 }

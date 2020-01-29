@@ -7,9 +7,8 @@ object Urls {
 
     var BASE_URL = "https://outreachdashboard.wmflabs.org/"
 
-    val SUB_URL_COURSE_DETAIL = "courses/"
+    val SUB_URL_COURSE_DETAIL = "courses/%s/course.json"
     val SUB_URL_COURSE_ARTICLE = "courses/%s/articles.json"
-    val SUB_URL_COURSE_USERS = "welcome/"
     val SUB_URL_COURSE_STUDENTLIST = "courses/%s/users.json"
     val SUB_URL_COURSE_RECENT = "courses/%s/revisions.json"
     val SUB_URL_COURSE_UPLOADS = "courses/%s/uploads.json"
