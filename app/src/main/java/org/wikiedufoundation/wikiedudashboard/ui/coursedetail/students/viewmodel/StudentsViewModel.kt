@@ -11,7 +11,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
 /**
- * Class extends ViewModel and requires RecentActivityRepository as a parameter.
+ * Class extends ViewModel and requires StudentRepository as a parameter.
  */
 class StudentsViewModel(private val studentsRepository: StudentsRepository, url: String) : ViewModel() {
 
@@ -28,13 +28,15 @@ class StudentsViewModel(private val studentsRepository: StudentsRepository, url:
      *  viewModelScope which we can use here.
      **/
     init {
-        _progressbar.postValue(false)
+        _progressbar.postValue(true)
 
         viewModelScope.launch {
             try {
                 _studentList.postValue(studentsRepository.requestStudentList(url))
+                _progressbar.postValue(false)
             } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _progressbar.postValue(false)
             }
         }
     }
