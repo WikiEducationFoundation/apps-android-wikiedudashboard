@@ -10,6 +10,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repositor
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repository.StudentsRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActiivtyRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActivityRepository
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.repository.CourseUploadsRepository
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.repository.CourseUploadsRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepository
@@ -36,5 +38,6 @@ val repositoryModule = module {
     single <DashboardRepository> { DashboardRepositoryImpl(get(), get()) }
     single <StudentsRepository> { StudentsRepositoryImpl(get()) }
     single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get()) }
+    single <CourseUploadsRepository> { CourseUploadsRepositoryImpl(get()) }
     single <ArticlesEditedRepository> { ArticlesEditedRepositoryImpl(get()) }
 }
