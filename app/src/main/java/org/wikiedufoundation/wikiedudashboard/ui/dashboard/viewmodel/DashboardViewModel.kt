@@ -11,7 +11,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
 /**
- * Class extends AndroidViewModel and requires application as a parameter.
+ * Class extends ViewModel and requires dashboardRepository and cookies as a parameter.
  */
 class DashboardViewModel(dashboardRepository: DashboardRepository, cookies: String) : ViewModel() {
 
