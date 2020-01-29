@@ -29,7 +29,7 @@ interface WikiEduDashboardApi {
      * This API is used to fetch list of articles of a course.
      ***/
     @GET
-    fun getArticlesEdited(@Url url: String): Call<ArticlesEdited>
+    suspend fun getArticlesEdited(@Url url: String): ArticlesEdited
 
     /**
      * This API is used to fetch list of articles edited in a course.
