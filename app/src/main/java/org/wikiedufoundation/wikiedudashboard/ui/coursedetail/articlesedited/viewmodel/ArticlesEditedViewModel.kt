@@ -27,13 +27,15 @@ class ArticlesEditedViewModel(
     val articleList: LiveData<List<Article>> get() = _articleList
 
     init {
-        _progressbar.postValue(false)
+        _progressbar.postValue(true)
 
         viewModelScope.launch {
             try {
                 _articleList.postValue(articlesEditedRepository.requestArticlesEdited(url))
+                _progressbar.postValue(false)
             } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to the server."))
+                _progressbar.postValue(false)
             }
         }
     }
