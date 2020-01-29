@@ -32,13 +32,14 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
     init {
 
         viewModelScope.launch {
+            _progressbar.postValue(true)
+
             try {
-                _progressbar.postValue(true)
                 _recentList.postValue(recentActivityRepository.insertRecentActivity(url))
                 _progressbar.postValue(false)
             } catch (e: IOException) {
-                _progressbar.postValue(false)
                 _showMsg.postValue(ShowMessage("Unable to connect to server"))
+                _progressbar.postValue(false)
             }
         }
     }
