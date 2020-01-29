@@ -1,10 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.presenter.ArticlesEditedPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.provider.ArticlesEditedProvider
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.view.ArticlesEditedView
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.CourseDetailProvider
@@ -54,25 +50,6 @@ val presenterModule = module {
      **/
     factory<ProfileContract.Presenter> { (view: ProfileContract.View, provider: ProfileContract.Provider) ->
         ProfilePresenterImpl(view, provider)
-    }
-
-    /**
-     * Factory for [ArticlesEditedPresenter] injecting the [ArticlesEditedView] and [ArticlesEditedProvider]
-     **/
-
-    /**
-     * Factory for [ArticlesEditedPresenter] injecting the [ArticlesEditedView] and [ArticlesEditedProvider]
-     **/
-
-    /**
-     * Factory for [ArticlesEditedPresenter] injecting the [ArticlesEditedView] and [ArticlesEditedProvider]
-     **/
-
-    /**
-     * Factory for [ArticlesEditedPresenter] injecting the [ArticlesEditedView] and [ArticlesEditedProvider]
-     **/
-    factory<ArticlesEditedPresenter> { (view: ArticlesEditedView, provider: ArticlesEditedProvider) ->
-        ArticlesEditedPresenterImpl(view, provider)
     }
 
     /**
