@@ -6,6 +6,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepositoryImpl
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.repository.CourseDetailRepository
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.repository.CourseDetailRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repository.StudentsRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.repository.StudentsRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActiivtyRepositoryImpl
@@ -37,4 +39,5 @@ val repositoryModule = module {
     single <StudentsRepository> { StudentsRepositoryImpl(get()) }
     single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get()) }
     single <ArticlesEditedRepository> { ArticlesEditedRepositoryImpl(get()) }
+    single <CourseDetailRepository> { CourseDetailRepositoryImpl(get()) }
 }
