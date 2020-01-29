@@ -26,16 +26,14 @@ class CourseDetailViewModel(private val courseDetailRepository: CourseDetailRepo
         _progressbar.postValue(true)
     }
 
-    fun requestCourseDetail(url : String) {
+    fun requestCourseDetail(url: String) {
         viewModelScope.launch {
             try {
                 _coursedetail.postValue(courseDetailRepository.requestCourseDetails(url))
                 _progressbar.postValue(false)
-
             } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
-
             }
         }
     }

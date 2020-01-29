@@ -10,5 +10,5 @@ interface CourseDetailRepository {
     /**
      *Creates a suspend function [requestCourseDetails]
      * */
-    suspend fun requestCourseDetails(url : String) : CourseDetail
+    suspend fun requestCourseDetails(url: String): CourseDetail
 }

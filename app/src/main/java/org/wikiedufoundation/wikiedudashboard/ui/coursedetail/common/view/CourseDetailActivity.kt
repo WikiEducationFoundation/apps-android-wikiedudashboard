@@ -20,7 +20,7 @@ import org.wikiedufoundation.wikiedudashboard.util.showToast
 /**
  * Activity view for course detail
  * ***/
-class CourseDetailActivity : AppCompatActivity(){
+class CourseDetailActivity : AppCompatActivity() {
 
     private var enrolled = false
     private lateinit var url: String

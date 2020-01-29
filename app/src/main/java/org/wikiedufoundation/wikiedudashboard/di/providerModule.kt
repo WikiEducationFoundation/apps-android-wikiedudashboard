@@ -43,5 +43,4 @@ val provideModule = module {
      * Singleton for [RetrofitProfileProvider]
      **/
     single { RetrofitProfileProvider(get()) }
-
 }

@@ -47,5 +47,4 @@ val presenterModule = module {
     factory<ProfileContract.Presenter> { (view: ProfileContract.View, provider: ProfileContract.Provider) ->
         ProfilePresenterImpl(view, provider)
     }
-
 }

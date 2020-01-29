@@ -5,13 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_course_home.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.viewmodel.CourseDetailViewModel
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import java.text.MessageFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -43,7 +39,7 @@ class CourseHomeFragment : Fragment() {
         setData()
     }
 
-    private fun setData(){
+    private fun setData() {
         textViewCountArticlesCreated.text = courseDetail?.createdCount
         textViewCountArticlesEdited.text = courseDetail?.editedCount
         textViewCountTotalEdits.text = courseDetail?.editCount
@@ -64,7 +60,7 @@ class CourseHomeFragment : Fragment() {
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private  const val  ARG_PARAM1 = "param1"
+        private const val ARG_PARAM1 = "param1"
 
         fun newInstance(courseDetail: CourseDetail) = CourseHomeFragment().apply {
             val args = Bundle()

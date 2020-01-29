@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_course_home.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetail
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.home.CourseHomeFragment
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.viewmodel.CourseDetailViewModel
 import java.text.MessageFormat
 
 /**
@@ -42,7 +39,7 @@ class CourseTimelineFragment : Fragment() {
         setData()
     }
 
-    private fun setData(){
+    private fun setData() {
         textViewCountArticlesCreated.text = courseDetail?.createdCount
         textViewCountArticlesEdited.text = courseDetail?.editedCount
         textViewCountTotalEdits.text = courseDetail?.editCount

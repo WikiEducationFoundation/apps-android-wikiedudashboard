@@ -22,5 +22,4 @@ class CourseDetailRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboa
                 val courseDetail = request.course
                 courseDetail
             }
-
 }
