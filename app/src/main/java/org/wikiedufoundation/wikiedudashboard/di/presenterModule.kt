@@ -9,10 +9,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.C
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.CourseDetailProvider
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailView
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.StudentListProvider
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.view.StudentListView
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.CourseUploadsProvider
@@ -100,25 +96,6 @@ val presenterModule = module {
      **/
     factory<CourseDetailPresenter> { (view: CourseDetailView, provider: CourseDetailProvider) ->
         CourseDetailPresenterImpl(view, provider)
-    }
-
-    /**
-     * Factory for [StudentListPresenter] injecting the [StudentListView] and [StudentListProvider]
-     **/
-
-    /**
-     * Factory for [StudentListPresenter] injecting the [StudentListView] and [StudentListProvider]
-     **/
-
-    /**
-     * Factory for [StudentListPresenter] injecting the [StudentListView] and [StudentListProvider]
-     **/
-
-    /**
-     * Factory for [StudentListPresenter] injecting the [StudentListView] and [StudentListProvider]
-     **/
-    factory<StudentListPresenter> { (view: StudentListView, provider: StudentListProvider) ->
-        StudentListPresenterImpl(view, provider)
     }
 
     /**
