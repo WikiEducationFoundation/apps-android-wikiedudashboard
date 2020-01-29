@@ -62,6 +62,9 @@ class CourseTimelineFragment : Fragment() {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private const val ARG_PARAM1 = "param1"
 
+        /**
+         * This method creates a new instance of [CourseHomeFragment]
+         */
         fun newInstance(courseDetail: CourseDetail) = CourseHomeFragment().apply {
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, courseDetail)

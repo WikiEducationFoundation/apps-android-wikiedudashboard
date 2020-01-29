@@ -26,6 +26,10 @@ class CourseDetailViewModel(private val courseDetailRepository: CourseDetailRepo
         _progressbar.postValue(true)
     }
 
+    /**
+     * ViewModels have a coroutine scope based on their lifecycle called
+     *  viewModelScope which we can use here.
+     **/
     fun requestCourseDetail(url: String) {
         viewModelScope.launch {
             try {
