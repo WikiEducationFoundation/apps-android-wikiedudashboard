@@ -11,7 +11,7 @@ import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
 /**
- * Class extends ViewModel and requires RecentActivityRepository as a parameter.
+ * Class extends ViewModel and requires StudentRepository as a parameter.
  */
 class StudentsViewModel(private val studentsRepository: StudentsRepository, url: String) : ViewModel() {
 
