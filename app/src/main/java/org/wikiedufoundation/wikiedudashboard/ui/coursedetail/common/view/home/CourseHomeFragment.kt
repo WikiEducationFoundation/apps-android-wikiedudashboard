@@ -36,6 +36,10 @@ class CourseHomeFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_course_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setData()
+    }
+
+    private fun setData() {
         textViewCountArticlesCreated.text = courseDetail?.createdCount
         textViewCountArticlesEdited.text = courseDetail?.editedCount
         textViewCountTotalEdits.text = courseDetail?.editCount
@@ -49,7 +53,6 @@ class CourseHomeFragment : Fragment() {
         textViewCourseTermDetail.text = courseDetail?.term
         textViewCoursePassCodeDetail.text = courseDetail?.passCode
         textViewCourseExpectedStudentsDetail.text = MessageFormat.format("{0}", courseDetail?.expectedStudents)
-
         textViewCourseStartDetail.text = readableDate(courseDetail?.start)
         textViewCourseEndDetail.text = readableDate(courseDetail?.end)
     }
@@ -57,14 +60,15 @@ class CourseHomeFragment : Fragment() {
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM1 = "param1"
 
-        fun newInstance(courseDetail: CourseDetail): CourseHomeFragment {
-            val fragment = CourseHomeFragment()
+        /**
+         * This method creates a new instance of [CourseHomeFragment]
+         */
+        fun newInstance(courseDetail: CourseDetail) = CourseHomeFragment().apply {
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, courseDetail)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
 
         /**

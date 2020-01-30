@@ -1,10 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenter
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.presenter.CourseDetailPresenterImpl
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.provider.CourseDetailProvider
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailView
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsPresenterImpl
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileContract
@@ -50,24 +46,5 @@ val presenterModule = module {
      **/
     factory<ProfileContract.Presenter> { (view: ProfileContract.View, provider: ProfileContract.Provider) ->
         ProfilePresenterImpl(view, provider)
-    }
-
-    /**
-     * Factory for [CourseDetailPresenter] injecting the [CourseDetailView] and [CourseDetailProvider]
-     **/
-
-    /**
-     * Factory for [CourseDetailPresenter] injecting the [CourseDetailView] and [CourseDetailProvider]
-     **/
-
-    /**
-     * Factory for [CourseDetailPresenter] injecting the [CourseDetailView] and [CourseDetailProvider]
-     **/
-
-    /**
-     * Factory for [CourseDetailPresenter] injecting the [CourseDetailView] and [CourseDetailProvider]
-     **/
-    factory<CourseDetailPresenter> { (view: CourseDetailView, provider: CourseDetailProvider) ->
-        CourseDetailPresenterImpl(view, provider)
     }
 }
