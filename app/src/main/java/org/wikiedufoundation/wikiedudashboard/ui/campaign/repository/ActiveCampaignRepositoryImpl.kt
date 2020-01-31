@@ -23,9 +23,9 @@ class ActiveCampaignRepository(
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    suspend fun getCampaignList(cookies: String) {
+    suspend fun requestCampaignList(cookies: String) {
         withContext(Dispatchers.Main) {
-            val request = wikiEduDashboardApi.getExploreCampaigns(cookies).await()
+            val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
             val campaignList = request.campaigns
             activeCampaignDao.insertCampaign(campaignList)
         }
