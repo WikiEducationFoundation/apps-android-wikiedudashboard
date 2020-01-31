@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_campaign_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
 import java.util.Locale
-import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -27,16 +26,11 @@ import kotlin.collections.ArrayList
  * create an instance of this fragment.
  */
 class CampaignListFragment : Fragment() {
-    private val activeCampaignViewModel by viewModel<ActiveCampaignViewModel>()
-
     private val sharedPrefs: SharedPrefs by inject()
-
     private var mParam1: String? = null
     private var mParam2: String? = null
-
     private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
-
-    private var campaignList: List<CampaignListData> = ArrayList()
+    private val activeCampaignViewModel by viewModel<ActiveCampaignViewModel> { parametersOf(sharedPrefs.cookies) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +52,10 @@ class CampaignListFragment : Fragment() {
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
             //                        openCourseDetail(it)
         }
-
         initializeRecyclerView()
         setData()
-        showProgressBar()
-        showMessage()
-        sharedPrefs.cookies?.let { (activeCampaignViewModel.fetchCampaignList(it)) }
+        initializeProgressBar()
+        initializeToaster()
     }
 
     private fun initializeRecyclerView() {
@@ -74,10 +66,7 @@ class CampaignListFragment : Fragment() {
         }
     }
 
-    /**
-     *   This sets the data to be displayed on the recyclerview based on available data
-     */
-    fun setData() {
+    private fun setData() {
         activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
             Timber.d(it.toString())
             if (it.isNotEmpty()) {
@@ -91,19 +80,13 @@ class CampaignListFragment : Fragment() {
         })
     }
 
-    /**
-     *   This shows the progressbar
-     */
-    fun showProgressBar() {
+    private fun initializeProgressBar() {
         activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         })
     }
 
-    /**
-     *   This shows the message
-     */
-    fun showMessage() {
+    private fun initializeToaster() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
