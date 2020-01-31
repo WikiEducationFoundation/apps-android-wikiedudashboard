@@ -8,11 +8,13 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_profile_stats.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsInstructorDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.AsStudentDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ByStudentsDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
+import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +34,7 @@ class ProfileStatsFragment : Fragment() {
     private var profileResponse: ProfileResponse? = null
     private var username: String? = null
     private var otherUser: Boolean? = null
+    private val profileViewModel by viewModel<ProfileViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,16 +46,21 @@ class ProfileStatsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         profileResponse?.asInstructor?.let {
             val asInstructorDetails: AsInstructorDetails = it
         }
+        asStudentDetails()
+        byStudentDetails()
 
+    }
+
+    private fun asStudentDetails() {
         profileResponse?.asStudent?.let {
             val asStudentDetails: AsStudentDetails = it
             val text: String = context?.getString(R.string.total_impact_made_as_student)!!.format(username)
@@ -69,7 +77,9 @@ class ProfileStatsFragment : Fragment() {
             clAsStudent.visibility = GONE
             tvNotEnrolled.visibility = VISIBLE
         }
+    }
 
+    private fun byStudentDetails() {
         profileResponse?.byStudents?.let {
             val byStudentDetails: ByStudentsDetails = it
             val text: String = context?.getString(R.string.total_impact_made_by_students)!!.format(username)
