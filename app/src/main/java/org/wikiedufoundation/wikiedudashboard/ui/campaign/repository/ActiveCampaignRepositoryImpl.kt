@@ -10,20 +10,22 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.CampaignListData
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
  *instead of the whole database, because you only need access to the DAO*
  * */
-class ActiveCampaignRepository(
+class ActiveCampaignRepositoryImpl(
     private val wikiEduDashboardApi: WikiEduDashboardApi,
     private val activeCampaignDao: ActiveCampaignDao
-) {
+) : ActiveCampaignRepository {
 
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      * */
-    val allCampaignList: LiveData<List<CampaignListData>> = activeCampaignDao.getAllCampaign()
+    override fun allCapaignList(): LiveData<List<CampaignListData>> {
+        return activeCampaignDao.getAllCampaign()
+    }
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    suspend fun requestCampaignList(cookies: String) {
+    override suspend fun requestCampaignList(cookies: String) {
         withContext(Dispatchers.Main) {
             val request = wikiEduDashboardApi.getExploreCampaigns(cookies)
             val campaignList = request.campaigns
