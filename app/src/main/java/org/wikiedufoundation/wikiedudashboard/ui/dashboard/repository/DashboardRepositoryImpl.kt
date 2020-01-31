@@ -14,7 +14,7 @@ class DashboardRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardA
      *  coroutine or another suspend function.
      **/
     override suspend fun getDashboardDetail(cookies: String): List<CourseListData> = withContext(Dispatchers.IO) {
-        val request = wikiEduDashboardApi.getDashboardDetail(cookies).await()
+        val request = wikiEduDashboardApi.getDashboardDetail(cookies)
         sharedPrefs.userName = request.user.userName
         request.currentCourses
     }
