@@ -18,6 +18,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepository
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepositoryImpl
+import org.wikiedufoundation.wikiedudashboard.ui.profile.repository.ProfileRepository
+import org.wikiedufoundation.wikiedudashboard.ui.profile.repository.ProfileRepositoryImpl
 
 /**
  * Use the [repositoryModule] to creating repository instance
@@ -43,4 +45,5 @@ val repositoryModule = module {
     single <CourseUploadsRepository> { CourseUploadsRepositoryImpl(get()) }
     single <ArticlesEditedRepository> { ArticlesEditedRepositoryImpl(get()) }
     single <CourseDetailRepository> { CourseDetailRepositoryImpl(get()) }
+    single <ProfileRepository> { ProfileRepositoryImpl(get()) }
 }
