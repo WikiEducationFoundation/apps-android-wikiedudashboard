@@ -10,22 +10,24 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 /**Declares the DAO as a private property in the constructor. Pass in the DAO
  *instead of the whole database, because you only need access to the DAO*
  * */
-class CourseListRepository(
+class CourseListRepositoryImpl(
     private val wikiEduDashboardApi: WikiEduDashboardApi,
     private val courseListDao: CourseListDao
-) {
+) : CourseListRepository {
 
     /** Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      * */
-    val allCourseList: LiveData<List<CourseListData>> = courseListDao.getAllCourses()
+    override fun allCourseList(): LiveData<List<CourseListData>> {
+        return courseListDao.getAllCourses()
+    }
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    suspend fun getCourseList(cookies: String) {
+    override suspend fun requestCourseList(cookies: String) {
         withContext(Dispatchers.Main) {
-            val request = wikiEduDashboardApi.getExploreCourses(cookies).await()
+            val request = wikiEduDashboardApi.getExploreCourses(cookies)
             val courseList = request.courses
             courseListDao.insertCourse(courseList)
         }
