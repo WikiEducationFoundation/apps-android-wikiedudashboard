@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_articles_edited.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesEditedRecyclerAdapter
@@ -20,16 +21,13 @@ import timber.log.Timber
 /**
  * A [Fragment] subclass for edited course articles
  * ***/
-class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
-
-    private val retrofitArticlesEditedProvider: RetrofitArticlesEditedProvider by inject()
-    private val articlesEditedPresenter: ArticlesEditedPresenter by inject {
-        parametersOf(this, retrofitArticlesEditedProvider)
-    }
+class CourseArticlesEditedFragment : Fragment() {
 
     private lateinit var articlesEditedRecyclerAdapter: ArticlesEditedRecyclerAdapter
 
     private var url: String? = null
+
+    private val articlesEditedViewModel by viewModel<ArticlesEditedViewModel> { parametersOf(url) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,37 +40,42 @@ class CourseArticlesEditedFragment : Fragment(), ArticlesEditedView {
 
         articlesEditedRecyclerAdapter = ArticlesEditedRecyclerAdapter(R.layout.item_rv_articles_edited)
 
+        initializeRecyclerView()
+        setData()
+        initializeProgressBar()
+        initializeToaster()
+    }
+
+    private fun initializeRecyclerView() {
         recyclerEditedArticlesList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = articlesEditedRecyclerAdapter
         }
-
-        url?.let { articlesEditedPresenter.requestArticlesEdited(it) }
     }
 
-    override fun setData(data: ArticlesEdited) {
-        Timber.d(data.toString())
-        if (data.course.articles.isNotEmpty()) {
-            recyclerEditedArticlesList?.visibility = View.VISIBLE
-            articlesEditedRecyclerAdapter.setData(data.course.articles)
-            articlesEditedRecyclerAdapter.notifyDataSetChanged()
-            textViewNoEditedArticles?.visibility = View.GONE
-        } else {
-            recyclerEditedArticlesList?.visibility = View.GONE
-            textViewNoEditedArticles?.visibility = View.VISIBLE
-        }
+    private fun setData() {
+        articlesEditedViewModel.articleList.observe(this, Observer {
+            Timber.d(it.toString())
+            if (it.isNotEmpty()) {
+                recyclerEditedArticlesList?.visibility = View.VISIBLE
+                articlesEditedRecyclerAdapter.setData(it)
+                textViewNoEditedArticles?.visibility = View.GONE
+            } else {
+                recyclerEditedArticlesList?.visibility = View.GONE
+                textViewNoEditedArticles?.visibility = View.VISIBLE
+            }
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    private fun initializeProgressBar() {
+        articlesEditedViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
     override fun showMessage(message: String) {
         view?.showSnackbar(message)
+
     }
 }

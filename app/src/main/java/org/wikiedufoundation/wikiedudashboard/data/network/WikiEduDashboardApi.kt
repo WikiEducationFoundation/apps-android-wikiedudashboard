@@ -23,31 +23,31 @@ interface WikiEduDashboardApi {
      * This API is used to fetch course details and statistics.
      ***/
     @GET
-    fun getCourseDetail(@Url url: String): Call<CourseDetailResponse>
+    suspend fun getCourseDetail(@Url url: String): CourseDetailResponse
 
     /**
      * This API is used to fetch list of articles of a course.
      ***/
     @GET
-    fun getArticlesEdited(@Url url: String): Call<ArticlesEdited>
+    suspend fun getArticlesEdited(@Url url: String): ArticlesEdited
 
     /**
      * This API is used to fetch list of articles edited in a course.
      ***/
     @GET
-    fun getRecentActivity(@Url url: String): Call<RecentActivityResponse>
+    suspend fun getRecentActivity(@Url url: String): RecentActivityResponse
 
     /**
      * This API is used to fetch list of students in a course.
      ***/
     @GET
-    fun getStudentList(@Url url: String): Call<StudentListResponse>
+    suspend fun getStudentList(@Url url: String): StudentListResponse
 
     /**
      * This API is used to fetch list of uploads by the users in a course.
      ***/
     @GET
-    fun getCourseUploads(@Url url: String): Call<CourseUploadResponse>
+    suspend fun getCourseUploads(@Url url: String): CourseUploadResponse
 
     /**
      * This API is used to fetch Dashboard details. Ex - My Courses - Active, Archived.
