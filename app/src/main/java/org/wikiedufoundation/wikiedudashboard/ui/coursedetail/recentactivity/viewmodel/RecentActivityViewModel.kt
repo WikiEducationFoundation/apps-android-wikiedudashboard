@@ -24,18 +24,13 @@ class RecentActivityViewModel(private val recentActivityRepository: RecentActivi
     private val _recentList: MutableLiveData<List<RecentActivity>> = MutableLiveData()
     val recentList: LiveData<List<RecentActivity>> get() = _recentList
 
-    /**  The implementation of insert() is completely hidden from the UI.
-     *  We don't want insert to block the main thread, so we're launching a new
-     *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
     init {
 
         viewModelScope.launch {
             _progressbar.postValue(true)
 
             try {
-                _recentList.postValue(recentActivityRepository.insertRecentActivity(url))
+                _recentList.postValue(recentActivityRepository.requestRecentActivity(url))
                 _progressbar.postValue(false)
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server"))

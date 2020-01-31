@@ -25,11 +25,6 @@ class CourseUploadsViewModel(
     private val _uploadList: MutableLiveData<List<CourseUpload>> = MutableLiveData()
     val uploadList: LiveData<List<CourseUpload>> get() = _uploadList
 
-    /**  The implementation of fetch() is completely hidden from the UI.
-     *  We don't want insert to block the main thread, so we're launching a new
-     *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
     init {
         viewModelScope.launch {
             _progressbar.postValue(true)

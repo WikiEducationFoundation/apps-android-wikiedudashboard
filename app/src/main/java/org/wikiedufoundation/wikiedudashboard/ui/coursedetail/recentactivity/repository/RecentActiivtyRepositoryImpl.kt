@@ -16,7 +16,7 @@ class RecentActiivtyRepositoryImpl(
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    override suspend fun insertRecentActivity(url: String): List<RecentActivity> =
+    override suspend fun requestRecentActivity(url: String): List<RecentActivity> =
             withContext(Dispatchers.IO) {
         val request = wikiEduDashboardApi
                 .getRecentActivity(SUB_URL_COURSE_RECENT.format(url))

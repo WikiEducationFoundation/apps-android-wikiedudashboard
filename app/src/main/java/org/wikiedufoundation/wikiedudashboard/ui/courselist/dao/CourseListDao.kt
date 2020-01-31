@@ -15,7 +15,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 interface CourseListDao {
 
     /**
-     * This get all the campaigns
+     * This get all the courses
      *
      **/
     @Query("SELECT * from course_list")

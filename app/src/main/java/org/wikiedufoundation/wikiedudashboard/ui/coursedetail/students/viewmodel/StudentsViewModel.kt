@@ -23,10 +23,6 @@ class StudentsViewModel(private val studentsRepository: StudentsRepository, url:
     private val _studentList: MutableLiveData<List<User>> = MutableLiveData()
     val studentList: LiveData<List<User>> get() = _studentList
 
-    /**
-     * ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
     init {
         _progressbar.postValue(true)
 
