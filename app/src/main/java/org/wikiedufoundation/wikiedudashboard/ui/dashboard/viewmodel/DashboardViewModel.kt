@@ -22,16 +22,11 @@ class DashboardViewModel(dashboardRepository: DashboardRepository, cookies: Stri
     private val _courseList: MutableLiveData<List<CourseListData>> = MutableLiveData()
     val courseList: LiveData<List<CourseListData>> get() = _courseList
 
-    /**  The implementation of fetch() is completely hidden from the UI.
-     *  We don't want insert to block the main thread, so we're launching a new
-     *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
     init {
         viewModelScope.launch {
             try {
                 _progressbar.postValue(true)
-                _courseList.postValue(dashboardRepository.getDashboardDetail(cookies))
+                _courseList.postValue(dashboardRepository.requestDashboardDetail(cookies))
                 _progressbar.postValue(false)
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
