@@ -16,8 +16,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewMo
  * Use the [viewModelModule] to creating viewModel instance
  **/
 val viewModelModule = module {
-    viewModel { ActiveCampaignViewModel(get()) }
-    viewModel { CourseListViewModel(get()) }
+    viewModel { (cookies: String) -> ActiveCampaignViewModel(get(), cookies) }
+    viewModel { (cookies: String) -> CourseListViewModel(get(), cookies) }
     viewModel { (cookies: String) -> DashboardViewModel(get(), cookies) }
     viewModel { (cookies: String) -> StudentsViewModel(get(), cookies) }
     viewModel { (url: String) -> RecentActivityViewModel(get(), url) }

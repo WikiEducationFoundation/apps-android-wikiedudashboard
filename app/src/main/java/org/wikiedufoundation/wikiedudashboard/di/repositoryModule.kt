@@ -1,9 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.di
 
 import org.koin.dsl.module
-import org.wikiedufoundation.wikiedudashboard.data.network.WikiEduDashboardApi
-import org.wikiedufoundation.wikiedudashboard.ui.campaign.dao.ActiveCampaignDao
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.repository.CourseDetailRepository
@@ -14,8 +13,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.rep
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.repository.RecentActivityRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.repository.CourseUploadsRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.repository.CourseUploadsRepositoryImpl
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.dao.CourseListDao
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepository
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.repository.DashboardRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.profile.repository.ProfileRepository
@@ -25,20 +24,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.profile.repository.ProfileRepos
  * Use the [repositoryModule] to creating repository instance
  **/
 val repositoryModule = module {
-
-    /**
-     * Use the [provideCampaignListRepository] to provide a CampaignListRepository instance
-     * */
-    fun provideCampaignListRepository(api: WikiEduDashboardApi, activeCampaignDao: ActiveCampaignDao): ActiveCampaignRepository = ActiveCampaignRepository(api, activeCampaignDao)
-
-    /**
-     * Use the [provideCourseListRepository] to provide a CourseListRepository instance
-     * */
-    fun provideCourseListRepository(api: WikiEduDashboardApi, courseListDao: CourseListDao):
-            CourseListRepository = CourseListRepository(api, courseListDao)
-
-    single { provideCampaignListRepository(get(), get()) }
-    single { provideCourseListRepository(get(), get()) }
+    single <ActiveCampaignRepository> { ActiveCampaignRepositoryImpl(get(), get()) }
+    single <CourseListRepository> { CourseListRepositoryImpl(get(), get()) }
     single <DashboardRepository> { DashboardRepositoryImpl(get(), get()) }
     single <StudentsRepository> { StudentsRepositoryImpl(get()) }
     single <RecentActivityRepository> { RecentActiivtyRepositoryImpl(get()) }

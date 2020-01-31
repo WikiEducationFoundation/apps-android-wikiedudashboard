@@ -1,6 +1,5 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
-import kotlinx.coroutines.Deferred
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
@@ -61,13 +60,13 @@ interface WikiEduDashboardApi {
      * This API is used to fetch list of active courses.
      ***/
     @GET("explore.json")
-    fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): Deferred<ExploreCoursesResponse>
+    suspend fun getExploreCourses(@Header("Cookie") sessionIdAndToken: String): ExploreCoursesResponse
 
     /**
      * This API is used to fetch list of active campaigns.
      ***/
     @GET("campaigns.json")
-    fun getExploreCampaigns(@Header("Cookie") sessionIdAndToken: String): Deferred<ExploreCampaignsResponse>
+    suspend fun getExploreCampaigns(@Header("Cookie") sessionIdAndToken: String): ExploreCampaignsResponse
 
     /**
      * This API is used to fetch profile stats.

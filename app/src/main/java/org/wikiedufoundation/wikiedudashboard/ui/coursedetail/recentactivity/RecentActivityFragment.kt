@@ -56,10 +56,7 @@ class RecentActivityFragment : Fragment() {
         }
     }
 
-    /**
-     *   This set the data on the view from the viewmodel
-     */
-    fun setData() {
+    private fun setData() {
         recentActivityViewModel.recentList.observe(this, Observer {
             Timber.d("recent $it.size")
             if (it.isNotEmpty()) {
@@ -73,19 +70,13 @@ class RecentActivityFragment : Fragment() {
         })
     }
 
-    /**
-     *   This shows the progressbar
-     */
-    fun initialzeProgressBar() {
+    private fun initialzeProgressBar() {
         recentActivityViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         })
     }
 
-    /**
-     *   This shows the message
-     */
-    fun initialzeToaster() {
+    private fun initialzeToaster() {
         recentActivityViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
             context?.showToast(message)

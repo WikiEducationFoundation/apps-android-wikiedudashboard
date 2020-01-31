@@ -5,15 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
+import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
 /**
- * Class extends AndroidViewModel and requires application as a parameter.
+ * Class extends ViewModel and requires activeCampaignRepository and cookies as a parameter.
  */
 
-class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository) : ViewModel() {
+class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampaignRepository, cookies: String) : ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
     val showMsg: LiveData<ShowMessage?> get() = _showMsg
@@ -21,25 +21,19 @@ class ActiveCampaignViewModel(private val activeCampaignRepository: ActiveCampai
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
 
-    val data = activeCampaignRepository.allCampaignList
+    val data = activeCampaignRepository.allCapaignList()
 
     init {
-        _progressbar.postValue(false)
-    }
+        _progressbar.postValue(true)
 
-    /**  The implementation of insert() is completely hidden from the UI.
-     *  We don't want insert to block the main thread, so we're launching a new
-     *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
-
-    fun fetchCampaignList(cookies: String) {
         viewModelScope.launch {
             try {
 
-                activeCampaignRepository.getCampaignList(cookies)
+                activeCampaignRepository.requestCampaignList(cookies)
+                _progressbar.postValue(false)
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _progressbar.postValue(false)
             }
         }
     }

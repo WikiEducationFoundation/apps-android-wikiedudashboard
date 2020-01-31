@@ -10,5 +10,5 @@ interface RecentActivityRepository {
     /**
      *Creates a suspend function [insertRecentActivity]
      * */
-    suspend fun insertRecentActivity(url: String): List<RecentActivity>
+    suspend fun requestRecentActivity(url: String): List<RecentActivity>
 }

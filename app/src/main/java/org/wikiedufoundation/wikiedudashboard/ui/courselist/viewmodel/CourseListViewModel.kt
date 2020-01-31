@@ -5,38 +5,32 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.repository.CourseListRepository
+import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
 
 /**
- * Class extends AndroidViewModel and requires application as a parameter.
+ * Class extends ViewModel and requires CourseListRepository and cookies as a parameter.
  */
 
-class CourseListViewModel(private val repository: CourseListRepository) : ViewModel() {
+class CourseListViewModel(private val repository: CourseListRepository, private val cookies: String) : ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage?> = MutableLiveData()
     val showMsg: MutableLiveData<ShowMessage?> get() = _showMsg
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
-    val data = repository.allCourseList
+
+    val data = repository.allCourseList()
+
     init {
-        _progressbar.postValue(false)
-    }
-
-    /**  The implementation of insert() is completely hidden from the UI.
-     *  We don't want insert to block the main thread, so we're launching a new
-     *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
-     *  viewModelScope which we can use here.
-     **/
-
-    fun fetchCourseList(cookies: String) {
         viewModelScope.launch {
             try {
-
-                repository.getCourseList(cookies)
+                _progressbar.postValue(true)
+                repository.requestCourseList(cookies)
+                _progressbar.postValue(false)
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _progressbar.postValue(false)
             }
         }
     }
