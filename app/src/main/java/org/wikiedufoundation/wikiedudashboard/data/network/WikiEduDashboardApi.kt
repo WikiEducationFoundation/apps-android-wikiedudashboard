@@ -53,9 +53,9 @@ interface WikiEduDashboardApi {
      * This API is used to fetch Dashboard details. Ex - My Courses - Active, Archived.
      ***/
     @GET("dashboard.json")
-    fun getDashboardDetail(
+    suspend fun getDashboardDetail(
         @Header("Cookie") sessionIdAndToken: String
-    ): Deferred<MyDashboardResponse>
+    ): MyDashboardResponse
 
     /**
      * This API is used to fetch list of active courses.
@@ -73,16 +73,16 @@ interface WikiEduDashboardApi {
      * This API is used to fetch profile stats.
      ***/
     @GET("user_stats.json")
-    fun getProfileResponse(
+    suspend fun getProfileResponse(
         @Header("Cookie") sessionIdAndToken: String,
         @Query("username") username: String
-    ): Call<ProfileResponse>
+    ): ProfileResponse
 
     /**
      * This API is used to fetch profile stats.
      ***/
     @GET
-    fun getProfileDetailsResponse(
+    suspend fun getProfileDetailsResponse(
         @Url url: String
-    ): Call<ProfileDetailsResponse>
+    ): ProfileDetailsResponse
 }
