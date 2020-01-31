@@ -10,6 +10,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.vie
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.viewmodel.CourseUploadsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewModel
 
 /**
  * Use the [viewModelModule] to creating viewModel instance
@@ -23,4 +24,5 @@ val viewModelModule = module {
     viewModel { (url: String) -> CourseUploadsViewModel(get(), url) }
     viewModel { (url: String) -> ArticlesEditedViewModel(get(), url) }
     viewModel { CourseDetailViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
 }
