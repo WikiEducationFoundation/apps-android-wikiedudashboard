@@ -32,11 +32,11 @@ class CourseUploadsViewModel(
      **/
     init {
         viewModelScope.launch {
+            _progressbar.postValue(true)
             try {
-                _progressbar.postValue(true)
                 _uploadList.postValue(courseUploadsRepository.requestCourseUploads(url))
                 _progressbar.postValue(false)
-            } catch (e: IOException) {
+            } catch (e: Throwable) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
             }
