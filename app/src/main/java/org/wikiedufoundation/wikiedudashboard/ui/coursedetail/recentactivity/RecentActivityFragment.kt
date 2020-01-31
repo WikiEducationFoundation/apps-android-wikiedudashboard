@@ -13,7 +13,7 @@ import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.RecentActivityRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -73,6 +73,6 @@ class RecentActivityFragment : Fragment(), RecentActivityContract.View {
     }
 
     override fun showMessage(message: String) {
-        context?.showToast(message)
+        view?.showSnackbar(message)
     }
 }

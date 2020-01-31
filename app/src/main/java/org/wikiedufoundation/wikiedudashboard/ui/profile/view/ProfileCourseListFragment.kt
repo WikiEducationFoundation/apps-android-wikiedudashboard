@@ -13,7 +13,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyc
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -92,7 +92,7 @@ class ProfileCourseListFragment : Fragment() {
      * @param message text message in String
      * ***/
     fun showMessage(message: String) {
-        context?.showToast(message)
+        view?.showSnackbar(message)
     }
 
     private fun openCourseDetail(slug: String) {

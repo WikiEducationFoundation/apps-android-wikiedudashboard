@@ -11,6 +11,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
@@ -89,7 +90,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun proceedToLogin(url: String) {
-        Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
+        view?.let { Snackbar.make(it, "Logged In", Snackbar.LENGTH_SHORT).show() }
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string: $cookies")
         sharedPrefs.outreachDashboardCookies = cookies

@@ -16,7 +16,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.data.Stud
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.presenter.StudentListPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.provider.RetrofitStudentListProvider
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -61,7 +61,7 @@ class StudentListFragment : Fragment(), StudentListView {
     }
 
     override fun showMessage(message: String) {
-        context?.showToast(message)
+        view?.showSnackbar(message)
     }
 
     override fun setData(data: StudentListResponse) {

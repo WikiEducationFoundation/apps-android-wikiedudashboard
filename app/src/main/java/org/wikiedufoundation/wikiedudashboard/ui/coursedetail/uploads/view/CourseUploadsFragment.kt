@@ -17,7 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.Cours
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.presenter.CourseUploadsPresenter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.provider.RetrofitCourseUploadsProvider
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -100,7 +100,7 @@ class CourseUploadsFragment : Fragment(), CourseUploadsView {
     }
 
     override fun showMessage(message: String) {
-        context?.showToast(message)
+        view?.showSnackbar(message)
     }
 
     /**

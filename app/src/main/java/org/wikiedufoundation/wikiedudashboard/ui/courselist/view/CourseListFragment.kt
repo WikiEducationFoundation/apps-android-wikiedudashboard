@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
 import kotlinx.android.synthetic.main.fragment_explore_course_list.progressBar
 import org.koin.android.ext.android.inject
@@ -105,7 +106,11 @@ class CourseListFragment : Fragment() {
     fun showMessage() {
         courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            view?.let { it1 ->
+                if (message != null) {
+                    Snackbar.make(it1, message, Snackbar.LENGTH_LONG).show()
+                }
+            }
         })
     }
 

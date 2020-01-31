@@ -14,13 +14,13 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_media_details.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -36,7 +36,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetail
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
@@ -174,8 +174,10 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
                 override fun onReceive(context: Context, intent: Intent) {
                     val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (downloadID == id) {
-                        Toast.makeText(context, "Download complete!\n Image " +
-                                courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
+                        view?.let {
+                            Snackbar.make(it, "Download complete!\n Image " +
+                                    courseUpload?.fileName + " saved to " + mDir, Snackbar.LENGTH_LONG).show()
+                        }
                         Timber.d("image saved to $mDir")
                     }
                 }
@@ -272,7 +274,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
     }
 
     override fun showMessage(message: String) {
-        context?.showToast(message)
+        view?.showSnackbar(message)
     }
 
     companion object {

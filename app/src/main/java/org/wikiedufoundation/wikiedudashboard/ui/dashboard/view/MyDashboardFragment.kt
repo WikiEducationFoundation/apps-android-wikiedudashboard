@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_my_dashboard.progressBar
 import kotlinx.android.synthetic.main.fragment_my_dashboard.recyclerCourseList
 import kotlinx.android.synthetic.main.fragment_my_dashboard.textViewNoCourses
@@ -109,7 +110,11 @@ class MyDashboardFragment : Fragment() {
     fun showMessage() {
         dashboardViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            view?.let { it1 ->
+                if (message != null) {
+                    Snackbar.make(it1, message, Snackbar.LENGTH_LONG).show()
+                }
+            }
         })
     }
 
