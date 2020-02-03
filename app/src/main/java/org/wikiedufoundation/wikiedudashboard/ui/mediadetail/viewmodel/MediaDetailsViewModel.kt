@@ -26,7 +26,6 @@ class MediaDetailsViewModel(
     val mediaDetails: LiveData<Query> get() = _mediaDetails
 
     init {
-
         viewModelScope.launch {
             try {
                 _progressbar.postValue(true)
