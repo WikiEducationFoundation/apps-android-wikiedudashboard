@@ -11,17 +11,12 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.Query
 class MediaDetailsRepositoryImpl(private val wikiEduDashboardMediaApi: WikiEduDashboardMediaApi)
     : MediaDetailsRepository {
 
-
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
-    override suspend fun requestMediaDetails(cookies: String) : Query = withContext(Dispatchers.IO){
+    override suspend fun requestMediaDetails(cookies: String): Query = withContext(Dispatchers.IO) {
         val request = wikiEduDashboardMediaApi.getMediaDetailsFromCommons(cookies)
         val mediaDetails = request.query
         mediaDetails
-
     }
-
-
-
 }

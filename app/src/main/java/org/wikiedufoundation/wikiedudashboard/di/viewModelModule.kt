@@ -24,5 +24,5 @@ val viewModelModule = module {
     viewModel { (url: String) -> CourseUploadsViewModel(get(), url) }
     viewModel { (url: String) -> ArticlesEditedViewModel(get(), url) }
     viewModel { CourseDetailViewModel(get()) }
-    viewModel { (cookies : String) -> MediaDetailsViewModel(get(), cookies) }
+    viewModel { (cookies: String) -> MediaDetailsViewModel(get(), cookies) }
 }

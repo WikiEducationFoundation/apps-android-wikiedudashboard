@@ -47,14 +47,14 @@ import java.io.IOException
  * Use the [MediaDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener{
+class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
 //    private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
 //    private val mediaDetailsPresenter: MediaDetailsContract.Presenter by inject {
 //        parametersOf(this, retrofitMediaDetailsProvider)
 //    }
 
-    private val mediaDetailsViewModel by viewModel<MediaDetailsViewModel>{ parametersOf("")}
+    private val mediaDetailsViewModel by viewModel<MediaDetailsViewModel> { parametersOf("") }
     private var position: Int? = null
     private var courseUpload: CourseUpload? = null
     private var customTabHelper: CustomTabHelper = CustomTabHelper()
@@ -265,7 +265,6 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener{
                 textViewNoUses?.visibility = View.VISIBLE
             }
         })
-
     }
 
     private fun initializeProgressBar() {

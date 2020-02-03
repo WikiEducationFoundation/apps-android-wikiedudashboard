@@ -1,7 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 

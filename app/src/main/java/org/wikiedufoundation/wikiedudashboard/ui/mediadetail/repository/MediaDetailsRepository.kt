@@ -10,5 +10,5 @@ interface MediaDetailsRepository {
     /**
      *Creates a suspend function [requestMediaDetails]
      * */
-    suspend fun requestMediaDetails(cookies : String): Query
+    suspend fun requestMediaDetails(cookies: String): Query
 }
