@@ -31,7 +31,7 @@ class CourseUploadsViewModel(
             try {
                 _uploadList.postValue(courseUploadsRepository.requestCourseUploads(url))
                 _progressbar.postValue(false)
-            } catch (e: Throwable) {
+            } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
             }
