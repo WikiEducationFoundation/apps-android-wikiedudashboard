@@ -19,10 +19,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_media_details.*
-import org.koin.android.ext.android.inject
+import kotlinx.android.synthetic.main.fragment_upload_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.ImageViewerFragment
@@ -31,9 +33,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.FileUsesRecyclerAdapte
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUploadList
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivity
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsContract
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.RetrofitMediaDetailsProvider
-import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.data.MediaDetailsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.viewmodel.MediaDetailsViewModel
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
 import org.wikiedufoundation.wikiedudashboard.util.showToast
@@ -47,13 +47,14 @@ import java.io.IOException
  * Use the [MediaDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDetailsContract.View {
+class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
-    private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
-    private val mediaDetailsPresenter: MediaDetailsContract.Presenter by inject {
-        parametersOf(this, retrofitMediaDetailsProvider)
-    }
+//    private val retrofitMediaDetailsProvider: RetrofitMediaDetailsProvider by inject()
+//    private val mediaDetailsPresenter: MediaDetailsContract.Presenter by inject {
+//        parametersOf(this, retrofitMediaDetailsProvider)
+//    }
 
+    private val mediaDetailsViewModel by viewModel<MediaDetailsViewModel> { parametersOf("") }
     private var position: Int? = null
     private var courseUpload: CourseUpload? = null
     private var customTabHelper: CustomTabHelper = CustomTabHelper()
@@ -120,7 +121,9 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
             adapter = fileUsesRecyclerAdapter
         }
 
-        mediaDetailsPresenter.requestMediaDetails("")
+        setData()
+//        initializeProgressBar()
+        initializeToaster()
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -226,53 +229,55 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener, MediaDe
         }
     }
 
-    override fun setData(data: MediaDetailsResponse) {
-        Timber.d(data.toString())
+    private fun setData() {
 
-        val imageInfo = data.query.page[data.query.page.keys.first()]?.let { it.imageInfo[0] }
+        mediaDetailsViewModel.mediaDetails.observe(this, Observer {
+            Timber.d(it.toString())
 
-        // Description
-        textViewDescription.text = imageInfo?.extMetaData?.description?.value
+            val imageInfo = it.page[it.page.keys.first()]?.let { it.imageInfo[0] }
 
-        // License
-        mediaDetailLicense.text = imageInfo?.extMetaData?.license?.value
-        mediaDetailLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
+            // Description
+            textViewDescription.text = imageInfo?.extMetaData?.description?.value
 
-        // Categories
-        val categories = data.query.page[data.query.page.keys.first()]?.categories ?: emptyList()
-        if (categories.isNotEmpty()) {
-            recyclerCategoryList?.visibility = View.VISIBLE
-            categoryListRecyclerAdapter.setData(categories)
-            categoryListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCategories?.visibility = View.GONE
-        } else {
-            recyclerCategoryList?.visibility = View.GONE
-            textViewNoCategories?.visibility = View.VISIBLE
-        }
+            // License
+            mediaDetailLicense.text = imageInfo?.extMetaData?.license?.value
+            mediaDetailLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
-        // File Uses
-        val fileUses = data.query.page[data.query.page.keys.first()]?.globalUsage
-        if (categories.isNotEmpty()) {
-            recyclerFileUsesList?.visibility = View.VISIBLE
-            fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
-            fileUsesRecyclerAdapter.notifyDataSetChanged()
-            textViewNoUses?.visibility = View.GONE
-        } else {
-            recyclerFileUsesList?.visibility = View.GONE
-            textViewNoUses?.visibility = View.VISIBLE
-        }
+            // Categories
+            val categories = it.page[it.page.keys.first()]?.categories ?: emptyList()
+            if (categories.isNotEmpty()) {
+                recyclerCategoryList?.visibility = View.VISIBLE
+                categoryListRecyclerAdapter.setData(categories)
+                textViewNoCategories?.visibility = View.GONE
+            } else {
+                recyclerCategoryList?.visibility = View.GONE
+                textViewNoCategories?.visibility = View.VISIBLE
+            }
+
+            // File Uses
+            val fileUses = it.page[it.page.keys.first()]?.globalUsage
+            if (categories.isNotEmpty()) {
+                recyclerFileUsesList?.visibility = View.VISIBLE
+                fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
+                textViewNoUses?.visibility = View.GONE
+            } else {
+                recyclerFileUsesList?.visibility = View.GONE
+                textViewNoUses?.visibility = View.VISIBLE
+            }
+        })
     }
 
-    override fun showProgressBar(show: Boolean) {
-//        if (show) {
-//            progressBar?.visibility = View.VISIBLE
-//        } else {
-//            progressBar?.visibility = View.GONE
-//        }
+    private fun initializeProgressBar() {
+        mediaDetailsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    override fun showMessage(message: String) {
-        context?.showToast(message)
+    private fun initializeToaster() {
+        mediaDetailsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it.showMsg
+            context?.showToast(message)
+        })
     }
 
     companion object {
