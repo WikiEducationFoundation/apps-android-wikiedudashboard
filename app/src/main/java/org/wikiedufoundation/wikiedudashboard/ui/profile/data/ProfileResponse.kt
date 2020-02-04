@@ -12,7 +12,7 @@ data class ProfileResponse(
     @SerializedName("user_recent_uploads")
     val uploads: List<CourseUpload>? = null,
     @SerializedName("courses_details")
-    val courses: List<CourseData>? = null,
+    val courses: List<CourseData>,
     @SerializedName("as_instructor")
     val asInstructor: AsInstructorDetails? = null,
     @SerializedName("by_students")

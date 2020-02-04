@@ -4,8 +4,6 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.wikiedufoundation.wikiedudashboard.di.apiModule
-import org.wikiedufoundation.wikiedudashboard.di.provideModule
-import org.wikiedufoundation.wikiedudashboard.di.presenterModule
 import org.wikiedufoundation.wikiedudashboard.di.persistenceModule
 import org.wikiedufoundation.wikiedudashboard.di.databaseModule
 import org.wikiedufoundation.wikiedudashboard.di.repositoryModule
@@ -24,7 +22,7 @@ class App : Application() {
 
             androidContext(this@App)
 
-            modules(listOf(apiModule, provideModule, presenterModule, persistenceModule,
+            modules(listOf(apiModule, persistenceModule,
                     databaseModule, repositoryModule, viewModelModule))
         }
     }

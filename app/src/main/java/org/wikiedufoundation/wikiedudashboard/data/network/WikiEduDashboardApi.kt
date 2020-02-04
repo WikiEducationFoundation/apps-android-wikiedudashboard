@@ -10,7 +10,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesR
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -72,16 +71,16 @@ interface WikiEduDashboardApi {
      * This API is used to fetch profile stats.
      ***/
     @GET("user_stats.json")
-    fun getProfileResponse(
+    suspend fun getProfileResponse(
         @Header("Cookie") sessionIdAndToken: String,
         @Query("username") username: String
-    ): Call<ProfileResponse>
+    ): ProfileResponse
 
     /**
      * This API is used to fetch profile stats.
      ***/
     @GET
-    fun getProfileDetailsResponse(
+    suspend fun getProfileDetailsResponse(
         @Url url: String
-    ): Call<ProfileDetailsResponse>
+    ): ProfileDetailsResponse
 }

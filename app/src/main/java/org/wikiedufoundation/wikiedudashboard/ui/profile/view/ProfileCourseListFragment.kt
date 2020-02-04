@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ProfileCourseListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.CourseData
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
+import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewModel
 import org.wikiedufoundation.wikiedudashboard.util.showToast
 import timber.log.Timber
 
@@ -23,9 +26,8 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class ProfileCourseListFragment : Fragment() {
-
+    private val profileViewModel by viewModel<ProfileViewModel>()
     private var coursesList: List<CourseData> = ArrayList()
-
     private lateinit var courseListRecyclerAdapter: ProfileCourseListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,54 +47,50 @@ class ProfileCourseListFragment : Fragment() {
         courseListRecyclerAdapter = ProfileCourseListRecyclerAdapter(R.layout.item_rv_explore_courses_users) {
             openCourseDetail(it)
         }
+        initializeRecyclerView()
+        setData()
+        initializeProgressBar()
+        initializeToaster()
+    }
 
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = courseListRecyclerAdapter
         }
-
-        setData(coursesList)
-        showProgressBar(false)
     }
 
     /**
      * Use [setData] to set list of courses data
      * @param courses list of courses data
      * ***/
-    fun setData(courses: List<CourseData>) {
-        Timber.d(courses.toString())
-        if (courses.isNotEmpty()) {
-            recyclerCourseList?.visibility = View.VISIBLE
-            courseListRecyclerAdapter.setData(courses)
-            courseListRecyclerAdapter.notifyDataSetChanged()
-            textViewNoCourses?.visibility = View.GONE
-        } else {
-            recyclerCourseList?.visibility = View.GONE
-            textViewNoCourses?.visibility = View.VISIBLE
-        }
+    fun setData() {
+        profileViewModel.profile.observe(this, Observer {
+            val courses = it.courses
+            Timber.d(it.courses.toString())
+            if (courses.isNotEmpty()) {
+                recyclerCourseList?.visibility = View.VISIBLE
+                courseListRecyclerAdapter.setData(courses)
+                textViewNoCourses?.visibility = View.GONE
+            } else {
+                recyclerCourseList?.visibility = View.GONE
+                textViewNoCourses?.visibility = View.VISIBLE
+            }
+        })
     }
 
-    /**
-     * User [showProgressBar] to show loading progress
-     *
-     * @param show boolean value to determine the visibility of the progress bar
-     * ***/
-    fun showProgressBar(show: Boolean) {
-        progressBar?.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
+    private fun initializeProgressBar() {
+        profileViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
-    /**
-     * Use [showMessage] to show a toast
-     *
-     * @param message text message in String
-     * ***/
-    fun showMessage(message: String) {
-        context?.showToast(message)
+    private fun initializeToaster() {
+        profileViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
+            val message = it.showMsg
+            context?.showToast(message)
+        })
     }
 
     private fun openCourseDetail(slug: String) {
@@ -104,7 +102,7 @@ class ProfileCourseListFragment : Fragment() {
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
+        private const val ARG_PARAM1 = "param1"
 
         /**
          * Use this factory method to create a new instance of
@@ -115,12 +113,10 @@ class ProfileCourseListFragment : Fragment() {
          * @return A new instance of fragment ExploreFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: ProfileResponse?): ProfileCourseListFragment {
-            val fragment = ProfileCourseListFragment()
+        fun newInstance(param1: ProfileResponse?) = ProfileCourseListFragment().apply {
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, param1)
-            fragment.arguments = args
-            return fragment
+            this.arguments = args
         }
     }
 }

@@ -26,7 +26,6 @@ import timber.log.Timber
  * create an instance of this fragment.
  */
 class CourseUploadsFragment : Fragment() {
-
     private var type: Int = 0
     private var courseUrl: String? = null
     private var courseUploadList: CourseUploadList? = null
@@ -119,7 +118,8 @@ class CourseUploadsFragment : Fragment() {
          * @param courseDetail course detail data
          * @param courseUploads course uploads
          * ***/
-        fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?) = CourseUploadsFragment().apply {
+        fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?) =
+                CourseUploadsFragment().apply {
             val args = Bundle()
             args.putInt(ARG_PARAM1, type)
             args.putString(ARG_PARAM2, courseDetail)
