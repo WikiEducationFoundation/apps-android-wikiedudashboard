@@ -10,7 +10,6 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.ExploreCoursesR
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.data.MyDashboardResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

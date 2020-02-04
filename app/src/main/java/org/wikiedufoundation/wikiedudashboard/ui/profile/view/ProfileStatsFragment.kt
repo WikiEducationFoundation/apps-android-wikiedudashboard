@@ -46,9 +46,9 @@ class ProfileStatsFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_profile_stats, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +57,6 @@ class ProfileStatsFragment : Fragment() {
         }
         asStudentDetails()
         byStudentDetails()
-
     }
 
     private fun asStudentDetails() {

@@ -53,7 +53,7 @@ class ProfileCourseListFragment : Fragment() {
         initializeToaster()
     }
 
-    private fun initializeRecyclerView(){
+    private fun initializeRecyclerView() {
         recyclerCourseList?.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -78,7 +78,6 @@ class ProfileCourseListFragment : Fragment() {
                 textViewNoCourses?.visibility = View.VISIBLE
             }
         })
-
     }
 
     private fun initializeProgressBar() {

@@ -75,7 +75,6 @@ class ProfileFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         setProfileData()
         initializeProgressBar()
         initializeToaster()
-
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -115,7 +114,6 @@ class ProfileFragment : Fragment(), Toolbar.OnMenuItemClickListener {
             tvProfileInstitute.text = it?.institution
             llProfileEmail.visibility = View.GONE
         })
-
     }
 
     private fun initializeProgressBar() {
@@ -130,7 +128,6 @@ class ProfileFragment : Fragment(), Toolbar.OnMenuItemClickListener {
             context?.showToast(message)
         })
     }
-
 
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

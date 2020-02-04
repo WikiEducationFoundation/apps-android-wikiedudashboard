@@ -21,15 +21,13 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
     private val _progressbar = MutableLiveData<Boolean>()
     val progressbar: LiveData<Boolean> get() = _progressbar
     private val _profile: MutableLiveData<ProfileResponse> = MutableLiveData()
-    val profile : LiveData<ProfileResponse> get() = _profile
-    private val _profileDetails : MutableLiveData<ProfileDetails> = MutableLiveData()
-    val profileDetails : LiveData<ProfileDetails> get() = _profileDetails
-
+    val profile: LiveData<ProfileResponse> get() = _profile
+    private val _profileDetails: MutableLiveData<ProfileDetails> = MutableLiveData()
+    val profileDetails: LiveData<ProfileDetails> get() = _profileDetails
 
     init {
         _progressbar.postValue(true)
     }
-
 
     /**  The implementation of [requestProfile] is completely hidden from the UI.
      *  We don't want insert to block the main thread, so we're launching a new
@@ -37,13 +35,12 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
      *  viewModelScope which we can use here.
      **/
 
-    fun requestProfile(cookies: String, username: String){
+    fun requestProfile(cookies: String, username: String) {
         viewModelScope.launch {
             try {
                 _profile.postValue(profileRepository.requestProfile(cookies, username))
                 _progressbar.postValue(false)
-
-            }catch (io : IOException){
+            } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
             }
@@ -55,17 +52,15 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
      *  coroutine. ViewModels have a coroutine scope based on their lifecycle called
      *  viewModelScope which we can use here.
      **/
-    fun requestProfileDetails(username : String){
+    fun requestProfileDetails(username: String) {
         viewModelScope.launch {
             try {
                 _profileDetails.postValue(profileRepository.requestProfileDetails(username))
                 _progressbar.postValue(false)
-            }catch (io : IOException){
+            } catch (io: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
             }
         }
     }
-
-
 }
