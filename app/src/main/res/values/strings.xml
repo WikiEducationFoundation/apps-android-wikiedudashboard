@@ -92,5 +92,11 @@
     <string name="wiki_education_dashboard_singleLine">Wiki Education Dashboard</string>
     <string name="total_impact_made_by_students">Total impact made by %s\'s student</string>
     <string name="total_impact_made_as_student">Total impact made as %s as a student</string>
+    <string name="Courses">Courses</string>
+    <string name="courses">Courses</string>
+    <string name="students">Students</string>
+    <string name="campaign_title">Campaign Title</string>
+    <string name="campaign_detail">Details</string>
+    <string name="creation_date">Creation Date:</string>
 
 </resources>
