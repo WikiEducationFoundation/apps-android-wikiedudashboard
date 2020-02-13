@@ -1,0 +1,172 @@
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_24dp"
+    android:padding="@dimen/dimen_16dp"
+    tools:context="org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.view.CourseDetailFragment">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/course_title"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@color/colorGrayBackground" />
+
+    <TextView
+        android:id="@+id/textUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/username"/>
+
+    <TextView
+        android:id="@+id/textViewInstitution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textUsername"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/institution"/>
+
+    <TextView
+        android:id="@+id/textViewInstitutionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstitution"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/institution_name"/>
+
+    <TextView
+        android:id="@+id/textViewRecentEdits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textUsername"
+        app:layout_constraintLeft_toLeftOf="@id/textViewReferencesAdded"
+        android:text="@string/recent_edits"/>
+
+    <TextView
+        android:id="@+id/textViewCountRecentEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstitution"
+        app:layout_constraintLeft_toLeftOf="@id/textViewRecentEdits"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/recent_edits_count"/>
+
+    <TextView
+        android:id="@+id/textViewWordsAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstitutionName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/words_added"/>
+
+    <TextView
+        android:id="@+id/textViewCountWordsAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewWordsAdded"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/words_added_count"/>
+
+    <TextView
+        android:id="@+id/textViewReferencesAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCountRecentEdit"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/references_added"/>
+
+    <TextView
+        android:id="@+id/textViewCountReferencesAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewReferencesAdded"
+        app:layout_constraintLeft_toLeftOf="@id/textViewReferencesAdded"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/references_added_count"/>
+
+    <TextView
+        android:id="@+id/textViewViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCountWordsAdded"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/views"/>
+
+    <TextView
+        android:id="@+id/textViewCountViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewViews"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/views_count"/>
+
+    <TextView
+        android:id="@+id/textViewEditors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCountReferencesAdded"
+        app:layout_constraintLeft_toLeftOf="@id/textViewReferencesAdded"
+        android:text="@string/editors"/>
+
+    <TextView
+        android:id="@+id/textViewCountEditors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewEditors"
+        app:layout_constraintLeft_toLeftOf="@id/textViewEditors"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/editor_count"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
