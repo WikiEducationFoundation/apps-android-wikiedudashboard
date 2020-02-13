@@ -76,7 +76,7 @@ class StudentFragment : Fragment() {
     /**
      * Use [openStudentProfile] to send [username] to [ProfileActivity]
      *
-     * @param username user's username in String
+     * @param username user's username in String, course in String, editor_count in String and role in String
      * ***/
     fun openStudentProfile(username: String?, course: String?, editor_count: String?, role: String?) {
 
