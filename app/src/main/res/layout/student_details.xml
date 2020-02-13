@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_24dp"
+    android:padding="@dimen/dimen_16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/student_name"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@color/colorGrayBackground" />
+
+    <TextView
+        android:id="@+id/textViewEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/edit_count"/>
+
+    <TextView
+        android:id="@+id/textViewEditCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/edit_count_number"/>
+
+    <TextView
+        android:id="@+id/textViewCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewEdit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/courses"/>
+
+    <TextView
+        android:id="@+id/textViewCourseList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCourse"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:text="@string/course"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
