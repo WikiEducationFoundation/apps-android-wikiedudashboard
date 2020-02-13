@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.campaigndetails.home.view.CampaignDetailsHomeActivity"></activity>
+        <activity android:name=".ui.campaigndetails.home.view.CampaignDetailActivity"></activity>
         <activity android:name=".ui.welcome.WelcomeActivity" />
         <activity android:name=".ui.welcome.onboarding.WelcomeHostActivity" />
         <activity android:name=".ui.splash.SplashActivity">
