@@ -98,5 +98,9 @@
     <string name="campaign_title">Campaign Title</string>
     <string name="campaign_detail">Details</string>
     <string name="creation_date">Creation Date:</string>
+    <string name="article_title">Fred Kruger</string>
+    <string name="references_added_count">300</string>
+    <string name="views">Views</string>
+    <string name="views_count">500</string>
 
 </resources>
