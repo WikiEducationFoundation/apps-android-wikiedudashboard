@@ -1,6 +1,7 @@
 package org.wikiedufoundation.wikiedudashboard.data.network
 
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data.ArticleResponse
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.data.CampaignDetailsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
@@ -35,6 +36,12 @@ interface WikiEduDashboardApi {
      ***/
     @GET
     suspend fun getArticlesEdited(@Url url: String): ArticlesEdited
+
+    /**
+     * This API is used to fetch list of articles of a campaign.
+     ***/
+    @GET
+    suspend fun getArticles(@Url url: String): ArticleResponse
 
     /**
      * This API is used to fetch list of articles edited in a course.
