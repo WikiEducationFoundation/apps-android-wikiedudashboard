@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.view.CampaignHomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrayBackground">
+
+        <TextView
+            android:id="@+id/textViewCountCourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCountArticlesCreated"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textViewCourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/courses"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountCourses"
+            app:layout_constraintStart_toStartOf="@id/textViewCountCourses"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountCourses" />
+
+
+        <TextView
+            android:id="@+id/textViewCountArticlesCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewCourses"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textViewArticlesCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_created"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticlesCreated"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticlesCreated"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountArticlesCreated" />
+
+
+        <TextView
+            android:id="@+id/textViewCountArticlesEdited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:layout_marginLeft="@dimen/padding_8dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewCourses"
+            app:layout_constraintStart_toStartOf="@id/textViewCourses"
+            app:layout_constraintTop_toBottomOf="@id/textViewCourses" />
+
+        <TextView
+            android:id="@+id/textViewArticlesEdited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/padding_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/articles_edited"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticlesEdited"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticlesEdited"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountArticlesEdited" />
+
+        <TextView
+            android:id="@+id/textViewCountWordsAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewArticlesCreated"
+            app:layout_constraintStart_toStartOf="@+id/textViewArticlesCreated"
+            app:layout_constraintTop_toBottomOf="@id/textViewArticlesCreated" />
+
+        <TextView
+            android:id="@+id/textViewWordsAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/words_added"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountWordsAdded"
+            app:layout_constraintStart_toStartOf="@id/textViewCountWordsAdded"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountWordsAdded" />
+
+        <TextView
+            android:id="@+id/textViewCountReferencesAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:layout_marginLeft="@dimen/padding_8dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewArticlesEdited"
+            app:layout_constraintStart_toStartOf="@id/textViewArticlesEdited"
+            app:layout_constraintTop_toBottomOf="@id/textViewArticlesEdited" />
+
+        <TextView
+            android:id="@+id/textViewReferencesAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/padding_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/references_added"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountReferencesAdded"
+            app:layout_constraintStart_toStartOf="@id/textViewCountReferencesAdded"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountReferencesAdded" />
+
+        <TextView
+            android:id="@+id/textViewCountArticleViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewWordsAdded"
+            app:layout_constraintStart_toStartOf="@+id/textViewWordsAdded"
+            app:layout_constraintTop_toBottomOf="@id/textViewWordsAdded" />
+
+        <TextView
+            android:id="@+id/textViewArticleViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/article_views"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountArticleViews"
+            app:layout_constraintStart_toStartOf="@id/textViewCountArticleViews"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountArticleViews" />
+
+
+        <TextView
+            android:id="@+id/textViewCountstudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginLeft="@dimen/padding_8dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewReferencesAdded"
+            app:layout_constraintStart_toStartOf="@+id/textViewReferencesAdded"
+            app:layout_constraintTop_toBottomOf="@id/textViewReferencesAdded" />
+
+        <TextView
+            android:id="@+id/textViewStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_8dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/students"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountstudents"
+            app:layout_constraintStart_toStartOf="@id/textViewCountstudents"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountstudents" />
+
+
+        <TextView
+            android:id="@+id/textViewCountCommonsUploads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/_45"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_30sp"
+            app:layout_constraintEnd_toEndOf="@id/textViewArticleViews"
+            app:layout_constraintStart_toStartOf="@+id/textViewArticleViews"
+            app:layout_constraintTop_toBottomOf="@id/textViewArticleViews" />
+
+        <TextView
+            android:id="@+id/textViewCommonUploads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/commons_upload"
+            app:layout_constraintEnd_toEndOf="@id/textViewCountCommonsUploads"
+            app:layout_constraintStart_toStartOf="@id/textViewCountCommonsUploads"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCountCommonsUploads" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCampaignDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/textViewCommonUploads"
+            app:layout_constraintStart_toStartOf="@+id/textViewCommonUploads"
+            app:layout_constraintTop_toBottomOf="@id/textViewCommonUploads">
+
+            <TextView
+                android:id="@+id/textViewCampaignTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/campaign_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewCampaignDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_8dp"
+                android:layout_marginTop="@dimen/padding_48dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/campaign_title"
+                android:textAlignment="textStart" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCampaignDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/textViewCommonUploads"
+            app:layout_constraintStart_toStartOf="@+id/textViewCommonUploads"
+            app:layout_constraintTop_toBottomOf="@id/cvCampaignDescription">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewCampaignDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_8dp"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/campaign_detail"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_size_24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewCreationDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/creation_date"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/textViewCampaignDetails"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCampaignDetails" />
+
+                <TextView
+                    android:id="@+id/textViewCreationDateDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_8dp"
+                    android:padding="@dimen/padding_8dp"
+                    android:text="@string/date_edited"
+                    android:textAlignment="textStart"
+                    app:layout_constraintLeft_toRightOf="@id/textViewCreationDate"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCampaignDetails" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
