@@ -15,6 +15,7 @@ object Urls {
     val PROFILE_DETAIL = BASE_URL + "users/%s/?format=json"
     val SUB_URL_CAMPAIGN_DETAIL = "campaigns/%s.json"
     val SUB_URL_CAMPAIGN_STUDENT = "campaigns/%s/users.json"
+    val SUB_URL_CAMPAIGN_ARTICLE = "campaigns/%s/article.json"
 
 //    Urls.BASE_URL + "users/" + username + "?format=json"
 }
