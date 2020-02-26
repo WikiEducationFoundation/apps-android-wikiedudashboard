@@ -13,6 +13,8 @@ object Urls {
     val SUB_URL_COURSE_RECENT = "courses/%s/revisions.json"
     val SUB_URL_COURSE_UPLOADS = "courses/%s/uploads.json"
     val PROFILE_DETAIL = BASE_URL + "users/%s/?format=json"
+    val SUB_URL_CAMPAIGN_DETAIL = "campaigns/%s.json"
+    val SUB_URL_CAMPAIGN_STUDENT = "campaigns/%s/users.json"
 
 //    Urls.BASE_URL + "users/" + username + "?format=json"
 }

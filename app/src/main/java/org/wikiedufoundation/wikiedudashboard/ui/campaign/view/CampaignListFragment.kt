@@ -1,5 +1,6 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaign.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.view.CampaignDetailsHomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
 import java.util.Locale
@@ -50,7 +52,7 @@ class CampaignListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         campaignListRecyclerAdapter = CampaignListRecyclerAdapter(R.layout.item_rv_campaign_list) {
-            //                        openCourseDetail(it)
+            openCampaignDetail(it)
         }
         initializeRecyclerView()
         setData()
@@ -91,6 +93,13 @@ class CampaignListFragment : Fragment() {
             val message = it?.showMsg
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         })
+    }
+
+    private fun openCampaignDetail(slug: String) {
+        val i = Intent(context, CampaignDetailsHomeActivity::class.java)
+        i.putExtra("url", slug)
+        i.putExtra("enrolled", false)
+        startActivity(i)
     }
 
     /**
