@@ -86,7 +86,7 @@ class ArticleFragment : Fragment() {
             }
     }
 
-    fun openArticleDetail(article: Articles) {
+    private fun openArticleDetail(article: Articles) {
         val articlesDetailedFragment = ArticlesDetailedFragment()
         val bundle = Bundle()
         bundle.putParcelable("article", article)

@@ -9,7 +9,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.databinding.FragmentArticlesDetailedBinding
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data.Articles
-
+/**
+ * ArticlesDetailedFragment extends bottomsheetDialogFragment.
+ ***/
 class ArticlesDetailedFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentArticlesDetailedBinding

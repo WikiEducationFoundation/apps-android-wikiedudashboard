@@ -1,5 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data
 
+/**
+ * Article Datasource dummy data
+ ***/
 object ArticleDataSource {
 
     fun getArticles(): List<Articles> {

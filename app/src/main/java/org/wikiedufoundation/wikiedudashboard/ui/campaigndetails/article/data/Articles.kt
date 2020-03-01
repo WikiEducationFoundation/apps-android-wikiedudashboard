@@ -2,7 +2,9 @@ package org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data
 
 import android.os.Parcel
 import android.os.Parcelable
-
+/**
+ * Article data class.
+ ***/
 data class Articles(
     val id: Int,
     val title: String,
@@ -17,8 +19,7 @@ data class Articles(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString()) {
-    }
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -33,6 +34,9 @@ data class Articles(
         return 0
     }
 
+    /**
+     * Parcelable companion object
+     ***/
     companion object CREATOR : Parcelable.Creator<Articles> {
         override fun createFromParcel(parcel: Parcel): Articles {
             return Articles(parcel)

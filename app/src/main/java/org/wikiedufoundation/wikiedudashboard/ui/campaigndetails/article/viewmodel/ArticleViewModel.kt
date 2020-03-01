@@ -9,7 +9,10 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data.Ar
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.repsoitory.ArticleRepository
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
-
+/**
+ * ArticleViewModel takes in two parameter articleRepository
+ * and url and extends ViewMdoel
+ ***/
 class ArticleViewModel(private val articleRepository: ArticleRepository, private val url: String)
     : ViewModel() {
     private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
