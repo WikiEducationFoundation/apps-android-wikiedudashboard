@@ -38,7 +38,7 @@ interface WikiEduDashboardApi {
     @GET
     suspend fun getCourse(@Url url: String): CourseResponse
 
-     /* This API is used to fetch list of students in a campaign.
+    /** This API is used to fetch list of students in a campaign.
      ***/
     @GET
     suspend fun getStudent(@Url url: String): StudentResponse
