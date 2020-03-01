@@ -36,17 +36,17 @@ class CampaignHomeFragment : Fragment() {
     }
 
     private fun setData() {
-        textViewCountCourses.text = campaignDetail?.course_count
-        textViewCountArticlesCreated.text = campaignDetail?.created_count
-        textViewCountArticlesEdited.text = campaignDetail?.edited_count
-        textViewCountWordsAdded.text = campaignDetail?.word_count
-        textViewCountReferencesAdded.text = campaignDetail?.reference_count
-        textViewCountArticleViews.text = campaignDetail?.views_count
-        textViewCountstudents.text = campaignDetail?.student_count
-        textViewCountCommonsUploads.text = campaignDetail?.uplaod_count
+        textViewCountCourses.text = campaignDetail?.courses_count.toString()
+        textViewCountArticlesCreated.text = campaignDetail?.new_article_count_human
+        textViewCountArticlesEdited.text = campaignDetail?.article_count_human
+        textViewCountWordsAdded.text = campaignDetail?.word_count_human
+        textViewCountReferencesAdded.text = campaignDetail?.references_count_human
+        textViewCountArticleViews.text = campaignDetail?.view_sum_human
+        textViewCountstudents.text = campaignDetail?.user_count.toString()
+        textViewCountCommonsUploads.text = campaignDetail?.upload_count_human
         textViewCampaignTitle.text = campaignDetail?.title
         textViewCampaignDescription.text = campaignDetail?.description
-        textViewCreationDateDetail.text = campaignDetail?.creation_date
+        textViewCreationDateDetail.text = readableDate(campaignDetail?.created_at)
     }
 
     companion object {

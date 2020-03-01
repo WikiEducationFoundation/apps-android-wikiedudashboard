@@ -102,5 +102,9 @@
     <string name="references_added_count">300</string>
     <string name="views">Views</string>
     <string name="views_count">500</string>
+    <string name="student_name">Gamalliel</string>
+    <string name="edit_count">Edit Count</string>
+    <string name="edit_count_number">3037</string>
+    <string name="course">Photography_Studies_College/Image_Cultures_1_(1)</string>
 
 </resources>
