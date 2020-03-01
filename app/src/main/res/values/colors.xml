@@ -6,6 +6,7 @@
     <!--<color name="colorHeading">#7350B6</color>-->
     <color name="colorHeadingDark">#575d99</color>
     <color name="colorGrayBackground">#F5F5F5</color>
+    <color name="GrayBackground">#CCCCCC</color>
     <color name="colorGrayLine">#EAEAEA</color>
     <color name="colorGrayText">#808080</color>
     <color name="black">#000000</color>

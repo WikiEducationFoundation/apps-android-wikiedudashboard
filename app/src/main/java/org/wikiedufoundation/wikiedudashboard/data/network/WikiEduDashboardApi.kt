@@ -2,6 +2,7 @@ package org.wikiedufoundation.wikiedudashboard.data.network
 
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.data.ExploreCampaignsResponse
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.data.CampaignDetailsResponse
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.data.StudentResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.data.ArticlesEdited
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.data.CourseDetailResponse
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.data.RecentActivityResponse
@@ -29,6 +30,12 @@ interface WikiEduDashboardApi {
      ***/
     @GET
     suspend fun getCampaignDetail(@Url url: String): CampaignDetailsResponse
+
+    /**
+     * This API is used to fetch list of students in a campaign.
+     ***/
+    @GET
+    suspend fun getStudent(@Url url: String): StudentResponse
 
     /**
      * This API is used to fetch list of articles of a course.

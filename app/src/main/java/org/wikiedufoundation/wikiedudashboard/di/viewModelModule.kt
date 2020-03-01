@@ -4,6 +4,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.viewmodel.CampaignHomeViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.viewmodel.StudentViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.viewmodel.ArticlesEditedViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.viewmodel.CourseDetailViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.viewmodel.StudentsViewModel
@@ -29,4 +30,5 @@ val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
     viewModel { (cookies: String) -> MediaDetailsViewModel(get(), cookies) }
     viewModel { CampaignHomeViewModel(get()) }
+    viewModel { (url: String) -> StudentViewModel(get(), url) }
 }

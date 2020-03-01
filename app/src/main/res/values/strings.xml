@@ -98,5 +98,9 @@
     <string name="campaign_title">Campaign Title</string>
     <string name="campaign_detail">Details</string>
     <string name="creation_date">Creation Date:</string>
+    <string name="student_name">Gamalliel</string>
+    <string name="edit_count">Edit Count</string>
+    <string name="edit_count_number">3037</string>
+    <string name="course">Photography_Studies_College/Image_Cultures_1_(1)</string>
 
 </resources>
