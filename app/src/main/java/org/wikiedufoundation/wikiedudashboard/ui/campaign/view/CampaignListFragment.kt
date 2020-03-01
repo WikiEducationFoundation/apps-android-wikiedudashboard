@@ -16,7 +16,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CampaignListRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.viewmodel.ActiveCampaignViewModel
-import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.view.CampaignDetailsHomeActivity
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.view.CampaignDetailActivity
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import timber.log.Timber
 import java.util.Locale
@@ -33,7 +33,6 @@ class CampaignListFragment : Fragment() {
     private var mParam2: String? = null
     private lateinit var campaignListRecyclerAdapter: CampaignListRecyclerAdapter
     private val activeCampaignViewModel by viewModel<ActiveCampaignViewModel> { parametersOf(sharedPrefs.cookies) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -96,7 +95,7 @@ class CampaignListFragment : Fragment() {
     }
 
     private fun openCampaignDetail(slug: String) {
-        val i = Intent(context, CampaignDetailsHomeActivity::class.java)
+        val i = Intent(context, CampaignDetailActivity::class.java)
         i.putExtra("url", slug)
         i.putExtra("enrolled", false)
         startActivity(i)
