@@ -7,6 +7,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.repsoito
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.repsoitory.CourseRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.repsoitory.CampaignDetailRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.repsoitory.CampaignDetailRepositoryImpl
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.repsoitory.StudentRepository
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.repsoitory.StudentRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepository
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.repository.ArticlesEditedRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.repository.CourseDetailRepository
@@ -42,4 +44,5 @@ val repositoryModule = module {
     single <MediaDetailsRepository> { MediaDetailsRepositoryImpl(get()) }
     single <CampaignDetailRepository> { CampaignDetailRepositoryImpl(get()) }
     single <CourseRepository> { CourseRepositoryImpl(get()) }
+    single <StudentRepository> { StudentRepositoryImpl(get()) }
 }
