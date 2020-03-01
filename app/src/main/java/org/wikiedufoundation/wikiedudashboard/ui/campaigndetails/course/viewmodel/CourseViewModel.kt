@@ -9,7 +9,9 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.data.Cou
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.repsoitory.CourseRepository
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
 import java.io.IOException
-
+/**
+ * CourseViewModel takes in parameters courseRepository and url.
+ ***/
 class CourseViewModel(private val courseRepository: CourseRepository, private val url: String) :
         ViewModel() {
 

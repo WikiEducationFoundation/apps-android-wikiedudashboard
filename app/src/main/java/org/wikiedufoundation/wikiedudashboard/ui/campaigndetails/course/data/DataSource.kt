@@ -1,5 +1,8 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.data
 
+/**
+ * Course dummy data.
+ ***/
 object DataSource {
 
     fun getCourseList(): List<Course> {
