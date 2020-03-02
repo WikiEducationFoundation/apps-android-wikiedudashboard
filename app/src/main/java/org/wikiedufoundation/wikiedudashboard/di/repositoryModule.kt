@@ -3,6 +3,8 @@ package org.wikiedufoundation.wikiedudashboard.di
 import org.koin.dsl.module
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaign.repository.ActiveCampaignRepositoryImpl
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.repsoitory.CourseRepository
+import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.repsoitory.CourseRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.repsoitory.CampaignDetailRepository
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.repsoitory.CampaignDetailRepositoryImpl
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.repsoitory.StudentRepository
@@ -41,5 +43,6 @@ val repositoryModule = module {
     single <ProfileRepository> { ProfileRepositoryImpl(get()) }
     single <MediaDetailsRepository> { MediaDetailsRepositoryImpl(get()) }
     single <CampaignDetailRepository> { CampaignDetailRepositoryImpl(get()) }
+    single <CourseRepository> { CourseRepositoryImpl(get()) }
     single <StudentRepository> { StudentRepositoryImpl(get()) }
 }
