@@ -98,12 +98,13 @@
     <string name="campaign_title">Campaign Title</string>
     <string name="campaign_detail">Details</string>
     <string name="creation_date">Creation Date:</string>
+    <string name="article_title">Fred Kruger</string>
+    <string name="views">Views</string>
+    <string name="views_count">500</string>
     <string name="username">Gconnect</string>
     <string name="institution">Institution</string>
     <string name="institution_name">WMNL</string>
     <string name="words_added_count">1.38m</string>
-    <string name="views">Views</string>
-    <string name="views_count">58.8m</string>
     <string name="recent_edits">Recent Edits</string>
     <string name="recent_edits_count">1704</string>
     <string name="references_added_count">2.93k</string>
