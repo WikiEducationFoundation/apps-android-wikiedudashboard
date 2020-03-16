@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_my_dashboard.progressBar
-import kotlinx.android.synthetic.main.fragment_my_dashboard.recyclerCourseList
-import kotlinx.android.synthetic.main.fragment_my_dashboard.textViewNoCourses
+import kotlinx.android.synthetic.main.fragment_my_dashboard.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -22,7 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardVi
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
-import java.util.Locale
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -49,9 +46,9 @@ class MyDashboardFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_my_dashboard, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

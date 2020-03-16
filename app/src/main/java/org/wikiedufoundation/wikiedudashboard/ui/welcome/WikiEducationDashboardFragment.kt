@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_wiki_edu_dashboard.*
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_wiki_edu_dashboard.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
@@ -45,9 +44,9 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.fragment_wiki_edu_dashboard, container, false)
@@ -88,7 +87,7 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun proceedToLogin(url: String) {
-       view?.showSnackbar("Logged In")
+        view?.showSnackbar("Logged In")
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.i("logged cookie is $cookies")
         Timber.d("All the cookies in a string: $cookies")

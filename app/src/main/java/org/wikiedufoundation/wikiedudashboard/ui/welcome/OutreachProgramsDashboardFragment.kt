@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_outreach_programs_dashboard.*
 import org.koin.android.ext.android.inject
@@ -46,12 +45,13 @@ class OutreachProgramsDashboardFragment : Fragment() {
             }
         }
     }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-    return inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
+        return inflater.inflate(R.layout.fragment_outreach_programs_dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,6 +59,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
         setWebView()
         setOnClickListeners()
     }
+
     private fun setWebView() {
         /** Enable JavaScript execution to display all web page content.
          *  This enables users logging in for the first time to complete
@@ -90,7 +91,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun proceedToLogin(url: String) {
-      view?.showSnackbar("Logged In")
+        view?.showSnackbar("Logged In")
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string: $cookies")
         sharedPrefs.outreachDashboardCookies = cookies

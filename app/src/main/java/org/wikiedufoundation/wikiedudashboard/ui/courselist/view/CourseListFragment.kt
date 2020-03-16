@@ -5,25 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_explore_course_list.*
-import kotlinx.android.synthetic.main.fragment_explore_course_list.progressBar
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.CourseListRecyclerAdapter
-import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
+import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
-import java.util.Locale
+import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -50,9 +48,9 @@ class CourseListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

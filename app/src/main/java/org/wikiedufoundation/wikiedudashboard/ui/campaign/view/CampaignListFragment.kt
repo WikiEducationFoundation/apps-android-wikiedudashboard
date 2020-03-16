@@ -90,7 +90,7 @@ class CampaignListFragment : Fragment() {
     private fun initializeToaster() {
         activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            message?.let {msg -> view?.showSnackbar(msg) }
+            message?.let { msg -> view?.showSnackbar(msg) }
         })
     }
 
