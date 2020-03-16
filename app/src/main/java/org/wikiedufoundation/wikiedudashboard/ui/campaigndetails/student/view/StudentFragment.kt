@@ -24,9 +24,9 @@ class StudentFragment : Fragment() {
     private val studentViewModel by viewModel<StudentViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(org.wikiedufoundation.wikiedudashboard.R.layout.student_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

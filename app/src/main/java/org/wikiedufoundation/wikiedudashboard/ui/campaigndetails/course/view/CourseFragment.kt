@@ -28,9 +28,9 @@ class CourseFragment : Fragment() {
     private val courseViewModel by viewModel<CourseViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.course_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

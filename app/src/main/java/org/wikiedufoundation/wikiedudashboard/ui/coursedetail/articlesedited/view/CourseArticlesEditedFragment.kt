@@ -28,9 +28,9 @@ class CourseArticlesEditedFragment : Fragment() {
     private val articlesEditedViewModel by viewModel<ArticlesEditedViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

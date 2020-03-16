@@ -39,9 +39,9 @@ class ProfileCourseListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_course_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

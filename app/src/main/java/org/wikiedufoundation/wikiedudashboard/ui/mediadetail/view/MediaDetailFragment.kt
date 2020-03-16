@@ -80,9 +80,9 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_media_details, container, false)
     }

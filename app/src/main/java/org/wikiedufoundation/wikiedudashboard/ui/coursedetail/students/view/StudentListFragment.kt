@@ -27,9 +27,9 @@ class StudentListFragment : Fragment() {
     private val studentsViewModel by viewModel<StudentsViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_explore_students, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

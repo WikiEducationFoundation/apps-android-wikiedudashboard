@@ -24,9 +24,9 @@ class ArticleFragment : Fragment() {
     private lateinit var ariclesRecyclerAdapter: ArticlesRecyclerAdapter
     private val articlesViewModel by viewModel<ArticleViewModel> { parametersOf(url) }
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.article_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
