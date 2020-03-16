@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.wikiedufoundation.wikiedudashboard.R
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 /**
  * Use Kotlin [ExtensionFunctionType] to use [showSnackbar] as a view extension function.
