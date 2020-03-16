@@ -13,7 +13,7 @@ import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesEditedRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.viewmodel.ArticlesEditedViewModel
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -28,9 +28,9 @@ class CourseArticlesEditedFragment : Fragment() {
     private val articlesEditedViewModel by viewModel<ArticlesEditedViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_articles_edited, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,7 +75,7 @@ class CourseArticlesEditedFragment : Fragment() {
     private fun initializeToaster() {
         articlesEditedViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            context?.showToast(message)
+            view?.showSnackbar(message)
         })
     }
 }

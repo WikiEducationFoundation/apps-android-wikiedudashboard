@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.course_fragment.*
-import kotlinx.android.synthetic.main.fragment_explore_students.*
 import kotlinx.android.synthetic.main.fragment_explore_students.progressBar
 import kotlinx.android.synthetic.main.fragment_explore_students.textViewNoStudents
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,7 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.data.Cou
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.data.DataSource
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.viewmodel.CourseViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 class CourseFragment : Fragment() {
@@ -30,9 +28,9 @@ class CourseFragment : Fragment() {
     private val courseViewModel by viewModel<CourseViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.course_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +60,7 @@ class CourseFragment : Fragment() {
     private fun initializeToaster() {
         courseViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            context?.showToast(message)
+            view?.showSnackbar(message)
         })
     }
 
@@ -85,13 +83,13 @@ class CourseFragment : Fragment() {
     // the above commented one
     private fun setData() {
         val list = DataSource.getCourseList()
-            if (list.isNotEmpty()) {
-                Timber.d(list.toString())
-                courseRecyclerAdapter.setData(list)
-            } else {
-                recyclerCourseList?.visibility = View.GONE
-                textViewNoStudents?.visibility = View.VISIBLE
-            }
+        if (list.isNotEmpty()) {
+            Timber.d(list.toString())
+            courseRecyclerAdapter.setData(list)
+        } else {
+            recyclerCourseList?.visibility = View.GONE
+            textViewNoStudents?.visibility = View.VISIBLE
+        }
     }
 
     /**

@@ -13,7 +13,7 @@ import org.koin.core.parameter.parametersOf
 import org.wikiedufoundation.wikiedudashboard.ui.adapters.StudentRecyclerAdapter
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.viewmodel.StudentViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.profile.ProfileActivity
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 class StudentFragment : Fragment() {
@@ -24,9 +24,9 @@ class StudentFragment : Fragment() {
     private val studentViewModel by viewModel<StudentViewModel> { parametersOf(url) }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(org.wikiedufoundation.wikiedudashboard.R.layout.student_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class StudentFragment : Fragment() {
     private fun initializeToaster() {
         studentViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            context?.showToast(message)
+            view?.showSnackbar(message)
         })
     }
 

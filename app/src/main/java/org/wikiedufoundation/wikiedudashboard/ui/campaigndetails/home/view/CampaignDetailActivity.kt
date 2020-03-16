@@ -13,7 +13,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.course.view.Cou
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.viewmodel.CampaignHomeViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.view.StudentFragment
 import org.wikiedufoundation.wikiedudashboard.util.ViewPagerAdapter
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 class CampaignDetailActivity : AppCompatActivity() {
@@ -100,7 +100,7 @@ class CampaignDetailActivity : AppCompatActivity() {
     private fun initializeToaster() {
         campaignDetailsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            showToast(message)
+            window.decorView.showSnackbar(message)
         })
     }
 }
