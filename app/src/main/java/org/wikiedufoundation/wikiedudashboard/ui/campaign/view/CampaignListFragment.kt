@@ -19,7 +19,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.view.Campa
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
 import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 
 /**
  * A simple [Fragment] subclass.
@@ -42,9 +42,9 @@ class CampaignListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_campaign_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
