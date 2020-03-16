@@ -17,6 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -89,7 +90,7 @@ class OutreachProgramsDashboardFragment : Fragment() {
     }
 
     private fun proceedToLogin(url: String) {
-        Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
+      view?.showSnackbar("Logged In")
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.d("All the cookies in a string: $cookies")
         sharedPrefs.outreachDashboardCookies = cookies

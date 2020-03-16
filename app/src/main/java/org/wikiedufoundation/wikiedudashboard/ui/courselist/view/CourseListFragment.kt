@@ -21,6 +21,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseList
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 import java.util.Locale
 import kotlin.collections.ArrayList
@@ -95,7 +96,7 @@ class CourseListFragment : Fragment() {
     private fun initializeMessage() {
         courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            message?.let { msg -> view?.showSnackbar(msg) }
         })
     }
 

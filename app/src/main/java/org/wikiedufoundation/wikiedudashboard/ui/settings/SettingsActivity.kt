@@ -5,12 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.library.BuildConfig
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
-import org.wikiedufoundation.wikiedudashboard.BuildConfig
 import org.wikiedufoundation.wikiedudashboard.R
 
 /**
