@@ -20,9 +20,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView8"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimens_0dp"
             android:layout_height="wrap_content"
-            android:minHeight="60dp"
+            android:minHeight="@dimen/dimens_60dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="parent"

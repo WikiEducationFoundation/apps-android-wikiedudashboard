@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileDetails
 import org.wikiedufoundation.wikiedudashboard.ui.profile.data.ProfileResponse
 import org.wikiedufoundation.wikiedudashboard.ui.profile.repository.ProfileRepository
@@ -41,7 +42,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
                 _profile.postValue(profileRepository.requestProfile(cookies, username))
                 _progressbar.postValue(false)
             } catch (io: IOException) {
-                _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _showMsg.postValue(ShowMessage(R.string.unable_to_connect_server.toString()))
                 _progressbar.postValue(false)
             }
         }
@@ -58,7 +59,7 @@ class ProfileViewModel(private val profileRepository: ProfileRepository) : ViewM
                 _profileDetails.postValue(profileRepository.requestProfileDetails(username))
                 _progressbar.postValue(false)
             } catch (io: IOException) {
-                _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _showMsg.postValue(ShowMessage(R.string.unable_to_connect_server.toString()))
                 _progressbar.postValue(false)
             }
         }

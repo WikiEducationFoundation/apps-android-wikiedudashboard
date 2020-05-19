@@ -5,12 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.library.BuildConfig
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
-import org.wikiedufoundation.wikiedudashboard.BuildConfig
 import org.wikiedufoundation.wikiedudashboard.R
 
 /**
@@ -39,7 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, emailArray)
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Android App 1.01 Feedback")
+        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.android_app_feedback)
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         }
@@ -48,30 +48,30 @@ class SettingsActivity : AppCompatActivity() {
     private fun shareApp() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, "Download the App from https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard ")
+        intent.putExtra(Intent.EXTRA_TEXT, R.string.download_app)
         val mailer = Intent.createChooser(intent, null)
         startActivity(mailer)
     }
 
     private fun openLicenses() {
-        this.showCustomChromeTabs("https://creativecommons.org/licenses/by-sa/3.0/")
+        this.showCustomChromeTabs(R.string.creativecommons_license_url.toString())
     }
 
     private fun openTermsAndConditions() {
-        this.showCustomChromeTabs("https://wikiedu.org/terms-of-service/")
+        this.showCustomChromeTabs(R.string.wikiedu_termsofservice_url.toString())
     }
 
     private fun openPrivacyPolicy() {
-        this.showCustomChromeTabs("https://wikiedu.org/privacy-policy/")
+        this.showCustomChromeTabs(R.string.wikiedu_privacyurl.toString())
     }
 
     private fun logOut() {
         val alertDialog = AlertDialog.Builder(this)
-        alertDialog.setTitle("Log Out")
-                .setMessage("Are you sure? Logging out will remove all data from this device. ")
+        alertDialog.setTitle(R.string.logout)
+                .setMessage(R.string.logout_confirmation)
                 .setCancelable(false)
-                .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-                .setPositiveButton("Yes") { dialog, _ ->
+                .setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.yes) { dialog, _ ->
                     sharedPrefs.userName = ""
                     sharedPrefs.cookies = ""
                     sharedPrefs.setLogin(false)

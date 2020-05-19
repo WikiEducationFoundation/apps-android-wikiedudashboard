@@ -10,6 +10,7 @@
 
     <dimen name="card_corner_radius_4dp">4dp</dimen>
     <dimen name="card_corner_radius_8dp">8dp</dimen>
+    <dimen name="dimens_48dp">48dp</dimen>
 
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="text_size_16sp">16sp</dimen>
@@ -21,10 +22,12 @@
     <dimen name="text_size_14sp">14sp</dimen>
     <dimen name="padding_2dp">2dp</dimen>
     <dimen name="margin_140">140dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
     <dimen name="padding_40dp">40dp</dimen>
     <dimen name="padding_56dp">56dp</dimen>
     <dimen name="padding_48dp">48dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
+    <dimen name="dimens_100dp">100dp</dimen>
     <dimen name="margin_56dp">56dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
     <dimen name="text_size_18sp">18sp</dimen>
@@ -38,22 +41,28 @@
     <dimen name="dimens_10dp">10dp</dimen>
     <dimen name="dimens_70dp">70dp</dimen>
     <dimen name="dimens_80dp">80dp</dimen>
+    <dimen name="dimens_128dp">128dp</dimen>
     <dimen name="dimens_150dp">150dp</dimen>
     <dimen name="dimens_330dp">330dp</dimen>
     <dimen name="dimens_408dp">408dp</dimen>
     <dimen name="dimens_458dp">458dp</dimen>
     <dimen name="dimens_168dp">168dp</dimen>
     <dimen name="dimens_200dp">200dp</dimen>
-
+    <dimen name="dimens_0dp">0dp</dimen>
     <dimen name="dimens_2dp">2dp</dimen>
     <dimen name="dimens_4dp">4dp</dimen>
     <dimen name="dimens_16dp">16dp</dimen>
+    <dimen name="dimens_250dp">250dp</dimen>
     <dimen name="dimens_20dp">20dp</dimen>
     <dimen name="dimens_40dp">40dp</dimen>
     <dimen name="dimens_52dp">52dp</dimen>
+    <dimen name="dimens_24dp">24dp</dimen>
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
     <dimen name="dimen_36dp">36dp</dimen>
+    <dimen name="dimens_1dp">1dp</dimen>
+    <dimen name="dimens_120dp">120dp</dimen>
+    <dimen name="dimens_60dp">60dp</dimen>
 
 </resources>

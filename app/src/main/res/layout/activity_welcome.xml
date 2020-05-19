@@ -17,6 +17,6 @@
         android:layout_width="match_parent"
         app:ci_drawable="@drawable/selected"
         app:ci_drawable_unselected="@drawable/default_selection"
-        android:layout_height="48dp"/>
+        android:layout_height="@dimen/dimens_48dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

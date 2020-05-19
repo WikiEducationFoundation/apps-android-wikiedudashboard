@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         tools:context="org.wikiedufoundation.wikiedudashboard.ui.profile.view.ProfileStatsFragment">
         <TextView
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="@dimen/dimens_200dp"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tvNotEnrolled"
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/tvTitleImpactByStudent"
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_height="@dimen/padding_16dp"
                 android:layout_marginTop="@dimen/padding_16dp"
                 android:layout_marginBottom="@dimen/padding_16dp"
                 app:layout_constraintLeft_toLeftOf="parent"

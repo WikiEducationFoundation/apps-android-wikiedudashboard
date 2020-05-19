@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:minHeight="60dp"
+            android:minHeight="@dimen/dimens_60dp"
             android:onClick="@{() -> adp.onCourseUpdatedClicked(obj)}"
             android:orientation="vertical">
 
@@ -32,7 +32,7 @@
                 android:id="@+id/iv_course_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="250dp"
+                android:minHeight="@dimen/dimens_250dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimens_1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_upload_title"

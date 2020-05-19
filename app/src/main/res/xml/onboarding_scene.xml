@@ -9,7 +9,7 @@
         <KeyFrameSet>
 
             <KeyAttribute
-                android:translationX="0dp"
+                android:translationX="@dimen/dimens_0dp"
                 app:framePosition="50"
                 app:motionTarget="@id/skipBtn" />
 
@@ -19,22 +19,22 @@
                 app:motionTarget="@id/skipBtn" />
 
             <KeyAttribute
-                android:translationX="0dp"
+                android:translationX="@dimen/dimens_0dp"
                 app:framePosition="50"
                 app:motionTarget="@id/nextBtn"/>
 
             <KeyAttribute
-                android:translationX="100dp"
+                android:translationX="@dimen/dimens_100dp"
                 app:framePosition="100"
                 app:motionTarget="@id/nextBtn"/>
 
             <KeyAttribute
-                android:translationY="100dp"
+                android:translationY="@dimen/dimens_100dp"
                 app:framePosition="50"
                 app:motionTarget="@id/startBtn"/>
 
             <KeyAttribute
-                android:translationY="0dp"
+                android:translationY="@dimen/dimens_0dp"
                 app:framePosition="100"
                 app:motionTarget="@id/startBtn"/>
         </KeyFrameSet>
@@ -45,7 +45,7 @@
             android:id="@+id/skipBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="0dp"
+            android:translationX="@dimen/dimens_0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -53,7 +53,7 @@
             android:id="@+id/nextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="0dp"
+            android:translationX="@dimen/dimens_0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -80,7 +80,7 @@
             android:id="@id/nextBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="100dp"
+            android:translationX="@dimen/dimens_100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -88,7 +88,7 @@
             android:id="@id/startBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationY="0dp"
+            android:translationY="@dimen/dimens_0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
