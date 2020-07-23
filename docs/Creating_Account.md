@@ -2,7 +2,7 @@
 
 To Get Into The Wiki Education App, You Need To Login To The App.
 
-The Screen contains 2 Options i.e Login With Wikipedia And Sign Up With Wikipidea
+The Screen contains 2 Options i.e Login With Wikipedia And Sign Up With Wikipedia
 
 1. If You Are A New User Then You Need To Sign Up The App.
 
