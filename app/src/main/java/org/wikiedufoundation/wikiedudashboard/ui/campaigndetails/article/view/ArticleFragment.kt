@@ -1,11 +1,10 @@
 package org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.article_fragment.*
 import kotlinx.android.synthetic.main.fragment_explore_students.*
@@ -17,7 +16,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.ArticlesRecyclerAdapte
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data.ArticleDataSource
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.data.Articles
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.viewmodel.ArticleViewModel
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 class ArticleFragment : Fragment() {
@@ -57,7 +56,7 @@ class ArticleFragment : Fragment() {
     private fun initializeToaster() {
         articlesViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            context?.showToast(message)
+            view?.showSnackbar(message)
         })
     }
 
@@ -77,13 +76,13 @@ class ArticleFragment : Fragment() {
     /*TODO this method will be deleted when the api is ready. This will get the dummy data*/
     private fun setData() {
         val it = ArticleDataSource.getArticles()
-            if (it.isNotEmpty()) {
-                Timber.d(it.toString())
-                ariclesRecyclerAdapter.setData(it)
-            } else {
-                recyclerArticleList?.visibility = View.GONE
-                textViewNoStudents?.visibility = View.VISIBLE
-            }
+        if (it.isNotEmpty()) {
+            Timber.d(it.toString())
+            ariclesRecyclerAdapter.setData(it)
+        } else {
+            recyclerArticleList?.visibility = View.GONE
+            textViewNoStudents?.visibility = View.VISIBLE
+        }
     }
 
     private fun openArticleDetail(article: Articles) {
@@ -93,6 +92,6 @@ class ArticleFragment : Fragment() {
         articlesDetailedFragment.arguments = bundle
         articlesDetailedFragment.show(parentFragmentManager, "articlefragment")
 
-        context?.showToast(article.title)
+        view?.showSnackbar(article.title)
     }
 }

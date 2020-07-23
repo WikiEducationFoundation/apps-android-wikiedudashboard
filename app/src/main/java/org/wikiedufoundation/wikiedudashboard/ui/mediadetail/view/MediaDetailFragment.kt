@@ -36,7 +36,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.MediaDetailsActivit
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.viewmodel.MediaDetailsViewModel
 import org.wikiedufoundation.wikiedudashboard.util.CustomTabHelper
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
-import org.wikiedufoundation.wikiedudashboard.util.showToast
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
@@ -276,7 +276,7 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     private fun initializeToaster() {
         mediaDetailsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it.showMsg
-            context?.showToast(message)
+            view?.showSnackbar(message)
         })
     }
 

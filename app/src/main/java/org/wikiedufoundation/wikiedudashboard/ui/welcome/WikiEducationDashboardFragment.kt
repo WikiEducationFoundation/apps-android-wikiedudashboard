@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_wiki_edu_dashboard.*
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_wiki_edu_dashboard.*
 import org.koin.android.ext.android.inject
 import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.home.HomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.Urls
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 
 /**
@@ -87,7 +87,7 @@ class WikiEducationDashboardFragment : Fragment() {
     }
 
     private fun proceedToLogin(url: String) {
-        Toast.makeText(context, "Logged In", Toast.LENGTH_SHORT).show()
+        view?.showSnackbar("Logged In")
         cookies = CookieManager.getInstance().getCookie(url)
         Timber.i("logged cookie is $cookies")
         Timber.d("All the cookies in a string: $cookies")

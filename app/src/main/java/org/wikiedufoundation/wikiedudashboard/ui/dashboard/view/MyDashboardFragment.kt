@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_my_dashboard.progressBar
-import kotlinx.android.synthetic.main.fragment_my_dashboard.recyclerCourseList
-import kotlinx.android.synthetic.main.fragment_my_dashboard.textViewNoCourses
+import kotlinx.android.synthetic.main.fragment_my_dashboard.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -20,6 +17,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.adapters.MyDashboardRecyclerAda
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.view.CourseDetailActivity
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
 import org.wikiedufoundation.wikiedudashboard.util.filterOrEmptyList
+import org.wikiedufoundation.wikiedudashboard.util.showSnackbar
 import timber.log.Timber
 import java.util.Locale
 
@@ -96,7 +94,7 @@ class MyDashboardFragment : Fragment() {
     private fun initializeToaster() {
         dashboardViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
             val message = it?.showMsg
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            message?.let { msg -> view?.showSnackbar(msg) }
         })
     }
 
