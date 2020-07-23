@@ -7,7 +7,7 @@ import android.os.Parcelable
  ***/
 data class Articles(
     val id: Int,
-    val title: String?,
+    val title: String,
     val characters_added: String,
     val references_added: String,
     val views: String,
