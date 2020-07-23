@@ -1,0 +1,116 @@
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_24dp"
+    android:padding="@dimen/dimen_16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.article.view.ArticlesDetailedFragment">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/article_title"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@color/colorGrayBackground" />
+
+
+    <TextView
+        android:id="@+id/textViewCharactersAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/label_chars_added"/>
+
+    <TextView
+        android:id="@+id/textViewCountCharactersAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewCharactersAdded"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/chars_added"/>
+
+    <TextView
+        android:id="@+id/textViewReferencesAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/references_added"/>
+
+    <TextView
+        android:id="@+id/textViewCountReferencesAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewReferencesAdded"
+        app:layout_constraintLeft_toLeftOf="@id/textViewReferencesAdded"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/references_added_count"/>
+
+    <TextView
+        android:id="@+id/textViewViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewCountCharactersAdded"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/views"/>
+
+    <TextView
+        android:id="@+id/textViewViewsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewCountCharactersAdded"
+        app:layout_constraintLeft_toLeftOf="@id/textViewReferencesAdded"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/views_count"/>
+
+    <TextView
+        android:id="@+id/textViewCourses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewViews"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/courses"/>
+
+    <TextView
+        android:id="@+id/textViewCourseList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="@id/textViewCourses"
+        app:layout_constraintTop_toBottomOf="@id/textViewCourses"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/demo_course"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
