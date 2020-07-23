@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:minHeight="60dp"
+            android:minHeight="@dimen/dimens_60dp"
             android:onClick="@{() -> adp.onStudentClicked(obj)}"
             >
 
@@ -43,7 +43,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimens_1dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_students_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

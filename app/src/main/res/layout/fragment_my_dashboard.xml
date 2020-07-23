@@ -39,9 +39,9 @@
         android:id="@+id/fabMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="@dimen/dimens_10dp"
+        android:layout_marginRight="@dimen/dimens_10dp"
+        android:layout_marginBottom="@dimen/dimens_70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu_colorNormal="@color/colorAccent"
@@ -56,7 +56,7 @@
             android:src="@drawable/ic_arrow_forward_white_24dp"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/colorHeadingDark"
-            app:fab_label="Participate in a Campaign"
+            app:fab_label="@string/pariticipate_campaign"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -67,7 +67,7 @@
             android:src="@drawable/ic_add_white_24dp"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/colorHeadingDark"
-            app:fab_label="Create an Independent Program"
+            app:fab_label="@string/create_independent_campaign"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -78,7 +78,7 @@
             android:src="@drawable/ic_arrow_forward_white_24dp"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/colorHeadingDark"
-            app:fab_label="Find a Program"
+            app:fab_label="@string/find_a_program"
             app:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>

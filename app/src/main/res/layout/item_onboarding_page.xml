@@ -9,10 +9,10 @@
 
   <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/titleTv"
-      android:layout_width="0dp"
+      android:layout_width="@dimen/dimens_0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginEnd="16dp"
+      android:layout_marginStart="@dimen/margin_16dp"
+      android:layout_marginEnd="@dimen/margin_16dp"
       android:textAppearance="@style/TextAppearance.AppCompat.Body2"
       android:textColor="@color/colorAccent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
       android:id="@+id/subTitleTv"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:layout_marginEnd="16dp"
+      android:layout_marginStart="@dimen/margin_16dp"
+      android:layout_marginEnd="@dimen/margin_16dp"
       android:textAppearance="@style/TextAppearance.AppCompat.Headline"
       android:textColor="@color/colorAccent"
       android:textStyle="bold"
@@ -34,10 +34,10 @@
 
   <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/img"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
+      android:layout_width="@dimen/dimens_0dp"
+      android:layout_height="@dimen/dimens_0dp"
+      android:layout_marginStart="@dimen/margin_32dp"
+      android:layout_marginEnd="@dimen/margin_32dp"
       android:adjustViewBounds="true"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintDimensionRatio="1:1"
@@ -49,7 +49,7 @@
 
   <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/descTV"
-      android:layout_width="0dp"
+      android:layout_width="@dimen/dimens_0dp"
       android:layout_height="wrap_content"
       android:gravity="center"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"

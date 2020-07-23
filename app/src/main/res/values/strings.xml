@@ -114,5 +114,16 @@
     <string name="edit_count">Edit Count</string>
     <string name="edit_count_number">3037</string>
     <string name="course">Photography_Studies_College/Image_Cultures_1_(1)</string>
+    <string name="pariticipate_campaign">Participate in a Campaign</string>
+    <string name="create_independent_campaign">Create an Independent Program</string>
+    <string name="download_app">Download the App from https://play.google.com/store/apps/details?id=org.wikiedufoundation.wikiedudashboard </string>
+    <string name="android_app_feedback">Android App 1.01 Feedback</string>
+    <string name="logout_confirmation">Are you sure? Logging out will remove all data from this device. </string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="wikiedu_privacyurl">https://wikiedu.org/privacy-policy/</string>
+    <string name="wikiedu_termsofservice_url">https://wikiedu.org/terms-of-service/</string>
+    <string name="creativecommons_license_url">https://creativecommons.org/licenses/by-sa/3.0/</string>
+    <string name="unable_to_connect_server">Unable to connect to server.</string>
 
 </resources>

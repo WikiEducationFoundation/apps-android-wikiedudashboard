@@ -4,7 +4,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/placeholder"
-            android:background="#fefefe"
+            android:background="@color/white_2"
             android:layout_margin="@dimen/margin_24dp"
             app:cardCornerRadius="@dimen/margin_16dp"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimens_1dp"
                 android:layout_marginTop="@dimen/dimen_16dp"
                 android:background="@color/colorGrayBackground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
             <View
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimens_1dp"
                 android:layout_marginTop="@dimen/dimen_16dp"
                 android:layout_marginBottom="@dimen/dimen_16dp"
                 android:background="@color/colorGrayBackground"
