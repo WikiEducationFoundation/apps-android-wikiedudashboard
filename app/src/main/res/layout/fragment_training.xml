@@ -159,6 +159,7 @@
             android:constraintStartToStartOf="parent"
             android:constraintEndToEndOf="parent"
             android:constraintTopToTopOf="parent"
+            android:constraintBottomToBottomOf="parent"
             android:layout_centerInParent="true" />
 
 
