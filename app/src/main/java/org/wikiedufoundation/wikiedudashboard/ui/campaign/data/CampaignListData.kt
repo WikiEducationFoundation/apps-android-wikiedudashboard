@@ -17,8 +17,8 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "campaign_list")
 data class CampaignListData(
     @PrimaryKey
-@SerializedName("id")
-val id: Int?,
+    @SerializedName("id")
+    val id: Int?,
     @SerializedName("title")
     val title: String,
     @SerializedName("slug")

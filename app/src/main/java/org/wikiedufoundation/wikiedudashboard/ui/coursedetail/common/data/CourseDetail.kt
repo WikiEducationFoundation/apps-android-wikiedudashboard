@@ -37,7 +37,7 @@ data class CourseDetail(
     @SerializedName("day_exceptions")
     val dayExceptions: String,
     @SerializedName("weekdays")
-val weekdays: String,
+    val weekdays: String,
     @SerializedName("isNo_day_exceptions")
     val isNoDayExceptions: Boolean,
     @SerializedName("updated_at")
@@ -47,7 +47,7 @@ val weekdays: String,
     @SerializedName("isUse_start_and_end_times")
     val isUseStartAndEndTimes: Boolean,
     @SerializedName("type")
-val type: String,
+    val type: String,
     @SerializedName("character_sum")
     val characterSum: Int,
     @SerializedName("upload_count")
@@ -59,7 +59,7 @@ val type: String,
     @SerializedName("cloned_status")
     val clonedStatus: Int,
     @SerializedName("level")
-val level: String,
+    val level: String,
     @SerializedName("training_library_slug")
     val trainingLibrarySlug: String,
     @SerializedName("isTimeline_enabled")
@@ -77,7 +77,7 @@ val level: String,
     @SerializedName("isAccount_requests_enabled")
     val isAccountRequestsEnabled: Boolean,
     @SerializedName("term")
-val term: String,
+    val term: String,
     @SerializedName("isLegacy")
     val isLegacy: Boolean,
     @SerializedName("isEnded")
@@ -107,5 +107,5 @@ val term: String,
     @SerializedName("passcode")
     val passCode: String,
     @SerializedName("isCanUploadSyllabus")
-val isCanUploadSyllabus: Boolean
+    val isCanUploadSyllabus: Boolean
 ) : Serializable

@@ -15,10 +15,10 @@ class ArticleRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardApi
      *  coroutine or another suspend function.
      **/
     override suspend fun requestArticles(url: String): List<Articles> =
-            withContext(Dispatchers.IO) {
-                val request = wikiEduDashboardApi
-                        .getArticles(Urls.SUB_URL_CAMPAIGN_ARTICLE.format(url))
-                val articleList = request.article
-                articleList
-    }
+        withContext(Dispatchers.IO) {
+            val request = wikiEduDashboardApi
+                .getArticles(Urls.SUB_URL_CAMPAIGN_ARTICLE.format(url))
+            val articleList = request.article
+            articleList
+        }
 }

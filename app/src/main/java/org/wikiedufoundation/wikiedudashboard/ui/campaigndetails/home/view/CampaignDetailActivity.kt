@@ -70,10 +70,12 @@ class CampaignDetailActivity : AppCompatActivity() {
         bundle3.putString("url", url)
         studentFragment.arguments = bundle3
 
-        val fragmentList = listOf(campaignHomeFragment,
-                courseFragment,
-                articleFragment,
-                studentFragment)
+        val fragmentList = listOf(
+            campaignHomeFragment,
+            courseFragment,
+            articleFragment,
+            studentFragment
+        )
 
         val titleList = listOf("Home", "Courses", "Articles", "Students")
 
@@ -83,24 +85,33 @@ class CampaignDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        campaignDetailsViewModel.campaignDetail.observe(this, Observer {
-            Timber.d("hello  $it.title")
-            toolbar.title = it.title
-            campaignHomeFragment = CampaignHomeFragment.newInstance(it)
-            setTabs()
-        })
+        campaignDetailsViewModel.campaignDetail.observe(
+            this,
+            Observer {
+                Timber.d("hello  $it.title")
+                toolbar.title = it.title
+                campaignHomeFragment = CampaignHomeFragment.newInstance(it)
+                setTabs()
+            }
+        )
     }
 
     private fun initializeProgressBar() {
-        campaignDetailsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        campaignDetailsViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        campaignDetailsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            window.decorView.showSnackbar(message)
-        })
+        campaignDetailsViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                window.decorView.showSnackbar(message)
+            }
+        )
     }
 }

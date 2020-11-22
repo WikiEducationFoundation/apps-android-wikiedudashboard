@@ -9,8 +9,8 @@ import org.wikiedufoundation.wikiedudashboard.ui.courselist.data.CourseListData
 interface CourseListRepository {
 
     /**
-    * This function gets all the courses
-    **/
+     * This function gets all the courses
+     **/
     fun allCourseList(): LiveData<List<CourseListData>>
 
     /** The suspend modifier tells the compiler that this must be called from a

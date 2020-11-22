@@ -106,12 +106,12 @@ class ProfileStatsFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: ProfileResponse?, param2: String?, param3: Boolean?) =
-                ProfileStatsFragment().apply {
-                    arguments = Bundle().apply {
-                        putSerializable(ARG_PARAM1, param1)
-                        param2?.let { putString(ARG_PARAM2, it) }
-                        param3?.let { putBoolean(ARG_PARAM3, it) }
-                    }
+            ProfileStatsFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_PARAM1, param1)
+                    param2?.let { putString(ARG_PARAM2, it) }
+                    param3?.let { putBoolean(ARG_PARAM3, it) }
                 }
+            }
     }
 }

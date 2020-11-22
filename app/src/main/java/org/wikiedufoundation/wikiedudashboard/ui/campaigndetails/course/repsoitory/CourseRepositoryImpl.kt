@@ -17,6 +17,6 @@ class CourseRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardApi)
     override suspend fun requestCourse(url: String): List<Course> = withContext(Dispatchers.IO) {
         val request = wikiEduDashboardApi.getCourse(Urls.SUB_URL_CAMPAIGN_COURSE.format(url))
         val courseList = request.course
-            courseList
+        courseList
     }
 }

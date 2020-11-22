@@ -72,30 +72,39 @@ class CourseListFragment : Fragment() {
     }
 
     private fun setData() {
-        courselistViewModel.data.observe(this, Observer {
-            Timber.d(it.toString())
-            if (it.isNotEmpty()) {
-                recyclerCourseList?.visibility = View.VISIBLE
-                courseListRecyclerAdapter.setData(it)
-                textViewNoCourses?.visibility = View.GONE
-            } else {
-                recyclerCourseList?.visibility = View.GONE
-                textViewNoCourses?.visibility = View.VISIBLE
+        courselistViewModel.data.observe(
+            this,
+            Observer {
+                Timber.d(it.toString())
+                if (it.isNotEmpty()) {
+                    recyclerCourseList?.visibility = View.VISIBLE
+                    courseListRecyclerAdapter.setData(it)
+                    textViewNoCourses?.visibility = View.GONE
+                } else {
+                    recyclerCourseList?.visibility = View.GONE
+                    textViewNoCourses?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        courselistViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        courselistViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeMessage() {
-        courselistViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it?.showMsg
-            message?.let { msg -> view?.showSnackbar(msg) }
-        })
+        courselistViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it?.showMsg
+                message?.let { msg -> view?.showSnackbar(msg) }
+            }
+        )
     }
 
     private fun openCourseDetail(slug: String) {
@@ -110,7 +119,7 @@ class CourseListFragment : Fragment() {
 
         val filterCourseQuery = courselistViewModel.data.value.filterOrEmptyList {
             it.title.toLowerCase(Locale.getDefault())
-                    .contains(query.toLowerCase(Locale.getDefault()))
+                .contains(query.toLowerCase(Locale.getDefault()))
         }
 
         courseListRecyclerAdapter.setData(filterCourseQuery)

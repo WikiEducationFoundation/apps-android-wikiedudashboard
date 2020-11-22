@@ -35,7 +35,7 @@ class CourseUploadsViewModel(
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
                 _progressbar.postValue(false)
-            }catch (e: HttpException){
+            } catch (e: HttpException) {
                 _showMsg.postValue(ShowMessage(e.message()))
                 _progressbar.postValue(false)
             }

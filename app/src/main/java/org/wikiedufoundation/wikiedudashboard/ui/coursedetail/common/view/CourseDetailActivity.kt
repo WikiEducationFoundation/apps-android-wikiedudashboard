@@ -71,11 +71,13 @@ class CourseDetailActivity : AppCompatActivity() {
         bundle3.putString("url", url)
         recentActivityFragment.arguments = bundle3
 
-        val fragmentList = listOf(courseHomeFragment,
-                studentListFragment,
-                courseArticlesEditedFragment,
-                url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) },
-                recentActivityFragment)
+        val fragmentList = listOf(
+            courseHomeFragment,
+            studentListFragment,
+            courseArticlesEditedFragment,
+            url.let { CourseUploadsFragment.newInstance(type = 1, courseDetail = it, courseUploads = null) },
+            recentActivityFragment
+        )
         val titleList = listOf("Home", "Students", "Article", "Uploads", "Activity")
 
         viewPager.apply {
@@ -84,23 +86,32 @@ class CourseDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        courseDetailViewModel.coursedetail.observe(this, Observer {
-            toolbar.title = it.title
-            courseHomeFragment = CourseHomeFragment.newInstance(it)
-            setTabs()
-        })
+        courseDetailViewModel.coursedetail.observe(
+            this,
+            Observer {
+                toolbar.title = it.title
+                courseHomeFragment = CourseHomeFragment.newInstance(it)
+                setTabs()
+            }
+        )
     }
 
     private fun initializeProgressBar() {
-        courseDetailViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        courseDetailViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        courseDetailViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            window.decorView.showSnackbar(message)
-        })
+        courseDetailViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                window.decorView.showSnackbar(message)
+            }
+        )
     }
 }

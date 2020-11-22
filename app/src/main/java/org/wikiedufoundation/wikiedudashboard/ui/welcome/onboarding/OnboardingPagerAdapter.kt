@@ -13,15 +13,15 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.page.Onboard
  * This OnBoardingPagerAdapter is used
  * for managing the onboarding views
  */
-class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnboardingPage> = OnboardingPage.values())
-    : RecyclerView.Adapter<PagerViewHolder>() {
+class OnBoardingPagerAdapter(private val onBoardingPageList: Array<OnboardingPage> = OnboardingPage.values()) :
+    RecyclerView.Adapter<PagerViewHolder>() {
 
     /**
      * Here the item_on_boarding page is inflated
      */
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PagerViewHolder {
         return LayoutInflater.from(parent.context).inflate(
-                PagerViewHolder.LAYOUT, parent, false
+            PagerViewHolder.LAYOUT, parent, false
         ).let { PagerViewHolder(it) }
     }
 

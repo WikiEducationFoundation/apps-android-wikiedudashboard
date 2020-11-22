@@ -22,9 +22,9 @@ val databaseModule = module {
  * */
 fun provideDatabase(application: Application): WikiDatabase {
     return Room.databaseBuilder(application, WikiDatabase::class.java, "WikiDatabase")
-            .fallbackToDestructiveMigration()
-            .allowMainThreadQueries()
-            .build()
+        .fallbackToDestructiveMigration()
+        .allowMainThreadQueries()
+        .build()
 }
 
 /**

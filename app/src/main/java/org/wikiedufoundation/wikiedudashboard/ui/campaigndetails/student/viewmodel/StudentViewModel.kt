@@ -13,8 +13,8 @@ import java.io.IOException
 /**
  * Class extends ViewModel and requires StudentRepository as a parameter.
  */
-class StudentViewModel(private val studentRepository: StudentRepository, private val url: String)
-    : ViewModel() {
+class StudentViewModel(private val studentRepository: StudentRepository, private val url: String) :
+    ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
     val showMsg: MutableLiveData<ShowMessage> get() = _showMsg

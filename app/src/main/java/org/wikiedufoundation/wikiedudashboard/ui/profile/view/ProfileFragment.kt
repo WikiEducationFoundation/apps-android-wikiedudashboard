@@ -84,49 +84,65 @@ class ProfileFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     }
 
     private fun setTabData() {
-        profileViewModel.profile.observe(this, Observer {
-            val courseUploadList = it?.uploads?.let { CourseUploadList(it) }
+        profileViewModel.profile.observe(
+            this,
+            Observer {
+                val courseUploadList = it?.uploads?.let { CourseUploadList(it) }
 
-            val fragmentList = listOf(ProfileStatsFragment.newInstance(it, mParam1, mParam2),
+                val fragmentList = listOf(
+                    ProfileStatsFragment.newInstance(it, mParam1, mParam2),
                     ProfileCourseListFragment.newInstance(it),
-                    CourseUploadsFragment.newInstance(2, "", courseUploadList))
+                    CourseUploadsFragment.newInstance(2, "", courseUploadList)
+                )
 
-            val titleList = listOf("Contribution Statistics", "Course Details", "Recent Uploads")
+                val titleList = listOf("Contribution Statistics", "Course Details", "Recent Uploads")
 
-            viewPager.apply {
-                adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
+                viewPager.apply {
+                    adapter = ViewPagerAdapter(childFragmentManager, fragmentList, titleList)
+                }
             }
-        })
+        )
     }
 
     private fun setProfileData() {
-        profileViewModel.profileDetails.observe(this, Observer {
-            llProfileParent.visibility = View.VISIBLE
-            val profilePicUrl = Urls.BASE_URL + it?.profileImage
-            Timber.d(profilePicUrl)
-            Glide.with(requireContext()).load(profilePicUrl)
-                    .apply(RequestOptions().placeholder(R.drawable.ic_account_circle_white_48dp)
-                            .circleCrop()).into(ivProfilePic)
+        profileViewModel.profileDetails.observe(
+            this,
+            Observer {
+                llProfileParent.visibility = View.VISIBLE
+                val profilePicUrl = Urls.BASE_URL + it?.profileImage
+                Timber.d(profilePicUrl)
+                Glide.with(requireContext()).load(profilePicUrl)
+                    .apply(
+                        RequestOptions().placeholder(R.drawable.ic_account_circle_white_48dp)
+                            .circleCrop()
+                    ).into(ivProfilePic)
 
-            tvProfileUsername.text = mParam1
-            tvProfileDescription.text = it?.bio
-            tvProfileLocation.text = it?.location
-            tvProfileInstitute.text = it?.institution
-            llProfileEmail.visibility = View.GONE
-        })
+                tvProfileUsername.text = mParam1
+                tvProfileDescription.text = it?.bio
+                tvProfileLocation.text = it?.location
+                tvProfileInstitute.text = it?.institution
+                llProfileEmail.visibility = View.GONE
+            }
+        )
     }
 
     private fun initializeProgressBar() {
-        profileViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        profileViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        profileViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        profileViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     companion object {

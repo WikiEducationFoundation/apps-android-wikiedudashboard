@@ -164,12 +164,14 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
             // downloaded image will be stored in Downloads directory of a device
             // if no destination dir is set
-            downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or
-                    DownloadManager.Request.NETWORK_MOBILE).setAllowedOverMetered(true)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                    .setAllowedOverMetered(true).setAllowedOverRoaming(false)
-                    .setTitle("Wikiedu Image Download").setDescription("Downloading Image")
-                    .setDestinationInExternalPublicDir(destinationPath, mDir.absolutePath)
+            downloadRequest.setAllowedNetworkTypes(
+                DownloadManager.Request.NETWORK_WIFI or
+                    DownloadManager.Request.NETWORK_MOBILE
+            ).setAllowedOverMetered(true)
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                .setAllowedOverMetered(true).setAllowedOverRoaming(false)
+                .setTitle("Wikiedu Image Download").setDescription("Downloading Image")
+                .setDestinationInExternalPublicDir(destinationPath, mDir.absolutePath)
 
             downloadID = downloadMgr.enqueue(downloadRequest)
 
@@ -177,14 +179,20 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
                 override fun onReceive(context: Context, intent: Intent) {
                     val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (downloadID == id) {
-                        Toast.makeText(context, "Download complete!\n Image " +
-                                courseUpload?.fileName + " saved to " + mDir, Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Download complete!\n Image " +
+                                courseUpload?.fileName + " saved to " + mDir,
+                            Toast.LENGTH_LONG
+                        ).show()
                         Timber.d("image saved to $mDir")
                     }
                 }
             }
-            context?.registerReceiver(onDownloadCompleteReceiver,
-                    IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+            context?.registerReceiver(
+                onDownloadCompleteReceiver,
+                IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+            )
         } catch (ie: IOException) {
             ie.stackTrace
         }
@@ -193,8 +201,10 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     private fun downloadImageWithPermission() {
         val permissionType = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         val isGranted = context?.applicationContext?.let {
-            ContextCompat.checkSelfPermission(it,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            ContextCompat.checkSelfPermission(
+                it,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
         }
         if (isGranted == PackageManager.PERMISSION_GRANTED) {
             downloadImage()
@@ -210,7 +220,8 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         when (requestCode) {
             WRITE_EXTERNAL_STORAGE_RC -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED
+                ) {
                     Timber.d("Permission denied by user")
                 } else {
                     downloadImage()
@@ -231,53 +242,62 @@ class MediaDetailFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
     private fun setData() {
 
-        mediaDetailsViewModel.mediaDetails.observe(this, Observer {
-            Timber.d(it.toString())
+        mediaDetailsViewModel.mediaDetails.observe(
+            this,
+            Observer {
+                Timber.d(it.toString())
 
-            val imageInfo = it.page[it.page.keys.first()]?.let { it.imageInfo[0] }
+                val imageInfo = it.page[it.page.keys.first()]?.let { it.imageInfo[0] }
 
-            // Description
-            textViewDescription.text = imageInfo?.extMetaData?.description?.value
+                // Description
+                textViewDescription.text = imageInfo?.extMetaData?.description?.value
 
-            // License
-            mediaDetailLicense.text = imageInfo?.extMetaData?.license?.value
-            mediaDetailLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
+                // License
+                mediaDetailLicense.text = imageInfo?.extMetaData?.license?.value
+                mediaDetailLicense.setOnClickListener { imageInfo?.let { context?.showCustomChromeTabs(it.extMetaData.licenseUrl.value) } }
 
-            // Categories
-            val categories = it.page[it.page.keys.first()]?.categories ?: emptyList()
-            if (categories.isNotEmpty()) {
-                recyclerCategoryList?.visibility = View.VISIBLE
-                categoryListRecyclerAdapter.setData(categories)
-                textViewNoCategories?.visibility = View.GONE
-            } else {
-                recyclerCategoryList?.visibility = View.GONE
-                textViewNoCategories?.visibility = View.VISIBLE
+                // Categories
+                val categories = it.page[it.page.keys.first()]?.categories ?: emptyList()
+                if (categories.isNotEmpty()) {
+                    recyclerCategoryList?.visibility = View.VISIBLE
+                    categoryListRecyclerAdapter.setData(categories)
+                    textViewNoCategories?.visibility = View.GONE
+                } else {
+                    recyclerCategoryList?.visibility = View.GONE
+                    textViewNoCategories?.visibility = View.VISIBLE
+                }
+
+                // File Uses
+                val fileUses = it.page[it.page.keys.first()]?.globalUsage
+                if (categories.isNotEmpty()) {
+                    recyclerFileUsesList?.visibility = View.VISIBLE
+                    fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
+                    textViewNoUses?.visibility = View.GONE
+                } else {
+                    recyclerFileUsesList?.visibility = View.GONE
+                    textViewNoUses?.visibility = View.VISIBLE
+                }
             }
-
-            // File Uses
-            val fileUses = it.page[it.page.keys.first()]?.globalUsage
-            if (categories.isNotEmpty()) {
-                recyclerFileUsesList?.visibility = View.VISIBLE
-                fileUses?.let { fileUsesRecyclerAdapter.setData(it) }
-                textViewNoUses?.visibility = View.GONE
-            } else {
-                recyclerFileUsesList?.visibility = View.GONE
-                textViewNoUses?.visibility = View.VISIBLE
-            }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        mediaDetailsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        mediaDetailsViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        mediaDetailsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        mediaDetailsViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     companion object {

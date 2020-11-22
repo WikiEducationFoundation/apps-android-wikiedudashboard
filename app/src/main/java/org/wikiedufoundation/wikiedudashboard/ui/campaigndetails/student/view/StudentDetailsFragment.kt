@@ -26,8 +26,10 @@ class StudentDetailsFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_details,
-                container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_student_details,
+            container, false
+        )
         username = arguments?.getString("username")
         course = arguments?.getString("course")
         edit_count = arguments?.getString("edit_count")
