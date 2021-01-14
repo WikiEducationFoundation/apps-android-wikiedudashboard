@@ -34,7 +34,7 @@ class MyDashboardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
 
-    private lateinit var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter
+    private  var myDashboardRecyclerAdapter: MyDashboardRecyclerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +76,7 @@ class MyDashboardFragment : Fragment() {
 
             if (it.isNotEmpty()) {
                 recyclerCourseList?.visibility = View.VISIBLE
-                myDashboardRecyclerAdapter.setData(it)
+                myDashboardRecyclerAdapter?.setData(it)
                 textViewNoCourses?.visibility = View.GONE
             } else {
                 recyclerCourseList?.visibility = View.GONE
@@ -122,7 +122,7 @@ class MyDashboardFragment : Fragment() {
         val courseFilterQuery = dashboardViewModel.courseList.value.filterOrEmptyList {
             it.title.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
         }
-        myDashboardRecyclerAdapter.setData(courseFilterQuery)
+        myDashboardRecyclerAdapter?.setData(courseFilterQuery)
     }
 
     companion object {
@@ -146,5 +146,10 @@ class MyDashboardFragment : Fragment() {
             args.putString(ARG_PARAM2, param2)
             this.arguments = args
         }
+    }
+
+    override fun onDestroyView() {
+        myDashboardRecyclerAdapter = null
+        super.onDestroyView()
     }
 }
