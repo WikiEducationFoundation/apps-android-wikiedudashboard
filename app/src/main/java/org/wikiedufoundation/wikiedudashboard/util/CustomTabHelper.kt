@@ -59,8 +59,8 @@ class CustomTabHelper {
             packagesSupportingCustomTabs.isEmpty() -> sPackageNameToUse = null
             packagesSupportingCustomTabs.size == 1 -> sPackageNameToUse = packagesSupportingCustomTabs.get(0)
             !TextUtils.isEmpty(defaultViewHandlerPackageName) &&
-                    !hasSpecializedHandlerIntents(context, activityIntent)
-                    && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName) ->
+                !hasSpecializedHandlerIntents(context, activityIntent)
+                && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName) ->
                 sPackageNameToUse = defaultViewHandlerPackageName
             packagesSupportingCustomTabs.contains(STABLE_PACKAGE) -> sPackageNameToUse = STABLE_PACKAGE
             packagesSupportingCustomTabs.contains(BETA_PACKAGE) -> sPackageNameToUse = BETA_PACKAGE
@@ -74,8 +74,9 @@ class CustomTabHelper {
         try {
             val pm = context.packageManager
             val handlers = pm.queryIntentActivities(
-                    intent,
-                    PackageManager.GET_RESOLVED_FILTER)
+                intent,
+                PackageManager.GET_RESOLVED_FILTER
+            )
             if (handlers == null || handlers.size == 0) {
                 return false
             }

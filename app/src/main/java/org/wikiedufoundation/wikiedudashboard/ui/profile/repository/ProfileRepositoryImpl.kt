@@ -23,7 +23,7 @@ class ProfileRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardApi
      **/
     override suspend fun requestProfileDetails(username: String) = withContext(Dispatchers.IO) {
         val request = wikiEduDashboardApi
-                .getProfileDetailsResponse(Urls.PROFILE_DETAIL.format(username))
+            .getProfileDetailsResponse(Urls.PROFILE_DETAIL.format(username))
         val userProfileDetails = request.userProfile
         userProfileDetails
     }

@@ -64,9 +64,9 @@ fun Context.showAlertDialog(title: String, message: String) {
 
     val alertDialog = AlertDialog.Builder(this)
     alertDialog.setTitle(title)
-            .setMessage(message)
-            .setCancelable(false)
-            .setPositiveButton("Okay") { dialog, _ -> dialog.dismiss() }.show()
+        .setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton("Okay") { dialog, _ -> dialog.dismiss() }.show()
 }
 
 /**
@@ -95,8 +95,8 @@ fun Context.showCustomChromeTabs(webUrl: String) {
 @BindingAdapter("loadImageUrl")
 fun ImageView.setGlideImage(thumbUrl: String?) {
     Glide.with(this)
-            .load(thumbUrl)
-            .into(this)
+        .load(thumbUrl)
+        .into(this)
 }
 
 /**

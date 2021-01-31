@@ -48,16 +48,22 @@ class ArticleFragment : Fragment() {
     }
 
     private fun initializeProgressBar() {
-        articlesViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        articlesViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        articlesViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        articlesViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     /* TODO This method should be uncommented when the api is ready*/

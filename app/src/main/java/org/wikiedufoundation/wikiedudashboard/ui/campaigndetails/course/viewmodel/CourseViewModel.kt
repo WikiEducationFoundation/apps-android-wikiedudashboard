@@ -13,7 +13,7 @@ import java.io.IOException
  * CourseViewModel takes in parameters courseRepository and url.
  ***/
 class CourseViewModel(private val courseRepository: CourseRepository, private val url: String) :
-        ViewModel() {
+    ViewModel() {
 
     private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
     val showMsg: MutableLiveData<ShowMessage> get() = _showMsg

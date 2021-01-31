@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.library.BuildConfig
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.koin.android.ext.android.inject
+import org.wikiedufoundation.wikiedudashboard.R
 import org.wikiedufoundation.wikiedudashboard.data.preferences.SharedPrefs
 import org.wikiedufoundation.wikiedudashboard.ui.welcome.WelcomeActivity
 import org.wikiedufoundation.wikiedudashboard.util.showCustomChromeTabs
-import org.wikiedufoundation.wikiedudashboard.R
 
 /**
  * Activity for user settings of the profile part
@@ -68,17 +68,17 @@ class SettingsActivity : AppCompatActivity() {
     private fun logOut() {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle(R.string.logout)
-                .setMessage(R.string.logout_confirmation)
-                .setCancelable(false)
-                .setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
-                .setPositiveButton(R.string.yes) { dialog, _ ->
-                    sharedPrefs.userName = ""
-                    sharedPrefs.cookies = ""
-                    sharedPrefs.setLogin(false)
-                    val i = Intent(this, WelcomeActivity::class.java)
-                    startActivity(i)
+            .setMessage(R.string.logout_confirmation)
+            .setCancelable(false)
+            .setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+            .setPositiveButton(R.string.yes) { dialog, _ ->
+                sharedPrefs.userName = ""
+                sharedPrefs.cookies = ""
+                sharedPrefs.setLogin(false)
+                val i = Intent(this, WelcomeActivity::class.java)
+                startActivity(i)
 
-                    dialog.dismiss()
-                }.show()
+                dialog.dismiss()
+            }.show()
     }
 }

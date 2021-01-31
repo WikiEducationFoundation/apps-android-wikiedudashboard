@@ -29,9 +29,9 @@ val apiModule = module {
  * Use the [providerGson] to provide Gson
  * @return GsonBuilder*/
 fun providerGson(): Gson =
-        GsonBuilder()
-                .setLenient()
-                .create()
+    GsonBuilder()
+        .setLenient()
+        .create()
 
 /**
  * Use the [provideInterceptor] to provide a HttpLoggingInterceptor
@@ -46,29 +46,29 @@ fun provideInterceptor(): HttpLoggingInterceptor {
  * Use the [provideClient] to provide a OkHttpClient
  * @return OkHttpClient*/
 fun provideClient(): OkHttpClient =
-        OkHttpClient.Builder()
-                .addInterceptor(provideInterceptor())
-                .connectTimeout(5, TimeUnit.MINUTES)
-                .readTimeout(5, TimeUnit.MINUTES)
-                .build()
+    OkHttpClient.Builder()
+        .addInterceptor(provideInterceptor())
+        .connectTimeout(5, TimeUnit.MINUTES)
+        .readTimeout(5, TimeUnit.MINUTES)
+        .build()
 
 /**
  * Use the [provideBaseRetrofit] to provide a Retrofit with WITH_BASE_URL instance
  * @return Retrofit*/
 fun provideBaseRetrofit(): Retrofit =
-        Retrofit.Builder()
-                .baseUrl(Urls.BASE_URL)
-                .client(provideClient())
-                .addConverterFactory(GsonConverterFactory.create(providerGson()))
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .build()
+    Retrofit.Builder()
+        .baseUrl(Urls.BASE_URL)
+        .client(provideClient())
+        .addConverterFactory(GsonConverterFactory.create(providerGson()))
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
 
 /**
  * Use the [provideCommonsRetrofit] to provide a Retrofit with WIKI_MEDIA_COMMONS instance
  * @return Retrofit*/
 fun provideCommonsRetrofit(): Retrofit =
-        Retrofit.Builder()
-                .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
-                .client(provideClient())
-                .addConverterFactory(GsonConverterFactory.create(providerGson()))
-                .build()
+    Retrofit.Builder()
+        .baseUrl(Urls.WIKIMEDIA_COMMONS_BASE_URL)
+        .client(provideClient())
+        .addConverterFactory(GsonConverterFactory.create(providerGson()))
+        .build()

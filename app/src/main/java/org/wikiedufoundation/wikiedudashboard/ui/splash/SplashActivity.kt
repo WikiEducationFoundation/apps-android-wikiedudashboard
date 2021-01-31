@@ -20,14 +20,17 @@ class SplashActivity : AppCompatActivity() {
 
         val sharedPrefs = SharedPrefs(this)
         val handler = Handler()
-        handler.postDelayed({
-            if (sharedPrefs.isLoggedIn) {
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
-            } else {
-                startActivity(Intent(this, WelcomeHostActivity::class.java))
-                finish()
-            }
-        }, 1000)
+        handler.postDelayed(
+            {
+                if (sharedPrefs.isLoggedIn) {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this, WelcomeHostActivity::class.java))
+                    finish()
+                }
+            },
+            1000
+        )
     }
 }

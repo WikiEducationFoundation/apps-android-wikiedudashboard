@@ -9,13 +9,13 @@ import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.home.viewmodel.
 import org.wikiedufoundation.wikiedudashboard.ui.campaigndetails.student.viewmodel.StudentViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.articlesedited.viewmodel.ArticlesEditedViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.common.viewmodel.CourseDetailViewModel
-import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.viewmodel.StudentsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.recentactivity.viewmodel.RecentActivityViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.students.viewmodel.StudentsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.viewmodel.CourseUploadsViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.courselist.viewmodel.CourseListViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.dashboard.viewmodel.DashboardViewModel
-import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewModel
 import org.wikiedufoundation.wikiedudashboard.ui.mediadetail.viewmodel.MediaDetailsViewModel
+import org.wikiedufoundation.wikiedudashboard.ui.profile.viewmodel.ProfileViewModel
 
 /**
  * Use the [viewModelModule] to creating viewModel instance

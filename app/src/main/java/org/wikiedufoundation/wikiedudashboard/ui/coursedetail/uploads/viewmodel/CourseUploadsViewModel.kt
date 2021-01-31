@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.data.CourseUpload
 import org.wikiedufoundation.wikiedudashboard.ui.coursedetail.uploads.repository.CourseUploadsRepository
 import org.wikiedufoundation.wikiedudashboard.util.ShowMessage
+import retrofit2.HttpException
 import java.io.IOException
 
 /**
@@ -33,6 +34,9 @@ class CourseUploadsViewModel(
                 _progressbar.postValue(false)
             } catch (e: IOException) {
                 _showMsg.postValue(ShowMessage("Unable to connect to server."))
+                _progressbar.postValue(false)
+            } catch (e: HttpException) {
+                _showMsg.postValue(ShowMessage(e.message()))
                 _progressbar.postValue(false)
             }
         }

@@ -53,29 +53,38 @@ class CourseArticlesEditedFragment : Fragment() {
     }
 
     private fun setData() {
-        articlesEditedViewModel.articleList.observe(this, Observer {
-            Timber.d(it.toString())
-            if (it.isNotEmpty()) {
-                recyclerEditedArticlesList?.visibility = View.VISIBLE
-                articlesEditedRecyclerAdapter.setData(it)
-                textViewNoEditedArticles?.visibility = View.GONE
-            } else {
-                recyclerEditedArticlesList?.visibility = View.GONE
-                textViewNoEditedArticles?.visibility = View.VISIBLE
+        articlesEditedViewModel.articleList.observe(
+            this,
+            Observer {
+                Timber.d(it.toString())
+                if (it.isNotEmpty()) {
+                    recyclerEditedArticlesList?.visibility = View.VISIBLE
+                    articlesEditedRecyclerAdapter.setData(it)
+                    textViewNoEditedArticles?.visibility = View.GONE
+                } else {
+                    recyclerEditedArticlesList?.visibility = View.GONE
+                    textViewNoEditedArticles?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        articlesEditedViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        articlesEditedViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        articlesEditedViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        articlesEditedViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 }

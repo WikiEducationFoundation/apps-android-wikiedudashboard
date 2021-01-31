@@ -13,8 +13,8 @@ import java.io.IOException
  * ArticleViewModel takes in two parameter articleRepository
  * and url and extends ViewMdoel
  ***/
-class ArticleViewModel(private val articleRepository: ArticleRepository, private val url: String)
-    : ViewModel() {
+class ArticleViewModel(private val articleRepository: ArticleRepository, private val url: String) :
+    ViewModel() {
     private val _showMsg: MutableLiveData<ShowMessage> = MutableLiveData()
     val showMsg: MutableLiveData<ShowMessage> get() = _showMsg
     private val _progressbar = MutableLiveData<Boolean>()
@@ -36,4 +36,5 @@ class ArticleViewModel(private val articleRepository: ArticleRepository, private
                 _progressbar.postValue(false)
             }
         }
-    } }
+    }
+}

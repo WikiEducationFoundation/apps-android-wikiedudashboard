@@ -49,28 +49,37 @@ class StudentFragment : Fragment() {
     }
 
     private fun initializeProgressBar() {
-        studentViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        studentViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        studentViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        studentViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     private fun setData() {
-        studentViewModel.studentList.observe(this, Observer {
-            if (it.isNotEmpty()) {
-                Timber.d(it.toString())
-                studentListRecyclerAdapter.setData(it)
-            } else {
-                recyclerStudentList?.visibility = View.GONE
-                textViewNoStudents?.visibility = View.VISIBLE
+        studentViewModel.studentList.observe(
+            this,
+            Observer {
+                if (it.isNotEmpty()) {
+                    Timber.d(it.toString())
+                    studentListRecyclerAdapter.setData(it)
+                } else {
+                    recyclerStudentList?.visibility = View.GONE
+                    textViewNoStudents?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     /**

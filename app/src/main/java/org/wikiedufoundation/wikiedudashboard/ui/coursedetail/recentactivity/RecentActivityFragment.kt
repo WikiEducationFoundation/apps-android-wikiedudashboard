@@ -55,29 +55,38 @@ class RecentActivityFragment : Fragment() {
     }
 
     private fun setData() {
-        recentActivityViewModel.recentList.observe(this, Observer {
-            Timber.d("recent $it.size")
-            if (it.isNotEmpty()) {
-                recyclerEditedArticlesList?.visibility = View.VISIBLE
-                recentActivityRecyclerAdapter.setData(it)
-                textViewNoActivity?.visibility = View.GONE
-            } else {
-                recyclerEditedArticlesList?.visibility = View.GONE
-                textViewNoActivity?.visibility = View.VISIBLE
+        recentActivityViewModel.recentList.observe(
+            this,
+            Observer {
+                Timber.d("recent $it.size")
+                if (it.isNotEmpty()) {
+                    recyclerEditedArticlesList?.visibility = View.VISIBLE
+                    recentActivityRecyclerAdapter.setData(it)
+                    textViewNoActivity?.visibility = View.GONE
+                } else {
+                    recyclerEditedArticlesList?.visibility = View.GONE
+                    textViewNoActivity?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initialzeProgressBar() {
-        recentActivityViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        recentActivityViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initialzeToaster() {
-        recentActivityViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        recentActivityViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 }

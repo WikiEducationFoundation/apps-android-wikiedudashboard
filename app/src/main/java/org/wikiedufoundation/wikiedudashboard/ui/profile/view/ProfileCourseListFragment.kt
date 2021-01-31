@@ -34,7 +34,7 @@ class ProfileCourseListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             coursesList = (it.getSerializable(ARG_PARAM1) as? ProfileResponse)?.courses
-                    ?: emptyList()
+                ?: emptyList()
         }
     }
 
@@ -67,31 +67,40 @@ class ProfileCourseListFragment : Fragment() {
      * @param courses list of courses data
      * ***/
     fun setData() {
-        profileViewModel.profile.observe(this, Observer {
-            val courses = it.courses
-            Timber.d(it.courses.toString())
-            if (courses.isNotEmpty()) {
-                recyclerCourseList?.visibility = View.VISIBLE
-                courseListRecyclerAdapter.setData(courses)
-                textViewNoCourses?.visibility = View.GONE
-            } else {
-                recyclerCourseList?.visibility = View.GONE
-                textViewNoCourses?.visibility = View.VISIBLE
+        profileViewModel.profile.observe(
+            this,
+            Observer {
+                val courses = it.courses
+                Timber.d(it.courses.toString())
+                if (courses.isNotEmpty()) {
+                    recyclerCourseList?.visibility = View.VISIBLE
+                    courseListRecyclerAdapter.setData(courses)
+                    textViewNoCourses?.visibility = View.GONE
+                } else {
+                    recyclerCourseList?.visibility = View.GONE
+                    textViewNoCourses?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        profileViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        profileViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        profileViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        profileViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     private fun openCourseDetail(slug: String) {

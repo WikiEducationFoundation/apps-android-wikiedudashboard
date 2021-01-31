@@ -31,7 +31,7 @@ import org.wikiedufoundation.wikiedudashboard.ui.welcome.onboarding.setParallaxT
  */
 class OnBoardingView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-        FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
+    FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private val numberOfPages by lazy { OnboardingPage.values().size }
     private val prefManager: SharedPrefs

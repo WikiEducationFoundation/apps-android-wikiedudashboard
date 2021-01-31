@@ -6,4 +6,4 @@ package org.wikiedufoundation.wikiedudashboard.util
  * @return the filtered list or emptyList()
  ***/
 fun <T> List<T>?.filterOrEmptyList(block: (T) -> Boolean): List<T> =
-        this?.filter(block) ?: emptyList()
+    this?.filter(block) ?: emptyList()

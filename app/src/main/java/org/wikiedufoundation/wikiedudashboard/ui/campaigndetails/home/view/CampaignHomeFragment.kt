@@ -21,7 +21,7 @@ class CampaignHomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-            inflater.inflate(R.layout.campaign_home_fragment, container, false)
+        inflater.inflate(R.layout.campaign_home_fragment, container, false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

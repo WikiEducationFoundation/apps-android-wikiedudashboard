@@ -71,31 +71,40 @@ class MyDashboardFragment : Fragment() {
     }
 
     private fun setData() {
-        dashboardViewModel.courseList.observe(this, androidx.lifecycle.Observer {
-            Timber.d(it.toString())
+        dashboardViewModel.courseList.observe(
+            this,
+            androidx.lifecycle.Observer {
+                Timber.d(it.toString())
 
-            if (it.isNotEmpty()) {
-                recyclerCourseList?.visibility = View.VISIBLE
-                myDashboardRecyclerAdapter.setData(it)
-                textViewNoCourses?.visibility = View.GONE
-            } else {
-                recyclerCourseList?.visibility = View.GONE
-                textViewNoCourses?.visibility = View.VISIBLE
+                if (it.isNotEmpty()) {
+                    recyclerCourseList?.visibility = View.VISIBLE
+                    myDashboardRecyclerAdapter.setData(it)
+                    textViewNoCourses?.visibility = View.GONE
+                } else {
+                    recyclerCourseList?.visibility = View.GONE
+                    textViewNoCourses?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        dashboardViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        dashboardViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        dashboardViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it?.showMsg
-            message?.let { msg -> view?.showSnackbar(msg) }
-        })
+        dashboardViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it?.showMsg
+                message?.let { msg -> view?.showSnackbar(msg) }
+            }
+        )
     }
 
     /**

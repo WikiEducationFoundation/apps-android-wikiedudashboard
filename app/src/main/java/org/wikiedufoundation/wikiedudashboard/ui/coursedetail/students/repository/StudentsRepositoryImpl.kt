@@ -16,7 +16,7 @@ class StudentsRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardAp
      **/
     override suspend fun requestStudentList(url: String): List<User> = withContext(Dispatchers.IO) {
         val request = wikiEduDashboardApi
-                .getStudentList(Urls.SUB_URL_COURSE_STUDENTLIST.format(url))
+            .getStudentList(Urls.SUB_URL_COURSE_STUDENTLIST.format(url))
         val studentList = request.course.users
         studentList
     }

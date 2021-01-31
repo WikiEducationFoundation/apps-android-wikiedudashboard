@@ -24,13 +24,13 @@ class ArticlesDetailedFragment : BottomSheetDialogFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_articles_detailed, container, false)
         arguments?.let { bundle ->
             bundle.getParcelable<Articles>("article")
-                    ?.let {
-                        binding.textViewTitle.text = it.title
-                        binding.textViewCountCharactersAdded.text = it.characters_added
-                        binding.textViewCountReferencesAdded.text = it.references_added
-                        binding.textViewViewsCount.text = it.views
-                        binding.textViewCourseList.text = it.courses
-                    }
+                ?.let {
+                    binding.textViewTitle.text = it.title
+                    binding.textViewCountCharactersAdded.text = it.characters_added
+                    binding.textViewCountReferencesAdded.text = it.references_added
+                    binding.textViewViewsCount.text = it.views
+                    binding.textViewCourseList.text = it.courses
+                }
         }
 
         return binding.root

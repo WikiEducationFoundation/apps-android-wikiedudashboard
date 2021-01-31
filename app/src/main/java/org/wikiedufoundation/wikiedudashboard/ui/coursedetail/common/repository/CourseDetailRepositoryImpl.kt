@@ -9,17 +9,17 @@ import org.wikiedufoundation.wikiedudashboard.util.Urls
 /**
  * Declares the api as a private property in the constructor.
  * */
-class CourseDetailRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardApi)
-    : CourseDetailRepository {
+class CourseDetailRepositoryImpl(private val wikiEduDashboardApi: WikiEduDashboardApi) :
+    CourseDetailRepository {
 
     /** The suspend modifier tells the compiler that this must be called from a
      *  coroutine or another suspend function.
      **/
     override suspend fun requestCourseDetails(url: String): CourseDetail =
-            withContext(Dispatchers.IO) {
-                val request = wikiEduDashboardApi
-                        .getCourseDetail(Urls.SUB_URL_COURSE_DETAIL.format(url))
-                val courseDetail = request.course
-                courseDetail
-            }
+        withContext(Dispatchers.IO) {
+            val request = wikiEduDashboardApi
+                .getCourseDetail(Urls.SUB_URL_COURSE_DETAIL.format(url))
+            val courseDetail = request.course
+            courseDetail
+        }
 }

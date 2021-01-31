@@ -17,10 +17,10 @@ class RecentActiivtyRepositoryImpl(
      *  coroutine or another suspend function.
      **/
     override suspend fun requestRecentActivity(url: String): List<RecentActivity> =
-            withContext(Dispatchers.IO) {
-        val request = wikiEduDashboardApi
+        withContext(Dispatchers.IO) {
+            val request = wikiEduDashboardApi
                 .getRecentActivity(SUB_URL_COURSE_RECENT.format(url))
-        val recentList = request.course.revisions
-        recentList
-    }
+            val recentList = request.course.revisions
+            recentList
+        }
 }

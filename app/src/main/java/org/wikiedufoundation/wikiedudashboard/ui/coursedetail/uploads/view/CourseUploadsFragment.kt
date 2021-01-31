@@ -67,30 +67,39 @@ class CourseUploadsFragment : Fragment() {
     }
 
     private fun setData() {
-        courseUploadsViewModel.uploadList.observe(this, Observer {
-            Timber.d(it.toString())
-            if (it.isNotEmpty()) {
-                recyclerUploadList?.visibility = View.VISIBLE
-                courseUploadsRecyclerAdapter.setData(it)
-                textViewNoUploads?.visibility = View.GONE
-            } else {
-                recyclerUploadList?.visibility = View.GONE
-                textViewNoUploads?.visibility = View.VISIBLE
+        courseUploadsViewModel.uploadList.observe(
+            this,
+            Observer {
+                Timber.d(it.toString())
+                if (it.isNotEmpty()) {
+                    recyclerUploadList?.visibility = View.VISIBLE
+                    courseUploadsRecyclerAdapter.setData(it)
+                    textViewNoUploads?.visibility = View.GONE
+                } else {
+                    recyclerUploadList?.visibility = View.GONE
+                    textViewNoUploads?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        courseUploadsViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        courseUploadsViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        courseUploadsViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it.showMsg
-            view?.showSnackbar(message)
-        })
+        courseUploadsViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it.showMsg
+                view?.showSnackbar(message)
+            }
+        )
     }
 
     /**
@@ -121,12 +130,12 @@ class CourseUploadsFragment : Fragment() {
          * @param courseUploads course uploads
          * ***/
         fun newInstance(type: Int, courseDetail: String, courseUploads: CourseUploadList?) =
-                CourseUploadsFragment().apply {
-                    val args = Bundle()
-                    args.putInt(ARG_PARAM1, type)
-                    args.putString(ARG_PARAM2, courseDetail)
-                    args.putSerializable(ARG_PARAM3, courseUploads)
-                    this.arguments = args
-                }
+            CourseUploadsFragment().apply {
+                val args = Bundle()
+                args.putInt(ARG_PARAM1, type)
+                args.putString(ARG_PARAM2, courseDetail)
+                args.putSerializable(ARG_PARAM3, courseUploads)
+                this.arguments = args
+            }
     }
 }

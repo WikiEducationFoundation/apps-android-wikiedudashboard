@@ -68,30 +68,39 @@ class CampaignListFragment : Fragment() {
     }
 
     private fun setData() {
-        activeCampaignViewModel.data.observe(this, androidx.lifecycle.Observer {
-            Timber.d(it.toString())
-            if (it.isNotEmpty()) {
-                recyclerCampaignList?.visibility = View.VISIBLE
-                campaignListRecyclerAdapter.setData(it)
-                textViewNoCampaigns?.visibility = View.GONE
-            } else {
-                recyclerCampaignList?.visibility = View.GONE
-                textViewNoCampaigns?.visibility = View.VISIBLE
+        activeCampaignViewModel.data.observe(
+            this,
+            androidx.lifecycle.Observer {
+                Timber.d(it.toString())
+                if (it.isNotEmpty()) {
+                    recyclerCampaignList?.visibility = View.VISIBLE
+                    campaignListRecyclerAdapter.setData(it)
+                    textViewNoCampaigns?.visibility = View.GONE
+                } else {
+                    recyclerCampaignList?.visibility = View.GONE
+                    textViewNoCampaigns?.visibility = View.VISIBLE
+                }
             }
-        })
+        )
     }
 
     private fun initializeProgressBar() {
-        activeCampaignViewModel.progressbar.observe(this, androidx.lifecycle.Observer {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        activeCampaignViewModel.progressbar.observe(
+            this,
+            androidx.lifecycle.Observer {
+                progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        )
     }
 
     private fun initializeToaster() {
-        activeCampaignViewModel.showMsg.observe(this, androidx.lifecycle.Observer {
-            val message = it?.showMsg
-            message?.let { msg -> view?.showSnackbar(msg) }
-        })
+        activeCampaignViewModel.showMsg.observe(
+            this,
+            androidx.lifecycle.Observer {
+                val message = it?.showMsg
+                message?.let { msg -> view?.showSnackbar(msg) }
+            }
+        )
     }
 
     private fun openCampaignDetail(slug: String) {
@@ -109,7 +118,7 @@ class CampaignListFragment : Fragment() {
 
         val campaignQueryFilter = activeCampaignViewModel.data.value.filterOrEmptyList {
             it.title.toLowerCase(Locale.getDefault())
-                    .contains(query.toLowerCase(Locale.getDefault()))
+                .contains(query.toLowerCase(Locale.getDefault()))
         }
 
         campaignListRecyclerAdapter.setData(campaignQueryFilter)
