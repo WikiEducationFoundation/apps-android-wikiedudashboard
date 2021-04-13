@@ -15,7 +15,7 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.spotless" version "5.2.0"
+    id "com.diffplug.spotless" version "5.12.1"
     id "org.jlleitschuh.gradle.ktlint" version "9.4.1"
 }
 
